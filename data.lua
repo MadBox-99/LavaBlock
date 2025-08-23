@@ -30,9 +30,7 @@ end
 
 data.raw.recipe['burner-mining-drill'].enabled = false
 data.raw.recipe['chemical-plant'].enabled = true
-
-
-
+data.raw.recipe['offshore-pump'].enabled = true
 data.raw.technology["oil-gathering"].effects = { { type = "unlock-recipe", recipe = "oil-extraction" } }
 data.raw.technology["oil-processing"].research_trigger = { type = "craft-fluid", fluid = "crude-oil", amount = 1 }
 data.raw.technology["uranium-mining"].effects = {

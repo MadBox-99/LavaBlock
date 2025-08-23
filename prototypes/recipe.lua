@@ -1,135 +1,166 @@
+local stone_extraction = {
+    type = "recipe",
+    name = "stone-extraction",
+    energy_required = 4,
+    enabled = true,
+    ingredients = {
+        { type = "fluid", name = "lava", amount = 50 }
+    },
+    results = {
+        { type = "item", name = "stone", amount = 5 }
+    },
+    icon = "__base__/graphics/icons/stone.png",
+    icon_size = 64,
+    category = "chemistry",
+    subgroup = "fluid-recipes",
+}
+
+local brick_smelting = {
+    type = "recipe",
+    name = "brick-smelting",
+    energy_required = 3.2,
+    enabled = true,
+    ingredients = {
+        { type = "fluid", name = "lava", amount = 100 }
+    },
+    results = {
+        { type = "item", name = "stone-brick", amount = 2 }
+    },
+    icon = "__LavaBlock__/graphics/icons/brick-smelt.png",
+    icon_size = 64,
+    category = "chemistry",
+    subgroup = "fluid-recipes",
+    allow_productivity = true
+}
+local wood_extraction = {
+    type = "recipe",
+    name = "wood-extraction",
+    energy_required = 15,
+    enabled = true,
+    results = {
+        { type = "item", name = "wood", amount = 1 }
+    },
+    icon = "__base__/graphics/icons/wood.png",
+    icon_size = 64,
+    category = "chemistry",
+    subgroup = "fluid-recipes",
+}
+
+local coal_extraction = {
+    type = "recipe",
+    name = "coal-extraction",
+    energy_required = 4,
+    enabled = true,
+    ingredients = {
+        { type = "fluid", name = "lava", amount = 50 }
+    },
+    results = {
+        { type = "item", name = "coal", amount = 5 }
+    },
+    icon = "__base__/graphics/icons/coal.png",
+    icon_size = 64,
+    category = "chemistry",
+    subgroup = "fluid-recipes"
+}
+
+local iron_extraction = {
+    type = "recipe",
+    name = "iron-extraction",
+    energy_required = 5,
+    enabled = true,
+    ingredients = {
+        { type = "fluid", name = "lava", amount = 75 },
+    },
+    results = {
+        { type = "item", name = "iron-ore", amount = 5 }
+    },
+    icon = "__base__/graphics/icons/iron-ore.png",
+    icon_size = 64,
+    category = "chemistry",
+    subgroup = "fluid-recipes",
+}
+
+local iron_smelting = {
+    type = "recipe",
+    name = "iron-smelting",
+    energy_required = 3.2,
+    enabled = true,
+    ingredients = {
+        { type = "fluid", name = "lava", amount = 100 }
+    },
+    results = {
+        { type = "item", name = "iron-plate", amount = 2 }
+    },
+    icon = "__LavaBlock__/graphics/icons/iron-smelt.png",
+    icon_size = 64,
+    category = "chemistry",
+    subgroup = "fluid-recipes",
+    allow_productivity = true
+}
+
+local copper_extraction = {
+    type = "recipe",
+    name = "copper-extraction",
+    energy_required = 5,
+    enabled = true,
+    ingredients = {
+        { type = "fluid", name = "lava", amount = 75 },
+    },
+    results = {
+        { type = "item", name = "copper-ore", amount = 5 }
+    },
+    icon = "__base__/graphics/icons/copper-ore.png",
+    icon_size = 64,
+    category = "chemistry",
+    subgroup = "fluid-recipes",
+}
+
+local copper_smelting = {
+    type = "recipe",
+    name = "copper-smelting",
+    energy_required = 3.2,
+    enabled = true,
+    ingredients = {
+        { type = "fluid", name = "lava", amount = 100 }
+    },
+    results = {
+        { type = "item", name = "copper-plate", amount = 2 }
+    },
+    icon = "__LavaBlock__/graphics/icons/copper-smelt.png",
+    icon_size = 64,
+    category = "chemistry",
+    subgroup = "fluid-recipes",
+    allow_productivity = true
+}
+
+local iron_clearing = {
+    type = "recipe",
+    name = "iron-clearing",
+    energy_required = 10,
+    enabled = true,
+    ingredients = {
+        { type = "item", name = "iron-ore", amount = 10 }
+    },
+    results = {
+        { type = "item", name = "stone", amount = 1 }
+    },
+    icon = "__base__/graphics/icons/stone.png",
+    icon_size = 64,
+    category = "crafting",
+    subgroup = "fluid-recipes",
+    allow_productivity = false
+}
+
 data:extend({
-    {
-        type = "recipe",
-        name = "stone-extraction",
-        energy_required = 4,
-        enabled = true,
-        ingredients = {
-            { type = "fluid", name = "lava", amount = 50 }
-        },
-        results = {
-            { type = "item", name = "stone", amount = 5 }
-        },
-        icon = "__base__/graphics/icons/stone.png",
-        icon_size = 64,
-        category = "chemistry",
-        subgroup = "fluid-recipes",
-    },
-    {
-        type = "recipe",
-        name = "brick-smelting",
-        energy_required = 3.2,
-        enabled = false,
-        ingredients = {
-            { type = "fluid", name = "lava", amount = 100 }
-        },
-        results = {
-            { type = "item", name = "stone-brick", amount = 2 }
-        },
-        icon = "__LavaBlock__/graphics/icons/brick-smelt.png",
-        icon_size = 64,
-        category = "chemistry",
-        subgroup = "fluid-recipes",
-        allow_productivity = true
-    },
-    {
-        type = "recipe",
-        name = "wood-extraction",
-        energy_required = 5,
-        enabled = true,
-        ingredients = {
-            { type = "fluid", name = "lava", amount = 50 }
-        },
-        results = {
-            { type = "item", name = "wood", amount = 5 }
-        },
-        icon = "__base__/graphics/icons/wood.png",
-        icon_size = 64,
-        category = "chemistry",
-        subgroup = "fluid-recipes"
-    },
-    {
-        type = "recipe",
-        name = "coal-extraction",
-        energy_required = 4,
-        enabled = true,
-        ingredients = {
-            { type = "fluid", name = "lava", amount = 50 },
-        },
-        results = {
-            { type = "item", name = "coal", amount = 5 }
-        },
-        icon = "__base__/graphics/icons/coal.png",
-        icon_size = 64,
-        category = "chemistry",
-        subgroup = "fluid-recipes",
-    },
-    {
-        type = "recipe",
-        name = "iron-extraction",
-        energy_required = 5,
-        enabled = true,
-        ingredients = {
-            { type = "fluid", name = "lava", amount = 75 },
-        },
-        results = {
-            { type = "item", name = "iron-ore", amount = 5 }
-        },
-        icon = "__base__/graphics/icons/iron-ore.png",
-        icon_size = 64,
-        category = "chemistry",
-        subgroup = "fluid-recipes",
-    },
-    {
-        type = "recipe",
-        name = "iron-smelting",
-        energy_required = 3.2,
-        enabled = false,
-        ingredients = {
-            { type = "fluid", name = "lava", amount = 100 }
-        },
-        results = {
-            { type = "item", name = "iron-plate", amount = 2 }
-        },
-        icon = "__LavaBlock__/graphics/icons/iron-smelt.png",
-        icon_size = 64,
-        category = "chemistry",
-        subgroup = "fluid-recipes",
-        allow_productivity = true
-    },
-    {
-        type = "recipe",
-        name = "copper-extraction",
-        energy_required = 5,
-        enabled = true,
-        ingredients = {
-            { type = "fluid", name = "lava", amount = 75 },
-        },
-        results = {
-            { type = "item", name = "copper-ore", amount = 5 }
-        },
-        icon = "__base__/graphics/icons/copper-ore.png",
-        icon_size = 64,
-        category = "chemistry",
-        subgroup = "fluid-recipes",
-    },
-    {
-        type = "recipe",
-        name = "copper-smelting",
-        energy_required = 3.2,
-        enabled = false,
-        ingredients = {
-            { type = "fluid", name = "lava", amount = 100 }
-        },
-        results = {
-            { type = "item", name = "copper-plate", amount = 2 }
-        },
-        icon = "__LavaBlock__/graphics/icons/copper-smelt.png",
-        icon_size = 64,
-        category = "chemistry",
-        subgroup = "fluid-recipes",
-        allow_productivity = true
-    },
+    iron_clearing,
+    stone_extraction,
+    brick_smelting,
+    wood_extraction,
+    coal_extraction,
+    iron_extraction,
+    iron_smelting,
+    copper_extraction,
+    copper_smelting,
     {
         type = "recipe",
         name = "oil-extraction",
