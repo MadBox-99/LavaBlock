@@ -6,13 +6,17 @@ local three_zone_elevation = {
 	type = "noise-expression",
 	name = util.mod_prefix .. "three-zone-elevation",
 	intended_property = "elevation",
-	expression = "0"
+	expression =
+	"if(abs(x)<=2.5, 100, if(abs(x)<=12.5, -200, 100)) + if(abs(y)<=2.5, 100, if(abs(y)<=12.5, -200, 100)) - 50"
 }
 
 
 
 
+data:extend {
+	three_zone_elevation,
 
+}
 
 local lava_block_island_preset = {
 	order = "i",
@@ -24,8 +28,7 @@ local lava_block_island_preset = {
 		autoplace_controls = {
 			["enemy-base"] = { size = 0 },
 			["trees"] = { size = 0 },
-			["water"] = { size = 0 },
-
+			["water"] = { size = 0 }
 		},
 	},
 	advanced_settings = {
@@ -37,26 +40,17 @@ local lava_block_island_preset = {
 -- Deepcopy nauvis so we don't modify the original
 local nauvis_copy = table.deepcopy(data.raw["planet"]["nauvis"])
 nauvis_copy.map_gen_settings.autoplace_controls["water"] = nil
-nauvis_copy.map_gen_settings.autoplace_controls["deepwater"] = nil
 nauvis_copy.map_gen_settings.default_enable_all_autoplace_controls = false
 nauvis_copy.map_gen_settings.autoplace_controls = {
 	["enemy-base"] = { size = 0 },
 	["trees"] = { size = 0 },
-	["water"] = { size = 0, frequency = 0 }
 }
 -- Remove water from default tiles and add lava block tile
 if nauvis_copy.map_gen_settings.autoplace_settings and nauvis_copy.map_gen_settings.autoplace_settings.tile then
 	nauvis_copy.map_gen_settings.autoplace_settings.tile.settings["water"] = nil
-	nauvis_copy.map_gen_settings.autoplace_settings.tile.settings["lava"] = {
-		size = "very-good",
-		frequency = "very-good",
-		richnes = "very-good"
-	}
+	nauvis_copy.map_gen_settings.autoplace_settings.tile.settings["lava"] = {}
 end
-data:extend({
-	three_zone_elevation,
-	nauvis_copy
-})
+data:extend({ nauvis_copy, })
 
 
 --Inserting the new map preset without altering the others
