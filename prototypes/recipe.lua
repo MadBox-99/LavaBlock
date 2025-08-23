@@ -42,8 +42,9 @@ local wood_extraction = {
     },
     icon = "__base__/graphics/icons/wood.png",
     icon_size = 64,
-    category = "chemistry",
-    subgroup = "fluid-recipes",
+
+    category = "crafting",
+    subgroup = "raw-material",
 }
 
 local coal_extraction = {

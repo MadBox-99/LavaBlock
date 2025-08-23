@@ -8,5 +8,5 @@
         "base >= 2.0",
         "? space-age"
     ],
-    "description": "Survival challenge mod: Start on a small island surrounded by lava. Extract resources from lava using chemical plants, expand your island through research-gated landfill, and build your factory with severely limited space. Features custom map generation, lava-based resource extraction, modified tech tree, and unique progression mechanics."
+    "description": "Start on a tiny island surrounded by lava! Extract all resources from lava using chemical plants. No traditional mining - convert lava into stone, coal, iron, copper & wood. Expand your island only through research-unlocked landfill. Custom map preset, modified tech tree, extreme space constraints create unique survival challenge. Perfect for players seeking fresh Factorio experience!"
 }
