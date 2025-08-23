@@ -1,0 +1,12 @@
+{
+    "name": "LavaBlock",
+    "version": "0.0.1",
+    "title": "LavaBlock",
+    "author": "Szabó Zoltán",
+    "factorio_version": "2.0",
+    "dependencies": [
+        "base >= 2.0",
+        "? space-age"
+    ],
+    "description": "A mod that adds a new type of block to the game: the LavaBlock."
+}
