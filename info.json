@@ -8,5 +8,5 @@
         "base >= 2.0",
         "? space-age"
     ],
-    "description": "A mod that adds a new type of block to the game: the LavaBlock."
+    "description": "Survival challenge mod: Start on a small island surrounded by lava. Extract resources from lava using chemical plants, expand your island through research-gated landfill, and build your factory with severely limited space. Features custom map generation, lava-based resource extraction, modified tech tree, and unique progression mechanics."
 }
