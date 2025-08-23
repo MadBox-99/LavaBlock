@@ -43,7 +43,7 @@ script.on_event(defines.events.on_player_created, function(event)
 end)
 
 -- Replace tiles outside the 25x25 water area with lava
-script.on_event(defines.events.on_chunk_generated, function(event)
+--[[ script.on_event(defines.events.on_chunk_generated, function(event)
 	local surface = event.surface
 	local area = event.area
 
@@ -67,7 +67,7 @@ script.on_event(defines.events.on_chunk_generated, function(event)
 	if #tiles_to_replace > 0 then
 		surface.set_tiles(tiles_to_replace)
 	end
-end)
+end) ]]
 --[[ script.on_event(defines.events.on_player_joined_game, function(e)
 	local player = game.players[e.player_index]
 	if player.surface.name == "nauvis" then

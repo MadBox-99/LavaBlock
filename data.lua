@@ -2,6 +2,8 @@ require("util")
 require("prototypes.items")
 require("prototypes.technology")
 require("prototypes.recipe")
+require("prototypes.islandGeneration")
+require("prototypes.landfill")
 
 function substitute_prerequisite(prerequisite_name, new_prerequisites)
     for _, tech in pairs(data.raw["technology"]) do
@@ -28,10 +30,7 @@ end
 
 data.raw.recipe['burner-mining-drill'].enabled = false
 data.raw.recipe['chemical-plant'].enabled = true
-data.raw.recipe['landfill'].ingredients = { { type = "item", name = "stone", amount = 5 } }
-data.raw.recipe['landfill'].enabled = true
 
-data.raw.item['landfill'].stack_size = 500
 
 
 data.raw.technology["oil-gathering"].effects = { { type = "unlock-recipe", recipe = "oil-extraction" } }
@@ -51,5 +50,4 @@ if mods["space-age"] then
     table.insert(tech.effects, { type = "unlock-recipe", recipe = "pumpjack" })
 
     data.raw.recipe['foundation'].enabled = true
-    data.raw.recipe['foundation'].ingredients = { { type = "item", name = "stone", amount = 5 } }
 end
