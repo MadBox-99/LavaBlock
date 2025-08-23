@@ -21,78 +21,6 @@ script.on_init(function()
 
 	-- Forcing the starting block to not contain water.
 	local surface = game.get_surface("nauvis")
-	local tiles = {}
-	local tileIndex = 0
-	local island_size = settings.global["lava-block-starting-island-size"].value
-	local island_radius = 0
-
-	--local minDist = -island_size + 1
-	--local maxDist = island_size
-
-	--Initializing these variabls so they're inscope
-	local minDist = 0
-	local maxDist = 0
-
-	--Even sized island, leans positive X/Y from origin
-	if (island_size % 2) == 0 then
-		island_radius = island_size / 2
-		minDist = -island_radius + 1
-		maxDist = island_radius
-	else
-		--Odd sized island, centered on the origin
-		island_radius = (island_size - 1) / 2
-		minDist = -island_radius
-		maxDist = island_radius
-	end
-
-	for x = minDist, maxDist do
-		for y = minDist, maxDist do
-			local current_tile = surface.get_tile(x, y)
-			if current_tile.name == "water" then
-				tiles[tileIndex] = { name = 'grass-1', position = { x, y } }
-				tileIndex = tileIndex + 1
-			end
-		end
-	end
-
-	surface.set_tiles(tiles)
-
-	-- If the player enabled starting with all landfill island we convert the square here.
-	if settings.global["lava-block-landfill-starting-island"].value == true then
-		--Forcing water tiles to be under the starting island
-		tiles = {}
-		tileIndex = 0
-
-		-- If the starting area is set to be smaller than the default island size (50) we need to increase the erasing area to 50 to ensure the starting zone is sized correctly
-		local waterPlacementMinDist = minDist
-		local waterPlacementMaxDist = maxDist
-		if (island_radius < 25) then
-			waterPlacementMinDist = (-25) + 1
-			waterPlacementMaxDist = 25
-		end
-
-		for x = waterPlacementMinDist, waterPlacementMaxDist do
-			for y = waterPlacementMinDist, waterPlacementMaxDist do
-				tiles[tileIndex] = { name = 'lava', position = { x, y } }
-				tileIndex = tileIndex + 1
-			end
-		end
-
-		surface.set_tiles(tiles)
-
-		--Forcing landfill on top
-		tiles = {}
-		tileIndex = 0
-
-		for x = minDist, maxDist do
-			for y = minDist, maxDist do
-				tiles[tileIndex] = { name = 'landfill', position = { x, y } }
-				tileIndex = tileIndex + 1
-			end
-		end
-
-		surface.set_tiles(tiles)
-	end
 end)
 
 -- Adding starting items & display helpful hints
@@ -112,6 +40,33 @@ script.on_event(defines.events.on_player_created, function(event)
 	player.print({ "lava-block.on-start-mechanics-explanation-3" })
 	player.print({ "lava-block.on-start-mechanics-explanation-4" })
 	player.print({ "lava-block.on-start-mechanics-explanation-5" })
+end)
+
+-- Replace tiles outside the 25x25 water area with lava
+script.on_event(defines.events.on_chunk_generated, function(event)
+	local surface = event.surface
+	local area = event.area
+
+	local tiles_to_replace = {}
+	local tile_index = 1
+
+	for x = area.left_top.x, area.right_bottom.x - 1 do
+		for y = area.left_top.y, area.right_bottom.y - 1 do
+			-- Only place lava outside the 25x25 area (beyond coordinates ±12.5)
+			if (math.abs(x) > 12.5 or math.abs(y) > 12.5) then
+				local tile = surface.get_tile(x, y)
+				-- Replace any non-water tile with lava (so grass, dirt, etc. become lava)
+				if tile.name ~= "water" and tile.name ~= "deepwater" and tile.name ~= "lava" then
+					tiles_to_replace[tile_index] = { name = "lava", position = { x, y } }
+					tile_index = tile_index + 1
+				end
+			end
+		end
+	end
+
+	if #tiles_to_replace > 0 then
+		surface.set_tiles(tiles_to_replace)
+	end
 end)
 --[[ script.on_event(defines.events.on_player_joined_game, function(e)
 	local player = game.players[e.player_index]
