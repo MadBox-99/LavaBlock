@@ -107,11 +107,11 @@ script.on_event(defines.events.on_player_created, function(event)
 		player.insert { name = "wooden-chest", count = 50 }
 	end
 
-	player.print({ "factories-in-tight-spaces.on-start-mechanics-explanation-1" })
-	player.print({ "factories-in-tight-spaces.on-start-mechanics-explanation-2" })
-	player.print({ "factories-in-tight-spaces.on-start-mechanics-explanation-3" })
-	player.print({ "factories-in-tight-spaces.on-start-mechanics-explanation-4" })
-	player.print({ "factories-in-tight-spaces.on-start-mechanics-explanation-5" })
+	player.print({ "lava-block.on-start-mechanics-explanation-1" })
+	player.print({ "lava-block.on-start-mechanics-explanation-2" })
+	player.print({ "lava-block.on-start-mechanics-explanation-3" })
+	player.print({ "lava-block.on-start-mechanics-explanation-4" })
+	player.print({ "lava-block.on-start-mechanics-explanation-5" })
 end)
 --[[ script.on_event(defines.events.on_player_joined_game, function(e)
 	local player = game.players[e.player_index]
