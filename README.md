@@ -1,179 +1,113 @@
-# LavaBlock - A Comprehensive Factorio Mod Description
+# LavaBlock - Ultimate Island Survival Challenge
 
-**LavaBlock** is an innovative Factorio mod created by Szabó Zoltán that fundamentally transforms the traditional gameplay experience by introducing a unique survival challenge based on resource scarcity and island expansion mechanics. This mod is designed for Factorio version 2.0 and offers optional compatibility with the Space Age expansion.
+**Transform your Factorio experience into the ultimate survival challenge!** LavaBlock is a revolutionary mod that completely reimagines how you approach factory building by stranding you on a tiny 25x25 tile island surrounded by deadly lava, forcing you to bootstrap your entire industrial empire through innovative lava-based resource extraction.
 
-## Core Concept and Gameplay Philosophy
+## 🌋 Unique Starting Scenario
 
-LavaBlock reimagines Factorio as a survival experience where players begin on a small, isolated island surrounded by lava instead of the traditional vast open world. The mod challenges players to bootstrap their industrial empire from extremely limited initial resources while managing the constant constraint of limited land area. This creates a unique blend of resource management, strategic planning, and gradual expansion that differs significantly from the base game's abundance-focused gameplay.
+Forget everything you know about Factorio's abundant resource landscape. In LavaBlock, you begin on a small landfill island - a mere 625 tiles of safe ground - completely surrounded by a moat of lava that stretches 12.5 tiles in every direction. No ore patches, no trees, no water, no enemies. Just you, your starting equipment, and an ocean of molten rock that holds all the resources you'll ever need.
 
-## Island Generation and Map Preset
+## 🏭 Revolutionary Resource System
 
-The mod introduces a custom map generation preset called "Lava Block Island" that creates a distinctive three-zone terrain structure:
+**No Traditional Mining** - Electric drills are useless here. Instead, LavaBlock introduces an entirely lava-based economy powered by chemical plants:
 
-1. **Starting Island**: A small 25x25 tile safe zone made of landfill where players spawn
-2. **Lava Moat**: A deadly lava barrier surrounding the starting area within a 12.5 tile radius
-3. **Outer Terrain**: Standard terrain beyond the lava barrier
+### Basic Extraction Recipes:
 
-The map generation completely removes traditional resource patches, water bodies, trees, and enemy bases, creating a barren but controlled environment. This forces players to rely entirely on the mod's unique resource extraction systems rather than traditional mining.
+- 🪨 **Lava to Stone**: 100 lava → 2 stone (3.2s process)
+- ⚫ **Lava to Coal**: 100 lava → 2 coal (3.2s process)
+- 🔧 **Lava to Iron Ore**: 100 lava → 2 iron ore (3.2s process)
+- 🟠 **Lava to Copper Ore**: 100 lava → 2 copper ore (3.2s process)
+- 🌳 **Wood Extraction**: Environmental wood generation (15s process)
 
-## Revolutionary Resource System
+### Advanced Lava Smelting (unlocked through research):
 
-### Lava-Based Extraction
-The mod replaces traditional mining with a sophisticated lava-based resource extraction system. Players use chemical plants to process lava (presumably from the surrounding lava moat) into various essential materials:
+- 🔩 **Direct Iron Plates**: 100 lava → 2 iron plates (3.2s)
+- 🟫 **Direct Copper Plates**: 100 lava → 2 copper plates (3.2s)
+- 🧱 **Stone Bricks**: 100 lava → 2 stone bricks (3.2s)
+- ♨️ **Steam Generation**: 5000 lava + 1 wood + 5 coal → 5000 units of 165°C steam
 
-- **Stone Extraction**: 100 lava → 2 stone (3.2-second process)
-- **Coal Extraction**: 100 lava → 2 coal (3.2-second process)
-- **Iron Extraction**: 100 lava → 2 iron ore (3.2-second process)
-- **Copper Extraction**: 100 lava → 2 copper ore (3.2-second process)
-- **Wood Extraction**: A 15-second process that generates wood from ambient sources
+### Specialized Resources:
 
-### Advanced Smelting Technology
-The mod introduces an innovative "lava smelting" system that allows direct production of refined materials:
+- 🛢️ **Oil Production**: Steam + coal → crude oil
+- ☢️ **Uranium Extraction**: Stone + sulfuric acid → uranium ore
+- 🏗️ **Calcite Synthesis**: 50,000 lava + 10 coal + 100 stone bricks → 10 calcite (for Space Age foundations)
+## 🔬 Completely Reworked Technology Tree
 
-- **Iron Smelting**: 100 lava → 2 iron plates (3.2-second process)
-- **Copper Smelting**: 100 lava → 2 copper plates (3.2-second process)
-- **Brick Smelting**: 100 lava → 2 stone bricks (3.2-second process)
+LavaBlock doesn't just add recipes - it fundamentally restructures Factorio's technology progression:
 
-These recipes are designed with productivity bonuses, making them efficient for large-scale production once the appropriate technology is researched.
+### New Technology Lines:
 
-### Special Resource Systems
-For more advanced materials, the mod provides alternative production methods:
+- **Advanced Water Smelting**: Multi-tier productivity bonuses for lava smelting (up to infinite research)
+- **Enhanced Mining Productivity**: Boosts lava extraction efficiency instead of traditional mining
+- **Calcite Processing Adaptation**: Unlocks when you craft offshore pumps
+- **Island Expansion Research**: Your only way to gain more land!
 
-- **Oil Extraction**: Combines steam and coal to produce crude oil, unlocked through technology research
-- **Uranium Extraction**: Uses stone and sulfuric acid to generate uranium ore, gated behind advanced research
+### Disabled Technologies:
 
-## Technology Tree Modifications
+- Electric mining drills (completely removed - they're useless anyway)
+- Various base game techs restructured for lava economy
+## 🏝️ Strategic Island Expansion
 
-LavaBlock extensively modifies the technology tree to support its unique resource paradigm:
+Land is your most precious resource. The only way to expand beyond your starting 25x25 island is through research:
 
-### Disabled Technologies
-- Electric mining drill technology is completely removed since traditional mining doesn't exist
-- Various base game technologies are restructured to fit the lava-based economy
+### Island Expansion Technology:
 
-### New Technology Branches
+- Unlocks at various science tiers
+- Grants 500 landfill per research tier (configurable)
+- Multiple distribution strategies for multiplayer:
+  - All to main player
+  - Divided among online players
+  - Replicated for each player
 
-**Advanced Water Smelting Technology Line:**
-- Unlocks the advanced lava smelting recipes
-- Provides productivity bonuses for lava-based smelting operations
-- Features multiple tiers of upgrades with infinite research options
-- Each tier provides 10% productivity improvements
+Every tile must be earned through scientific progress, making base planning absolutely critical.
 
-**Enhanced Mining Productivity:**
-- Modified to boost lava extraction recipes instead of traditional mining
-- Provides productivity bonuses to all extraction processes
-- Includes infinite research tiers for long-term progression
+## 🎮 Perfectly Balanced Starting Conditions
 
-**Calcite Processing Adaptation:**
-- Triggers when players craft an offshore pump
-- Unlocks acid neutralization and steam condensation recipes
-- Provides coal liquefaction as an alternative fuel source
+Your survival kit includes essential items carefully chosen for the lava environment:
 
-## Unique Starting Conditions and Progression
-
-### Starting Equipment
-Players begin with carefully selected starting items designed to facilitate early lava-based production:
-- Chemical plant (essential for lava processing)
-- Solar panel (clean energy source)
-- Small electric pole (power distribution)
+- 1 Chemical plant (your lifeline for resource extraction)
+- 1 Solar panel (clean, sustainable power)
+- 1 Small electric pole (power distribution)
 - Iron gear wheels and pipes (basic components)
 
-### Early Game Strategy
-The mod forces players to:
-1. Immediately set up lava extraction infrastructure
-2. Establish sustainable power generation
-3. Plan efficient use of extremely limited space
-4. Research landfill expansion technologies to grow the island
+The mod automatically unlocks steam power research and provides tutorial guidance to help you understand the unique mechanics.
 
-## Island Expansion Mechanics
+## 🚀 Space Age Integration
 
-### Landfill Distribution System
-The mod features a sophisticated landfill distribution system with multiple strategies:
+When Space Age is installed, LavaBlock seamlessly integrates:
 
-1. **All to Main Player**: All landfill from research goes to the host/first player
-2. **Divided Distribution**: Landfill is split evenly among all online players  
-3. **Replicated Distribution**: Each online player receives a full copy of the landfill reward
+- Space platform thruster technology unlocks traditional mining equipment for space operations
+- Foundation platform recipes enabled for space construction
+- Full compatibility with expanded tech tree while maintaining island survival core
 
-### Research-Gated Expansion
-Island expansion is strictly controlled through the technology tree:
-- "Island Expansion" research provides substantial amounts of landfill
-- Default reward is 500 landfill per science tier
-- Configurable multipliers allow server customization
-- Research completion triggers automatic distribution based on server settings
+## 👥 Multiplayer Excellence
 
-## Space Age Integration
+LavaBlock shines in multiplayer scenarios with configurable landfill distribution, balanced progression that prevents any single player from dominating, and cooperative resource management challenges that bring teams together.
 
-When the Space Age expansion is detected, LavaBlock provides seamless integration:
+## 🎯 Perfect For Players Who Love:
 
-- Space platform thruster technology unlocks previously disabled equipment
-- Burner mining drills, electric mining drills, and pumpjacks become available for space operations
-- Foundation platform recipes are enabled for space construction
-- The mod respects Space Age's expanded technology tree while maintaining its core island survival mechanics
+- **Extreme Resource Management**: Every resource matters when space is limited
+- **Strategic Base Planning**: No room for mistakes in your factory layout
+- **Alternative Progression**: Completely different from standard Factorio gameplay
+- **Survival Challenges**: Bootstrap civilization from almost nothing
+- **Long-term Optimization**: Infinite research ensures hundreds of hours of content
+- **Cooperative Play**: Share the challenge with friends
 
-## Quality of Life Features
+## 🔧 Quality of Life Features
 
-### User Interface Enhancements
-- Comprehensive localization support with detailed explanations
-- Custom recipe categorization under "Island management" tab
-- Clear progression hints and tutorials for new players
-- Visual feedback through custom icons for lava-based recipes
+- Comprehensive English localization with clear recipe descriptions
+- Custom recipe categorization under "Island Management" tab
+- Visual feedback through custom lava-themed icons
+- Configurable settings for different server sizes and preferences
+- Crash site removal for cleaner starting experience
+## 🌟 A Complete Game Mode Transformation
 
-### Multiplayer Considerations
-- Configurable landfill distribution strategies for different server sizes
-- Crash site removal to prevent resource abundance
-- Automatic steam power research to ensure viable early game progression
-- Balanced starting conditions that work for both single-player and multiplayer scenarios
+LavaBlock isn't just a mod - it's a complete reimagining of Factorio that maintains everything you love about factory building while introducing fresh challenges and mechanics. The carefully balanced resource conversion rates, innovative progression systems, and unique constraints create an experience that feels entirely new while remaining fundamentally Factorio.
 
-## Technical Innovation and Design Philosophy
+Whether you're a seasoned factory veteran looking for a fresh challenge or a new player seeking a unique introduction to Factorio's mechanics, LavaBlock offers hundreds of hours of engaging, strategic gameplay that will test your engineering skills like never before.
 
-LavaBlock demonstrates several innovative modding techniques:
+**Start your island survival adventure today and discover what it truly means to build an empire from lava and determination!**
 
-### Dynamic Recipe Management
-The mod dynamically modifies existing recipes and technologies, creating a seamless experience that feels like a complete game mode rather than just an add-on.
+---
 
-### Balanced Resource Economics
-All lava-based recipes are carefully balanced to provide challenging but fair resource conversion rates, encouraging strategic planning without creating artificial difficulty spikes.
+*Created by Szabó Zoltán for Factorio 2.0 | Current Version: 0.0.3 | Compatible with Space Age*
 
-### Scalable Difficulty
-The infinite research systems ensure that the mod remains engaging throughout extended play sessions, providing long-term goals for dedicated players.
-
-## Installation and Usage
-
-1. Place the mod folder in your Factorio mods directory
-2. Enable the mod in Factorio's mod manager
-3. Create a new game and select the "Lava Block Island" map generation preset
-4. Follow the in-game tutorial messages to understand the unique mechanics
-
-## Configuration Options
-
-The mod provides several configuration options accessible through Factorio's mod settings:
-
-- **Landfill Distribution Strategy**: Choose how landfill is distributed among players
-- **Landfill Multiplier**: Adjust the amount of landfill granted by research
-- **Starting Island Configuration**: Customize the starting island size and composition
-
-## Conclusion
-
-LavaBlock represents a masterful transformation of Factorio's core gameplay loop, taking the familiar factory-building mechanics and placing them in a completely new context of resource scarcity and strategic land management. The mod successfully creates a unique survival experience that maintains Factorio's essential appeal while introducing fresh challenges and gameplay mechanics.
-
-This mod is particularly appealing to players who enjoy:
-- Resource management challenges
-- Strategic base planning with severe space constraints  
-- Alternative progression paths that differ from standard Factorio gameplay
-- Cooperative multiplayer experiences with shared resource management
-- Long-term factory optimization projects
-
-LavaBlock stands as an excellent example of how thoughtful game design modifications can create entirely new experiences within existing game frameworks, offering hundreds of hours of engaging gameplay for both newcomers and Factorio veterans seeking a fresh challenge.
-
-## Author
-
-Created by **Szabó Zoltán** for Factorio 2.0
-
-## Version Information
-
-- **Current Version**: 0.0.1
-- **Factorio Compatibility**: 2.0+
-- **Optional Dependencies**: Space Age expansion
-
-## License
-
-This mod is distributed under standard Factorio modding terms.
