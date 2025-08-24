@@ -1,3 +1,8 @@
+data.raw.technology["oil-processing"].research_trigger = { type = "craft-fluid", fluid = "crude-oil", amount = 1 }
+data.raw.technology["oil-gathering"].effects = { { type = "unlock-recipe", recipe = "oil-extraction" } }
+data.raw.technology["uranium-processing"].research_trigger = { type = "craft-item", item = "uranium-ore" }
+
+
 data:extend({
   {
     type = "technology",
@@ -26,8 +31,7 @@ data:extend({
       { type = "unlock-recipe", recipe = "simple-coal-liquefaction" },
       { type = "unlock-recipe", recipe = "chemical-plant" }
     },
-    research_trigger =
-    {
+    research_trigger = {
       type = "craft-item",
       item = "offshore-pump",
       count = 1

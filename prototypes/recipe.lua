@@ -1,3 +1,5 @@
+data.raw.recipe['burner-mining-drill'].enabled = false
+
 local calcite_synthesis = {
     type = "recipe",
     name = "calcite-synthesis",

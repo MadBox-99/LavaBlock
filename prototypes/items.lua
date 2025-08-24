@@ -1,1 +1,5 @@
 require("prototypes.foundation-platform")
+require("prototypes.trains.fluid-wagon")
+require("prototypes.trains.cargo-wagon")
+require("prototypes.trains.locomotive")
+require("prototypes.storage-tank")
