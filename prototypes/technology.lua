@@ -1,13 +1,30 @@
 data:extend({
   {
     type = "technology",
+    name = "offshore-pump-on-lava-block",
+    icon = "__base__/graphics/icons/offshore-pump.png",
+    icon_size = 64,
+    effects = {
+      { type = "unlock-recipe", recipe = "offshore-pump" },
+    },
+    research_trigger =
+    {
+      type = "craft-item",
+      item = "wood",
+      count = 1
+    },
+    order = "a-b-c"
+  },
+  {
+    type = "technology",
     name = "calcite-processing-on-lava-block",
     icon = "__space-age__/graphics/technology/calcite-processing.png",
     icon_size = 256,
     effects = {
       { type = "unlock-recipe", recipe = "acid-neutralisation" },
       { type = "unlock-recipe", recipe = "steam-condensation" },
-      { type = "unlock-recipe", recipe = "simple-coal-liquefaction" }
+      { type = "unlock-recipe", recipe = "simple-coal-liquefaction" },
+      { type = "unlock-recipe", recipe = "chemical-plant" }
     },
     research_trigger =
     {
@@ -19,7 +36,7 @@ data:extend({
   },
   {
     type = "technology",
-    name = "water-smelting-productivity-3",
+    name = "lava-smelting-productivity-3",
     icon = "__base__/graphics/technology/mining-productivity.png",
     icon_size = 256,
     effects = {
@@ -39,7 +56,7 @@ data:extend({
         change = 0.1
       }
     },
-    prerequisites = { "water-smelting-productivity-2" },
+    prerequisites = { "lava-smelting-productivity-2" },
     unit = {
       count = 1500,
       ingredients = {
@@ -55,7 +72,7 @@ data:extend({
   },
   {
     type = "technology",
-    name = "water-smelting-productivity-4",
+    name = "lava-smelting-productivity-4",
     icon = "__base__/graphics/technology/mining-productivity.png",
     icon_size = 256,
     effects = {
@@ -75,7 +92,7 @@ data:extend({
         change = 0.1
       }
     },
-    prerequisites = { "water-smelting-productivity-3" },
+    prerequisites = { "lava-smelting-productivity-3" },
     unit = {
       count_formula = "2500*(L - 3)",
       ingredients = {
@@ -93,7 +110,7 @@ data:extend({
   },
   {
     type = "technology",
-    name = "water-smelting-productivity-2",
+    name = "lava-smelting-productivity-2",
     icon = "__base__/graphics/technology/mining-productivity.png",
     icon_size = 256,
     effects = {
@@ -113,7 +130,7 @@ data:extend({
         change = 0.1
       }
     },
-    prerequisites = { "water-smelting-productivity-1" },
+    prerequisites = { "lava-smelting-productivity-1" },
     unit = {
       count = 1000,
       ingredients = {
@@ -129,7 +146,7 @@ data:extend({
   },
   {
     type = "technology",
-    name = "water-smelting-productivity-1",
+    name = "lava-smelting-productivity-1",
     icon = "__base__/graphics/technology/mining-productivity.png",
     icon_size = 256,
     effects = {
@@ -149,7 +166,7 @@ data:extend({
         change = 0.1
       }
     },
-    prerequisites = { "advanced-water-smelting" },
+    prerequisites = { "advanced-lava-smelting" },
     unit =
     {
       count = 250,
@@ -164,7 +181,7 @@ data:extend({
   },
   {
     type = "technology",
-    name = "advanced-water-smelting",
+    name = "advanced-lava-smelting",
     icon = "__base__/graphics/technology/mining-productivity.png",
     icon_size = 256,
     effects =
@@ -198,229 +215,5 @@ data:extend({
     },
     upgrade = true,
     order = "i-q-a"
-  },
-  {
-    type = "technology",
-    name = "mining-productivity-1",
-    icons = util.technology_icon_constant_productivity("__base__/graphics/technology/mining-productivity.png"),
-    effects = {
-      {
-        type = "mining-drill-productivity-bonus",
-        modifier = 0.1
-      },
-      {
-        type = "change-recipe-productivity",
-        recipe = "stone-extraction",
-        change = 0.1
-      },
-      {
-        type = "change-recipe-productivity",
-        recipe = "coal-extraction",
-        change = 0.1
-      },
-      {
-        type = "change-recipe-productivity",
-        recipe = "iron-extraction",
-        change = 0.1
-      },
-      {
-        type = "change-recipe-productivity",
-        recipe = "copper-extraction",
-        change = 0.1
-      },
-      {
-        type = "change-recipe-productivity",
-        recipe = "oil-extraction",
-        change = 0.1
-      },
-      {
-        type = "change-recipe-productivity",
-        recipe = "uranium-extraction",
-        change = 0.1
-      }
-    },
-    prerequisites = { "advanced-circuit" },
-    unit =
-    {
-      count = 250,
-      ingredients =
-      {
-        { "automation-science-pack", 1 },
-        { "logistic-science-pack",   1 }
-      },
-      time = 60
-    },
-    upgrade = true
-  },
-  {
-    type = "technology",
-    name = "mining-productivity-2",
-    icons = util.technology_icon_constant_productivity("__base__/graphics/technology/mining-productivity.png"),
-    effects =
-    {
-      {
-        type = "mining-drill-productivity-bonus",
-        modifier = 0.1
-      },
-      {
-        type = "change-recipe-productivity",
-        recipe = "stone-extraction",
-        change = 0.1
-      },
-      {
-        type = "change-recipe-productivity",
-        recipe = "coal-extraction",
-        change = 0.1
-      },
-      {
-        type = "change-recipe-productivity",
-        recipe = "iron-extraction",
-        change = 0.1
-      },
-      {
-        type = "change-recipe-productivity",
-        recipe = "copper-extraction",
-        change = 0.1
-      },
-      {
-        type = "change-recipe-productivity",
-        recipe = "oil-extraction",
-        change = 0.1
-      },
-      {
-        type = "change-recipe-productivity",
-        recipe = "uranium-extraction",
-        change = 0.1
-      }
-    },
-    prerequisites = { "mining-productivity-1", "chemical-science-pack" },
-    unit =
-    {
-      count = 500,
-      ingredients =
-      {
-        { "automation-science-pack", 1 },
-        { "logistic-science-pack",   1 },
-        { "chemical-science-pack",   1 }
-      },
-      time = 60
-    },
-    upgrade = true
-  },
-  {
-    type = "technology",
-    name = "mining-productivity-3",
-    icons = util.technology_icon_constant_productivity("__base__/graphics/technology/mining-productivity.png"),
-    effects =
-    {
-      {
-        type = "mining-drill-productivity-bonus",
-        modifier = 0.1
-      },
-      {
-        type = "change-recipe-productivity",
-        recipe = "stone-extraction",
-        change = 0.1
-      },
-      {
-        type = "change-recipe-productivity",
-        recipe = "coal-extraction",
-        change = 0.1
-      },
-      {
-        type = "change-recipe-productivity",
-        recipe = "iron-extraction",
-        change = 0.1
-      },
-      {
-        type = "change-recipe-productivity",
-        recipe = "copper-extraction",
-        change = 0.1
-      },
-      {
-        type = "change-recipe-productivity",
-        recipe = "oil-extraction",
-        change = 0.1
-      },
-      {
-        type = "change-recipe-productivity",
-        recipe = "uranium-extraction",
-        change = 0.1
-      }
-    },
-    prerequisites = { "mining-productivity-2", "production-science-pack", "utility-science-pack" },
-    unit =
-    {
-      count = 1000,
-      ingredients =
-      {
-        { "automation-science-pack", 1 },
-        { "logistic-science-pack",   1 },
-        { "chemical-science-pack",   1 },
-        { "production-science-pack", 1 },
-        { "utility-science-pack",    1 }
-      },
-      time = 60
-    },
-    upgrade = true
-  },
-  {
-    type = "technology",
-    name = "mining-productivity-4",
-    icons = util.technology_icon_constant_productivity("__base__/graphics/technology/mining-productivity.png"),
-    effects =
-    {
-      {
-        type = "mining-drill-productivity-bonus",
-        modifier = 0.1
-      },
-      {
-        type = "change-recipe-productivity",
-        recipe = "stone-extraction",
-        change = 0.1
-      },
-      {
-        type = "change-recipe-productivity",
-        recipe = "coal-extraction",
-        change = 0.1
-      },
-      {
-        type = "change-recipe-productivity",
-        recipe = "iron-extraction",
-        change = 0.1
-      },
-      {
-        type = "change-recipe-productivity",
-        recipe = "copper-extraction",
-        change = 0.1
-      },
-      {
-        type = "change-recipe-productivity",
-        recipe = "oil-extraction",
-        change = 0.1
-      },
-      {
-        type = "change-recipe-productivity",
-        recipe = "uranium-extraction",
-        change = 0.1
-      }
-    },
-    prerequisites = { "mining-productivity-3", "space-science-pack" },
-    unit =
-    {
-      count_formula = "2500*(L - 3)",
-      ingredients =
-      {
-        { "automation-science-pack", 1 },
-        { "logistic-science-pack",   1 },
-        { "chemical-science-pack",   1 },
-        { "production-science-pack", 1 },
-        { "utility-science-pack",    1 },
-        { "space-science-pack",      1 }
-      },
-      time = 60
-    },
-    max_level = "infinite",
-    upgrade = true
-  },
+  }
 })

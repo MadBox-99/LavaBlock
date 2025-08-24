@@ -1,0 +1,42 @@
+---------------------------------------------------------------------------------------------------
+Version: 0.0.2
+Date: 2025-08-23
+  Major Features:
+    - Initial release of LavaBlock mod
+    - Added custom "Lava Block Island" map generation preset
+    - Implemented lava-based resource extraction system
+    - Created 25x25 tile starting island surrounded by lava moat
+  Features:
+    - Lava extraction recipes: stone, coal, iron ore, copper ore, wood
+    - Advanced lava smelting: direct lava to iron/copper plates and stone bricks
+    - Oil extraction using steam + coal combination
+    - Uranium extraction using stone + sulfuric acid
+    - Iron clearing recipe for land management
+  Technology:
+    - Modified technology tree to support lava-based economy
+    - Added "Advanced Water Smelting" technology line with productivity bonuses
+    - Enhanced mining productivity technologies for lava extraction
+    - Calcite processing adaptation for offshore pump crafting
+    - Disabled electric mining drill technology (not needed)
+  Starting Conditions:
+    - Custom starting equipment: chemical plant, solar panel, electric pole, gears, pipes
+    - Automatic steam power research unlock
+    - 25x25 landfill starting area creation
+    - Crash site disabled for cleaner start
+    - Tutorial messages explaining unique mechanics
+  Map Generation:
+    - Three-zone terrain: starting island, lava moat, outer terrain
+    - Removed all natural resource patches, trees, water, and enemy bases
+    - Custom elevation noise expression for island generation
+  Multiplayer Support:
+    - Configurable landfill distribution strategies
+    - Settings for landfill multiplier and starting island customization
+    - Support for both single-player and multiplayer scenarios
+  Compatibility:
+    - Factorio 2.0 base game support
+    - Optional Space Age expansion integration
+    - Space platform thruster unlocks traditional mining equipment for space use
+  Localization:
+    - English language support with comprehensive tutorial messages
+    - Custom recipe names and descriptions
+    - Map preset descriptions and technology explanations

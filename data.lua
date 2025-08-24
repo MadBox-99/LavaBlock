@@ -28,9 +28,9 @@ function remove_technology(technologyName)
     substitute_prerequisite(technologyName, prerequisites)
 end
 
+-- turn off recipes
 data.raw.recipe['burner-mining-drill'].enabled = false
-data.raw.recipe['chemical-plant'].enabled = true
-data.raw.recipe['offshore-pump'].enabled = true
+
 data.raw.technology["oil-gathering"].effects = { { type = "unlock-recipe", recipe = "oil-extraction" } }
 data.raw.technology["oil-processing"].research_trigger = { type = "craft-fluid", fluid = "crude-oil", amount = 1 }
 data.raw.technology["uranium-mining"].effects = {
@@ -46,6 +46,4 @@ if mods["space-age"] then
     table.insert(tech.effects, { type = "unlock-recipe", recipe = "burner-mining-drill" })
     table.insert(tech.effects, { type = "unlock-recipe", recipe = "electric-mining-drill" })
     table.insert(tech.effects, { type = "unlock-recipe", recipe = "pumpjack" })
-
-    data.raw.recipe['foundation'].enabled = true
 end

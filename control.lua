@@ -15,13 +15,15 @@ end)
 script.on_init(function()
 	-- Create 25x25 landfill area at spawn
 	local surface = game.get_surface("nauvis")
-	if surface then
-		for x = -12, 12 do
-			for y = -12, 12 do
-				surface.set_tiles({ { name = "landfill", position = { x, y } } })
-			end
+	local tiles = {}
+
+	for x = -12, 12 do
+		for y = -12, 12 do
+			table.insert(tiles, { name = "landfill", position = { x, y } })
 		end
 	end
+
+	surface.set_tiles(tiles)
 
 	-- Only call freeplay startup configs if the mod is in freeplay mode instead of scenarios
 	if remote.interfaces["freeplay"] ~= nil then

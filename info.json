@@ -1,12 +1,12 @@
 {
     "name": "LavaBlock",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "title": "LavaBlock",
     "author": "Szabó Zoltán",
     "factorio_version": "2.0",
     "dependencies": [
         "base >= 2.0",
-        "? space-age"
+        "space-age"
     ],
     "description": "Start on a tiny island surrounded by lava! Extract all resources from lava using chemical plants. No traditional mining - convert lava into stone, coal, iron, copper & wood. Expand your island only through research-unlocked landfill. Custom map preset, modified tech tree, extreme space constraints create unique survival challenge. Perfect for players seeking fresh Factorio experience!"
 }

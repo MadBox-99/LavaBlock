@@ -37,27 +37,7 @@ nauvis_copy.map_gen_settings.autoplace_controls = {
 	["enemy-base"] = { size = 0 },
 	["trees"] = { size = 0 },
 }
-nauvis_copy.map_gen_settings.autoplace_settings.tile.settings["water"] = nil
-nauvis_copy.map_gen_settings.autoplace_settings.tile.settings["deepwater"] = nil
-nauvis_copy.map_gen_settings.autoplace_settings.tile.settings["grass-1"] = nil
-nauvis_copy.map_gen_settings.autoplace_settings.tile.settings["grass-2"] = nil
-nauvis_copy.map_gen_settings.autoplace_settings.tile.settings["grass-3"] = nil
-nauvis_copy.map_gen_settings.autoplace_settings.tile.settings["grass-4"] = nil
-nauvis_copy.map_gen_settings.autoplace_settings.tile.settings["dry-dirt"] = nil
-nauvis_copy.map_gen_settings.autoplace_settings.tile.settings["dirt-1"] = nil
-nauvis_copy.map_gen_settings.autoplace_settings.tile.settings["dirt-2"] = nil
-nauvis_copy.map_gen_settings.autoplace_settings.tile.settings["dirt-3"] = nil
-nauvis_copy.map_gen_settings.autoplace_settings.tile.settings["dirt-4"] = nil
-nauvis_copy.map_gen_settings.autoplace_settings.tile.settings["dirt-5"] = nil
-nauvis_copy.map_gen_settings.autoplace_settings.tile.settings["dirt-6"] = nil
-nauvis_copy.map_gen_settings.autoplace_settings.tile.settings["dirt-7"] = nil
-nauvis_copy.map_gen_settings.autoplace_settings.tile.settings["sand-1"] = nil
-nauvis_copy.map_gen_settings.autoplace_settings.tile.settings["sand-2"] = nil
-nauvis_copy.map_gen_settings.autoplace_settings.tile.settings["sand-3"] = nil
-nauvis_copy.map_gen_settings.autoplace_settings.tile.settings["red-desert-0"] = nil
-nauvis_copy.map_gen_settings.autoplace_settings.tile.settings["red-desert-1"] = nil
-nauvis_copy.map_gen_settings.autoplace_settings.tile.settings["red-desert-2"] = nil
-nauvis_copy.map_gen_settings.autoplace_settings.tile.settings["red-desert-3"] = nil
+nauvis_copy.map_gen_settings.autoplace_settings.tile.settings = {}
 nauvis_copy.map_gen_settings.autoplace_settings.tile.settings["lava"] = {}
 
 

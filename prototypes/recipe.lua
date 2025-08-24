@@ -92,7 +92,7 @@ local iron_smelting = {
     results = {
         { type = "item", name = "iron-plate", amount = 2 }
     },
-    icon = "__LavaBlock__/graphics/icons/iron-smelt.png",
+    icon = "__LavaBlock__/graphics/icons/iron-lava-smelt.png",
     icon_size = 64,
     category = "chemistry",
     subgroup = "fluid-recipes",
