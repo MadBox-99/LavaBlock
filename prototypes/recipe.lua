@@ -1,3 +1,24 @@
+local steam_generation = {
+    type = "recipe",
+    name = "steam-generation",
+    energy_required = 1,
+    enabled = true,
+    ingredients = {
+        { type = "fluid", name = "lava", amount = 50 },
+        { type = "item",  name = "wood", amount = 1 },
+        { type = "item",  name = "coal", amount = 5 }
+
+    },
+    results = {
+        { type = "fluid", name = "steam", amount = 5000 }
+    },
+    icon = "__base__/graphics/icons/stone.png",
+    icon_size = 64,
+    category = "chemistry",
+    subgroup = "fluid-recipes",
+}
+
+
 local stone_extraction = {
     type = "recipe",
     name = "stone-extraction",
@@ -67,10 +88,10 @@ local coal_extraction = {
 local iron_extraction = {
     type = "recipe",
     name = "iron-extraction",
-    energy_required = 5,
+    energy_required = 4,
     enabled = true,
     ingredients = {
-        { type = "fluid", name = "lava", amount = 75 },
+        { type = "fluid", name = "lava", amount = 1000 },
     },
     results = {
         { type = "item", name = "iron-ore", amount = 5 }
@@ -84,13 +105,33 @@ local iron_extraction = {
 local iron_smelting = {
     type = "recipe",
     name = "iron-smelting",
-    energy_required = 3.2,
+    energy_required = 3,
     enabled = true,
     ingredients = {
-        { type = "fluid", name = "lava", amount = 100 }
+        { type = "fluid", name = "lava",     amount = 1000 },
+        { type = "item",  name = "iron-ore", amount = 1 }
     },
     results = {
-        { type = "item", name = "iron-plate", amount = 2 }
+        { type = "item", name = "iron-plate", amount = 5 }
+    },
+    icon = "__LavaBlock__/graphics/icons/iron-lava-smelt.png",
+    icon_size = 64,
+    category = "chemistry",
+    subgroup = "fluid-recipes",
+    allow_productivity = true
+}
+
+local copper_smelting = {
+    type = "recipe",
+    name = "copper-smelting",
+    energy_required = 3,
+    enabled = true,
+    ingredients = {
+        { type = "fluid", name = "lava",       amount = 1000 },
+        { type = "item",  name = "copper-ore", amount = 1 }
+    },
+    results = {
+        { type = "item", name = "copper-plate", amount = 5 }
     },
     icon = "__LavaBlock__/graphics/icons/iron-lava-smelt.png",
     icon_size = 64,
@@ -105,7 +146,7 @@ local copper_extraction = {
     energy_required = 5,
     enabled = true,
     ingredients = {
-        { type = "fluid", name = "lava", amount = 75 },
+        { type = "fluid", name = "lava", amount = 1000 },
     },
     results = {
         { type = "item", name = "copper-ore", amount = 5 }
@@ -116,23 +157,6 @@ local copper_extraction = {
     subgroup = "fluid-recipes",
 }
 
-local copper_smelting = {
-    type = "recipe",
-    name = "copper-smelting",
-    energy_required = 3.2,
-    enabled = true,
-    ingredients = {
-        { type = "fluid", name = "lava", amount = 100 }
-    },
-    results = {
-        { type = "item", name = "copper-plate", amount = 2 }
-    },
-    icon = "__LavaBlock__/graphics/icons/copper-smelt.png",
-    icon_size = 64,
-    category = "chemistry",
-    subgroup = "fluid-recipes",
-    allow_productivity = true
-}
 
 local iron_clearing = {
     type = "recipe",
@@ -153,6 +177,7 @@ local iron_clearing = {
 }
 
 data:extend({
+    steam_generation,
     iron_clearing,
     stone_extraction,
     brick_smelting,

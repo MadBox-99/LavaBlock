@@ -38,7 +38,7 @@ script.on_event(defines.events.on_player_created, function(event)
 	player.clear_items_inside()
 
 	player.insert { name = "chemical-plant", count = 1 }
-	player.insert { name = "solar-panel", count = 1 }
+	player.insert { name = "solar-panel", count = 2 }
 	player.insert { name = "small-electric-pole", count = 1 }
 	player.insert { name = "iron-gear-wheel", count = 2 }
 	player.insert { name = "pipe", count = 3 }
@@ -46,6 +46,4 @@ script.on_event(defines.events.on_player_created, function(event)
 	player.print({ "lava-block.on-start-mechanics-explanation-1" })
 	player.print({ "lava-block.on-start-mechanics-explanation-2" })
 	player.print({ "lava-block.on-start-mechanics-explanation-3" })
-	player.print({ "lava-block.on-start-mechanics-explanation-4" })
-	player.print({ "lava-block.on-start-mechanics-explanation-5" })
 end)

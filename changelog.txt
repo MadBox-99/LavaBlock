@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.0.3
+Date: 2025-08-23
+
+
+---------------------------------------------------------------------------------------------------
 Version: 0.0.2
 Date: 2025-08-23
   Major Features:
@@ -28,15 +33,7 @@ Date: 2025-08-23
     - Three-zone terrain: starting island, lava moat, outer terrain
     - Removed all natural resource patches, trees, water, and enemy bases
     - Custom elevation noise expression for island generation
-  Multiplayer Support:
-    - Configurable landfill distribution strategies
-    - Settings for landfill multiplier and starting island customization
-    - Support for both single-player and multiplayer scenarios
   Compatibility:
     - Factorio 2.0 base game support
     - Optional Space Age expansion integration
     - Space platform thruster unlocks traditional mining equipment for space use
-  Localization:
-    - English language support with comprehensive tutorial messages
-    - Custom recipe names and descriptions
-    - Map preset descriptions and technology explanations
