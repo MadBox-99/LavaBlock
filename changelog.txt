@@ -1,7 +1,24 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.3
 Date: 2025-08-23
-
+  Major Features:
+    - Added steam generation recipe using lava
+    - Adjusted starting items for better early game experience
+  Features:
+    - Steam generation recipe: 500 units of lava produces 100 units of steam
+  Technology:
+    - No changes to technology tree in this update
+  Starting Conditions:
+    - Updated starting equipment: added extra landfill and basic tools for initial setup
+    - Retained automatic steam power research unlock
+    - Maintained 25x25 landfill starting area creation
+    - Crash site remains disabled for cleaner start
+    - Tutorial messages updated to reflect new starting items and mechanics
+  Map Generation:
+    - No changes to map generation in this update
+  Compatibility:
+    - Continued support for Factorio 2.0 base game
+    - Maintained optional Space Age expansion integration
 
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.2

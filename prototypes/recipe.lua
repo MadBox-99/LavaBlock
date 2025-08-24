@@ -10,7 +10,7 @@ local steam_generation = {
 
     },
     results = {
-        { type = "fluid", name = "steam", amount = 5000 }
+        { type = "fluid", name = "steam", amount = 5000, temperature = 165 }
     },
     icon = "__base__/graphics/icons/stone.png",
     icon_size = 64,
