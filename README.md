@@ -21,10 +21,10 @@ The map generation completely removes traditional resource patches, water bodies
 ### Lava-Based Extraction
 The mod replaces traditional mining with a sophisticated lava-based resource extraction system. Players use chemical plants to process lava (presumably from the surrounding lava moat) into various essential materials:
 
-- **Stone Extraction**: 50 lava → 5 stone (4-second process)
-- **Coal Extraction**: 50 lava → 5 coal (4-second process)  
-- **Iron Extraction**: 75 lava → 5 iron ore (5-second process)
-- **Copper Extraction**: 75 lava → 5 copper ore (5-second process)
+- **Stone Extraction**: 100 lava → 2 stone (3.2-second process)
+- **Coal Extraction**: 100 lava → 2 coal (3.2-second process)
+- **Iron Extraction**: 100 lava → 2 iron ore (3.2-second process)
+- **Copper Extraction**: 100 lava → 2 copper ore (3.2-second process)
 - **Wood Extraction**: A 15-second process that generates wood from ambient sources
 
 ### Advanced Smelting Technology

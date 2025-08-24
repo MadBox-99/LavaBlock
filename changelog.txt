@@ -3,8 +3,10 @@ Version: 0.0.3
 Date: 2025-08-23
   Major Features:
     - Added steam generation recipe using lava
+    - Added calcite synthesis recipe for can create foundation
   Features:
     - Steam generation recipe: 5000 units of lava produces + 1 wood + 5 coal produce 5000 units of steam 165 celsius
+    - Calcite synthesis recipe: 50000 units of lava + 10 coal + 100 stone bricks produce 10 calcite at 165 celsius
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.2
 Date: 2025-08-23

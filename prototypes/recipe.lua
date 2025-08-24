@@ -1,3 +1,24 @@
+local calcite_synthesis = {
+    type = "recipe",
+    name = "calcite-synthesis",
+    energy_required = 1,
+    enabled = true,
+    ingredients = {
+        { type = "item",  name = "coal",        amount = 10 },
+        { type = "fluid", name = "lava",        amount = 50000 },
+        { type = "item",  name = "stone-brick", amount = 100 }
+
+    },
+    results = {
+        { type = "item", name = "calcite", amount = 10 }
+    },
+    icon = "__space-age__/graphics/icons/calcite.png",
+    icon_size = 64,
+    category = "chemistry",
+    subgroup = "fluid-recipes",
+}
+
+
 local steam_generation = {
     type = "recipe",
     name = "steam-generation",
@@ -12,7 +33,7 @@ local steam_generation = {
     results = {
         { type = "fluid", name = "steam", amount = 5000, temperature = 165 }
     },
-    icon = "__base__/graphics/icons/stone.png",
+    icon = "__base__/graphics/icons/fluid/steam.png",
     icon_size = 64,
     category = "chemistry",
     subgroup = "fluid-recipes",
@@ -39,10 +60,10 @@ local stone_extraction = {
 local brick_smelting = {
     type = "recipe",
     name = "brick-smelting",
-    energy_required = 3.2,
+    energy_required = 3,
     enabled = true,
     ingredients = {
-        { type = "fluid", name = "lava", amount = 100 }
+        { type = "fluid", name = "lava", amount = 10000 }
     },
     results = {
         { type = "item", name = "stone-brick", amount = 2 }
@@ -74,7 +95,7 @@ local coal_extraction = {
     energy_required = 4,
     enabled = true,
     ingredients = {
-        { type = "fluid", name = "lava", amount = 50 }
+        { type = "fluid", name = "lava", amount = 1000 }
     },
     results = {
         { type = "item", name = "coal", amount = 5 }
@@ -143,7 +164,7 @@ local copper_smelting = {
 local copper_extraction = {
     type = "recipe",
     name = "copper-extraction",
-    energy_required = 5,
+    energy_required = 4,
     enabled = true,
     ingredients = {
         { type = "fluid", name = "lava", amount = 1000 },
@@ -177,6 +198,7 @@ local iron_clearing = {
 }
 
 data:extend({
+    calcite_synthesis,
     steam_generation,
     iron_clearing,
     stone_extraction,
