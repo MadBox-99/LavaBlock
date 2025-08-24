@@ -1,4 +1,14 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.0.4
+Date: 2025-08-23
+  Major Features:
+    - Added storage tank recipe using lava, the base recipe is replaced
+    - Added fluid wagon recipe using lava, the base recipe is replaced
+    - Added cargo wagon recipe using lava, the base recipe is replaced
+    - Added locomotive recipe using lava, the base recipe is replaced
+  Features:
+    - Rebalanced train recipes to correspond to main game mechanics
+---------------------------------------------------------------------------------------------------
 Version: 0.0.3
 Date: 2025-08-23
   Major Features:
