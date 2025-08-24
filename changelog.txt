@@ -5,9 +5,6 @@ Date: 2025-08-23
     - Added steam generation recipe using lava
   Features:
     - Steam generation recipe: 5000 units of lava produces + 1 wood + 5 coal produce 5000 units of steam 165 celsius
-  Technology:
-    - No changes to technology tree in this update
-
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.2
 Date: 2025-08-23
