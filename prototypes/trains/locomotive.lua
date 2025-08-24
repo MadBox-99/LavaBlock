@@ -11,6 +11,8 @@ local recipe = {
         { type = "item",  name = "iron-gear-wheel",    amount = 1000 }, -- piece(s) / real-wagon: 10000
         { type = "fluid", name = "lava",               amount = 100000 }
     },
-    results = { { type = "item", name = "locomotive", amount = 1 } }
+    results = {
+        { type = "item", name = "locomotive", amount = 1 },
+        { type = "item", name = "stone",      amount = 50 } } --slug --test-feature
 }
 data.raw["recipe"]["locomotive"] = recipe

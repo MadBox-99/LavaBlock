@@ -2,10 +2,10 @@
 Version: 0.0.4
 Date: 2025-08-23
   Major Features:
-    - Added storage tank recipe using lava, the base recipe is replaced
-    - Added fluid wagon recipe using lava, the base recipe is replaced
-    - Added cargo wagon recipe using lava, the base recipe is replaced
-    - Added locomotive recipe using lava, the base recipe is replaced
+    - Added storage tank recipe using lava, the base recipe is replaced. Crafting Time also increased to 30 seconds
+    - Added fluid wagon recipe using lava, the base recipe is replaced. Crafting Time also increased to 30 seconds
+    - Added cargo wagon recipe using lava, the base recipe is replaced. Crafting Time also increased to 30 seconds
+    - Added locomotive recipe using lava, the base recipe is replaced. Crafting Time also increased to 60 seconds
   Features:
     - Rebalanced train recipes to correspond to main game mechanics
 ---------------------------------------------------------------------------------------------------
