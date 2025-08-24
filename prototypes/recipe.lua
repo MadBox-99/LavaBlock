@@ -4,7 +4,7 @@ local steam_generation = {
     energy_required = 1,
     enabled = true,
     ingredients = {
-        { type = "fluid", name = "lava", amount = 50 },
+        { type = "fluid", name = "lava", amount = 5000 },
         { type = "item",  name = "wood", amount = 1 },
         { type = "item",  name = "coal", amount = 5 }
 
