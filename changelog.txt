@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.0.5
+Date: 2025-08-23
+  Bugfixes:
+    - Fixed issue with locomotive recipe not using original results and neet to define main_product
+---------------------------------------------------------------------------------------------------
 Version: 0.0.4
 Date: 2025-08-23
   Major Features:
