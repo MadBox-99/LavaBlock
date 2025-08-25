@@ -1,5 +1,7 @@
 data.raw.recipe['burner-mining-drill'].enabled = false
 
+local slug
+
 local calcite_synthesis = {
     type = "recipe",
     name = "calcite-synthesis",
@@ -184,10 +186,10 @@ local copper_extraction = {
 local iron_clearing = {
     type = "recipe",
     name = "iron-clearing",
-    energy_required = 10,
+    energy_required = 1,
     enabled = true,
     ingredients = {
-        { type = "item", name = "iron-ore", amount = 10 }
+        { type = "item", name = "iron-ore", amount = 1 }
     },
     results = {
         { type = "item", name = "stone", amount = 1 }

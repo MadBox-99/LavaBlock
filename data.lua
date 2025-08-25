@@ -28,14 +28,10 @@ function remove_technology(technologyName)
     substitute_prerequisite(technologyName, prerequisites)
 end
 
--- turn off recipes
-data.raw.technology["uranium-mining"].effects = {
-    { type = "mining-with-fluid", modifier = true },
-    { type = "unlock-recipe",     recipe = "uranium-extraction" }
-}
-
-
 remove_technology("electric-mining-drill")
+
+
+
 
 if mods["space-age"] then
     local tech = data.raw.technology["space-platform-thruster"]

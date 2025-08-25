@@ -1,4 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.0.6
+Date: 2025-08-23
+  Map Generation:
+    - Improved island shape for more natural appearance
+    - Adjusted lava moat width for better balance
+    - Fixed bug where some resources could spawn outside the starting island
+    - Now most enemies also spawn and make expansion much harder
+    - Many enemies spawn and they appear over a large area
+---------------------------------------------------------------------------------------------------
 Version: 0.0.5
 Date: 2025-08-23
   Bugfixes:

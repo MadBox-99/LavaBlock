@@ -1,7 +1,10 @@
 data.raw.technology["oil-processing"].research_trigger = { type = "craft-fluid", fluid = "crude-oil", amount = 1 }
-data.raw.technology["oil-gathering"].effects = { { type = "unlock-recipe", recipe = "oil-extraction" } }
 data.raw.technology["uranium-processing"].research_trigger = { type = "craft-item", item = "uranium-ore" }
-
+data.raw.technology["oil-gathering"].effects = { { type = "unlock-recipe", recipe = "oil-extraction" } }
+data.raw.technology["uranium-mining"].effects = {
+  { type = "mining-with-fluid", modifier = true },
+  { type = "unlock-recipe",     recipe = "uranium-extraction" }
+}
 
 data:extend({
   {
