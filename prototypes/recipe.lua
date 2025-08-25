@@ -70,7 +70,10 @@ local brick_smelting = {
     results = {
         { type = "item", name = "stone-brick", amount = 2 }
     },
-    icon = "__LavaBlock__/graphics/icons/brick-smelt.png",
+    icons = {
+        { icon = "__space-age__/graphics/icons/fluid/lava.png", icon_size = 64, scale = 0.5, shift = {-16, -16} },
+        { icon = "__base__/graphics/icons/stone-brick.png", icon_size = 64, scale = 0.5, shift = {16, 16} },
+    },
     icon_size = 64,
     category = "chemistry",
     subgroup = "fluid-recipes",
@@ -137,7 +140,10 @@ local iron_smelting = {
     results = {
         { type = "item", name = "iron-plate", amount = 5 }
     },
-    icon = "__LavaBlock__/graphics/icons/iron-lava-smelt.png",
+    icons = {
+        { icon = "__space-age__/graphics/icons/fluid/lava.png", icon_size = 64, scale = 0.5, shift = {-16, -16} },
+        { icon = "__base__/graphics/icons/iron-plate.png", icon_size = 64, scale = 0.5, shift = {16, 16} },
+    },
     icon_size = 64,
     category = "chemistry",
     subgroup = "fluid-recipes",
@@ -156,7 +162,10 @@ local copper_smelting = {
     results = {
         { type = "item", name = "copper-plate", amount = 5 }
     },
-    icon = "__LavaBlock__/graphics/icons/iron-lava-smelt.png",
+    icons = {
+        { icon = "__space-age__/graphics/icons/fluid/lava.png", icon_size = 64, scale = 0.5, shift = {-16, -16} },
+        { icon = "__base__/graphics/icons/copper-plate.png", icon_size = 64, scale = 0.5, shift = {16, 16} },
+    },
     icon_size = 64,
     category = "chemistry",
     subgroup = "fluid-recipes",
