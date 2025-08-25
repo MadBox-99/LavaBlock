@@ -2,7 +2,7 @@
     "name": "LavaBlock",
     "version": "0.0.5",
     "title": "LavaBlock",
-    "author": "Szabó Zoltán",
+    "author": "Zoltán Tamás Szabó",
     "factorio_version": "2.0",
     "dependencies": [
         "base >= 2.0",
