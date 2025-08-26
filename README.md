@@ -36,7 +36,7 @@ LavaBlock doesn't just add recipes - it fundamentally restructures Factorio's te
 
 ### New Technology Lines:
 
-- **Advanced Water Smelting**: Multi-tier productivity bonuses for lava smelting (up to infinite research)
+- **Advanced Lava Smelting**: Multi-tier productivity bonuses for lava smelting (up to infinite research)
 - **Enhanced Mining Productivity**: Boosts lava extraction efficiency instead of traditional mining
 - **Calcite Processing Adaptation**: Unlocks when you craft offshore pumps
 - **Island Expansion Research**: Your only way to gain more land!

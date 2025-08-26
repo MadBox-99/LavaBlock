@@ -1,6 +1,21 @@
 data.raw.recipe['burner-mining-drill'].enabled = false
 
-local slug
+local lava_cooling = {
+    type = "recipe",
+    name = "lava-cooling",
+    energy_required = 5,
+    enabled = true,
+    ingredients = {
+        { type = "fluid", name = "lava", amount = 100 }
+    },
+    results = {
+        { type = "fluid", name = "steam", amount = 70, temperature = 165 }
+    },
+    icon = "__LavaBlock__/graphics/icons/lava-cooling.png",
+    icon_size = 64,
+    category = "chemistry",
+    subgroup = "fluid-recipes",
+}
 
 local calcite_synthesis = {
     type = "recipe",
@@ -10,6 +25,7 @@ local calcite_synthesis = {
     ingredients = {
         { type = "item",  name = "coal",        amount = 10 },
         { type = "fluid", name = "lava",        amount = 50000 },
+
         { type = "item",  name = "stone-brick", amount = 100 }
 
     },
@@ -38,24 +54,6 @@ local steam_generation = {
         { type = "fluid", name = "steam", amount = 5000, temperature = 165 }
     },
     icon = "__base__/graphics/icons/fluid/steam.png",
-    icon_size = 64,
-    category = "chemistry",
-    subgroup = "fluid-recipes",
-}
-
-
-local stone_extraction = {
-    type = "recipe",
-    name = "stone-extraction",
-    energy_required = 4,
-    enabled = true,
-    ingredients = {
-        { type = "fluid", name = "lava", amount = 50 }
-    },
-    results = {
-        { type = "item", name = "stone", amount = 5 }
-    },
-    icon = "__base__/graphics/icons/stone.png",
     icon_size = 64,
     category = "chemistry",
     subgroup = "fluid-recipes",
@@ -131,7 +129,7 @@ local iron_smelting = {
     type = "recipe",
     name = "iron-smelting",
     energy_required = 3,
-    enabled = true,
+    enabled = false,
     ingredients = {
         { type = "fluid", name = "lava",     amount = 1000 },
         { type = "item",  name = "iron-ore", amount = 1 }
@@ -143,14 +141,15 @@ local iron_smelting = {
     icon_size = 64,
     category = "chemistry",
     subgroup = "fluid-recipes",
-    allow_productivity = true
+    allow_productivity = true,
+    allow_quality = false,
 }
 
 local copper_smelting = {
     type = "recipe",
     name = "copper-smelting",
     energy_required = 3,
-    enabled = true,
+    enabled = false,
     ingredients = {
         { type = "fluid", name = "lava",       amount = 1000 },
         { type = "item",  name = "copper-ore", amount = 1 }
@@ -162,7 +161,9 @@ local copper_smelting = {
     icon_size = 64,
     category = "chemistry",
     subgroup = "fluid-recipes",
-    allow_productivity = true
+    allow_productivity = true,
+    allow_quality = false,
+
 }
 
 local copper_extraction = {
@@ -183,29 +184,31 @@ local copper_extraction = {
 }
 
 
-local iron_clearing = {
+local ore_clearing = {
     type = "recipe",
-    name = "iron-clearing",
+    name = "ore-clearing",
     energy_required = 1,
     enabled = true,
     ingredients = {
-        { type = "item", name = "iron-ore", amount = 1 }
+        { type = "item", name = "iron-ore",   amount = 1 },
+        { type = "item", name = "copper-ore", amount = 1 }
     },
     results = {
         { type = "item", name = "stone", amount = 1 }
     },
     icon = "__base__/graphics/icons/stone.png",
     icon_size = 64,
-    category = "crafting",
+    category = "chemistry",
     subgroup = "fluid-recipes",
-    allow_productivity = false
+    allow_productivity = true,
+    allow_quality = false,
 }
 
 data:extend({
+    lava_cooling,
     calcite_synthesis,
     steam_generation,
-    iron_clearing,
-    stone_extraction,
+    ore_clearing,
     brick_smelting,
     wood_extraction,
     coal_extraction,

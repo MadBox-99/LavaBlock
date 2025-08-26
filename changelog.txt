@@ -1,11 +1,19 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.0.7
+Date: 2025-08-23
+  Changes:
+    - Changed iron smelting recipe to be unlocked by automation and logistic science packs
+    - Iron smelting recipe is no longer available at start, needs to be researched
+    - Increased research cost of advanced lava smelting technology to 1000 science packs
+    - Advanced lava smelting technology now requires automation and logistic science packs to research
+    - Removed chemical, production, and utility science packs from advanced lava smelting technology prerequisites
+    - Removed stone extraction recipe because it was to strong and easy to get stone
+---------------------------------------------------------------------------------------------------
 Version: 0.0.6
 Date: 2025-08-23
   Map Generation:
     - Improved island shape for more natural appearance
-    - Adjusted lava moat width for better balance
-    - Fixed bug where some resources could spawn outside the starting island
-    - Now most enemies also spawn and make expansion much harder
+    - Now enemies also spawn and make expansion much harder
     - Many enemies spawn and they appear over a large area
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.5

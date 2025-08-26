@@ -3,7 +3,7 @@ require("prototypes.items")
 require("prototypes.technology")
 require("prototypes.recipe")
 require("prototypes.islandGeneration")
-require("prototypes.landfill")
+
 
 function substitute_prerequisite(prerequisite_name, new_prerequisites)
     for _, tech in pairs(data.raw["technology"]) do

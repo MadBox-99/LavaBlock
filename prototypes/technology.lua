@@ -6,6 +6,12 @@ data.raw.technology["uranium-mining"].effects = {
   { type = "unlock-recipe",     recipe = "uranium-extraction" }
 }
 
+local lava_ore_washing_productivity =
+{
+  name = "lava-ore-washing-productivity"
+}
+
+
 data:extend({
   {
     type = "technology",
@@ -39,6 +45,7 @@ data:extend({
       item = "offshore-pump",
       count = 1
     },
+    prerequisites = { "offshore-pump-on-lava-block" },
     order = "a-b-c"
   },
   {
