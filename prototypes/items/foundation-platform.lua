@@ -19,6 +19,7 @@ local recipe = {
         { type = "fluid", name = "lava",         amount = 20000 }
     },
     results = { { type = "item", name = "foundation-platform-nauvis", amount = 1 } },
+    surface_conditions = { { property = "pressure", min = 1000, max = 1000 }, { property = "gravity", min = 10, max = 10 } },
 }
 
 

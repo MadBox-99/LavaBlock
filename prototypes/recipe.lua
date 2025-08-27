@@ -23,11 +23,9 @@ local calcite_synthesis = {
     energy_required = 1,
     enabled = true,
     ingredients = {
-        { type = "item",  name = "coal",        amount = 10 },
-        { type = "fluid", name = "lava",        amount = 50000 },
-
-        { type = "item",  name = "stone-brick", amount = 100 }
-
+        { type = "item",  name = "coal",        amount = 20 },
+        { type = "item",  name = "stone-brick", amount = 50 },
+        { type = "fluid", name = "lava",        amount = 5000 },
     },
     results = {
         { type = "item", name = "calcite", amount = 10 }
@@ -36,6 +34,7 @@ local calcite_synthesis = {
     icon_size = 64,
     category = "chemistry",
     subgroup = "fluid-recipes",
+    surface_conditions = { { property = "pressure", min = 1000, max = 1000 }, { property = "gravity", min = 10, max = 10 } },
 }
 
 
@@ -131,11 +130,11 @@ local iron_smelting = {
     energy_required = 3,
     enabled = false,
     ingredients = {
-        { type = "fluid", name = "lava",     amount = 1000 },
+        { type = "fluid", name = "lava",     amount = 10000 },
         { type = "item",  name = "iron-ore", amount = 1 }
     },
     results = {
-        { type = "item", name = "iron-plate", amount = 5 }
+        { type = "item", name = "iron-plate", amount = 2 }
     },
     icon = "__LavaBlock__/graphics/icons/iron-lava-smelt.png",
     icon_size = 64,
@@ -151,11 +150,11 @@ local copper_smelting = {
     energy_required = 3,
     enabled = false,
     ingredients = {
-        { type = "fluid", name = "lava",       amount = 1000 },
+        { type = "fluid", name = "lava",       amount = 10000 },
         { type = "item",  name = "copper-ore", amount = 1 }
     },
     results = {
-        { type = "item", name = "copper-plate", amount = 5 }
+        { type = "item", name = "copper-plate", amount = 2 }
     },
     icon = "__LavaBlock__/graphics/icons/iron-lava-smelt.png",
     icon_size = 64,

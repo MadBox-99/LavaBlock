@@ -1,4 +1,4 @@
-require("prototypes.foundation-platform")
+require("prototypes.items.foundation-platform")
 require("prototypes.items.trains.fluid-wagon")
 require("prototypes.items.trains.cargo-wagon")
 require("prototypes.items.trains.locomotive")
