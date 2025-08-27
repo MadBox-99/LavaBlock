@@ -8,6 +8,12 @@ Date: 2025-08-23
     - Advanced lava smelting technology now requires automation and logistic science packs to research
     - Removed chemical, production, and utility science packs from advanced lava smelting technology prerequisites
     - Removed stone extraction recipe because it was to strong and easy to get stone
+    - Now to get stone you need 1 iron ore and 1 copper ore to get 1 stone (same cost at it was before) + 1 processing step
+    - Improved crafting requirements for advanced technologies
+    - Calcite synthesis recipe now reduced cost and only craftable on Nauvis
+  Major Features:
+    - New technology tree for stone productivity for "ore clearing"
+    - Now the calcite synthesis only craftable on Nauvis
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.6
 Date: 2025-08-23
