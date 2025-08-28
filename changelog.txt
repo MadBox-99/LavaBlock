@@ -2,7 +2,10 @@
 Version: 0.0.8
 Date: 2025-08-28
   Changes:
-    - Fine tuned 
+    - Fine tuned calcite synthesis recipe
+    - Added new recipe for foundation crafting recipe on Nauvis productivity
+    - More improvements to resource extraction efficiency
+    - Faster progression in early game resource gathering
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.7
 Date: 2025-08-27
