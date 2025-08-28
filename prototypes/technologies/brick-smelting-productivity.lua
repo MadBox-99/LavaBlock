@@ -1,13 +1,13 @@
-local ore_clearing_productivity = {}
-ore_clearing_productivity[1] = {
+local brick_smelting_productivity = {}
+brick_smelting_productivity[1] = {
     type = "technology",
-    name = "ore-clearing-productivity-1",
+    name = "brick-smelting-productivity-1",
     icon = "__base__/graphics/icons/stone.png",
     icon_size = 64,
     effects = {
         {
             type = "change-recipe-productivity",
-            recipe = "ore-clearing",
+            recipe = "brick-smelting",
             change = 0.1
         },
     },
@@ -21,16 +21,16 @@ ore_clearing_productivity[1] = {
     prerequisites = { "automation-science-pack" },
     upgrade = true,
 }
-for i = 2, 30 do
-    ore_clearing_productivity[i] = {
+for i = 2, 5 do
+    brick_smelting_productivity[i] = {
         type = "technology",
-        name = "ore-clearing-productivity-" .. i,
+        name = "brick-smelting-productivity-" .. i,
         icon = "__base__/graphics/icons/stone.png",
         icon_size = 64,
         effects = {
             {
                 type = "change-recipe-productivity",
-                recipe = "ore-clearing",
+                recipe = "brick-smelting",
                 change = 0.1
             },
         },
@@ -39,9 +39,9 @@ for i = 2, 30 do
             item = "stone",
             count = 5 * i * (1 + (2 * i))
         },
-        prerequisites = { "ore-clearing-productivity-" .. (i - 1) },
+        prerequisites = { "brick-smelting-productivity-" .. (i - 1) },
         upgrade = true,
     }
 end
 
-data:extend(ore_clearing_productivity)
+data:extend(brick_smelting_productivity)

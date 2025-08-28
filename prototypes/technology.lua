@@ -1,4 +1,8 @@
 require("prototypes.technologies.stone-item-crafting-productivity")
+require("prototypes.technologies.calcite-synthesis-productivity")
+require("prototypes.technologies.lava-smelting-productivity")
+require("prototypes.technologies.brick-smelting-productivity")
+require("prototypes.technologies.foundation-platform-productivity")
 data.raw.technology["oil-processing"].research_trigger = { type = "craft-fluid", fluid = "crude-oil", amount = 1 }
 data.raw.technology["uranium-processing"].research_trigger = { type = "craft-item", item = "uranium-ore" }
 data.raw.technology["oil-gathering"].effects = { { type = "unlock-recipe", recipe = "oil-extraction" } }
@@ -7,90 +11,9 @@ data.raw.technology["uranium-mining"].effects = {
   { type = "unlock-recipe",     recipe = "uranium-extraction" }
 }
 
-local calcite_synthesis_productivity =
-{
-  type = "technology",
-  name = "calcite-synthesis-productivity-1",
-  icon = "__space-age__/graphics/icons/calcite.png",
-  icon_size = 64,
-  effects = {
-    {
-      type = "change-recipe-productivity",
-      recipe = "calcite-synthesis",
-      change = 0.1
-    },
-  },
-  unit = {
-    count = 200,
-    ingredients = {
-      { "automation-science-pack", 1 },
-    },
-    time = 30
-  },
-  prerequisites = { "automation-science-pack" },
-  upgrade = true,
-}
-local calcite_synthesis_productivity_1 =
-{
-  type = "technology",
-  name = "calcite-synthesis-productivity-2",
-  icon = "__space-age__/graphics/icons/calcite.png",
-  icon_size = 64,
-  effects = {
-    {
-      type = "change-recipe-productivity",
-      recipe = "calcite-synthesis",
-      change = 0.1
-    },
-  },
-  unit = {
-    count = 1000,
-    ingredients = {
-      { "automation-science-pack", 1 },
-      { "logistic-science-pack",   1 },
-    },
-    time = 60
-  },
-  prerequisites = {
-    "calcite-synthesis-productivity-1",
-    "logistic-science-pack",
-  },
-  upgrade = true,
-}
-local calcite_synthesis_productivity_2 =
-{
-  type = "technology",
-  name = "calcite-synthesis-productivity-3",
-  icon = "__space-age__/graphics/icons/calcite.png",
-  icon_size = 64,
-  effects = {
-    {
-      type = "change-recipe-productivity",
-      recipe = "calcite-synthesis",
-      change = 0.1
-    },
-  },
-  unit = {
-    count = 2000,
-    ingredients = {
-      { "automation-science-pack", 1 },
-      { "logistic-science-pack",   1 },
-    },
-    time = 60
-  },
-  prerequisites = {
-    "calcite-synthesis-productivity-2",
-  },
-
-}
-
-
-
 
 data:extend({
-  calcite_synthesis_productivity,
-  calcite_synthesis_productivity_1,
-  calcite_synthesis_productivity_2,
+
   {
     type = "technology",
     name = "offshore-pump-on-lava-block",
@@ -126,151 +49,7 @@ data:extend({
     prerequisites = { "offshore-pump-on-lava-block" },
     order = "a-b-c"
   },
-  {
-    type = "technology",
-    name = "lava-smelting-productivity-3",
-    icon = "__base__/graphics/technology/mining-productivity.png",
-    icon_size = 256,
-    effects = {
-      {
-        type = "change-recipe-productivity",
-        recipe = "iron-smelting",
-        change = 0.1
-      },
-      {
-        type = "change-recipe-productivity",
-        recipe = "copper-smelting",
-        change = 0.1
-      },
-      {
-        type = "change-recipe-productivity",
-        recipe = "brick-smelting",
-        change = 0.1
-      }
-    },
-    prerequisites = { "lava-smelting-productivity-2" },
-    unit = {
-      count = 1500,
-      ingredients = {
-        { "automation-science-pack", 1 },
-        { "logistic-science-pack",   1 },
-        { "chemical-science-pack",   1 },
-        { "production-science-pack", 1 },
-        { "utility-science-pack",    1 }
-      },
-      time = 60
-    },
-    upgrade = true,
-  },
-  {
-    type = "technology",
-    name = "lava-smelting-productivity-4",
-    icon = "__base__/graphics/technology/mining-productivity.png",
-    icon_size = 256,
-    effects = {
-      {
-        type = "change-recipe-productivity",
-        recipe = "iron-smelting",
-        change = 0.1
-      },
-      {
-        type = "change-recipe-productivity",
-        recipe = "copper-smelting",
-        change = 0.1
-      },
-      {
-        type = "change-recipe-productivity",
-        recipe = "brick-smelting",
-        change = 0.1
-      }
-    },
-    prerequisites = { "lava-smelting-productivity-3" },
-    unit = {
-      count_formula = "2000*(L - 3)",
-      ingredients = {
-        { "automation-science-pack", 1 },
-        { "logistic-science-pack",   1 },
-        { "chemical-science-pack",   1 },
-        { "production-science-pack", 1 },
-        { "utility-science-pack",    1 },
-        { "space-science-pack",      1 }
-      },
-      time = 60
-    },
-    max_level = "infinite",
-    upgrade = true,
-  },
-  {
-    type = "technology",
-    name = "lava-smelting-productivity-2",
-    icon = "__base__/graphics/technology/mining-productivity.png",
-    icon_size = 256,
-    effects = {
-      {
-        type = "change-recipe-productivity",
-        recipe = "iron-smelting",
-        change = 0.1
-      },
-      {
-        type = "change-recipe-productivity",
-        recipe = "copper-smelting",
-        change = 0.1
-      },
-      {
-        type = "change-recipe-productivity",
-        recipe = "brick-smelting",
-        change = 0.1
-      }
-    },
-    prerequisites = { "lava-smelting-productivity-1" },
-    unit = {
-      count = 1000,
-      ingredients = {
-        { "automation-science-pack", 1 },
-        { "logistic-science-pack",   1 },
-        { "chemical-science-pack",   1 },
-        { "production-science-pack", 1 },
-        { "utility-science-pack",    1 }
-      },
-      time = 60
-    },
-    upgrade = true,
-  },
-  {
-    type = "technology",
-    name = "lava-smelting-productivity-1",
-    icon = "__base__/graphics/technology/mining-productivity.png",
-    icon_size = 256,
-    effects = {
-      {
-        type = "change-recipe-productivity",
-        recipe = "iron-smelting",
-        change = 0.1
-      },
-      {
-        type = "change-recipe-productivity",
-        recipe = "copper-smelting",
-        change = 0.1
-      },
-      {
-        type = "change-recipe-productivity",
-        recipe = "brick-smelting",
-        change = 0.1
-      }
-    },
-    prerequisites = { "advanced-lava-smelting" },
-    unit =
-    {
-      count = 250,
-      ingredients =
-      {
-        { "automation-science-pack", 1 },
-        { "logistic-science-pack",   1 }
-      },
-      time = 60
-    },
-    upgrade = true
-  },
+
   {
     type = "technology",
     name = "advanced-lava-smelting",

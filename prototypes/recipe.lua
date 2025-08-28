@@ -24,7 +24,7 @@ local calcite_synthesis = {
     enabled = true,
     ingredients = {
         { type = "item",  name = "coal",        amount = 20 },
-        { type = "item",  name = "stone-brick", amount = 50 },
+        { type = "item",  name = "stone-brick", amount = 40 },
         { type = "fluid", name = "lava",        amount = 5000 },
     },
     results = {
