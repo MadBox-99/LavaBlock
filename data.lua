@@ -1,7 +1,7 @@
 require("util")
 require("prototypes.items")
-require("prototypes.technology")
 require("prototypes.recipe")
+require("prototypes.technology")
 require("prototypes.islandGeneration")
 
 

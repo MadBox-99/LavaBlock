@@ -69,8 +69,8 @@ local brick_smelting = {
     results = {
         { type = "item", name = "stone-brick", amount = 2 }
     },
-    icon = "__LavaBlock__/graphics/icons/brick-smelt.png",
-    icon_size = 64,
+    icon = "__LavaBlock__/graphics/stone-brick-smelting.png",
+    icon_size = 128,
     category = "chemistry",
     subgroup = "fluid-recipes",
     allow_productivity = true
@@ -130,15 +130,41 @@ local iron_smelting = {
     energy_required = 3,
     enabled = false,
     ingredients = {
-        { type = "fluid", name = "lava",     amount = 10000 },
-        { type = "item",  name = "iron-ore", amount = 1 }
+        { type = "fluid", name = "lava",     amount = 5000 },
+        --calcite?
+        { type = "item",  name = "iron-ore", amount = 5 }
     },
+    surface_conditions = { { property = "pressure", min = 1000, max = 1000 }, { property = "gravity", min = 10, max = 10 } },
+    results = {
+        { type = "fluid", name = "molten-iron", amount = 50 }
+    },
+    main_product = "molten-iron",
+    icon = "__LavaBlock__/graphics/icons/iron-lava-smelt.png",
+    icon_size = 64,
+    category = "oil-processing",
+    subgroup = "fluid-recipes",
+    allow_productivity = true,
+    allow_quality = false,
+}
+
+local iron_smelting_cooling = {
+    type = "recipe",
+    name = "iron-smelting-cooling",
+    energy_required = 4,
+    enabled = false,
+    ingredients = {
+        { type = "fluid", name = "molten-iron", amount = 20, fluidbox_multiplier = 10 },
+        --calcite?
+        { type = "fluid", name = "water",       amount = 20 }
+    },
+    surface_conditions = { { property = "pressure", min = 1000, max = 1000 }, { property = "gravity", min = 10, max = 10 } },
     results = {
         { type = "item", name = "iron-plate", amount = 2 }
     },
+    main_product = "iron-plate",
     icon = "__LavaBlock__/graphics/icons/iron-lava-smelt.png",
     icon_size = 64,
-    category = "chemistry",
+    category = "oil-processing",
     subgroup = "fluid-recipes",
     allow_productivity = true,
     allow_quality = false,
@@ -150,20 +176,46 @@ local copper_smelting = {
     energy_required = 3,
     enabled = false,
     ingredients = {
-        { type = "fluid", name = "lava",       amount = 10000 },
-        { type = "item",  name = "copper-ore", amount = 1 }
+        { type = "fluid", name = "lava",       amount = 5000 },
+        --calcite?
+        { type = "item",  name = "copper-ore", amount = 5 }
     },
+    surface_conditions = { { property = "pressure", min = 1000, max = 1000 }, { property = "gravity", min = 10, max = 10 } },
+    results = {
+        { type = "fluid", name = "molten-copper", amount = 50 }
+    },
+    main_product = "molten-copper",
+    icon = "__LavaBlock__/graphics/icons/iron-lava-smelt.png",
+    icon_size = 64,
+    category = "oil-processing",
+    subgroup = "fluid-recipes",
+    allow_productivity = true,
+    allow_quality = false,
+}
+
+local copper_smelting_cooling = {
+    type = "recipe",
+    name = "copper-smelting-cooling",
+    energy_required = 4,
+    enabled = false,
+    ingredients = {
+        { type = "fluid", name = "molten-copper", amount = 20 },
+        --calcite?
+        { type = "fluid", name = "water",         amount = 20 }
+    },
+    surface_conditions = { { property = "pressure", min = 1000, max = 1000 }, { property = "gravity", min = 10, max = 10 } },
     results = {
         { type = "item", name = "copper-plate", amount = 2 }
     },
     icon = "__LavaBlock__/graphics/icons/iron-lava-smelt.png",
     icon_size = 64,
-    category = "chemistry",
+    category = "oil-processing",
     subgroup = "fluid-recipes",
     allow_productivity = true,
     allow_quality = false,
-
 }
+
+
 
 local copper_extraction = {
     type = "recipe",
@@ -213,8 +265,10 @@ data:extend({
     coal_extraction,
     iron_extraction,
     iron_smelting,
+    iron_smelting_cooling,
     copper_extraction,
     copper_smelting,
+    copper_smelting_cooling,
     {
         type = "recipe",
         name = "oil-extraction",

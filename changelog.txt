@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.0.9
+Date: 2025-08-30
+  Changes:
+    - Improved lava cooling recipe Now new method make iron and copper plate(Space age style)
+    - Buffed iron and copper plate production via lava cooling recipe
+    - Improved pictures
+---------------------------------------------------------------------------------------------------
 Version: 0.0.8
 Date: 2025-08-28
   Changes:

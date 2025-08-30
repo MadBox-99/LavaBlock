@@ -3,6 +3,7 @@ require("prototypes.technologies.calcite-synthesis-productivity")
 require("prototypes.technologies.lava-smelting-productivity")
 require("prototypes.technologies.brick-smelting-productivity")
 require("prototypes.technologies.foundation-platform-productivity")
+local advanced_lava_cooling = require("prototypes.technologies.advanced-lava-cooling")
 data.raw.technology["oil-processing"].research_trigger = { type = "craft-fluid", fluid = "crude-oil", amount = 1 }
 data.raw.technology["uranium-processing"].research_trigger = { type = "craft-item", item = "uranium-ore" }
 data.raw.technology["oil-gathering"].effects = { { type = "unlock-recipe", recipe = "oil-extraction" } }
@@ -13,7 +14,7 @@ data.raw.technology["uranium-mining"].effects = {
 
 
 data:extend({
-
+  advanced_lava_cooling,
   {
     type = "technology",
     name = "offshore-pump-on-lava-block",
@@ -84,5 +85,6 @@ data:extend({
     },
     upgrade = true,
     order = "t-q-a"
-  }
+  },
+
 })
