@@ -109,5 +109,5 @@ Whether you're a seasoned factory veteran looking for a fresh challenge or a new
 
 ---
 
-*Created by Szabó Zoltán for Factorio 2.0 | Current Version: 0.0.3 | Compatible with Space Age*
+*Created by Zoltán Szabó for Factorio 2.0 | Current Version: 0.0.10 | Compatible with Space Age*
 
