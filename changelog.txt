@@ -1,8 +1,14 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.0.11
+Date: 2025-11-7
+  Changes:
+    - Required now Space-Age expansion
+---------------------------------------------------------------------------------------------------
 Version: 0.0.10
 Date: 2025-11-1
   Bugfixes:
     - Fix Wagons weight too much for rocket cargo 
+    - Fix Fluid tank are too heavy to rockets back to original value
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.9
 Date: 2025-08-30
