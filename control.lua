@@ -23,7 +23,9 @@ script.on_init(function()
 		end
 	end
 
-	surface.set_tiles(tiles)
+	if surface ~= nil then
+		surface.set_tiles(tiles)
+	end
 
 	-- Only call freeplay startup configs if the mod is in freeplay mode instead of scenarios
 	if remote.interfaces["freeplay"] ~= nil then
@@ -35,15 +37,17 @@ end)
 -- Adding starting items & display helpful hints
 script.on_event(defines.events.on_player_created, function(event)
 	local player = game.get_player(event.player_index)
-	player.clear_items_inside()
+	if player ~= nil then
+		player.clear_items_inside()
 
-	player.insert { name = "chemical-plant", count = 1 }
-	player.insert { name = "solar-panel", count = 2 }
-	player.insert { name = "small-electric-pole", count = 1 }
-	player.insert { name = "iron-gear-wheel", count = 2 }
-	player.insert { name = "pipe", count = 3 }
+		player.insert { name = "chemical-plant", count = 1 }
+		player.insert { name = "solar-panel", count = 2 }
+		player.insert { name = "small-electric-pole", count = 1 }
+		player.insert { name = "iron-gear-wheel", count = 2 }
+		player.insert { name = "pipe", count = 3 }
 
-	player.print({ "lava-block.on-start-mechanics-explanation-1" })
-	player.print({ "lava-block.on-start-mechanics-explanation-2" })
-	player.print({ "lava-block.on-start-mechanics-explanation-3" })
+		player.print({ "lava-block.on-start-mechanics-explanation-1" })
+		player.print({ "lava-block.on-start-mechanics-explanation-2" })
+		player.print({ "lava-block.on-start-mechanics-explanation-3" })
+	end
 end)
