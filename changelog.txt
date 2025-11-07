@@ -1,7 +1,15 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.0.13
+Date: 2025-11-7
+  Features:
+    - Added barreling support for lava. Now can transfer via barrels to space platforms.--> Space Age expansion required.
+  Scripting:
+    - Cleaned up data.lua code
+    - Files separation for better readability
+---------------------------------------------------------------------------------------------------
 Version: 0.0.12
 Date: 2025-11-7
-  Hotfix:
+  Bugfixes:
     - Revert falsely removed dependency
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.11
