@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.0.14
+Date: 2025-11-16
+  Features:
+    - Added barreling support for oil. Now can transfer via barrels to space platforms.--> Space Age expansion required.
+---------------------------------------------------------------------------------------------------
 Version: 0.0.13
 Date: 2025-11-7
   Features:
