@@ -14,6 +14,7 @@ local copper_extraction = require("prototypes.recipes.copper-extraction")
 local ore_clearing = require("prototypes.recipes.ore-clearing")
 local oil_extraction = require("prototypes.recipes.oil-extraction")
 local uranium_extraction = require("prototypes.recipes.uranium-extraction")
+local air_cooler = require("prototypes.recipes.air-cooler")
 data:extend({
     lava_cooling,
     calcite_synthesis,
@@ -30,4 +31,5 @@ data:extend({
     copper_smelting_cooling,
     oil_extraction,
     uranium_extraction,
+    air_cooler,
 })

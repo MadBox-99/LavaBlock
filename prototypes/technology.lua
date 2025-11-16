@@ -18,5 +18,6 @@ data:extend({
   advanced_lava_cooling,
   require("prototypes.technologies.offshore-pump-on-lava-block"),
   require("prototypes.technologies.calcite-processing-on-lava-block"),
-  require("prototypes.technologies.advanced-lava-smelting")
+  require("prototypes.technologies.advanced-lava-smelting"),
+  require("prototypes.technologies.air-cooler")
 })
