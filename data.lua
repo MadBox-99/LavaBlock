@@ -1,11 +1,11 @@
 --require("util")
 require("prototypes.fluids")
 require("prototypes.items")
+require("prototypes.entities")
 require("prototypes.recipe")
 require("prototypes.technology")
 require("prototypes.islandGeneration")
 require("helpers.functions")
-
 
 remove_technology("electric-mining-drill")
 
