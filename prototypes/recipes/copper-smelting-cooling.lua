@@ -13,7 +13,7 @@ local copper_smelting_cooling = {
     },
     icon = "__LavaBlock__/graphics/icons/iron-lava-smelt.png",
     icon_size = 64,
-    category = "oil-processing",
+    category = "chemistry",
     subgroup = "fluid-recipes",
     allow_productivity = true,
     allow_quality = false,
