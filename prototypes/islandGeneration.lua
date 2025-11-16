@@ -58,7 +58,7 @@ nauvis_copy.map_gen_settings.autoplace_settings.tile.settings["grass-1"] = {}
 
 
 --Inserting the new map preset without altering the others
-data.raw["map-gen-presets"].default[util.mod_prefix .. "island"] = lava_block_island_preset
+data.raw["map-gen-presets"].default["lava-block-island"] = lava_block_island_preset
 
 data:extend {
 	nauvis_copy,
