@@ -7,6 +7,10 @@ local air_cooler_tech = {
         {
             type = "unlock-recipe",
             recipe = "air-cooler"
+        },
+        {
+            type = "unlock-recipe",
+            recipe = "liquid-nitrogen-production"
         }
     },
     prerequisites = { "automation-science-pack" },

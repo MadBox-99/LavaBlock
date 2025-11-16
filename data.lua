@@ -1,4 +1,5 @@
 --require("util")
+require("prototypes.recipe-category")
 require("prototypes.fluids")
 require("prototypes.items")
 require("prototypes.entities")

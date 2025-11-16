@@ -1,4 +1,5 @@
-local air_cooler = require("prototypes/enitiy/air-cooler")
+local air_cooler = require("prototypes.entity.air-cooler")
+
 data:extend({
     air_cooler,
 })
