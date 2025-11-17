@@ -2,7 +2,10 @@
 Version: 0.0.14
 Date: 2025-11-16
   Features:
-    - Added barreling support for oil. Now can transfer via barrels to space platforms.--> Space Age expansion required.
+    - Added air cooler building to cool down lava to liquid nitrogen
+  Scripting:
+    - New recipe for air cooler
+    - New technology to unlock air cooler
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.13
 Date: 2025-11-7
