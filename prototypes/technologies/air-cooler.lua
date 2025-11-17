@@ -1,7 +1,7 @@
 local air_cooler_tech = {
     type = "technology",
     name = "air-cooler",
-    icon = "__base__/graphics/icons/chemical-plant.png",
+    icon = "__LavaBlock__/graphics/air_cooler_tech.png",
     icon_size = 64,
     effects = {
         {
@@ -13,11 +13,11 @@ local air_cooler_tech = {
             recipe = "liquid-nitrogen-production"
         }
     },
-    prerequisites = { "automation-science-pack" },
+    prerequisites = { "chemical-science-pack" },
     unit = {
         count = 50,
         ingredients = {
-            { "automation-science-pack", 1 }
+            { "chemical-science-pack", 1000 }
         },
         time = 30
     },
