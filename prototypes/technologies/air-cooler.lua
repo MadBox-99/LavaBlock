@@ -15,9 +15,9 @@ local air_cooler_tech = {
     },
     prerequisites = { "chemical-science-pack" },
     unit = {
-        count = 50,
+        count = 3000,
         ingredients = {
-            { "chemical-science-pack", 1000 }
+            { "chemical-science-pack", 1 }
         },
         time = 30
     },
