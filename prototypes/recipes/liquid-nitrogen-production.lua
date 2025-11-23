@@ -5,11 +5,11 @@ local liquid_nitrogen_production = {
     enabled = false,
     energy_required = 5,
     ingredients = {
-        { type = "fluid", name = "lava", amount = 100 },
+        { type = "fluid", name = "lava",  amount = 100 },
         { type = "fluid", name = "water", amount = 100 }
     },
     results = {
-        { type = "fluid", name = "liquid-nitrogen", amount = 50 }
+        { type = "fluid", name = "liquid-nitrogen", amount = 25 }
     },
     icon = "__LavaBlock__/graphics/icons/liquid_nitrogen.png",
     icon_size = 32,

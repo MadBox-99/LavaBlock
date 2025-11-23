@@ -9,7 +9,7 @@ local geo_thermal_turbine_recipe = {
     },
     results = { { type = "item", name = "geo-thermal-turbine", amount = 1 } },
     energy_required = 20,
-    enabled = true,
+    enabled = false,
     category = "crafting-with-fluid"
 }
 return geo_thermal_turbine_recipe

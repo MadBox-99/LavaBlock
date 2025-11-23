@@ -1,7 +1,15 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.0.16
+Date: 2025-11-23
+  Changes:
+    - air cooler now input fluid spots are changed to only top and right sides
+    - improved cryogenic cooling recipe now make bulk 80 plates from 200 liquid raw ore + 5000 liquid nitrogen(4x production)
+  Features:
+    - added geo-thermal turbine(new power generators from lava) entity, item, and recipe
+---------------------------------------------------------------------------------------------------
 Version: 0.0.15
 Date: 2025-11-22
-  Fix:
+  Changes:
     - 0.0.14 new "air-cooler" update research cost Changed 50x1000 -> 1x3000 thx to @Crunchman <3
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.14
