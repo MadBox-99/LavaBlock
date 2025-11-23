@@ -18,6 +18,7 @@ local air_cooler = require("prototypes.recipes.air-cooler")
 local liquid_nitrogen_production = require("prototypes.recipes.liquid-nitrogen-production")
 local iron_smelting_cryo_cooling = require("prototypes.recipes.iron-smelting-cryo-cooling")
 local copper_smelting_cryo_cooling = require("prototypes.recipes.copper-smelting-cryo-cooling")
+local gas_turbine = require("prototypes.recipes.geo-thermal-turbine")
 data:extend({
     lava_cooling,
     calcite_synthesis,
@@ -38,4 +39,5 @@ data:extend({
     liquid_nitrogen_production,
     iron_smelting_cryo_cooling,
     copper_smelting_cryo_cooling,
+    gas_turbine,
 })

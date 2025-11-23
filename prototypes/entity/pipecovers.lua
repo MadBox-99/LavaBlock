@@ -1,4 +1,4 @@
-local pipecoverspictures = function()
+pipecoverspictures = function()
     return
     {
         north =
@@ -87,4 +87,3 @@ local pipecoverspictures = function()
         }
     }
 end
-return pipecoverspictures

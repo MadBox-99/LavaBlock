@@ -5,11 +5,11 @@ local copper_smelting_cryo_cooling = {
     enabled = false,
     energy_required = 3,
     ingredients = {
-        { type = "fluid", name = "molten-copper", amount = 200 },
-        { type = "fluid", name = "liquid-nitrogen", amount = 50 }
+        { type = "fluid", name = "molten-copper",   amount = 200 },
+        { type = "fluid", name = "liquid-nitrogen", amount = 5000 }
     },
     results = {
-        { type = "item", name = "copper-plate", amount = 8 }
+        { type = "item", name = "copper-plate", amount = 80 }
     },
     icon = "__base__/graphics/icons/copper-plate.png",
     icon_size = 64,

@@ -1,12 +1,12 @@
+require("prototypes.entity.pipecovers")
+require("prototypes.entity.assemblerpipes")
 ---@diagnostic disable-next-line: undefined-field, inject-field
 local pump = data.raw["pump"]["pump"]
 ---@diagnostic disable-next-line: undefined-field, inject-field
 local chem_plant = data.raw["assembling-machine"]["chemical-plant"]
-
 -- Start with chemical plant
 ---@diagnostic disable: inject-field, undefined-field
 local air_cooler = table.deepcopy(chem_plant)
-local pipecoverspictures = require("prototypes.entity.pipecovers")
 air_cooler.name = "air-cooler"
 air_cooler.minable.result = "air-cooler"
 
@@ -49,22 +49,19 @@ air_cooler.fluid_boxes = {
         pipe_connections = {
             { flow_direction = "input", direction = defines.direction.north, position = { 0, -1 } }
         },
+        pipe_picture = assembler2pipepictures(),
         pipe_covers = pipecoverspictures(),
         volume = 1000,
+
     },
     {
         production_type = "input",
+        draw_only_when_connected = true,
         pipe_connections = {
-            { flow_direction = "input-output", direction = defines.direction.west, position = { 0, -1 } }
+            { flow_direction = "input", direction = defines.direction.west, position = { 0, 0 } }
         },
         volume = 1000,
-    },
-    {
-        production_type = "input",
-        pipe_connections = {
-            { flow_direction = "input-output", direction = defines.direction.east, position = { 0, -1 } }
-        },
-        volume = 1000,
+
     },
     {
         production_type = "output",
