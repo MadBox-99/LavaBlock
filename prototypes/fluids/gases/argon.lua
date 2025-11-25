@@ -1,0 +1,18 @@
+local argon = {
+    type = "fluid",
+    name = "argon",
+    subgroup = "gases",
+    max_temperature = 2000,
+    default_temperature = -189,
+    gas_temperature = 20,
+    heat_capacity = "20.76J",
+    base_color = { r = 0.5, g = 0.5, b = 1.0 },
+    flow_color = { r = 0.7, g = 0.7, b = 1.0 },
+    icon_size = 64,
+    icon = "__LavaBlock__/graphics/icons/gas/argon.png",
+    order = "a[gas]-z[argon]",
+    pressure_to_speed_ratio = 0.4,
+    flow_to_energy_ratio = 0.59,
+    auto_barrel = true,
+}
+data:extend { argon }

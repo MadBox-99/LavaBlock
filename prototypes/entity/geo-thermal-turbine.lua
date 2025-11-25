@@ -1,5 +1,6 @@
-require("prototypes.entity.pipecovers")
-require("prototypes.entity.assemblerpipes")
+require("__core__.lualib.util")
+require("__base__.prototypes.entity.pipecovers")
+require("__base__.prototypes.entity.assemblerpipes")
 local geo_thermal_turbine = table.deepcopy(data.raw["generator"]["steam-turbine"])
 geo_thermal_turbine.name = "geo-thermal-turbine"
 geo_thermal_turbine.icon_size = 64

@@ -1,11 +1,9 @@
-require("prototypes.entity.pipecovers")
-require("prototypes.entity.assemblerpipes")
----@diagnostic disable-next-line: undefined-field, inject-field
+require("__core__.lualib.util")
+require("__base__.prototypes.entity.pipecovers")
+require("__base__.prototypes.entity.assemblerpipes")
 local pump = data.raw["pump"]["pump"]
----@diagnostic disable-next-line: undefined-field, inject-field
 local chem_plant = data.raw["assembling-machine"]["chemical-plant"]
 -- Start with chemical plant
----@diagnostic disable: inject-field, undefined-field
 local air_cooler = table.deepcopy(chem_plant)
 air_cooler.name = "air-cooler"
 air_cooler.minable.result = "air-cooler"
@@ -60,6 +58,8 @@ air_cooler.fluid_boxes = {
         pipe_connections = {
             { flow_direction = "input", direction = defines.direction.west, position = { 0, 0 } }
         },
+        pipe_picture = assembler2pipepictures(),
+        pipe_covers = pipecoverspictures(),
         volume = 1000,
 
     },
@@ -68,6 +68,7 @@ air_cooler.fluid_boxes = {
         pipe_connections = {
             { flow_direction = "output", direction = defines.direction.south, position = { 0, 1 } }
         },
+        pipe_picture = assembler2pipepictures(),
         pipe_covers = pipecoverspictures(),
         volume = 1000,
     },

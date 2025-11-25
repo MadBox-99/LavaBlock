@@ -9,7 +9,7 @@ local liquid_nitrogen_production = {
         { type = "fluid", name = "water", amount = 100 }
     },
     results = {
-        { type = "fluid", name = "liquid-nitrogen", amount = 25 }
+        { type = "fluid", name = "liquid-nitrogen", amount = 50 }
     },
     icon = "__LavaBlock__/graphics/icons/liquid_nitrogen.png",
     icon_size = 32,

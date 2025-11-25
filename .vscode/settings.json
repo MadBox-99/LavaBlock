@@ -3,5 +3,20 @@
         "c:\\Users\\Zalman\\AppData\\Roaming\\Code\\User\\workspaceStorage\\5a7bcb835a2d571a9b232e51e2ee3e62\\justarandomgeek.factoriomod-debug\\sumneko-3rd"
     ],
     "Lua.workspace.checkThirdParty": "ApplyInMemory",
-    "Lua.diagnostics.workspaceDelay": -1
+    "Lua.diagnostics.workspaceDelay": -1,
+     "Lua.diagnostics.globals": [
+        "data",
+        "mods",
+        "pipecoverspictures",
+        "assembler2pipepictures",
+        "defines",
+        "game",
+        "global",
+        "script",
+    ],
+    "Lua.diagnostics.disable": [
+        "lowercase-global",
+        "undefined-doc-name",
+        "undefined-field"
+    ]
 }
