@@ -2,16 +2,14 @@ local air_extraction = {
     type = "recipe",
     name = "air-extraction",
     energy_required = 4,
-    enabled = true,
-    ingredients = {
-        { type = "fluid", name = "compressed-air", amount = 500 }
-    },
+    enabled = false,
+    ingredients = {},
     results = {
-        { type = "fluid", name = "air", amount = 100 }
+        { type = "fluid", name = "compressed-air", amount = 100 }
     },
-    icon = "__base__/graphics/icons/coal.png",
-    icon_size = 64,
-    category = "chemistry",
+    icon = "__LavaBlock__/graphics/icons/gas/compressed-air.png",
+    icon_size = 128,
+    category = "gas",
     subgroup = "fluid-recipes"
 }
-return air_extraction
+data:extend({ air_extraction })

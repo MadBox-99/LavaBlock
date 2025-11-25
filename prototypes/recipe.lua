@@ -1,4 +1,6 @@
 data.raw.recipe['burner-mining-drill'].enabled = false
+require("prototypes.recipes.air.air-electrostatic-adsorption")
+require("prototypes.recipes.air.extraction.air-extraction")
 local lava_cooling = require("prototypes.recipes.lava-cooling")
 local calcite_synthesis = require("prototypes.recipes.calcite-synthesis")
 local steam_generation = require("prototypes.recipes.steam-generation")
@@ -19,12 +21,8 @@ local liquid_nitrogen_production = require("prototypes.recipes.liquid-nitrogen-p
 local iron_smelting_cryo_cooling = require("prototypes.recipes.smelting.iron.iron-smelting-cryo-cooling")
 local copper_smelting_cryo_cooling = require("prototypes.recipes.smelting.copper.copper-smelting-cryo-cooling")
 local gas_turbine = require("prototypes.recipes.geo-thermal-turbine")
-local air_extraction = require("prototypes.recipes.air.extraction.air-extraction")
-local air_collection = require("prototypes.recipes.air.air-compress")
 
 data:extend({
-    air_extraction,
-    air_collection,
     lava_cooling,
     calcite_synthesis,
     steam_generation,
