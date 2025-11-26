@@ -1,4 +1,5 @@
 data.raw.recipe['burner-mining-drill'].enabled = false
+require("prototypes.recipes.crafting-machine-tints.biochamber")
 require("prototypes.recipes.air.air-electrostatic-adsorption")
 require("prototypes.recipes.air.extraction.air-extraction")
 local lava_cooling = require("prototypes.recipes.lava-cooling")

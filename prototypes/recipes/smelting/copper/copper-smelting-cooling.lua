@@ -11,7 +11,7 @@ local copper_smelting_cooling = {
     results = {
         { type = "item", name = "copper-plate", amount = 4 }
     },
-    icon = "__LavaBlock__/graphics/icons/iron-lava-smelt.png",
+    icon = "__LavaBlock__/graphics/icons/copper-lava-smelt.png",
     icon_size = 64,
     category = "chemistry",
     subgroup = "fluid-recipes",

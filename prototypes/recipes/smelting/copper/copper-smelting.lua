@@ -12,7 +12,7 @@ local copper_smelting = {
         { type = "fluid", name = "molten-copper", amount = 50 }
     },
     main_product = "molten-copper",
-    icon = "__LavaBlock__/graphics/icons/iron-lava-smelt.png",
+    icon = "__LavaBlock__/graphics/icons/copper-lava-smelt.png",
     icon_size = 64,
     category = "oil-processing",
     subgroup = "fluid-recipes",
