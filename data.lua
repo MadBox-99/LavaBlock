@@ -1,5 +1,6 @@
 --require("util")
 require("prototypes.recipe-category")
+require("prototypes.item-groups")
 require("prototypes.item-subgroups")
 require("prototypes.fluids")
 require("prototypes.items")

@@ -8,15 +8,15 @@ local function deep_replace(insrc, inorg, intarget)
     end
 end
 
-data.raw["assembling-machine"]["biochamber"].graphics_set.default_recipe_tint =
+data.raw["assembling-machine"]["industrialised-chemical-plan"].graphics_set.default_recipe_tint =
 {
     primary = { r = 0.75, g = 0.75, b = 1, a = 1 },
     secondary = { r = 1, g = 0.5, b = 0, a = 1 },
     tertiary = { r = 1, g = 0.85, b = 0.75, a = 1 },
     quaternary = { r = 1, g = 1, b = 0, a = 1 },
 };
-data.raw["assembling-machine"]["biochamber"].graphics_set.working_visualisations[5].apply_recipe_tint = "none";
---primary: now the sudge pool
+data.raw["assembling-machine"]["industrialised-chemical-plan"].graphics_set.working_visualisations[5].apply_recipe_tint =
+"none";
 
 local pool_graphic = {
     animation = {
@@ -32,20 +32,24 @@ local pool_graphic = {
     },
     apply_recipe_tint = "primary"
 };
-table.insert(data.raw["assembling-machine"]["biochamber"].graphics_set.working_visualisations, 6, pool_graphic);
+table.insert(data.raw["assembling-machine"]["industrialised-chemical-plan"].graphics_set.working_visualisations, 6,
+    pool_graphic);
 --secondary,sec:the checking window
-data.raw["assembling-machine"]["biochamber"].graphics_set.working_visualisations[4].apply_recipe_tint = "secondary";
-deep_replace(data.raw["assembling-machine"]["biochamber"].graphics_set.working_visualisations[4],
+data.raw["assembling-machine"]["industrialised-chemical-plan"].graphics_set.working_visualisations[4].apply_recipe_tint =
+"secondary";
+deep_replace(data.raw["assembling-machine"]["industrialised-chemical-plan"].graphics_set.working_visualisations[4],
     "__space-age__/graphics/entity/biochamber/biochamber-glow-2.png",
     "__LavaBlock__/graphics/entity/industrialised-chemical-plan/biochamber-glow-2.png");
 --tertiary the main pool color
-data.raw["assembling-machine"]["biochamber"].graphics_set.working_visualisations[1].apply_recipe_tint = "tertiary";
-deep_replace(data.raw["assembling-machine"]["biochamber"].graphics_set.working_visualisations[1],
+data.raw["assembling-machine"]["industrialised-chemical-plan"].graphics_set.working_visualisations[1].apply_recipe_tint =
+"tertiary";
+deep_replace(data.raw["assembling-machine"]["industrialised-chemical-plan"].graphics_set.working_visualisations[1],
     "__space-age__/graphics/entity/biochamber/biochamber-animation-dome.png",
     "__LavaBlock__/graphics/entity/industrialised-chemical-plan/biochamber-animation-dome.png");
 --quaternary the secondary pool color
-data.raw["assembling-machine"]["biochamber"].graphics_set.working_visualisations[3].apply_recipe_tint = "quaternary";
-deep_replace(data.raw["assembling-machine"]["biochamber"].graphics_set.working_visualisations[3],
+data.raw["assembling-machine"]["industrialised-chemical-plan"].graphics_set.working_visualisations[3].apply_recipe_tint =
+"quaternary";
+deep_replace(data.raw["assembling-machine"]["industrialised-chemical-plan"].graphics_set.working_visualisations[3],
     "__space-age__/graphics/entity/biochamber/biochamber-glow.png",
     "__LavaBlock__/graphics/entity/industrialised-chemical-plan/biochamber-glow.png");
 
@@ -64,7 +68,8 @@ local sidepanel_graphic = {
     },
     fadeout = true,
 };
-table.insert(data.raw["assembling-machine"]["biochamber"].graphics_set.working_visualisations, 1, sidepanel_graphic);
+table.insert(data.raw["assembling-machine"]["industrialised-chemical-plan"].graphics_set.working_visualisations, 1,
+    sidepanel_graphic);
 
 local function apply(src, dst)
     for k, v in pairs(src) do
@@ -79,19 +84,13 @@ local function apply(src, dst)
 end;
 
 apply({
-    tertiary = { r = 1, g = 1, b = 1, a = 1 },
-    quaternary = { r = 1, g = 0.5, b = 0.5, a = 1 },
-}, data.raw.recipe["rocket-fuel"].crafting_machine_tint);
-
-
-apply({
     crafting_machine_tint = {
         primary = { r = 0.75, g = 1, b = 0.75, a = 1 },
         secondary = { r = 1, g = 1, b = 1, a = 1 },
         tertiary = { r = 0.75, g = 0.65, b = 0.50, a = 1 },
         quaternary = { r = 0, g = 1, b = 0, a = 1 },
     }
-}, data.raw.recipe["biochamber"]);
+}, data.raw.recipe["industrialised-chemical-plan"]);
 
 apply({
     tertiary = { r = 1, g = 1, b = 1, a = 1 },
