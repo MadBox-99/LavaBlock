@@ -1,7 +1,7 @@
 local argon = {
     type = "fluid",
     name = "argon",
-    subgroup = "gases",
+    group = "chemistry",
     max_temperature = 2000,
     default_temperature = -189,
     gas_temperature = 20,

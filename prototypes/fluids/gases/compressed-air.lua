@@ -1,7 +1,7 @@
 local compressed_air = {
     type = "fluid",
     name = "compressed-air",
-    subgroup = "gases",
+    group = "chemistry",
     max_temperature = 132.5,                    -- Critical temperature in K
     default_temperature = -210,                 -- Low temperature
     gas_temperature = -194.35,                  -- Boiling point of air in °C

@@ -1,5 +1,5 @@
 data.raw.recipe['burner-mining-drill'].enabled = false
-require("prototypes.recipes.industrialised-chemical-plan")
+require("prototypes.recipes.industrialised-chemical-plant")
 require("prototypes.recipes.air.air-electrostatic-adsorption")
 require("prototypes.recipes.air.extraction.air-extraction")
 local lava_cooling = require("prototypes.recipes.lava-cooling")

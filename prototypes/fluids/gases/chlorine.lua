@@ -1,7 +1,7 @@
 local chlorine = {
     type = "fluid",
     name = "chlorine",
-    subgroup = "gases",
+    group = "chemistry",
     max_temperature = 416.9,                    -- Critical temperature in K
     default_temperature = -101.5,               -- Melting point in °C
     gas_temperature = -34.04,                   -- Boiling point in °C

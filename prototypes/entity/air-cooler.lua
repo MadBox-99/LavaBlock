@@ -1,10 +1,9 @@
 require("__core__.lualib.util")
 require("__base__.prototypes.entity.pipecovers")
 require("__base__.prototypes.entity.assemblerpipes")
-local pump = data.raw["pump"]["pump"]
-local chem_plant = data.raw["assembling-machine"]["chemical-plant"]
+local pump = table.deepcopy(data.raw["pump"]["pump"])
 -- Start with chemical plant
-local air_cooler = table.deepcopy(chem_plant)
+local air_cooler = table.deepcopy(data.raw["assembling-machine"]["chemical-plant"])
 air_cooler.name = "air-cooler"
 air_cooler.minable.result = "air-cooler"
 
