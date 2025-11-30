@@ -4,7 +4,7 @@ require("prototypes.technologies.lava-smelting-productivity")
 require("prototypes.technologies.brick-smelting-productivity")
 require("prototypes.technologies.foundation-platform-productivity")
 require("prototypes.technologies.advanced-lava-smelting-productivity")
-require("prototypes.technologies.lava-cooling-with-liquid-nitrogen")
+require("prototypes.technologies.smelting-with-air")
 local advanced_lava_cooling = require("prototypes.technologies.advanced-lava-cooling")
 local geo_thermal_turbine = require("prototypes.technologies.geo-thermal-turbine")
 data.raw.technology["oil-processing"].research_trigger = { type = "craft-fluid", fluid = "crude-oil", amount = 1 }

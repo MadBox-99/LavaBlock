@@ -2,7 +2,7 @@ local air_extraction = {
     type = "recipe",
     name = "air-electrostatic-adsorption",
     energy_required = 4,
-    enabled = true,
+    enabled = false,
     ingredients = {
         { type = "fluid", name = "compressed-air", amount = 500 }
     },

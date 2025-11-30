@@ -2,6 +2,7 @@ data.raw.recipe['burner-mining-drill'].enabled = false
 require("prototypes.recipes.industrialised-chemical-plant")
 require("prototypes.recipes.air.air-electrostatic-adsorption")
 require("prototypes.recipes.air.extraction.air-extraction")
+require("prototypes.technologies.smelting-with-air")
 local lava_cooling = require("prototypes.recipes.lava-cooling")
 local calcite_synthesis = require("prototypes.recipes.calcite-synthesis")
 local steam_generation = require("prototypes.recipes.steam-generation")

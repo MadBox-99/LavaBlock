@@ -11,6 +11,10 @@ local air_cooler_tech = {
         {
             type = "unlock-recipe",
             recipe = "liquid-nitrogen-production"
+        },
+        {
+            type = "unlock-recipe",
+            recipe = "air-electrostatic-adsorption"
         }
     },
     prerequisites = { "chemical-science-pack" },

@@ -1,10 +1,9 @@
 local lava_cooling_with_liquid_nitrogen = {
     type = "technology",
-    name = "cryogenic-cooling",
-    icon = "__LavaBlock__/graphics/icons/entity/geo-thermal-turbine.png",
-    icon_size = 64,
-    effects =
-    {
+    name = "lava-cooling-with-liquid-nitrogen",
+    icon = "__LavaBlock__/graphics/technologies/lava-cooling-with-liquid-nitrogen.png",
+    icon_size = 256,
+    effects = {
         {
             type = "unlock-recipe",
             recipe = "lava-cooling-with-liquid-nitrogen"
@@ -16,10 +15,14 @@ local lava_cooling_with_liquid_nitrogen = {
         count = 500,
         ingredients =
         {
-            { "chemical-science-pack", 1 }
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "chemical-science-pack",   1 }
         },
         time = 30
     },
     order = "a-q-z"
 }
+
 data:extend({ lava_cooling_with_liquid_nitrogen })
