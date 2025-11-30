@@ -6,7 +6,7 @@ local copper_smelting_cryo_cooling = {
     energy_required = 3,
     ingredients = {
         { type = "fluid", name = "molten-copper",   amount = 200 },
-        { type = "fluid", name = "liquid-nitrogen", amount = 5000 }
+        { type = "fluid", name = "liquid-nitrogen", amount = 200 }
     },
     results = {
         { type = "item", name = "copper-plate", amount = 80 }

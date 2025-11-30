@@ -21,8 +21,8 @@ air_compressor.fluid_boxes = {
         base_area = 10,
         base_level = -1,
         height = 2,
-        pipe_picture = assembler2pipepictures(),
-        pipe_covers = pipecoverspictures(),
+        --pipe_picture = assembler2pipepictures(),
+        --pipe_covers = pipecoverspictures(),
         volume = 1000,
     },
     {
@@ -33,8 +33,8 @@ air_compressor.fluid_boxes = {
         base_area = 10,
         base_level = 1,
         height = 2,
-        pipe_picture = assembler2pipepictures(),
-        pipe_covers = pipecoverspictures(),
+        --pipe_picture = assembler2pipepictures(),
+        --pipe_covers = pipecoverspictures(),
         volume = 1000,
     }
 }

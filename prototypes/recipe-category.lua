@@ -1,5 +1,18 @@
--- Custom recipe category for air cooler
-require("prototypes.recipe-categories.cryogenic-cooling")
-require("prototypes.recipe-categories.gas")
-require("prototypes.recipe-categories.gas-mix")
-require("prototypes.recipe-categories.chemical")
+data:extend({
+    {
+        type = "recipe-category",
+        name = "chemical"
+    },
+    {
+        type = "recipe-category",
+        name = "cryogenic-cooling"
+    },
+    {
+        type = "recipe-category",
+        name = "gas-mix"
+    },
+    {
+        type = "recipe-category",
+        name = "gas"
+    }
+})
