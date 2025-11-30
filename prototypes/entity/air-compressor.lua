@@ -2,7 +2,7 @@ local air_compressor = table.deepcopy(data.raw["assembling-machine"]["assembling
 local number_tint = { r = 1, g = 1, b = 1, a = 1 }
 air_compressor.name = "air-compressor"
 air_compressor.minable.result = "air-compressor"
-air_compressor.crafting_categories = { "gas" }
+air_compressor.crafting_categories = { "gas", "gas-mix" }
 air_compressor.crafting_speed = 2.0
 air_compressor.fluid_boxes_off_when_no_fluid_recipe = true
 air_compressor.graphics_set.animation = {

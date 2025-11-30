@@ -12,12 +12,11 @@ local lava_cooling_with_liquid_nitrogen = {
     prerequisites = { "advanced-lava-cooling" },
     unit =
     {
-        count = 500,
+        count = 1000,
         ingredients =
         {
             { "automation-science-pack", 1 },
             { "logistic-science-pack",   1 },
-            { "production-science-pack", 1 },
             { "chemical-science-pack",   1 }
         },
         time = 30

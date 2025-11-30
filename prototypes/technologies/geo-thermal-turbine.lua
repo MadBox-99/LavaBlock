@@ -13,12 +13,12 @@ local geo_thermal_turbine = {
     prerequisites = { "advanced-lava-cooling" },
     unit =
     {
-        count = 1000,
+        count = 2000,
         ingredients =
         {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   2 },
-            { "chemical-science-pack",   3 }
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         time = 30
     },

@@ -20,6 +20,10 @@ local advanced_lava_cooling = {
         {
             type = "unlock-recipe",
             recipe = "copper-smelting-cryo-cooling"
+        },
+        {
+            type = "unlock-recipe",
+            recipe = "air-compressor"
         }
     },
     prerequisites = { "logistic-science-pack", "air-cooler" },
@@ -30,6 +34,7 @@ local advanced_lava_cooling = {
         {
             { "automation-science-pack", 1 },
             { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         time = 20
     },
