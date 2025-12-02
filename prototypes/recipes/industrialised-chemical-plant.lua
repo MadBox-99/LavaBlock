@@ -2,7 +2,7 @@
 local industrialised_chemical_plant = {
     type = "recipe",
     name = "industrialised-chemical-plant",
-    enabled = true,
+    enabled = false,
     energy_required = 5,
     crafting_category = "chemical",
     ingredients = {
