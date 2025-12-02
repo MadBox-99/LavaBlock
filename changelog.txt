@@ -1,4 +1,15 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.0.17
+Date: 2025-12-02
+  Changes:
+    - buffed liquid nitrogen production in air cooler recipe
+  Features:
+    - new building Air cooler now can cool lava to liquid nitrogen for cryogenic cooling process
+    - new technologys 
+    - improved tech tree better progression flow
+    - new type of crafting recipe % based. Test feature for future use.
+    - new industriolised industrialised-chemical-plant now totaly useless but for futur use i added it :)
+---------------------------------------------------------------------------------------------------
 Version: 0.0.16
 Date: 2025-11-23
   Changes:
