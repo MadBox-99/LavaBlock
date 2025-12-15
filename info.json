@@ -8,6 +8,9 @@
         "base >= 2.0",
         "space-age"
     ],
+    "package": {
+        "git_publish_branch": "master"
+    },
     "space_travel_required": true,
     "description": "Start on a tiny island surrounded by lava! Extract all resources from lava using chemical plants. No traditional mining - convert lava into stone, coal, iron, copper & wood. Expand your island only through research-unlocked foundation. Custom map preset, modified tech tree, extreme space constraints create unique survival challenge. Perfect for players seeking fresh Factorio experience!"
 }
