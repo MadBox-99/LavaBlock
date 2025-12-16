@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.0.18
+Date: 2025-12-16
+  Features:
+    - new mapgen feature now harder starting with "neighbors"
+    - new research pack now completely useless
+---------------------------------------------------------------------------------------------------
 Version: 0.0.17
 Date: 2025-12-02
   Changes:

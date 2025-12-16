@@ -2,6 +2,7 @@ data:extend({
     {
         type = "recipe",
         allow_productivity = true,
+        enabled = false,
         crafting_machine_tint = {
             primary = {
                 a = 1,
@@ -28,17 +29,22 @@ data:extend({
                 r = 0.6
             }
         },
-        enabled = true,
+
         energy_required = 20,
         ingredients = {
             {
-                amount = 3,
+                amount = 300000,
                 name = "ice",
                 type = "item"
             },
             {
-                amount = 1,
+                amount = 100000,
                 name = "lithium-plate",
+                type = "item"
+            },
+            {
+                amount = 1,
+                name = "lava-barrel",
                 type = "item"
             }
         },
