@@ -8,6 +8,7 @@ require("prototypes.entities")
 require("prototypes.technologies")
 require("prototypes.islandGeneration")
 require("helpers.functions")
+require("prototypes.tools")
 
 remove_technology("electric-mining-drill")
 

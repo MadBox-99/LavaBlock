@@ -19,11 +19,18 @@ local lava_block_island_preset = {
         {
             cliff_smoothing = 1
         },
+        territory_settings =
+        {
+            units = { "small-demolisher", "medium-demolisher", "big-demolisher" },
+            territory_index_expression = "demolisher_territory_expression",
+            territory_variation_expression = "demolisher_variation_expression",
+            minimum_territory_size = 10
+        },
         autoplace_controls = {
             ["enemy-base"] = {
-                size = 200, -- Much larger enemy bases
+                size = 200,    -- Much larger enemy bases
                 frequency = 6, -- Much more frequent enemy bases
-                richness = 6 -- Richer/bigger individual bases
+                richness = 6   -- Richer/bigger individual bases
             },
             ["trees"] = { size = 0 },
             ["water"] = { size = 0 },
@@ -43,9 +50,9 @@ nauvis_copy.map_gen_settings.autoplace_controls["deepwater"] = nil
 nauvis_copy.map_gen_settings.default_enable_all_autoplace_controls = false
 nauvis_copy.map_gen_settings.autoplace_controls = {
     ["enemy-base"] = {
-        size = 200, -- Much larger enemy bases (was 20)
+        size = 200,    -- Much larger enemy bases (was 20)
         frequency = 6, -- Much more frequent enemy bases
-        richness = 6 -- Richer/bigger individual bases
+        richness = 6   -- Richer/bigger individual bases
     },
     ["trees"] = { size = 0 },
 }
