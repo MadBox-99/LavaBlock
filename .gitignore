@@ -1,3 +1,4 @@
 space-age-template.json
 node_modules/
 package-lock.json
+.env
