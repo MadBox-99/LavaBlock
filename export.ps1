@@ -34,6 +34,10 @@ $excludePatterns = @(
     "export.ps1",
     "export.bat",
     "export.sh",
+    "node_modules",
+    "package.json",
+    "package-lock.json",
+    "space-age-template.json",
     "*.zip"
 )
 
