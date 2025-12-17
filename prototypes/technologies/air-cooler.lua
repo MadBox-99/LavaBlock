@@ -29,11 +29,12 @@ local air_cooler_tech = {
             recipe = "air-extraction"
         }
     },
-    prerequisites = { "chemical-science-pack" },
+    prerequisites = { "chemical-science-pack", "lava-science-pack" },
     unit = {
-        count = 3000,
+        count = 1000,
         ingredients = {
-            { "chemical-science-pack", 1 }
+            { "lava-science-pack",     1 },
+            { "chemical-science-pack", 2 }
         },
         time = 30
     },

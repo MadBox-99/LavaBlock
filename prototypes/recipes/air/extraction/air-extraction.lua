@@ -12,4 +12,4 @@ local air_extraction = {
     category = "gas",
     subgroup = "fluid-recipes"
 }
-data:extend({ air_extraction })
+return air_extraction

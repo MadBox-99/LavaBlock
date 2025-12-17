@@ -1,4 +1,4 @@
-local air_extraction = {
+local air_electrostatic_adsorption = {
     type = "recipe",
     name = "air-electrostatic-adsorption",
     energy_required = 4,
@@ -14,4 +14,4 @@ local air_extraction = {
     category = "gas",
     subgroup = "fluid-recipes"
 }
-data:extend({ air_extraction })
+return air_electrostatic_adsorption

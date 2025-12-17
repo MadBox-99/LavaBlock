@@ -6,7 +6,7 @@ require("prototypes.items")
 require("prototypes.recipes")
 require("prototypes.entities")
 require("prototypes.technologies")
-require("prototypes.islandGeneration")
+require("prototypes.island-generation")
 require("helpers.functions")
 require("prototypes.tools")
 

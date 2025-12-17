@@ -1,7 +1,15 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.20
 Date: ????
-  Changes:
+  Features:
+    - Added lava-science-pack technology (requires steel-processing and fluid-handling)
+    - Lava science pack can now be used in both lab and biolab
+    - Air cooler and geo-thermal-turbine technologies now require lava-science-pack
+  Scripting:
+    - Unified recipes.lua structure with return style and organized categories
+    - Unified technologies.lua structure with comments and grouped sections
+    - Added util.add_lab_input() helper function for reusability
+    - Code cleanup and formatting improvements
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.19
 Date: 2025-12-17

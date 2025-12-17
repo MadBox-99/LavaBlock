@@ -1,4 +1,3 @@
--- @class RecipePrototype::table
 local industrialised_chemical_plant = {
     type = "recipe",
     name = "industrialised-chemical-plant",
@@ -14,7 +13,5 @@ local industrialised_chemical_plant = {
     results = {
         { type = "item", name = "industrialised-chemical-plant", amount = 1 }
     }
-
-
 }
-data:extend { industrialised_chemical_plant }
+return industrialised_chemical_plant

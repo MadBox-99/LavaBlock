@@ -1,3 +1,9 @@
+local util = require("util")
+
+-- Add lava-science-pack to labs
+util.add_lab_input("lab", "lava-science-pack")
+util.add_lab_input("biolab", "lava-science-pack")
+
 -- Demolisher noise expressions for Nauvis
 if mods["space-age"] then
   data:extend({

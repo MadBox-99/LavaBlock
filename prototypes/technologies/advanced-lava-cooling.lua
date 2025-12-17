@@ -34,7 +34,8 @@ local advanced_lava_cooling = {
         {
             { "automation-science-pack", 1 },
             { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 }
+            { "chemical-science-pack",   1 },
+            { "lava-science-pack",       1 }
         },
         time = 20
     },

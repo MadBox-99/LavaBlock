@@ -17,11 +17,12 @@ local lava_cooling_with_liquid_nitrogen = {
         {
             { "automation-science-pack", 1 },
             { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 }
+            { "chemical-science-pack",   1 },
+            { "lava-science-pack",       1 }
         },
         time = 30
     },
     order = "a-q-z"
 }
 
-data:extend({ lava_cooling_with_liquid_nitrogen })
+return lava_cooling_with_liquid_nitrogen

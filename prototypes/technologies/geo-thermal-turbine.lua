@@ -18,7 +18,8 @@ local geo_thermal_turbine = {
         {
             { "automation-science-pack", 1 },
             { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 }
+            { "chemical-science-pack",   1 },
+            { "lava-science-pack",       1 }
         },
         time = 30
     },

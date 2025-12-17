@@ -13,4 +13,4 @@ local air_compressor_recipe = {
     },
     energy_required = 30,
 }
-data:extend({ air_compressor_recipe })
+return air_compressor_recipe
