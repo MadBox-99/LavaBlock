@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.20
-Date: ????
+Date: 2025-12-17
   Features:
     - Added lava-science-pack technology (requires steel-processing and fluid-handling)
     - Lava science pack can now be used in both lab and biolab
