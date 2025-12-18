@@ -8,8 +8,23 @@ require("prototypes.technologies.advanced-lava-smelting-productivity")
 
 -- Base game technology modifications
 data.raw.technology["oil-processing"].research_trigger = { type = "craft-fluid", fluid = "crude-oil", amount = 1 }
+data.raw.technology["oil-processing"].effects = {
+    { type = "unlock-recipe", recipe = "basic-oil-processing" },
+    { type = "unlock-recipe", recipe = "solid-fuel-from-petroleum-gas" },
+    { type = "unlock-recipe", recipe = "oil-refinery" }
+}
 data.raw.technology["uranium-processing"].research_trigger = { type = "craft-item", item = "uranium-ore" }
 data.raw.technology["oil-gathering"].effects = { { type = "unlock-recipe", recipe = "oil-extraction" } }
+data.raw.technology["oil-gathering"].prerequisites = { "lava-science-pack" }
+data.raw.technology["oil-gathering"].unit = {
+    count = 100,
+    ingredients = {
+        { "automation-science-pack", 1 },
+        { "logistic-science-pack",   1 },
+        { "lava-science-pack",       5 }
+    },
+    time = 30
+}
 data.raw.technology["uranium-mining"].effects = {
     { type = "mining-with-fluid", modifier = true },
     { type = "unlock-recipe",     recipe = "uranium-extraction" }
@@ -25,6 +40,14 @@ local advanced_lava_smelting = require("prototypes.technologies.advanced-lava-sm
 local air_cooler = require("prototypes.technologies.air-cooler")
 local lava_science_pack = require("prototypes.technologies.lava-science-pack")
 
+-- Module technologies
+local lava_modules = require("prototypes.technologies.modules.lava-modules")
+local lava_efficiency_module = require("prototypes.technologies.modules.lava-efficiency-module")
+local lava_speed_module = require("prototypes.technologies.modules.lava-speed-module")
+
+-- Robot technologies
+local lava_flying_robot_frame = require("prototypes.technologies.lava-flying-robot-frame")
+
 data:extend({
     smelting_with_air,
     advanced_lava_cooling,
@@ -34,4 +57,8 @@ data:extend({
     advanced_lava_smelting,
     air_cooler,
     lava_science_pack,
+    lava_modules,
+    lava_efficiency_module,
+    lava_speed_module,
+    lava_flying_robot_frame,
 })

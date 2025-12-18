@@ -1,5 +1,7 @@
-require("prototypes.fluids.liquid-nitrogen")
-require("prototypes.fluids.gases.argon")
-require("prototypes.fluids.gases.air")
-require("prototypes.fluids.gases.compressed-air")
-require("prototypes.fluids.gases.chlorine")
+data:extend({
+    require("prototypes.fluids.liquid-nitrogen"),
+    require("prototypes.fluids.gases.argon"),
+    require("prototypes.fluids.gases.air"),
+    require("prototypes.fluids.gases.compressed-air"),
+    require("prototypes.fluids.gases.chlorine"),
+})

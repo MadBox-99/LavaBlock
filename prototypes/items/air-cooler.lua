@@ -5,4 +5,4 @@ air_cooler_item.place_result = "air-cooler"
 air_cooler_item.icon = "__LavaBlock__/graphics/icons/compressor_mini.png"
 air_cooler_item.icon_size = 64
 
-data:extend({ air_cooler_item })
+return air_cooler_item

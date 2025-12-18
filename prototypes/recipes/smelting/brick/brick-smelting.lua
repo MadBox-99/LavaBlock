@@ -9,8 +9,7 @@ local brick_smelting = {
     results = {
         { type = "item", name = "stone-brick", amount = 2 }
     },
-    icon = "__LavaBlock__/graphics/stone-brick-smelting.png",
-    icon_size = 128,
+    icon = "__base__/graphics/icons/stone-brick.png",
     category = "chemistry",
     subgroup = "fluid-recipes",
     allow_productivity = true

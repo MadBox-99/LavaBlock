@@ -1,4 +1,4 @@
-local industrialised_chemical_plant = {
+return {
     type = "item",
     name = "industrialised-chemical-plant",
     icon = "__LavaBlock__/graphics/icons/items/industrialised-chemical-plant-256.png",
@@ -9,4 +9,3 @@ local industrialised_chemical_plant = {
     place_result = "industrialised-chemical-plant",
     stack_size = 10
 }
-data:extend { industrialised_chemical_plant }

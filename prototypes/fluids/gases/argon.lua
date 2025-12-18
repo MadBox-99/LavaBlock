@@ -1,4 +1,4 @@
-local argon = {
+return {
     type = "fluid",
     name = "argon",
     group = "chemistry",
@@ -15,4 +15,3 @@ local argon = {
     flow_to_energy_ratio = 0.59,
     auto_barrel = true,
 }
-data:extend { argon }

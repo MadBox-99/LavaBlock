@@ -1,4 +1,4 @@
-local chlorine = {
+return {
     type = "fluid",
     name = "chlorine",
     group = "chemistry",
@@ -15,4 +15,3 @@ local chlorine = {
     flow_to_energy_ratio = 0.59,
     auto_barrel = true,
 }
-data:extend { chlorine }

@@ -1,6 +1,13 @@
 -- Disable base recipes
 data.raw.recipe['burner-mining-drill'].enabled = false
 
+-- Modify base recipes
+data.raw.recipe['sulfur'].ingredients = {
+    { type = "fluid", name = "water",         amount = 15 },
+    { type = "fluid", name = "petroleum-gas", amount = 30 },
+    { type = "fluid", name = "lava",          amount = 1000 }
+}
+
 -- Air recipes
 local air_compressor = require("prototypes.recipes.air.air-compressor")
 local air_electrostatic_adsorption = require("prototypes.recipes.air.air-electrostatic-adsorption")
@@ -37,6 +44,14 @@ local ore_clearing = require("prototypes.recipes.ore-clearing")
 local gas_turbine = require("prototypes.recipes.geo-thermal-turbine")
 local industrialised_chemical_plant = require("prototypes.recipes.industrialised-chemical-plant")
 local lava_science_pack = require("prototypes.recipes.lava-science-pack")
+local foundation_platform = require("prototypes.recipes.foundation-platform")
+
+-- Module recipes
+local lava_efficiency_module = require("prototypes.recipes.modules.efficiency-module")
+local lava_speed_module = require("prototypes.recipes.modules.speed-module")
+
+-- Robot recipes
+local lava_flying_robot_frame = require("prototypes.recipes.flying-robot-frame")
 
 data:extend({
     -- Air recipes
@@ -65,6 +80,11 @@ data:extend({
     lava_cooling,
     lava_cooling_with_liquid_nitrogen,
     liquid_nitrogen_production,
+    -- Module recipes
+    lava_efficiency_module,
+    lava_speed_module,
+    -- Robot recipes
+    lava_flying_robot_frame,
     -- Other recipes
     calcite_synthesis,
     steam_generation,
@@ -72,4 +92,5 @@ data:extend({
     gas_turbine,
     industrialised_chemical_plant,
     lava_science_pack,
+    foundation_platform,
 })

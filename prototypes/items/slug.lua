@@ -1,4 +1,4 @@
-local slug = {
+return {
     type = "item",
     name = "slag",
     icon = "__LavaBlock__/graphics/icons/slag.png",
@@ -7,5 +7,3 @@ local slug = {
     order = "b[slag]",
     stack_size = 100
 }
-
-data:extend({ slug })

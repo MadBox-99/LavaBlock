@@ -1,4 +1,4 @@
-local liquid_nitrogen = {
+return {
     type = "fluid",
     name = "liquid-nitrogen",
     subgroup = "fluid",
@@ -14,4 +14,3 @@ local liquid_nitrogen = {
     flow_to_energy_ratio = 0.59,
     auto_barrel = true,
 }
-data:extend { liquid_nitrogen }

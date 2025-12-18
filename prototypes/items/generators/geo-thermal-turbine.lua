@@ -1,4 +1,4 @@
-local geo_thermal_turbine = {
+return {
     type = "item",
     name = "geo-thermal-turbine",
     icon = "__LavaBlock__/graphics/icons/entity/geo-thermal-turbine.png",
@@ -8,4 +8,3 @@ local geo_thermal_turbine = {
     place_result = "geo-thermal-turbine",
     stack_size = 10
 }
-data:extend({ geo_thermal_turbine })
