@@ -1,7 +1,17 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.21
-Date: ????
+Date: 2025-12-18
+  Features:
+    - Added "Start with Mech Armor" setting (enabled by default)
+    - Added custom Lava Mech Armor item with mech-armor functionality (flight, animations)
+    - Lava Mech Armor is heavily nerfed: 90% slower movement, weak resistances, small equipment grid, no inventory bonus
   Changes:
+    - Disabled freeplay crashsite and intro cutscene for cleaner start
+    - Incompatible with any-planet-start mod (conflicts with startup sequence)
+  Bugfixes:
+    - Fixed starting items not appearing in player inventory
+    - Fixed settings not showing in mod settings menu
+    - Fixed Lava Mech Armor animations not displaying (registered with mech-armor animation system)
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.20
 Date: 2025-12-17

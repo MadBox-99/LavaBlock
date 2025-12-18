@@ -1,5 +1,28 @@
 local util = require("util")
 
+-- Register lava-mech-armor to use mech-armor animations
+if data.raw["armor"]["lava-mech-armor"] and data.raw.character.character then
+    -- Find the mech-armor animation entry and add lava-mech-armor to it
+    for _, anim in pairs(data.raw.character.character.animations) do
+        if anim.armors then
+            for _, armor_name in pairs(anim.armors) do
+                if armor_name == "mech-armor" then
+                    table.insert(anim.armors, "lava-mech-armor")
+                    break
+                end
+            end
+        end
+    end
+
+    -- Also add to corpse picture mapping
+    if data.raw['character-corpse'] and data.raw['character-corpse']['character-corpse'] then
+        local corpse = data.raw['character-corpse']['character-corpse']
+        if corpse.armor_picture_mapping and corpse.armor_picture_mapping["mech-armor"] then
+            corpse.armor_picture_mapping["lava-mech-armor"] = corpse.armor_picture_mapping["mech-armor"]
+        end
+    end
+end
+
 -- Add lava-science-pack to labs
 util.add_lab_input("lab", "lava-science-pack")
 util.add_lab_input("biolab", "lava-science-pack")
