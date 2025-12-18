@@ -1,11 +1,15 @@
 ---------------------------------------------------------------------------------------------------
-Version: 0.0.23
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
 Version: 0.0.22
-Date: 2025-12-18
+Date: ????
+  Features:
+    - Added lava-based module recipes (efficiency and speed modules)
+    - Added lava-based flying robot frame recipe
+    - New technologies: Lava Modules, Lava Efficiency Module, Lava Speed Module, Lava Flying Robot Frame
   Changes:
+    - Oil gathering technology now requires lava-science-pack prerequisite
+    - Oil gathering technology cost changed to 100 automation + 100 logistic + 500 lava science packs
+    - Oil processing technology now unlocks oil-refinery recipe (removed chemical-plant)
+    - Sulfur recipe modified: now requires 15 water + 30 petroleum gas + 1000 lava
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.21
 Date: 2025-12-18
