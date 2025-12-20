@@ -4,6 +4,9 @@
     "factoriomod-debug": "^2.0.9"
   },
   "scripts": {
-    "deploy": "fmtk publish"
+    "deploy": "dotenv -- fmtk publish"
+  },
+  "devDependencies": {
+    "dotenv-cli": "^11.0.0"
   }
 }
