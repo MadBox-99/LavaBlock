@@ -1,5 +1,9 @@
 {
   "dependencies": {
+    "dotenv": "^16.4.7",
     "factoriomod-debug": "^2.0.9"
+  },
+  "scripts": {
+    "deploy": "fmtk package && fmtk publish"
   }
 }
