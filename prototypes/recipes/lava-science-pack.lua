@@ -18,8 +18,8 @@ local lava_science_pack = {
     results = {
         { type = "item", name = "lava-science-pack", amount = 1 }
     },
-    surface_conditions = {
-        { max = 300, min = 300, property = "pressure" }
-    }
+    -- surface_conditions = {
+    --     { max = 300, min = 300, property = "pressure" }
+    -- }
 }
 return lava_science_pack
