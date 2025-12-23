@@ -27,6 +27,45 @@ end
 util.add_lab_input("lab", "lava-science-pack")
 util.add_lab_input("biolab", "lava-science-pack")
 
+-- Create planet-specific sulfur recipes and hide the original
+-- Nauvis uses sulfur-lava (defined in prototypes/recipes/sulfur-lava.lua)
+-- Other planets get copies of the original recipe with their specific surface_conditions
+if data.raw.recipe['sulfur'] then
+    local original_sulfur = data.raw.recipe['sulfur']
+
+    -- Hide the original sulfur recipe
+    original_sulfur.hidden = true
+
+    -- Planet surface conditions (pressure + gravity values for precise matching)
+    -- Nauvis: pressure=1000, gravity=10 (uses sulfur-lava instead)
+    local planets = {
+        { name = "gleba",    pressure = 300,  gravity = 15 },
+        { name = "fulgora",  pressure = 800,  gravity = 8 },
+        { name = "aquilo",   pressure = 2000, gravity = 20 },
+        { name = "vulcanus", pressure = 4000, gravity = 40 },
+    }
+
+    for _, planet in pairs(planets) do
+        local planet_sulfur = table.deepcopy(original_sulfur)
+        planet_sulfur.name = "sulfur-" .. planet.name
+        planet_sulfur.hidden = false
+        planet_sulfur.localised_name = nil  -- Use locale file names instead
+        planet_sulfur.surface_conditions = {
+            { property = "pressure", min = planet.pressure, max = planet.pressure },
+            { property = "gravity", min = planet.gravity, max = planet.gravity }
+        }
+        data:extend({ planet_sulfur })
+
+        -- Add to sulfur-processing technology unlocks
+        if data.raw.technology["sulfur-processing"] then
+            table.insert(data.raw.technology["sulfur-processing"].effects, {
+                type = "unlock-recipe",
+                recipe = "sulfur-" .. planet.name
+            })
+        end
+    end
+end
+
 -- Demolisher noise expressions for Nauvis
 if mods["space-age"] then
   data:extend({

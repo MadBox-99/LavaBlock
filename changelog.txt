@@ -6,7 +6,12 @@ Date: ????
 Version: 0.0.24
 Date: 2025-12-23
   Changes:
-    - Sulfur recipe: removed water requirement (now only requires petroleum gas + lava)
+    - Sulfur recipe rework: created planet-specific sulfur recipes
+    - Nauvis uses new sulfur-lava recipe (petroleum gas + lava, no water required)
+    - Other planets (Gleba, Fulgora, Aquilo, Vulcanus) use the original base game recipe
+    - Original sulfur recipe is now hidden, replaced by planet-specific variants
+    - This fixes a bug where 3 fluid inputs were required but chemical plants only support 2
+    - Water removal on Nauvis also serves as a balance buff since water is hard to produce
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.23
 Date: 2025-12-20

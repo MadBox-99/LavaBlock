@@ -1,12 +1,6 @@
 -- Disable base recipes
 data.raw.recipe['burner-mining-drill'].enabled = false
 
--- Modify base recipes
-data.raw.recipe['sulfur'].ingredients = {
-    { type = "fluid", name = "petroleum-gas", amount = 30 },
-    { type = "fluid", name = "lava",          amount = 1000 }
-}
-
 -- Air recipes
 local air_compressor = require("prototypes.recipes.air.air-compressor")
 local air_electrostatic_adsorption = require("prototypes.recipes.air.air-electrostatic-adsorption")
@@ -52,6 +46,9 @@ local lava_speed_module = require("prototypes.recipes.modules.speed-module")
 -- Robot recipes
 local lava_flying_robot_frame = require("prototypes.recipes.flying-robot-frame")
 
+-- Modified base recipes (Nauvis only)
+local sulfur_lava = require("prototypes.recipes.sulfur-lava")
+
 data:extend({
     -- Air recipes
     air_compressor,
@@ -92,4 +89,6 @@ data:extend({
     industrialised_chemical_plant,
     lava_science_pack,
     foundation_platform,
+    -- Modified base recipes (Nauvis only)
+    sulfur_lava,
 })
