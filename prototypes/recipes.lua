@@ -3,7 +3,6 @@ data.raw.recipe['burner-mining-drill'].enabled = false
 
 -- Modify base recipes
 data.raw.recipe['sulfur'].ingredients = {
-    { type = "fluid", name = "water",         amount = 15 },
     { type = "fluid", name = "petroleum-gas", amount = 30 },
     { type = "fluid", name = "lava",          amount = 1000 }
 }
