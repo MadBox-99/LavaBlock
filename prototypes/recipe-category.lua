@@ -14,5 +14,9 @@ data:extend({
     {
         type = "recipe-category",
         name = "gas"
+    },
+    {
+        type = "recipe-category",
+        name = "enchanting"
     }
 })

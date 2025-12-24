@@ -49,6 +49,12 @@ local lava_speed_module = require("prototypes.technologies.modules.lava-speed-mo
 -- Robot technologies
 local lava_flying_robot_frame = require("prototypes.technologies.lava-flying-robot-frame")
 
+-- Enchanter technology
+local enchanter = require("prototypes.technologies.enchanter")
+
+-- Circuit enchanting technologies
+local circuit_enchanting = require("prototypes.technologies.circuit-enchanting")
+
 data:extend({
     smelting_with_air,
     advanced_lava_cooling,
@@ -62,4 +68,8 @@ data:extend({
     lava_efficiency_module,
     lava_speed_module,
     lava_flying_robot_frame,
+    enchanter,
+    circuit_enchanting[1],
+    circuit_enchanting[2],
+    circuit_enchanting[3],
 })

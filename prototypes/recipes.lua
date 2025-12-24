@@ -38,6 +38,18 @@ local gas_turbine = require("prototypes.recipes.geo-thermal-turbine")
 local industrialised_chemical_plant = require("prototypes.recipes.industrialised-chemical-plant")
 local lava_science_pack = require("prototypes.recipes.lava-science-pack")
 local foundation_platform = require("prototypes.recipes.foundation-platform")
+local enchanter = require("prototypes.recipes.enchanter")
+
+-- Enchanting recipes
+local base_magma_ball = require("prototypes.recipes.enchanting.base-magma-ball")
+local fusioning_lava = require("prototypes.recipes.enchanting.fusioning-lava")
+local stronger_fusioning_lava = require("prototypes.recipes.enchanting.stronger-fusioning-lava")
+local enchanted_lava = require("prototypes.recipes.enchanting.enchanted-lava")
+local lava_science_pack_enchanted = require("prototypes.recipes.enchanting.lava-science-pack-enchanted")
+local low_density_structure_enchanted = require("prototypes.recipes.enchanting.low-density-structure-enchanted")
+local electronic_circuit_enchanting = require("prototypes.recipes.enchanting.electronic-circuit-enchanting")
+local advanced_circuit_enchanting = require("prototypes.recipes.enchanting.advanced-circuit-enchanting")
+local processing_unit_enchanting = require("prototypes.recipes.enchanting.processing-unit-enchanting")
 
 -- Module recipes
 local lava_efficiency_module = require("prototypes.recipes.modules.efficiency-module")
@@ -89,6 +101,24 @@ data:extend({
     industrialised_chemical_plant,
     lava_science_pack,
     foundation_platform,
+    enchanter,
+    -- Enchanting recipes
+    base_magma_ball,
+    fusioning_lava,
+    stronger_fusioning_lava,
+    enchanted_lava,
+    lava_science_pack_enchanted,
+    low_density_structure_enchanted,
+    -- Circuit enchanting recipes
+    electronic_circuit_enchanting[1],
+    electronic_circuit_enchanting[2],
+    electronic_circuit_enchanting[3],
+    advanced_circuit_enchanting[1],
+    advanced_circuit_enchanting[2],
+    advanced_circuit_enchanting[3],
+    processing_unit_enchanting[1],
+    processing_unit_enchanting[2],
+    processing_unit_enchanting[3],
     -- Modified base recipes (Nauvis only)
     sulfur_lava,
 })

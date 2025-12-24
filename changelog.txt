@@ -1,7 +1,33 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.26
-Date: ????
+Date: 2025-12-24
+  Features:
+    - Added new Enchanter building (based on centrifuge/uranium enricher model)
+    - New "enchanting" recipe category for enchantment recipes
+    - New Enchanter technology (requires advanced-circuit and lava-science-pack)
+    - Added Base Magma Ball item (fuel, 8MJ)
+    - Added 3 new fluids: Fusioning Lava, Stronger Fusioning Lava, Enchanted Lava
+    - Added 15 new enchanting recipes for the Enchanter machine
+    - Added alternative Lava Science Pack recipe using Enchanted Lava (mass production)
+    - Added alternative Low Density Structure recipe using Enchanted Lava
+    - Added Circuit Enchanting system with 3 tiers (Basic, Advanced, Ultimate)
+    - 3 new technologies: Circuit Enchanting Basic/Advanced/Ultimate
+  Recipes:
+    - Base Magma Ball: 1000 lava + 10 coal -> 5 base magma balls
+    - Fusioning Lava: 500 lava + 5 base magma balls -> 500 fusioning lava
+    - Stronger Fusioning Lava: 500 fusioning lava + 10 base magma balls -> 500 stronger fusioning lava
+    - Enchanted Lava: 500 stronger fusioning lava + 20 base magma balls -> 500 enchanted lava
+    - Lava Science Pack (Enchanted): 100 enchanted lava + 5 iron gear wheels -> 10 lava science packs
+    - Low Density Structure (Enchanted): 200 enchanted lava + 10 copper + 5 steel + 25 plastic -> 5 LDS
   Changes:
+    - Circuit Enchanting Basic (40->41, 2.5% bonus): uses fusioning-lava
+    - Circuit Enchanting Advanced (20->22, 10% bonus): uses stronger-fusioning-lava
+    - Circuit Enchanting Ultimate (10->13, 30% bonus): uses enchanted-lava + base-magma-ball + extra materials
+  Details:
+    - Enchanter machine: 500kW energy usage, 4 module slots, 1x crafting speed
+    - Recipe requires: 100 steel plates, 100 iron gear wheels, 200 electronic circuits, 50 pipes
+    - Technology costs 500 science packs (automation + logistic + lava)
+    - All enchanting recipes unlocked by Enchanter technology
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.25
 Date: 2025-12-24

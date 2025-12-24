@@ -7,6 +7,8 @@ data:extend({
     require("prototypes.items.generators.geo-thermal-turbine"),
     require("prototypes.items.air-compressor"),
     require("prototypes.items.industrialised-chemical-plan"),
+    require("prototypes.items.enchanter"),
+    require("prototypes.items.base-magma-ball"),
     lava_mech_armor,
 })
 

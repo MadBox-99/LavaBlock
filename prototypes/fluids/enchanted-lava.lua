@@ -1,0 +1,16 @@
+return {
+    type = "fluid",
+    name = "enchanted-lava",
+    subgroup = "fluid",
+    default_temperature = 3000,
+    max_temperature = 5000,
+    heat_capacity = "2kJ",
+    base_color = { r = 0.8, g = 0.0, b = 1.0 },
+    flow_color = { r = 1.0, g = 0.2, b = 1.0 },
+    icon = "__base__/graphics/icons/fluid/lubricant.png",
+    icon_size = 64,
+    order = "a[fluid]-g[enchanted-lava]",
+    pressure_to_speed_ratio = 0.4,
+    flow_to_energy_ratio = 0.59,
+    auto_barrel = true,
+}
