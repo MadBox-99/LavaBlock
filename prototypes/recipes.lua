@@ -50,6 +50,9 @@ local low_density_structure_enchanted = require("prototypes.recipes.enchanting.l
 local electronic_circuit_enchanting = require("prototypes.recipes.enchanting.electronic-circuit-enchanting")
 local advanced_circuit_enchanting = require("prototypes.recipes.enchanting.advanced-circuit-enchanting")
 local processing_unit_enchanting = require("prototypes.recipes.enchanting.processing-unit-enchanting")
+local trains_enchanted = require("prototypes.recipes.enchanting.trains-enchanted")
+local enchanted_science_pack = require("prototypes.recipes.enchanting.enchanted-science-pack")
+local uranium_enchanting = require("prototypes.recipes.enchanting.uranium-enchanting")
 
 -- Module recipes
 local lava_efficiency_module = require("prototypes.recipes.modules.efficiency-module")
@@ -119,6 +122,15 @@ data:extend({
     processing_unit_enchanting[1],
     processing_unit_enchanting[2],
     processing_unit_enchanting[3],
+    -- Train enchanting recipes
+    trains_enchanted[1],
+    trains_enchanted[2],
+    trains_enchanted[3],
+    -- Science pack recipes
+    enchanted_science_pack,
+    -- Uranium enchanting recipes
+    uranium_enchanting[1],
+    uranium_enchanting[2],
     -- Modified base recipes (Nauvis only)
     sulfur_lava,
 })

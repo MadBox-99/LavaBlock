@@ -7,11 +7,16 @@ Date: 2025-12-24
     - New Enchanter technology (requires advanced-circuit and lava-science-pack)
     - Added Base Magma Ball item (fuel, 8MJ)
     - Added 3 new fluids: Fusioning Lava, Stronger Fusioning Lava, Enchanted Lava
-    - Added 15 new enchanting recipes for the Enchanter machine
+    - Added 21 new enchanting recipes for the Enchanter machine
     - Added alternative Lava Science Pack recipe using Enchanted Lava (mass production)
     - Added alternative Low Density Structure recipe using Enchanted Lava
+    - Added 3 new Enchanted Train items (Enchanted Locomotive, Enchanted Cargo Wagon, Enchanted Fluid Wagon)
+    - Added Enchanted Train recipes that produce unique enchanted train items
     - Added Circuit Enchanting system with 3 tiers (Basic, Advanced, Ultimate)
     - 3 new technologies: Circuit Enchanting Basic/Advanced/Ultimate
+    - Added new Enchanted Science Pack (for future advanced technologies)
+    - New Enchanted Science Pack technology (requires enchanter + railway)
+    - Added alternative Uranium Ore enchanting recipes (basic and advanced)
   Recipes:
     - Base Magma Ball: 1000 lava + 10 coal -> 5 base magma balls
     - Fusioning Lava: 500 lava + 5 base magma balls -> 500 fusioning lava
@@ -19,6 +24,12 @@ Date: 2025-12-24
     - Enchanted Lava: 500 stronger fusioning lava + 20 base magma balls -> 500 enchanted lava
     - Lava Science Pack (Enchanted): 100 enchanted lava + 5 iron gear wheels -> 10 lava science packs
     - Low Density Structure (Enchanted): 200 enchanted lava + 10 copper + 5 steel + 25 plastic -> 5 LDS
+    - Enchanted Locomotive: 1000 enchanted lava + 5 circuits + 10 engines + 200 gears + 50 steel -> 1 enchanted locomotive
+    - Enchanted Cargo Wagon: 500 enchanted lava + 200 gears + 5 iron chests + 30 steel -> 1 enchanted cargo wagon
+    - Enchanted Fluid Wagon: 500 enchanted lava + 1 storage tank + 100 pipes + 200 gears + 30 steel -> 1 enchanted fluid wagon
+    - Enchanted Science Pack: 500 enchanted lava + 1 enchanted locomotive + 1 enchanted cargo wagon + 1 enchanted fluid wagon + 10 lava science packs -> 5 enchanted science packs
+    - Uranium Enchanting Basic: 2000 lava + 20 coal -> 5 uranium ore (15s)
+    - Uranium Enchanting Advanced: 500 enchanted lava + 10 coal + 5 sulfur -> 15 uranium ore (10s)
   Changes:
     - Circuit Enchanting Basic (40->41, 2.5% bonus): uses fusioning-lava
     - Circuit Enchanting Advanced (20->22, 10% bonus): uses stronger-fusioning-lava

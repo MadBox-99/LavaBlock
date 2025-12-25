@@ -27,6 +27,10 @@ end
 util.add_lab_input("lab", "lava-science-pack")
 util.add_lab_input("biolab", "lava-science-pack")
 
+-- Add enchanted-science-pack to labs
+util.add_lab_input("lab", "enchanted-science-pack")
+util.add_lab_input("biolab", "enchanted-science-pack")
+
 -- Create planet-specific sulfur recipes and hide the original
 -- Nauvis uses sulfur-lava (defined in prototypes/recipes/sulfur-lava.lua)
 -- Other planets get copies of the original recipe with their specific surface_conditions

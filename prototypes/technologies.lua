@@ -55,6 +55,9 @@ local enchanter = require("prototypes.technologies.enchanter")
 -- Circuit enchanting technologies
 local circuit_enchanting = require("prototypes.technologies.circuit-enchanting")
 
+-- Enchanted science pack technology
+local enchanted_science_pack = require("prototypes.technologies.enchanted-science-pack")
+
 data:extend({
     smelting_with_air,
     advanced_lava_cooling,
@@ -72,4 +75,5 @@ data:extend({
     circuit_enchanting[1],
     circuit_enchanting[2],
     circuit_enchanting[3],
+    enchanted_science_pack,
 })

@@ -31,6 +31,26 @@ local enchanter_tech = {
         {
             type = "unlock-recipe",
             recipe = "low-density-structure-enchanted"
+        },
+        {
+            type = "unlock-recipe",
+            recipe = "enchanted-locomotive"
+        },
+        {
+            type = "unlock-recipe",
+            recipe = "enchanted-cargo-wagon"
+        },
+        {
+            type = "unlock-recipe",
+            recipe = "enchanted-fluid-wagon"
+        },
+        {
+            type = "unlock-recipe",
+            recipe = "uranium-enchanting-basic"
+        },
+        {
+            type = "unlock-recipe",
+            recipe = "uranium-enchanting-advanced"
         }
     },
     prerequisites = { "advanced-circuit", "lava-science-pack" },
