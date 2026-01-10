@@ -56,7 +56,11 @@ local uranium_enchanting = require("prototypes.recipes.enchanting.uranium-enchan
 
 -- Module recipes
 local lava_efficiency_module = require("prototypes.recipes.modules.efficiency-module")
+local lava_efficiency_module_2 = require("prototypes.recipes.modules.efficiency-module-2")
+local lava_efficiency_module_3 = require("prototypes.recipes.modules.efficiency-module-3")
 local lava_speed_module = require("prototypes.recipes.modules.speed-module")
+local lava_speed_module_2 = require("prototypes.recipes.modules.speed-module-2")
+local lava_speed_module_3 = require("prototypes.recipes.modules.speed-module-3")
 
 -- Robot recipes
 local lava_flying_robot_frame = require("prototypes.recipes.flying-robot-frame")
@@ -93,7 +97,11 @@ data:extend({
     liquid_nitrogen_production,
     -- Module recipes
     lava_efficiency_module,
+    lava_efficiency_module_2,
+    lava_efficiency_module_3,
     lava_speed_module,
+    lava_speed_module_2,
+    lava_speed_module_3,
     -- Robot recipes
     lava_flying_robot_frame,
     -- Other recipes

@@ -44,7 +44,11 @@ local lava_science_pack = require("prototypes.technologies.lava-science-pack")
 -- Module technologies
 local lava_modules = require("prototypes.technologies.modules.lava-modules")
 local lava_efficiency_module = require("prototypes.technologies.modules.lava-efficiency-module")
+local lava_efficiency_module_2 = require("prototypes.technologies.modules.lava-efficiency-module-2")
+local lava_efficiency_module_3 = require("prototypes.technologies.modules.lava-efficiency-module-3")
 local lava_speed_module = require("prototypes.technologies.modules.lava-speed-module")
+local lava_speed_module_2 = require("prototypes.technologies.modules.lava-speed-module-2")
+local lava_speed_module_3 = require("prototypes.technologies.modules.lava-speed-module-3")
 
 -- Robot technologies
 local lava_flying_robot_frame = require("prototypes.technologies.lava-flying-robot-frame")
@@ -69,7 +73,11 @@ data:extend({
     lava_science_pack,
     lava_modules,
     lava_efficiency_module,
+    lava_efficiency_module_2,
+    lava_efficiency_module_3,
     lava_speed_module,
+    lava_speed_module_2,
+    lava_speed_module_3,
     lava_flying_robot_frame,
     enchanter,
     circuit_enchanting[1],
