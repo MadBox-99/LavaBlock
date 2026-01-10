@@ -1,7 +1,14 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.27
-Date: ????
+Date: 2026-01-10
+  Features:
+    - Added "Foundation Exhaustion" technology that disables foundation-platform-nauvis recipe
+    - Technology triggers after crafting 5,000 foundations (craft-item trigger)
+    - Prerequisite: foundation-platform-productivity-30
   Changes:
+    - Foundation recipe is now disabled via technology research instead of production statistics
+    - Players can see progress in technology tree before reaching the limit
+    - Multiplayer compatible: recipe is disabled per-force when researched
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.26
 Date: 2026-01-10
@@ -21,7 +28,7 @@ Date: 2026-01-10
     - Added new Enchanted Science Pack (for future advanced technologies)
     - New Enchanted Science Pack technology (requires enchanter + railway)
     - Added alternative Uranium Ore enchanting recipes (basic and advanced)
-  Recipes:
+  Balancing:
     - Base Magma Ball: 1000 lava + 10 coal -> 5 base magma balls
     - Fusioning Lava: 500 lava + 5 base magma balls -> 500 fusioning lava
     - Stronger Fusioning Lava: 500 fusioning lava + 10 base magma balls -> 500 stronger fusioning lava
@@ -38,7 +45,7 @@ Date: 2026-01-10
     - Circuit Enchanting Basic (40->41, 2.5% bonus): uses fusioning-lava
     - Circuit Enchanting Advanced (20->22, 10% bonus): uses stronger-fusioning-lava
     - Circuit Enchanting Ultimate (10->13, 30% bonus): uses enchanted-lava + base-magma-ball + extra materials
-  Details:
+  Info:
     - Enchanter machine: 500kW energy usage, 4 module slots, 1x crafting speed
     - Recipe requires: 100 steel plates, 100 iron gear wheels, 200 electronic circuits, 50 pipes
     - Technology costs 500 science packs (automation + logistic + lava)

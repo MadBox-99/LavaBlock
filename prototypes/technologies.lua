@@ -4,6 +4,7 @@ require("prototypes.technologies.calcite-synthesis-productivity")
 require("prototypes.technologies.lava-smelting-productivity")
 require("prototypes.technologies.brick-smelting-productivity")
 require("prototypes.technologies.foundation-platform-productivity")
+require("prototypes.technologies.foundation-platform-disable")
 require("prototypes.technologies.advanced-lava-smelting-productivity")
 
 -- Base game technology modifications
