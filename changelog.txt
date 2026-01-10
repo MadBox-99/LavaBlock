@@ -2,6 +2,13 @@
 Version: 0.0.28
 Date: ????
   Changes:
+    - Artillery shell recipe reworked for Vulcanus: calcite replaced with sulfur (10) + coal (10) + lava (500)
+    - Artillery shell crafting time reduced from 15s to 10s
+    - Radar recipe changed to batch production: 500 electronic-circuit + 100,000 lava -> 100 radars
+    - Railgun turret recipe now requires 100 lava
+  Features:
+    - Added new Explosives from Lava recipe (Vulcanus only): 2 sulfur + 2 coal + 100 lava -> 2 explosives
+    - Explosives from Lava recipe unlocked by explosives technology
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.27
 Date: 2026-01-10

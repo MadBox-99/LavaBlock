@@ -24,3 +24,30 @@ data.raw["assembling-machine"]["assembling-machine-3"].crafting_categories =
     "chemistry",
     "gas",
 }
+
+-- Modify artillery shell recipe for Vulcanus (calcite replaced with sulfur + coal + lava)
+data.raw.recipe["artillery-shell"].ingredients = {
+    { type = "item",  name = "explosive-cannon-shell", amount = 4 },
+    { type = "item",  name = "explosives",             amount = 8 },
+    { type = "item",  name = "sulfur",                 amount = 10 },
+    { type = "item",  name = "coal",                   amount = 10 },
+    { type = "fluid", name = "lava",                   amount = 500 },
+}
+data.raw.recipe["artillery-shell"].energy_required = 10
+data.raw.recipe["artillery-shell"].category = "crafting-with-fluid"
+
+-- Modify radar recipe (100x batch, lava + electronic-circuit)
+data.raw.recipe["radar"].ingredients = {
+    { type = "item",  name = "electronic-circuit", amount = 500 },
+    { type = "fluid", name = "lava",               amount = 100000 },
+}
+data.raw.recipe["radar"].results = {
+    { type = "item", name = "radar", amount = 100 },
+}
+data.raw.recipe["radar"].category = "crafting-with-fluid"
+
+-- Modify railgun turret recipe (add lava)
+table.insert(data.raw.recipe["railgun-turret"].ingredients, {
+    type = "fluid", name = "lava", amount = 100
+})
+data.raw.recipe["railgun-turret"].category = "crafting-with-fluid"

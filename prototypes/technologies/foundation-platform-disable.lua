@@ -7,7 +7,16 @@ data:extend({
         name = "foundation-platform-disable",
         icon = "__space-age__/graphics/icons/foundation.png",
         icon_size = 64,
-        effects = {},
+        effects = {
+            {
+                type = "nothing",
+                effect_description = {
+                    "technology-effect.disable-recipe",
+                    "foundation-platform-nauvis",
+                    {"recipe-name.foundation-platform-nauvis"}
+                }
+            }
+        },
         research_trigger = {
             type = "craft-item",
             item = "foundation",

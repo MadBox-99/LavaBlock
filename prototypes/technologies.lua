@@ -32,6 +32,12 @@ data.raw.technology["uranium-mining"].effects = {
     { type = "unlock-recipe",     recipe = "uranium-extraction" }
 }
 
+-- Add explosives-from-lava to explosives technology
+table.insert(data.raw.technology["explosives"].effects, {
+    type = "unlock-recipe",
+    recipe = "explosives-from-lava",
+})
+
 -- Custom technologies
 local smelting_with_air = require("prototypes.technologies.lava-cooling-with-liquid-nitrogen")
 local advanced_lava_cooling = require("prototypes.technologies.advanced-lava-cooling")

@@ -68,6 +68,9 @@ local lava_flying_robot_frame = require("prototypes.recipes.flying-robot-frame")
 -- Modified base recipes (Nauvis only)
 local sulfur_lava = require("prototypes.recipes.sulfur-lava")
 
+-- Vulcanus-specific recipes
+local explosives_from_lava = require("prototypes.recipes.explosives-from-lava")
+
 data:extend({
     -- Air recipes
     air_compressor,
@@ -141,4 +144,6 @@ data:extend({
     uranium_enchanting[2],
     -- Modified base recipes (Nauvis only)
     sulfur_lava,
+    -- Vulcanus-specific recipes
+    explosives_from_lava,
 })

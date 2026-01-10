@@ -51,13 +51,21 @@ local function give_starting_items(player)
     player.print({ "lava-block.on-start-mechanics-explanation-3" })
 end
 
--- Disable foundation-platform-nauvis recipe for a specific force
-local function disable_foundation_recipe_for_force(force)
+-- Disable a recipe for a specific force
+local function disable_recipe_for_force(force, recipe_name)
     local recipes = force.recipes
-    if recipes["foundation-platform-nauvis"] then
-        recipes["foundation-platform-nauvis"].enabled = false
+    if recipes[recipe_name] then
+        recipes[recipe_name].enabled = false
+        game.print({ "lava-block.recipe-disabled", {"recipe-name." .. recipe_name} })
     end
-    game.print({ "lava-block.foundation-recipe-disabled" })
+end
+
+-- Get technology effects (handles both LuaTechnology and LuaTechnologyPrototype)
+local function get_tech_effects(technology)
+    if technology.object_name == "LuaTechnology" then
+        return technology.prototype.effects
+    end
+    return technology.effects
 end
 
 -- Initialize game on first load
@@ -88,10 +96,24 @@ script.on_configuration_changed(function(data)
     storage.players_needing_items = storage.players_needing_items or {}
     disable_freeplay()
 
-    -- Re-apply recipe disable for forces that have researched the tech
+    -- Re-apply recipe disable for all researched technologies with disable-recipe effects
     for _, force in pairs(game.forces) do
-        if force.technologies["foundation-platform-disable"] and force.technologies["foundation-platform-disable"].researched then
-            disable_foundation_recipe_for_force(force)
+        for _, tech in pairs(force.technologies) do
+            local effects = get_tech_effects(tech)
+            if tech.researched and effects then
+                for _, effect in pairs(effects) do
+                    if effect.type == "nothing" and effect.effect_description then
+                        local desc = effect.effect_description
+                        if desc[1] == "technology-effect.disable-recipe" then
+                            local recipe_name = desc[2]
+                            -- Silently disable without printing message
+                            if force.recipes[recipe_name] then
+                                force.recipes[recipe_name].enabled = false
+                            end
+                        end
+                    end
+                end
+            end
         end
     end
 end)
@@ -129,10 +151,19 @@ script.on_event(defines.events.on_tick, function(event)
     end
 end)
 
--- Disable foundation recipe when the disable technology is researched
+-- Handle technology effects (disable-recipe via "nothing" effect type)
 script.on_event(defines.events.on_research_finished, function(event)
-    if event.research.name == "foundation-platform-disable" then
-        disable_foundation_recipe_for_force(event.research.force)
+    local force = event.research.force
+    local effects = get_tech_effects(event.research)
+    if not effects then return end
+    for _, effect in pairs(effects) do
+        if effect.type == "nothing" and effect.effect_description then
+            local desc = effect.effect_description
+            if desc[1] == "technology-effect.disable-recipe" then
+                local recipe_name = desc[2]
+                disable_recipe_for_force(force, recipe_name)
+            end
+        end
     end
 end)
 
