@@ -38,21 +38,15 @@ local gas_turbine = require("prototypes.recipes.geo-thermal-turbine")
 local industrialised_chemical_plant = require("prototypes.recipes.industrialised-chemical-plant")
 local lava_science_pack = require("prototypes.recipes.lava-science-pack")
 local foundation_platform = require("prototypes.recipes.foundation-platform")
-local enchanter = require("prototypes.recipes.enchanter")
 
--- Enchanting recipes
-local base_magma_ball = require("prototypes.recipes.enchanting.base-magma-ball")
-local fusioning_lava = require("prototypes.recipes.enchanting.fusioning-lava")
-local stronger_fusioning_lava = require("prototypes.recipes.enchanting.stronger-fusioning-lava")
-local enchanted_lava = require("prototypes.recipes.enchanting.enchanted-lava")
-local lava_science_pack_enchanted = require("prototypes.recipes.enchanting.lava-science-pack-enchanted")
-local low_density_structure_enchanted = require("prototypes.recipes.enchanting.low-density-structure-enchanted")
-local electronic_circuit_enchanting = require("prototypes.recipes.enchanting.electronic-circuit-enchanting")
-local advanced_circuit_enchanting = require("prototypes.recipes.enchanting.advanced-circuit-enchanting")
-local processing_unit_enchanting = require("prototypes.recipes.enchanting.processing-unit-enchanting")
-local trains_enchanted = require("prototypes.recipes.enchanting.trains-enchanted")
+-- Enchanted science pack recipe
 local enchanted_science_pack = require("prototypes.recipes.enchanting.enchanted-science-pack")
-local uranium_enchanting = require("prototypes.recipes.enchanting.uranium-enchanting")
+
+-- Lava Centrifuge recipes
+local lava_centrifuge = require("prototypes.recipes.lava-centrifuge")
+local lava_purification = require("prototypes.recipes.centrifuge.lava-purification")
+local rare_mineral_extraction = require("prototypes.recipes.centrifuge.rare-mineral-extraction")
+local concentrated_ore_extraction = require("prototypes.recipes.centrifuge.concentrated-ore-extraction")
 
 -- Module recipes
 local lava_efficiency_module = require("prototypes.recipes.modules.efficiency-module")
@@ -115,35 +109,25 @@ data:extend({
     industrialised_chemical_plant,
     lava_science_pack,
     foundation_platform,
-    enchanter,
-    -- Enchanting recipes
-    base_magma_ball,
-    fusioning_lava,
-    stronger_fusioning_lava,
-    enchanted_lava,
-    lava_science_pack_enchanted,
-    low_density_structure_enchanted,
-    -- Circuit enchanting recipes
-    electronic_circuit_enchanting[1],
-    electronic_circuit_enchanting[2],
-    electronic_circuit_enchanting[3],
-    advanced_circuit_enchanting[1],
-    advanced_circuit_enchanting[2],
-    advanced_circuit_enchanting[3],
-    processing_unit_enchanting[1],
-    processing_unit_enchanting[2],
-    processing_unit_enchanting[3],
-    -- Train enchanting recipes
-    trains_enchanted[1],
-    trains_enchanted[2],
-    trains_enchanted[3],
-    -- Science pack recipes
+    -- Enchanted science pack recipe
     enchanted_science_pack,
-    -- Uranium enchanting recipes
-    uranium_enchanting[1],
-    uranium_enchanting[2],
+    -- Lava Centrifuge recipes
+    lava_centrifuge,
+    lava_purification,
+    rare_mineral_extraction[1],
+    concentrated_ore_extraction,
     -- Modified base recipes (Nauvis only)
     sulfur_lava,
     -- Vulcanus-specific recipes
     explosives_from_lava,
 })
+
+-- Space Age only: Tungsten processing recipes
+if mods["space-age"] then
+    local tungsten_plate_from_lava = require("prototypes.recipes.foundry.tungsten-plate-from-lava")
+    data:extend({
+        rare_mineral_extraction[2],  -- hot-tungsten-ore-from-lava
+        rare_mineral_extraction[3],  -- liquid-tungsten-from-hot-ore
+        tungsten_plate_from_lava,
+    })
+end

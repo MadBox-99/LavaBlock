@@ -23,11 +23,9 @@ if data.raw["armor"]["lava-mech-armor"] and data.raw.character.character then
     end
 end
 
--- Add lava-science-pack to labs
+-- Add science packs to labs
 util.add_lab_input("lab", "lava-science-pack")
 util.add_lab_input("biolab", "lava-science-pack")
-
--- Add enchanted-science-pack to labs
 util.add_lab_input("lab", "enchanted-science-pack")
 util.add_lab_input("biolab", "enchanted-science-pack")
 

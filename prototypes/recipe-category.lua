@@ -17,6 +17,6 @@ data:extend({
     },
     {
         type = "recipe-category",
-        name = "enchanting"
+        name = "lava-centrifuge"
     }
 })

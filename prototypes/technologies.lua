@@ -60,14 +60,11 @@ local lava_speed_module_3 = require("prototypes.technologies.modules.lava-speed-
 -- Robot technologies
 local lava_flying_robot_frame = require("prototypes.technologies.lava-flying-robot-frame")
 
--- Enchanter technology
-local enchanter = require("prototypes.technologies.enchanter")
-
--- Circuit enchanting technologies
-local circuit_enchanting = require("prototypes.technologies.circuit-enchanting")
-
 -- Enchanted science pack technology
 local enchanted_science_pack = require("prototypes.technologies.enchanted-science-pack")
+
+-- Lava Centrifuge technologies
+local lava_centrifuge_techs = require("prototypes.technologies.lava-centrifuge")
 
 data:extend({
     smelting_with_air,
@@ -86,9 +83,12 @@ data:extend({
     lava_speed_module_2,
     lava_speed_module_3,
     lava_flying_robot_frame,
-    enchanter,
-    circuit_enchanting[1],
-    circuit_enchanting[2],
-    circuit_enchanting[3],
     enchanted_science_pack,
+    lava_centrifuge_techs[1],
+    lava_centrifuge_techs[2],
 })
+
+-- Space Age only: Tungsten from lava technology
+if mods["space-age"] then
+    data:extend({ lava_centrifuge_techs[3] })
+end

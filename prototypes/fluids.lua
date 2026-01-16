@@ -4,7 +4,12 @@ data:extend({
     require("prototypes.fluids.gases.air"),
     require("prototypes.fluids.gases.compressed-air"),
     require("prototypes.fluids.gases.chlorine"),
-    require("prototypes.fluids.fusioning-lava"),
-    require("prototypes.fluids.stronger-fusioning-lava"),
-    require("prototypes.fluids.enchanted-lava"),
+    require("prototypes.fluids.purified-lava"),
 })
+
+-- Space Age only fluids
+if mods["space-age"] then
+    data:extend({
+        require("prototypes.fluids.liquid-tungsten"),
+    })
+end

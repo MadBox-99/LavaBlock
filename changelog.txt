@@ -1,7 +1,29 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.29
 Date: ????
+  Features:
+    - Added Lava Centrifuge machine (based on centrifuge, 500kW, 4 module slots)
+    - Added Purified Lava fluid (higher quality lava for advanced recipes)
+    - Added Lava Purification recipe: 1000 lava -> 500 purified lava
+    - Added Concentrated Ore Extraction recipe: 2500 purified lava -> 50 iron + 50 copper ore
+    - Added Uranium from Lava recipe: 5000 purified lava + sulfuric acid -> 10 uranium ore
+    - Added multi-step Tungsten processing chain (Space Age only):
+      - Hot Tungsten Ore item (intermediate)
+      - Liquid Tungsten fluid
+      - Hot Tungsten Ore from Lava: 10000 purified lava + 500 molten iron + 50 coal -> 40 hot tungsten ore (Centrifuge)
+      - Liquid Tungsten from Hot Ore: 10 hot tungsten ore -> 500 liquid tungsten (Centrifuge)
+      - Tungsten Plate from Lava: 250 liquid tungsten + 100 molten iron -> 5 tungsten plate (Foundry)
+    - Lava Centrifuge technology (requires lava-science-pack + advanced-circuit)
+    - Rare Mineral Extraction technology (requires lava-centrifuge + uranium-processing)
+    - Tungsten from Lava technology (Space Age only, requires lava-centrifuge + tungsten-steel)
   Changes:
+    - Lava Mech Armor movement speed penalty reduced from 90% to 80%
+    - Removed entire Enchanting system (Enchanter machine, enchanted trains, circuit enchanting)
+    - Removed Enchanted Lava, Fusioning Lava, Stronger Fusioning Lava fluids
+    - Removed Base Magma Ball item
+    - Removed all enchanting recipes and technologies
+    - Enchanted Science Pack kept but simplified: now requires lava + multiple science packs
+    - Enchanted Science Pack technology now requires lava-science-pack and chemical-science-pack
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.28
 Date: 2026-01-12
@@ -224,7 +246,7 @@ Date: 2025-08-27
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.6
 Date: 2025-08-26
-  Map Generation:
+  Changes:
     - Improved island shape for more natural appearance
     - Now enemies also spawn and make expansion much harder
     - Many enemies spawn and they appear over a large area
@@ -266,19 +288,16 @@ Date: 2025-08-23
     - Oil extraction using steam + coal combination
     - Uranium extraction using stone + sulfuric acid
     - Iron clearing recipe for land management
-  Technology:
     - Modified technology tree to support lava-based economy
     - Added "Advanced Water Smelting" technology line with productivity bonuses
     - Enhanced mining productivity technologies for lava extraction
     - Calcite processing adaptation for offshore pump crafting
     - Disabled electric mining drill technology (not needed)
-  Starting Conditions:
     - Custom starting equipment: chemical plant, solar panel, electric pole, gears, pipes
     - Automatic steam power research unlock
     - 25x25 landfill starting area creation
     - Crash site disabled for cleaner start
     - Tutorial messages explaining unique mechanics
-  Map Generation:
     - Three-zone terrain: starting island, lava moat, outer terrain
     - Removed all natural resource patches, trees, water, and enemy bases
     - Custom elevation noise expression for island generation

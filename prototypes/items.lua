@@ -1,5 +1,4 @@
 local lava_mech_armor = require("prototypes.items.lava-mech-armor")
-local enchanted_trains = require("prototypes.items.enchanted-trains")
 
 data:extend({
     require("prototypes.items.foundation-platform"),
@@ -8,13 +7,16 @@ data:extend({
     require("prototypes.items.generators.geo-thermal-turbine"),
     require("prototypes.items.air-compressor"),
     require("prototypes.items.industrialised-chemical-plan"),
-    require("prototypes.items.enchanter"),
-    require("prototypes.items.base-magma-ball"),
-    enchanted_trains[1],
-    enchanted_trains[2],
-    enchanted_trains[3],
+    require("prototypes.items.lava-centrifuge"),
     lava_mech_armor,
 })
+
+-- Space Age only items
+if mods["space-age"] then
+    data:extend({
+        require("prototypes.items.hot-tungsten-ore"),
+    })
+end
 
 -- Items that modify data.raw directly
 require("prototypes.items.trains.fluid-wagon")

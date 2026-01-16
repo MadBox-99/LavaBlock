@@ -9,7 +9,7 @@ local enchanted_science_pack_technology = {
             recipe = "enchanted-science-pack"
         }
     },
-    prerequisites = { "enchanter", "railway" },
+    prerequisites = { "lava-science-pack", "chemical-science-pack" },
     unit = {
         count = 1000,
         ingredients = {
