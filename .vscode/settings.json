@@ -4,7 +4,7 @@
     ],
     "Lua.workspace.checkThirdParty": "ApplyInMemory",
     "Lua.diagnostics.workspaceDelay": -1,
-     "Lua.diagnostics.globals": [
+    "Lua.diagnostics.globals": [
         "data",
         "mods",
         "pipecoverspictures",
