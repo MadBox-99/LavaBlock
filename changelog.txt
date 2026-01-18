@@ -18,7 +18,19 @@ Date: ????
     - Tungsten from Lava technology (Space Age only, requires lava-centrifuge + tungsten-steel)
   Bugfixes:
     - Fixed Concentrated Ore Extraction recipe appearing in "unsorted" section (added subgroup)
+    - Fixed Lava Purification recipe appearing in "unsorted" section (added subgroup)
+  Graphics:
+    - Added custom sprite sheet for Liquid Tungsten fluid
+    - Added custom sprite sheet for Concentrated Ore Extraction recipe
+    - Added custom icon for Purified Lava fluid
+    - Updated Geo Thermal Turbine icon to use composite icon (steam turbine + lava overlay)
+    - Updated Iron Extraction recipe icon to use composite icon (iron ore + lava overlay)
+    - Updated Copper Extraction recipe icon to use composite icon (copper ore + lava overlay)
+  Balancing:
+    - Uranium Extraction yield reduced from 5 to 3 uranium ore per batch
+    - Tungsten Plate from Lava recipe now enabled by default (was disabled)
   Changes:
+    - Added English translations for new items, fluids, recipes and technologies
     - Lava Mech Armor movement speed penalty reduced from 90% to 80%
     - Removed entire Enchanting system (Enchanter machine, enchanted trains, circuit enchanting)
     - Removed Enchanted Lava, Fusioning Lava, Stronger Fusioning Lava fluids

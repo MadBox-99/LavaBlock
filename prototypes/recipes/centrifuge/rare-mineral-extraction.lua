@@ -7,8 +7,26 @@ return {
         type = "recipe",
         name = "uranium-from-lava",
         category = "lava-centrifuge",
+        subgroup = "lava-centrifuge-recipes",
         enabled = false,
         energy_required = 20,
+        icons = {
+            {
+                icon = "__base__/graphics/icons/uranium-ore.png"
+            },
+            {
+                icon = "__LavaBlock__/graphics/icons/fluid/purified-lava.png",
+                icon_size = 64,
+                scale = 0.25,
+                shift = { -8, -8 },
+            },
+            {
+                icon = "__base__/graphics/icons/fluid/sulfuric-acid.png",
+                icon_size = 64,
+                scale = 0.25,
+                shift = { 8, -8 },
+            },
+        },
         ingredients = {
             { type = "fluid", name = "purified-lava", amount = 5000 },
             { type = "fluid", name = "sulfuric-acid", amount = 100 },
@@ -27,6 +45,7 @@ return {
         type = "recipe",
         name = "hot-tungsten-ore-from-lava",
         category = "lava-centrifuge",
+        subgroup = "lava-centrifuge-recipes",
         enabled = false,
         energy_required = 30,
         ingredients = {
@@ -48,6 +67,7 @@ return {
         type = "recipe",
         name = "liquid-tungsten-from-hot-ore",
         category = "lava-centrifuge",
+        subgroup = "lava-centrifuge-recipes",
         enabled = false,
         energy_required = 20,
         ingredients = {

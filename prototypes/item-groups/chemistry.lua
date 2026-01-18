@@ -7,6 +7,13 @@ data:extend({
         icon = "__space-age__/graphics/technology/research-productivity.png",
         icon_size = 256,
     },
+    -- Lava Centrifuge recipes subgroup (in intermediate-products)
+    {
+        type = "item-subgroup",
+        name = "lava-centrifuge-recipes",
+        group = "intermediate-products",
+        order = "m"
+    },
     {
         type = "item-subgroup",
         name = "chemical-plants",

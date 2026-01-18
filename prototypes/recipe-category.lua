@@ -18,5 +18,9 @@ data:extend({
     {
         type = "recipe-category",
         name = "lava-centrifuge"
+    },
+    {
+        type = "recipe-category",
+        name = "lava-centrifuge",
     }
 })

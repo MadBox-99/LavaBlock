@@ -10,7 +10,17 @@ local uranium_extraction = {
     results = {
         { type = "item", name = "uranium-ore", amount = 3 }
     },
-    icon = "__base__/graphics/icons/uranium-ore.png",
+    icons = {
+        {
+            icon = "__base__/graphics/icons/uranium-ore.png"
+        },
+        {
+            icon = "__base__/graphics/icons/fluid/sulfuric-acid.png",
+            icon_size = 64,
+            scale = 0.25,
+            shift = { -8, -8 },
+        },
+    },
     icon_size = 64,
     category = "chemistry",
     subgroup = "fluid-recipes",

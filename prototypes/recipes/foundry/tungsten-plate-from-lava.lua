@@ -2,8 +2,8 @@
 return {
     type = "recipe",
     name = "tungsten-plate-from-lava",
-    category = "metallurgy",
-    enabled = true,
+    category = "lava-centrifuge",
+    enabled = false,
     energy_required = 15,
     ingredients = {
         { type = "fluid", name = "liquid-tungsten", amount = 250 },
@@ -17,4 +17,5 @@ return {
         secondary = { r = 0.4, g = 0.4, b = 0.5, a = 1.0 },
     },
     allow_productivity = true,
+    order = "e-p-b-e",
 }

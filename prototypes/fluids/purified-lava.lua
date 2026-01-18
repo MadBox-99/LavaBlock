@@ -2,7 +2,7 @@ return {
     type = "fluid",
     name = "purified-lava",
     subgroup = "fluid",
-    icon = "__LavaBlock__/graphics/icons/fluid/purified-lava-v2.png",
+    icon = "__LavaBlock__/graphics/icons/fluid/purified-lava.png",
     icon_size = 64,
     default_temperature = 2000,
     max_temperature = 3000,
