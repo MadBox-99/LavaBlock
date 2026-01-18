@@ -8,7 +8,7 @@ local uranium_extraction = {
         { type = "fluid", name = "sulfuric-acid", amount = 20 }
     },
     results = {
-        { type = "item", name = "uranium-ore", amount = 5 }
+        { type = "item", name = "uranium-ore", amount = 3 }
     },
     icon = "__base__/graphics/icons/uranium-ore.png",
     icon_size = 64,

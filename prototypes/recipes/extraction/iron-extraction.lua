@@ -9,7 +9,17 @@ local iron_extraction = {
     results = {
         { type = "item", name = "iron-ore", amount = 5 }
     },
-    icon = "__base__/graphics/icons/iron-ore.png",
+    icons = {
+        {
+            icon = "__base__/graphics/icons/iron-ore.png"
+        },
+        {
+            icon = "__space-age__/graphics/icons/fluid/lava.png",
+            icon_size = 64,
+            scale = 0.25,
+            shift = { -8, -8 },
+        },
+    },
     icon_size = 64,
     category = "chemistry",
     subgroup = "fluid-recipes",

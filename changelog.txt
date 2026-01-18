@@ -16,6 +16,8 @@ Date: ????
     - Lava Centrifuge technology (requires lava-science-pack + advanced-circuit)
     - Rare Mineral Extraction technology (requires lava-centrifuge + uranium-processing)
     - Tungsten from Lava technology (Space Age only, requires lava-centrifuge + tungsten-steel)
+  Bugfixes:
+    - Fixed Concentrated Ore Extraction recipe appearing in "unsorted" section (added subgroup)
   Changes:
     - Lava Mech Armor movement speed penalty reduced from 90% to 80%
     - Removed entire Enchanting system (Enchanter machine, enchanted trains, circuit enchanting)

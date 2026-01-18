@@ -3,7 +3,9 @@
 return {
     type = "recipe",
     name = "lava-purification",
-    category = "lava-centrifuge",
+    category = "crafting-with-fluid",
+    order = "a[lava]-b[extraction]",
+    subgroup = "fluid-recipes",
     enabled = false,
     energy_required = 10,
     ingredients = {
