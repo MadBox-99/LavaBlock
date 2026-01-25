@@ -38,6 +38,7 @@ local gas_turbine = require("prototypes.recipes.geo-thermal-turbine")
 local industrialised_chemical_plant = require("prototypes.recipes.industrialised-chemical-plant")
 local lava_science_pack = require("prototypes.recipes.lava-science-pack")
 local foundation_platform = require("prototypes.recipes.foundation-platform")
+local foundation_catalyst = require("prototypes.recipes.foundation-catalyst")
 
 -- Enchanted science pack recipe
 local enchanted_science_pack = require("prototypes.recipes.enchanting.enchanted-science-pack")
@@ -109,6 +110,7 @@ data:extend({
     industrialised_chemical_plant,
     lava_science_pack,
     foundation_platform,
+    foundation_catalyst,
     -- Enchanted science pack recipe
     enchanted_science_pack,
     -- Lava Centrifuge recipes

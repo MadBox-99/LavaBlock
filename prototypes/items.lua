@@ -1,6 +1,7 @@
 local lava_mech_armor = require("prototypes.items.lava-mech-armor")
 
 data:extend({
+    require("prototypes.items.foundation-catalyst"),
     require("prototypes.items.foundation-platform"),
     require("prototypes.items.slug"),
     require("prototypes.items.air-cooler"),

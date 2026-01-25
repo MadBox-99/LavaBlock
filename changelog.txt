@@ -1,7 +1,13 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.30
 Date: ????
+  Features:
+    - Added Foundation Catalyst item (required ingredient for foundation crafting)
+    - Added Foundation Catalyst recipe: 1 stone -> 1 foundation catalyst
   Changes:
+    - Foundation Exhaustion technology now disables Foundation Catalyst recipe instead of Foundation Platform recipe
+    - Foundation Platform recipe remains enabled after researching Foundation Exhaustion (allows auto-foundation in blueprints)
+    - Players can still use blueprints with foundations after exhaustion, but cannot manually craft new foundations
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.29
 Date: 2026-01-18

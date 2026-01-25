@@ -6,13 +6,14 @@ return {
     category = "crafting-with-fluid",
     ingredients =
     {
-        { type = "item",  name = "landfill",     amount = 10 },
-        { type = "item",  name = "calcite",      amount = 100 },
-        { type = "item",  name = "iron-plate",   amount = 100 },
-        { type = "item",  name = "copper-plate", amount = 100 },
-        { type = "item",  name = "stone-brick",  amount = 100 },
-        { type = "item",  name = "stone",        amount = 200 },
-        { type = "fluid", name = "lava",         amount = 20000 }
+        { type = "item",  name = "landfill",            amount = 10 },
+        { type = "item",  name = "calcite",             amount = 100 },
+        { type = "item",  name = "iron-plate",          amount = 100 },
+        { type = "item",  name = "copper-plate",        amount = 100 },
+        { type = "item",  name = "stone-brick",         amount = 100 },
+        { type = "item",  name = "stone",               amount = 200 },
+        { type = "item",  name = "foundation-catalyst", amount = 1 },
+        { type = "fluid", name = "lava",                amount = 20000 }
     },
     results = { { type = "item", name = "foundation", amount = 1 } },
     surface_conditions = {

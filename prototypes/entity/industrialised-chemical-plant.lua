@@ -1,41 +1,19 @@
-local industrialised_chemical_plant = table.deepcopy(data.raw["assembling-machine"]["assembling-machine-3"])
-local number_tint = { r = 1, g = 1, b = 1, a = 1 }
+local utils = require("lib.utils")
+
+local industrialised_chemical_plant = table.deepcopy(data.raw["assembling-machine"]["chemical-plant"])
 industrialised_chemical_plant.name = "industrialised-chemical-plant"
 industrialised_chemical_plant.minable.result = "industrialised-chemical-plant"
 industrialised_chemical_plant.crafting_categories = { "chemical" }
 industrialised_chemical_plant.crafting_speed = 2.0
-industrialised_chemical_plant.fluid_boxes_off_when_no_fluid_recipe = true
-industrialised_chemical_plant.graphics_set.animation = {
-    filename = "__LavaBlock__/graphics/entity/industrialised-chemical-plant/industrialised-chemical-plant-128.png",
-    width = 128,
-    height = 128,
-    frame_count = 1,
-    tint = number_tint,
-}
-industrialised_chemical_plant.fluid_boxes = {
-    {
-        production_type = "input",
-        pipe_connections = {
-            { direction = 8, position = { 0, 1 }, flow_direction = "input", }
-        },
-        base_area = 10,
-        base_level = -1,
-        height = 2,
-        --pipe_picture = assembler2pipepictures(),
-        --pipe_covers = pipecoverspictures(),
-        volume = 1000,
-    },
-    {
-        production_type = "output",
-        pipe_connections = {
-            { direction = 0, position = { 0, -1 }, flow_direction = "output", }
-        },
-        base_area = 10,
-        base_level = 1,
-        height = 2,
-        --pipe_picture = assembler2pipepictures(),
-        --pipe_covers = pipecoverspictures(),
-        volume = 1000,
-    }
-}
+
+industrialised_chemical_plant.graphics_set = utils.make_rotated_graphics_set({
+    filename = "__LavaBlock__/graphics/icons/entity/industrialised_factory.png",
+    width = 256,
+    height = 256,
+    frame_count = 4,
+    scale = 0.5,
+})
+
+utils.remove_pipe_covers(industrialised_chemical_plant)
+
 return industrialised_chemical_plant

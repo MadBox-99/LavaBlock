@@ -12,15 +12,15 @@ data:extend({
                 type = "nothing",
                 effect_description = {
                     "technology-effect.disable-recipe",
-                    "foundation-platform-nauvis",
-                    {"recipe-name.foundation-platform-nauvis"}
+                    "foundation-catalyst",
+                    { "recipe-name.foundation-catalyst" }
                 }
             }
         },
         research_trigger = {
             type = "craft-item",
             item = "foundation",
-            count = 5000
+            count = 10000
         },
         prerequisites = { "foundation-platform-productivity-30" },
     }
