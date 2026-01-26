@@ -1,12 +1,30 @@
 {
-  "permissions": {
-    "allow": [
-      "Bash(cat:*)"
-    ],
-    "deny": [],
-    "ask": []
-  },
-  "enabledPlugins": {
-    "laravel-simplifier@laravel": true
-  }
+    "permissions": {
+        "allow": [
+            "Bash(cat:*)",
+            "Bash(./package.sh)",
+            "Bash(cat:*)",
+            "Bash(git log:*)",
+            "Bash(git diff:*)",
+            "Bash(grep:*)",
+            "Bash(chmod:*)",
+            "Bash(./validate.sh)",
+            "Bash(./validate.sh:*)",
+            "mcp__context7__get-library-docs",
+            "mcp__context7__resolve-library-id",
+            "WebSearch",
+            "WebFetch(domain:*.factorio.com)",
+            "WebFetch(domain:github.com)",
+            "WebFetch(domain:forums.factorio.com)",
+            "WebFetch(domain:lua-api.factorio.com)",
+            "WebFetch(domain:wiki.factorio.com)",
+            "WebFetch(domain:mods.factorio.com)",
+            "Bash(find:*)",
+            "WebFetch(domain:api.github.com)"
+        ],
+        "deny": []
+    },
+    "enabledPlugins": {
+        "laravel-simplifier@laravel": true
+    }
 }
