@@ -7,7 +7,7 @@ return {
     heat_capacity = "0.2kJ",
     base_color = { r = 0.5, g = 0.5, b = 1.0 },
     flow_color = { r = 0.7, g = 0.7, b = 1.0 },
-    icon = "__LavaBlock__/graphics/icons/liquid_nitrogen.png",
+    icon = "__LavaBlock__/graphics/icons/fluid/liquid_nitrogen.png",
     icon_size = 32,
     order = "a[fluid]-z[liquid_nitrogen]",
     pressure_to_speed_ratio = 0.4,

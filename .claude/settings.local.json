@@ -5,5 +5,8 @@
     ],
     "deny": [],
     "ask": []
+  },
+  "enabledPlugins": {
+    "laravel-simplifier@laravel": true
   }
 }

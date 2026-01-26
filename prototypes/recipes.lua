@@ -66,6 +66,9 @@ local sulfur_lava = require("prototypes.recipes.sulfur-lava")
 -- Vulcanus-specific recipes
 local explosives_from_lava = require("prototypes.recipes.explosives-from-lava")
 
+-- Fulgora-specific recipes
+require("prototypes.recipes.fulgora.bacteria.uranium")
+
 data:extend({
     -- Air recipes
     air_compressor,
@@ -128,8 +131,8 @@ data:extend({
 if mods["space-age"] then
     local tungsten_plate_from_lava = require("prototypes.recipes.foundry.tungsten-plate-from-lava")
     data:extend({
-        rare_mineral_extraction[2],  -- hot-tungsten-ore-from-lava
-        rare_mineral_extraction[3],  -- liquid-tungsten-from-hot-ore
+        rare_mineral_extraction[2], -- hot-tungsten-ore-from-lava
+        rare_mineral_extraction[3], -- liquid-tungsten-from-hot-ore
         tungsten_plate_from_lava,
     })
 end

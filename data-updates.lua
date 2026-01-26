@@ -51,3 +51,13 @@ table.insert(data.raw.recipe["railgun-turret"].ingredients, {
     type = "fluid", name = "lava", amount = 100
 })
 data.raw.recipe["railgun-turret"].category = "crafting-with-fluid"
+
+table.insert(data.raw["technology"]["bacteria-cultivation"].effects, {
+    type = "unlock-recipe",
+    recipe = "uranium-bacteria-cultivation"
+})
+
+table.insert(data.raw["technology"]["jellynut"].effects, {
+    type = "unlock-recipe",
+    recipe = "uranium-bacteria"
+})
