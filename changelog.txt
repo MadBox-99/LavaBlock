@@ -1,7 +1,17 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.31
-Date: ????
-  Changes:
+Date: 2026-01-26
+  Features:
+    - Added XP Research System with experience-based progression
+    - New XP Science Pack: automatically earned through crafting activities
+    - New XP Lab building: dedicated research station that only accepts XP Science Packs
+    - Crafting Mastery technology chain (5 levels): provides +5% productivity per level to iron gear wheel recipe
+    - Smelting Mastery technology chain (5 levels): provides +5% productivity per level to iron and copper plate recipes
+  Balancing:
+    - XP is earned at force level (shared between all players in multiplayer)
+    - 100 XP converts to 1 XP Science Pack (automatic conversion)
+    - Different items grant different XP amounts based on complexity (1-50 XP per craft)
+    - XP Lab unlocks after crafting 50 iron gear wheels
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.30
 Date: 2026-01-25

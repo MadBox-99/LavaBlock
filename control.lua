@@ -1,5 +1,80 @@
 local util = require("util")
 
+-- ============================================
+-- XP SYSTEM CONFIGURATION
+-- ============================================
+
+-- XP rates for different items (how much XP per craft)
+local XP_RATES = {
+    -- Basic materials
+    ["iron-plate"] = 1,
+    ["copper-plate"] = 1,
+    ["stone-brick"] = 2,
+    ["steel-plate"] = 5,
+    -- Components
+    ["iron-gear-wheel"] = 2,
+    ["copper-cable"] = 1,
+    ["iron-stick"] = 1,
+    ["electronic-circuit"] = 5,
+    ["advanced-circuit"] = 15,
+    ["processing-unit"] = 50,
+    -- Intermediates
+    ["engine-unit"] = 10,
+    ["electric-engine-unit"] = 20,
+    ["flying-robot-frame"] = 30,
+    -- LavaBlock specific
+    ["lava-science-pack"] = 20,
+    ["enchanted-science-pack"] = 50,
+    ["foundation-platform-nauvis"] = 10,
+    ["foundation-catalyst"] = 5,
+}
+
+-- How much XP needed for 1 XP Science Pack
+local XP_PER_PACK = 100
+
+-- ============================================
+-- XP SYSTEM FUNCTIONS
+-- ============================================
+
+-- Add XP to a force and distribute XP packs if threshold reached
+local function add_xp_to_force(force, xp_amount, triggering_player)
+    if not force or xp_amount <= 0 then return end
+
+    local force_name = force.name
+    storage.force_xp[force_name] = (storage.force_xp[force_name] or 0) + xp_amount
+
+    local total_xp = storage.force_xp[force_name]
+    local packs_earned = math.floor(total_xp / XP_PER_PACK)
+
+    if packs_earned > 0 then
+        storage.force_xp[force_name] = total_xp % XP_PER_PACK
+
+        -- Give packs to the triggering player (or first player in force)
+        local recipient = triggering_player
+        if not recipient or not recipient.valid then
+            for _, player in pairs(force.players) do
+                if player.valid then
+                    recipient = player
+                    break
+                end
+            end
+        end
+
+        if recipient and recipient.valid then
+            recipient.insert({ name = "xp-science-pack", count = packs_earned })
+            recipient.create_local_flying_text({
+                text = { "", "+", packs_earned, " [img=item/xp-science-pack]" },
+                position = recipient.position,
+                color = { r = 0.7, g = 0.3, b = 1.0 }
+            })
+        end
+    end
+end
+
+-- ============================================
+-- HELPER FUNCTIONS
+-- ============================================
+
 -- Check if player is wearing lava-mech-armor
 local function is_wearing_lava_mech_armor(player)
     if not player.character then return false end
@@ -71,6 +146,7 @@ end
 -- Initialize game on first load
 script.on_init(function()
     storage.players_needing_items = {}
+    storage.force_xp = {}
 
     -- Disable crashsite and intro FIRST
     disable_freeplay()
@@ -94,6 +170,7 @@ end)
 -- Handle mod updates on existing saves
 script.on_configuration_changed(function(data)
     storage.players_needing_items = storage.players_needing_items or {}
+    storage.force_xp = storage.force_xp or {}
     disable_freeplay()
 
     -- Re-apply recipe disable for all researched technologies with disable-recipe effects
@@ -177,5 +254,24 @@ end)
 script.on_event(defines.events.on_player_respawned, function(event)
     local player = game.get_player(event.player_index)
     update_player_speed(player)
+end)
+
+-- ============================================
+-- XP SYSTEM EVENT HANDLERS
+-- ============================================
+
+-- Award XP when player crafts items
+script.on_event(defines.events.on_player_crafted_item, function(event)
+    local player = game.get_player(event.player_index)
+    if not player or not player.valid then return end
+
+    local item = event.item_stack
+    if not item or not item.valid then return end
+
+    local xp_rate = XP_RATES[item.name]
+    if xp_rate and xp_rate > 0 then
+        local xp_gained = xp_rate * item.count
+        add_xp_to_force(player.force, xp_gained, player)
+    end
 end)
 

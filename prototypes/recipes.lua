@@ -43,6 +43,9 @@ local foundation_catalyst = require("prototypes.recipes.foundation-catalyst")
 -- Enchanted science pack recipe
 local enchanted_science_pack = require("prototypes.recipes.enchanting.enchanted-science-pack")
 
+-- XP Lab recipe
+local xp_lab = require("prototypes.recipes.xp-lab")
+
 -- Lava Centrifuge recipes
 local lava_centrifuge = require("prototypes.recipes.lava-centrifuge")
 local lava_purification = require("prototypes.recipes.centrifuge.lava-purification")
@@ -116,6 +119,8 @@ data:extend({
     foundation_catalyst,
     -- Enchanted science pack recipe
     enchanted_science_pack,
+    -- XP Lab recipe
+    xp_lab,
     -- Lava Centrifuge recipes
     lava_centrifuge,
     lava_purification,

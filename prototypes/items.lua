@@ -9,6 +9,7 @@ data:extend({
     require("prototypes.items.air-compressor"),
     require("prototypes.items.industrialised-chemical-plan"),
     require("prototypes.items.lava-centrifuge"),
+    require("prototypes.items.xp-lab"),
     lava_mech_armor,
 })
 

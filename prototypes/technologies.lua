@@ -7,6 +7,10 @@ require("prototypes.technologies.foundation-platform-productivity")
 require("prototypes.technologies.foundation-platform-disable")
 require("prototypes.technologies.advanced-lava-smelting-productivity")
 
+-- XP Quest technologies (use loops, keep direct require)
+require("prototypes.technologies.xp-quests.crafting-mastery")
+require("prototypes.technologies.xp-quests.smelting-mastery")
+
 -- Base game technology modifications
 data.raw.technology["oil-processing"].research_trigger = { type = "craft-fluid", fluid = "crude-oil", amount = 1 }
 data.raw.technology["oil-processing"].effects = {
@@ -66,6 +70,9 @@ local enchanted_science_pack = require("prototypes.technologies.enchanted-scienc
 -- Lava Centrifuge technologies
 local lava_centrifuge_techs = require("prototypes.technologies.lava-centrifuge")
 
+-- XP Lab technology
+local xp_lab = require("prototypes.technologies.xp-lab")
+
 data:extend({
     smelting_with_air,
     advanced_lava_cooling,
@@ -86,6 +93,7 @@ data:extend({
     enchanted_science_pack,
     lava_centrifuge_techs[1],
     lava_centrifuge_techs[2],
+    xp_lab,
 })
 
 -- Space Age only: Tungsten from lava technology
