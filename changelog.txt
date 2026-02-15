@@ -2,6 +2,10 @@
 Version: 0.0.32
 Date: ????
   Changes:
+    - Added subtle hint to XP Lab technology description: "Automation is the law, but manual practice never hurts. Sometimes the old ways teach us new tricks."
+    - Added warning message to Foundation Platform Exhaustion technology: warns players about upcoming recipe changes
+  Bugfixes:
+    - Fixed Foundation Platform Exhaustion not triggering properly when foundation craft count reached 10,000 (removed technology prerequisite dependency)
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.31
 Date: 2026-01-26

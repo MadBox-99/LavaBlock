@@ -1,6 +1,8 @@
 return {
     type = "technology",
     name = "xp-lab",
+    localised_description =
+    "Automation is the law, but manual practice never hurts. Sometimes the old ways teach us new tricks.",
     icons = {
         {
             icon = "__base__/graphics/icons/lab.png",
