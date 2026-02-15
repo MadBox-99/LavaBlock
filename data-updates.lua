@@ -61,3 +61,10 @@ table.insert(data.raw["technology"]["jellynut"].effects, {
     type = "unlock-recipe",
     recipe = "uranium-bacteria"
 })
+
+-- Space Age: Replace asteroid-productivity with separate simple and advanced versions
+if mods["space-age"] then
+    require("helpers.functions")
+    -- Remove the original asteroid-productivity technology completely
+    remove_technology("asteroid-productivity")
+end

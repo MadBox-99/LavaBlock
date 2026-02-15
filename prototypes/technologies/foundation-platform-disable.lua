@@ -6,7 +6,7 @@ data:extend({
         type = "technology",
         name = "foundation-platform-disable",
         localised_description =
-        "[color=orange][img=warning] Warning: Mass production changes everything. The easy path may not remain forever. Plan accordingly.[/color]",
+        "[color=orange]⚠️ Warning: Mass production changes everything. The easy path may not remain forever. Plan accordingly.[/color]",
         icon = "__space-age__/graphics/icons/foundation.png",
         icon_size = 64,
         effects = {

@@ -73,6 +73,17 @@ local lava_centrifuge_techs = require("prototypes.technologies.lava-centrifuge")
 -- XP Lab technology
 local xp_lab = require("prototypes.technologies.xp-lab")
 
+-- Military Science Pack 2 technology
+local military_science_pack_2 = require("prototypes.technologies.military-science-pack-2")
+
+-- Asteroid productivity technologies (Space Age)
+local asteroid_productivity_simple = require("prototypes.technologies.asteroid-productivity-simple")
+local asteroid_productivity_advanced = require("prototypes.technologies.asteroid-productivity-advanced")
+
+-- Circuit Science Pack technologies
+local circuit_science_pack_tech = require("prototypes.technologies.circuit-science-pack")
+local circuit_crafting_productivity = require("prototypes.technologies.circuit-crafting-productivity")
+
 data:extend({
     smelting_with_air,
     advanced_lava_cooling,
@@ -94,9 +105,16 @@ data:extend({
     lava_centrifuge_techs[1],
     lava_centrifuge_techs[2],
     xp_lab,
+    military_science_pack_2,
+    circuit_science_pack_tech,
+    circuit_crafting_productivity,
 })
 
 -- Space Age only: Tungsten from lava technology
 if mods["space-age"] then
-    data:extend({ lava_centrifuge_techs[3] })
+    data:extend({
+        lava_centrifuge_techs[3],
+        asteroid_productivity_simple,
+        asteroid_productivity_advanced
+    })
 end

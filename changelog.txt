@@ -1,7 +1,22 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.33
 Date: ????
+  Features:
+    - Added Military Science Pack 2: advanced military research pack with darker tint
+    - Military Science Pack 2 recipe uses cutting-edge weaponry: railgun ammo, tesla ammo, artillery shells, uranium-235, and electromagnetic plant
+    - Military Science Pack 2 unlocked via new technology requiring railgun, tesla weapons, artillery, uranium processing, and electromagnetic plant technologies
+    - Added Circuit Science Pack: electronics-focused research pack
+    - Circuit Science Pack recipe: 3 electronic circuits + 2 advanced circuits + 1 processing unit → 3 circuit science packs
+    - Added Circuit Crafting Productivity technology: improves electronic circuit (+10%), advanced circuit (+10%), and processing unit (+5%) productivity
   Changes:
+    - Space Age: Split asteroid productivity technology into separate "Simple" and "Advanced" versions for better specialization
+    - Space Age: Asteroid Productivity (Simple) affects basic asteroid crushing recipes only
+    - Space Age: Asteroid Productivity (Advanced) affects advanced asteroid crushing recipes only  
+    - Space Age: Both technologies have the same research cost but must be researched separately
+    - Space Age: Both asteroid productivity technologies now require Military Science Pack 2 and Lava Science Pack
+  Bugfixes:
+    - Fixed Military Science Pack 2 not being accepted by labs and biolabs
+    - Fixed Circuit Science Pack not being accepted by labs and biolabs
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.32
 Date: 2026-02-15

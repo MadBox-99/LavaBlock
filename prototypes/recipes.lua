@@ -43,6 +43,12 @@ local foundation_catalyst = require("prototypes.recipes.foundation-catalyst")
 -- Enchanted science pack recipe
 local enchanted_science_pack = require("prototypes.recipes.enchanting.enchanted-science-pack")
 
+-- Military Science Pack 2 recipe
+local military_science_pack_2 = require("prototypes.recipes.military-science-pack-2")
+
+-- Circuit Science Pack recipe
+local circuit_science_pack = require("prototypes.recipes.circuit-science-pack")
+
 -- XP Lab recipe
 local xp_lab = require("prototypes.recipes.xp-lab")
 
@@ -119,6 +125,10 @@ data:extend({
     foundation_catalyst,
     -- Enchanted science pack recipe
     enchanted_science_pack,
+    -- Military Science Pack 2 recipe
+    military_science_pack_2,
+    -- Circuit Science Pack recipe
+    circuit_science_pack,
     -- XP Lab recipe
     xp_lab,
     -- Lava Centrifuge recipes
