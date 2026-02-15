@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.32
-Date: ????
+Date: 2026-02-15
   Changes:
     - Added subtle hint to XP Lab technology description: "Automation is the law, but manual practice never hurts. Sometimes the old ways teach us new tricks."
     - Added warning message to Foundation Platform Exhaustion technology: warns players about upcoming recipe changes
