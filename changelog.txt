@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.33
-Date: ????
+Date: 2026-02-16
   Features:
     - Added Military Science Pack 2: advanced military research pack with darker tint
     - Military Science Pack 2 recipe uses cutting-edge weaponry: railgun ammo, tesla ammo, artillery shells, uranium-235, and electromagnetic plant
