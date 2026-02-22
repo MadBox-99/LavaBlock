@@ -110,11 +110,16 @@ data:extend({
     circuit_crafting_productivity,
 })
 
--- Space Age only: Tungsten from lava technology
+-- Space Age only: Tungsten from lava technology + Pyroclast technology
 if mods["space-age"] then
+    local planet_discovery_pyroclast  = require("prototypes.technologies.planet-discovery-pyroclast")
+    local pyroclast_science_pack_tech = require("prototypes.technologies.pyroclast-science-pack")
     data:extend({
         lava_centrifuge_techs[3],
         asteroid_productivity_simple,
-        asteroid_productivity_advanced
+        asteroid_productivity_advanced,
+        -- Pyroclast planet: discovery first, then science pack
+        planet_discovery_pyroclast,
+        pyroclast_science_pack_tech,
     })
 end
