@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.34
-Date: 22. 02. 2026
+Date: 2026-02-22
   Features:
     - Added Pyroclast (WIP): a hyper-volcanic late-game planet reachable from Vulcanus, with even more extreme pressure and gravity than Vulcanus
     - Added Obsidian: a volcanic glass mineral unique to Pyroclast, extracted from lava in chemical plants under its intense surface conditions
