@@ -152,5 +152,7 @@ if mods["space-age"] then
         -- Pyroclast planet recipes
         require("prototypes.recipes.pyroclast.obsidian-extraction"),
         require("prototypes.recipes.pyroclast.pyroclast-science-pack"),
+        require("prototypes.recipes.pyroclast.bmat"),
+        require("prototypes.recipes.pyroclast.cmat"),
     })
 end

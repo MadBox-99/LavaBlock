@@ -114,12 +114,14 @@ data:extend({
 if mods["space-age"] then
     local planet_discovery_pyroclast  = require("prototypes.technologies.planet-discovery-pyroclast")
     local pyroclast_science_pack_tech = require("prototypes.technologies.pyroclast-science-pack")
+    local pyroclast_materials_tech    = require("prototypes.technologies.pyroclast-materials")
     data:extend({
         lava_centrifuge_techs[3],
         asteroid_productivity_simple,
         asteroid_productivity_advanced,
-        -- Pyroclast planet: discovery first, then science pack
+        -- Pyroclast planet: discovery first, then science pack, then materials
         planet_discovery_pyroclast,
         pyroclast_science_pack_tech,
+        pyroclast_materials_tech,
     })
 end

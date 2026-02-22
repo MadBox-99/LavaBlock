@@ -16,9 +16,12 @@ data:extend({
 -- Space Age only items
 if mods["space-age"] then
     local pyroclast_items = require("prototypes.items.pyroclast-items")
+    local pyroclast_materials = require("prototypes.items.pyroclast-materials")
     data:extend({
         require("prototypes.items.hot-tungsten-ore"),
         pyroclast_items[1], -- obsidian
+        pyroclast_materials[1], -- bmat
+        pyroclast_materials[2], -- cmat
     })
 end
 

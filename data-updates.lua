@@ -25,12 +25,12 @@ data.raw["assembling-machine"]["assembling-machine-3"].crafting_categories =
     "gas",
 }
 
--- Modify artillery shell recipe for Vulcanus (calcite replaced with sulfur + coal + lava)
+-- Modify artillery shell recipe to use Pyroclast materials (bmat + cmat)
 data.raw.recipe["artillery-shell"].ingredients = {
     { type = "item",  name = "explosive-cannon-shell", amount = 4 },
     { type = "item",  name = "explosives",             amount = 8 },
-    { type = "item",  name = "sulfur",                 amount = 10 },
-    { type = "item",  name = "coal",                   amount = 10 },
+    { type = "item",  name = "bmat",                   amount = 10 },
+    { type = "item",  name = "cmat",                   amount = 5 },
     { type = "fluid", name = "lava",                   amount = 500 },
 }
 data.raw.recipe["artillery-shell"].energy_required = 10
