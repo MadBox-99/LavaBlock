@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.35
 Date: ????
-  Changes:
+  Bugfixes:
+    - Fixed missing display names for map generation noise expressions (lava cliffiness, Pyroclast cliffiness, Pyroclast biome)
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.34
 Date: 2026-02-22
