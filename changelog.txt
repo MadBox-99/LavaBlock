@@ -5,7 +5,9 @@ Date: 22. 02. 2026
     - Added Pyroclast (WIP): a hyper-volcanic late-game planet reachable from Vulcanus, with even more extreme pressure and gravity than Vulcanus
     - Added Obsidian: a volcanic glass mineral unique to Pyroclast, extracted from lava in chemical plants under its intense surface conditions
     - Added Pyroclast Science Pack: a late-game research pack crafted exclusively on Pyroclast using obsidian, lava, and advanced electronics; accepted by all labs and biolabs
-    - Pyroclast features sulfuric acid lakes that can be pumped for sulfuric acid using offshore pumps
+    - Added sulfuric acid lakes to Pyroclast, pumpable with offshore pumps for sulfuric acid
+    - Added minable volcanic rocks to Pyroclast (huge and big variants), yielding stone and ores
+    - Added Molten Iron Geyser and Molten Copper Geyser to Pyroclast: natural vents of superheated metal extractable with offshore pumps; cluster size, frequency, and richness configurable via map generation sliders
   Changes:
     - Nauvis lava terrain and island positions now vary with the map seed, producing a unique layout in every new game
 ---------------------------------------------------------------------------------------------------
