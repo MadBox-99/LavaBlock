@@ -60,4 +60,17 @@ Steam power research is unlocked at the start so you can get power running witho
 
 ---
 
+---
+
+## Credits
+
+The fluid lake tile implementation (sulfuric acid lakes on Pyroclast) was adapted from [Corrundum](https://github.com/ZacharyDK/Corrundum) by Zach Kolansky, used under the MIT License.
+
+```
+MIT License
+Copyright (c) 2025 Zach Kolansky
+```
+
+---
+
 *Version 0.0.34 — Factorio 2.0 + Space Age*
