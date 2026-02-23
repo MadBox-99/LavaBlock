@@ -1,7 +1,16 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.1
-Date: ????
+Date: 2026-02-23
+  Features:
+    - Extracted Pyroclast planet into its own standalone mod ("Pyroclast")
+    - Pyroclast mod works independently with just base + Space Age (no LavaBlock needed)
+    - When both mods are installed, LavaBlock integrates Pyroclast into its custom tech tree (lava-science-pack, enchanted-science-pack, military-science-pack-2)
+    - Standalone Pyroclast uses standard Space Age science packs (metallurgic, utility, military)
   Changes:
+    - LavaBlock now requires Pyroclast as a fixed dependency
+    - Moved all Pyroclast content out of LavaBlock: planet, tiles, geysers, items, recipes, technologies, locale
+    - Foxhole-style materials (Bmat, Cmat, Emat, Rmat, Hemat, Assembly Materials I-IV) and their recipes/technologies are now part of the Pyroclast mod
+    - Base game recipe modifications (artillery shells, radar, railgun turret, vehicles, etc.) moved to Pyroclast
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.0
 Date: 2026-02-22
