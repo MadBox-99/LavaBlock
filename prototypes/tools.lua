@@ -8,8 +8,3 @@ data:extend(
     }
 )
 
-if mods["space-age"] then
-    data:extend({
-        require("prototypes.tools.pyroclast-science-pack"),
-    })
-end

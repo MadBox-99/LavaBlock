@@ -14,24 +14,8 @@ data:extend({
 
 -- Space Age only items
 if mods["space-age"] then
-    local pyroclast_items = require("prototypes.items.pyroclast-items")
-    local pyroclast_materials = require("prototypes.items.pyroclast-materials")
     data:extend({
         require("prototypes.items.hot-tungsten-ore"),
-        pyroclast_items[1],     -- obsidian
-        pyroclast_materials[1], -- bmat
-        pyroclast_materials[2], -- cmat
-        pyroclast_materials[3], -- emat
-        pyroclast_materials[4], -- rmat
-        pyroclast_materials[5], -- hemat
-    })
-    local pyroclast_assembly = require("prototypes.items.pyroclast-assembly-materials")
-    data:extend({
-        pyroclast_assembly[1], -- assmat1
-        pyroclast_assembly[2], -- assmat2
-        pyroclast_assembly[3], -- assmat3
-        pyroclast_assembly[4], -- assmat4
-        require("prototypes.items.pyroclast-rocket-silo"),
     })
 end
 

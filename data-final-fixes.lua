@@ -1,14 +1,5 @@
 local util = require("util")
 
--- Register sulfuric-acid-lake as a water-type tile so offshore pumps,
--- boats and other water-aware mechanics treat it correctly.
-if mods["space-age"] and data.raw.tile["sulfuric-acid-lake"] then
-    local uc = data.raw["utility-constants"]["default"]
-    if uc and uc.water_tile_type_names then
-        table.insert(uc.water_tile_type_names, "sulfuric-acid-lake")
-    end
-end
-
 -- Register lava-mech-armor to use mech-armor animations
 if data.raw["armor"]["lava-mech-armor"] and data.raw.character.character then
   -- Find the mech-armor animation entry and add lava-mech-armor to it
@@ -41,10 +32,6 @@ util.add_lab_input("lab", "military-science-pack-2")
 util.add_lab_input("biolab", "military-science-pack-2")
 util.add_lab_input("lab", "circuit-science-pack")
 util.add_lab_input("biolab", "circuit-science-pack")
-if mods["space-age"] then
-    util.add_lab_input("lab", "pyroclast-science-pack")
-    util.add_lab_input("biolab", "pyroclast-science-pack")
-end
 
 -- Create planet-specific sulfur recipes and hide the original
 -- Nauvis uses sulfur-lava (defined in prototypes/recipes/sulfur-lava.lua)
@@ -62,8 +49,12 @@ if data.raw.recipe['sulfur'] then
     { name = "fulgora",    pressure = 800,  gravity = 8  },
     { name = "aquilo",     pressure = 2000, gravity = 20 },
     { name = "vulcanus",   pressure = 4000, gravity = 40 },
-    { name = "pyroclast",  pressure = 6000, gravity = 60 },
   }
+
+  -- Add Pyroclast sulfur recipe only when the Pyroclast mod is installed
+  if mods["Pyroclast"] then
+    table.insert(planets, { name = "pyroclast", pressure = 6000, gravity = 60 })
+  end
 
   for _, planet in pairs(planets) do
     local planet_sulfur = table.deepcopy(original_sulfur)

@@ -142,27 +142,12 @@ data:extend({
     explosives_from_lava,
 })
 
--- Space Age only: Tungsten processing recipes + Pyroclast recipes
+-- Space Age only: Tungsten processing recipes
 if mods["space-age"] then
     local tungsten_plate_from_lava = require("prototypes.recipes.foundry.tungsten-plate-from-lava")
     data:extend({
         rare_mineral_extraction[2], -- hot-tungsten-ore-from-lava
         rare_mineral_extraction[3], -- liquid-tungsten-from-hot-ore
         tungsten_plate_from_lava,
-        -- Pyroclast planet recipes
-        require("prototypes.recipes.pyroclast.obsidian-extraction"),
-        require("prototypes.recipes.pyroclast.pyroclast-science-pack"),
-        require("prototypes.recipes.pyroclast.bmat"),
-        require("prototypes.recipes.pyroclast.cmat"),
-        require("prototypes.recipes.pyroclast.emat"),
-        require("prototypes.recipes.pyroclast.rmat"),
-        require("prototypes.recipes.pyroclast.hemat"),
-        -- Assembly Materials
-        require("prototypes.recipes.pyroclast.assmat1"),
-        require("prototypes.recipes.pyroclast.assmat2"),
-        require("prototypes.recipes.pyroclast.assmat3"),
-        require("prototypes.recipes.pyroclast.assmat4"),
-        -- Pyroclast Rocket Silo
-        require("prototypes.recipes.pyroclast.pyroclast-rocket-silo"),
     })
 end
