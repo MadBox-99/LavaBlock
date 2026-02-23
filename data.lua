@@ -20,6 +20,9 @@ if mods["space-age"] then
     -- Molten-metal geysers for Pyroclast (deepcopied from sulfuric-acid-geyser)
     data:extend(require("prototypes.entity.pyroclast-geysers"))
 
+    -- Pyroclast Rocket Silo (deepcopied from rocket-silo, Pyroclast only)
+    require("prototypes.entity.pyroclast-rocket-silo")
+
     -- Autoplace-control entries give these geysers sliders in the map generation UI.
     -- The noise expressions (pyroclast-generator.lua) read control:NAME:size/frequency/richness.
     data:extend({

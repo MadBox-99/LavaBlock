@@ -3,7 +3,6 @@ local lava_mech_armor = require("prototypes.items.lava-mech-armor")
 data:extend({
     require("prototypes.items.foundation-catalyst"),
     require("prototypes.items.foundation-platform"),
-    require("prototypes.items.slug"),
     require("prototypes.items.air-cooler"),
     require("prototypes.items.generators.geo-thermal-turbine"),
     require("prototypes.items.air-compressor"),
@@ -19,9 +18,20 @@ if mods["space-age"] then
     local pyroclast_materials = require("prototypes.items.pyroclast-materials")
     data:extend({
         require("prototypes.items.hot-tungsten-ore"),
-        pyroclast_items[1], -- obsidian
+        pyroclast_items[1],     -- obsidian
         pyroclast_materials[1], -- bmat
         pyroclast_materials[2], -- cmat
+        pyroclast_materials[3], -- emat
+        pyroclast_materials[4], -- rmat
+        pyroclast_materials[5], -- hemat
+    })
+    local pyroclast_assembly = require("prototypes.items.pyroclast-assembly-materials")
+    data:extend({
+        pyroclast_assembly[1], -- assmat1
+        pyroclast_assembly[2], -- assmat2
+        pyroclast_assembly[3], -- assmat3
+        pyroclast_assembly[4], -- assmat4
+        require("prototypes.items.pyroclast-rocket-silo"),
     })
 end
 
