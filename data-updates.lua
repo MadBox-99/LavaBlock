@@ -110,6 +110,20 @@ table.insert(data.raw.recipe["artillery-wagon"].ingredients, {
     type = "item", name = "assmat4", amount = 10
 })
 
+-- Add pyroclast-assembly prerequisites to base game technologies
+-- Tier 1: car, locomotive
+table.insert(data.raw.technology["automobilism"].prerequisites, "pyroclast-assembly-1")
+table.insert(data.raw.technology["railway"].prerequisites, "pyroclast-assembly-2")
+
+-- Tier 2: tank
+table.insert(data.raw.technology["tank"].prerequisites, "pyroclast-assembly-2")
+
+-- Tier 3: spidertron
+table.insert(data.raw.technology["spidertron"].prerequisites, "pyroclast-assembly-3")
+
+-- Tier 4: artillery
+table.insert(data.raw.technology["artillery"].prerequisites, "pyroclast-assembly-4")
+
 table.insert(data.raw["technology"]["bacteria-cultivation"].effects, {
     type = "unlock-recipe",
     recipe = "uranium-bacteria-cultivation"
