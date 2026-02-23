@@ -18,7 +18,7 @@ return {
     },
     icons = {
         {
-            icon = "__base__/graphics/icons/steel-plate.png",
+            icon = "__space-age__/graphics/icons/carbon.png",
             icon_size = 64,
             tint = { r = 0.7, g = 0.15, b = 0.15, a = 1 },
         },

@@ -5,9 +5,10 @@ return {
     enabled = false,
     ingredients = {
         { type = "item",  name = "advanced-circuit", amount = 20 },
-        { type = "item",  name = "processing-unit", amount = 20 },
-        { type = "item",  name = "speed-module-2", amount = 16 },
-        { type = "fluid", name = "lava", amount = 40000 }
+        { type = "item",  name = "processing-unit",  amount = 20 },
+        { type = "item",  name = "speed-module-2",   amount = 16 },
+        { type = "item",  name = "tungsten-carbide", amount = 4 },
+        { type = "fluid", name = "lava",             amount = 40000 }
     },
     results = {
         { type = "item", name = "speed-module-3", amount = 4 }
