@@ -6,6 +6,10 @@ local pump = table.deepcopy(data.raw["pump"]["pump"])
 local air_cooler = table.deepcopy(data.raw["assembling-machine"]["chemical-plant"])
 air_cooler.name = "air-cooler"
 air_cooler.minable.result = "air-cooler"
+-- Clear any next_upgrade inherited from the source prototype (e.g. mods like 5Dim
+-- add next_upgrade to the chemical-plant). The upgrade target would have a
+-- different bounding box than this 1x3 entity and cause a load error.
+air_cooler.next_upgrade = nil
 
 -- Set custom crafting category (only cryogenic-cooling recipes)
 air_cooler.crafting_categories = { "cryogenic-cooling" }
