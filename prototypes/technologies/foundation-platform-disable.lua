@@ -1,6 +1,9 @@
 -- Technology that disables the foundation-platform-nauvis recipe when researched
 -- This serves as an end-game challenge for players
 
+-- Number of foundation crafts before the recipe is disabled (configurable startup setting)
+local foundation_limit = settings.startup["lava-block-foundation-limit"].value
+
 data:extend({
     {
         type = "technology",
@@ -22,7 +25,7 @@ data:extend({
         research_trigger = {
             type = "craft-item",
             item = "foundation",
-            count = 10000
+            count = foundation_limit
         },
     }
 })
