@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.4
-Date: ????
+Date: 2026-06-25
   Bugfixes:
     - Fixed Lava Block Island generating a full land planet carpeted in biter nests and worms instead of an island
     - Island terrain (elevation + lava ocean fill) is now applied to the Nauvis planet itself, not only the map-gen preset, so it generates correctly under Space Age's planet-based new-game flow
