@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.5
-Date: ????
+Date: 2026-07-01
   Bugfixes:
     - Pyroclast science pack no longer requires Military Science Pack 2 (which was gated behind railgun/tesla/artillery/uranium/EM plant), restoring Pyroclast to a mid-game planet after Vulcanus instead of an end-game one
     - Advanced Lava Smelting no longer re-unlocks Brick Smelting, which is already available from the start of the game
