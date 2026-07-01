@@ -10,6 +10,8 @@ require("prototypes.technologies.advanced-lava-smelting-productivity")
 -- XP Quest technologies (use loops, keep direct require)
 require("prototypes.technologies.xp-quests.crafting-mastery")
 require("prototypes.technologies.xp-quests.smelting-mastery")
+require("prototypes.technologies.xp-quests.handcrafting-mastery")
+require("prototypes.technologies.xp-quests.mining-mastery")
 
 -- Base game technology modifications
 data.raw.technology["oil-processing"].research_trigger = { type = "craft-fluid", fluid = "crude-oil", amount = 1 }

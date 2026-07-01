@@ -7,14 +7,6 @@ local advanced_lava_cooling = {
     {
         {
             type = "unlock-recipe",
-            recipe = "iron-smelting-cooling"
-        },
-        {
-            type = "unlock-recipe",
-            recipe = "copper-smelting-cooling"
-        },
-        {
-            type = "unlock-recipe",
             recipe = "iron-smelting-cryo-cooling"
         },
         {

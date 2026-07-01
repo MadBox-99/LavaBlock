@@ -12,6 +12,14 @@ local advanced_lava_smelting = {
         {
             type = "unlock-recipe",
             recipe = "copper-smelting"
+        },
+        {
+            type = "unlock-recipe",
+            recipe = "iron-smelting-cooling"
+        },
+        {
+            type = "unlock-recipe",
+            recipe = "copper-smelting-cooling"
         }
     },
     prerequisites = { "chemical-science-pack" },

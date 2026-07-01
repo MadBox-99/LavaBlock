@@ -4,7 +4,6 @@ return {
     energy_required = 10,
     enabled = false,
     ingredients = {
-        { type = "item",  name = "advanced-circuit", amount = 10 },
         { type = "item",  name = "electronic-circuit", amount = 10 },
         { type = "fluid", name = "lava", amount = 10000 }
     },

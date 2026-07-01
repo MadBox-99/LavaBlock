@@ -4,6 +4,12 @@ Date: ????
   Bugfixes:
     - Pyroclast science pack no longer requires Military Science Pack 2 (which was gated behind railgun/tesla/artillery/uranium/EM plant), restoring Pyroclast to a mid-game planet after Vulcanus instead of an end-game one
     - Advanced Lava Smelting no longer re-unlocks Brick Smelting, which is already available from the start of the game
+  Features:
+    - Added two XP Lab quest lines that reward the player directly: Handcrafting Mastery (increases character crafting speed) and Mining Mastery (increases character mining speed), both fuelled by XP Science Packs earned through hand-crafting
+  Balancing:
+    - Advanced Lava Smelting now unlocks the basic water-based iron/copper cooling recipes, giving it a complete lava-to-plate loop on its own instead of being inert; the high-throughput cryogenic (liquid nitrogen) cooling recipes remain on the Air Cooler line as an upgrade
+    - Rebalanced the air extraction chain (air extraction, electrostatic adsorption, extract iron/copper from air) into a throughput-matched chain that out-produces chemical-plant lava extraction per tile, at a high energy cost, so its large footprint is justified
+    - Lava module recipes now replace advanced circuits with lava rather than costing the same circuits plus a lava tax, delivering on the "using lava instead of standard materials" promise
   Changes:
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.4
