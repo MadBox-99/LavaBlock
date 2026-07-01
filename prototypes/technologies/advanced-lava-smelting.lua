@@ -12,10 +12,6 @@ local advanced_lava_smelting = {
         {
             type = "unlock-recipe",
             recipe = "copper-smelting"
-        },
-        {
-            type = "unlock-recipe",
-            recipe = "brick-smelting"
         }
     },
     prerequisites = { "chemical-science-pack" },

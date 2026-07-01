@@ -12,7 +12,7 @@ local pyroclast_science_pack_technology = {
         { type = "unlock-recipe", recipe = "obsidian-extraction" },
         { type = "unlock-recipe", recipe = "pyroclast-science-pack" }
     },
-    prerequisites = { "military-science-pack-2", "enchanted-science-pack", "planet-discovery-pyroclast" },
+    prerequisites = { "enchanted-science-pack", "planet-discovery-pyroclast" },
     unit = {
         count = 500,
         ingredients = {
