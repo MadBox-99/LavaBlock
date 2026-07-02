@@ -1,7 +1,10 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.6
 Date: ????
+  Graphics:
+    - The Air Cooler now has its own custom animated model its a 3x3 cryogenic cooler with counter-rotating fans
   Changes:
+    - The Air Cooler is now a 3x3 building with centred fluid connections (inputs on the north and west sides, output on the south)
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.5
 Date: 2026-07-01
