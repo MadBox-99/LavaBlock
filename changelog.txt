@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.7
-Date: ????
+Date: 2026-09-12
   Features:
     - Added the Industrialised Chemical Plant technology, which finally unlocks the machine of the same name
   Changes:
