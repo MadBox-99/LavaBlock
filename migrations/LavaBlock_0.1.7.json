@@ -1,0 +1,9 @@
+{
+  "recipe": [
+    [ "sulfur-gleba",    "sulfur" ],
+    [ "sulfur-fulgora",  "sulfur" ],
+    [ "sulfur-aquilo",   "sulfur" ],
+    [ "sulfur-vulcanus", "sulfur" ],
+    [ "sulfur-pyroclast", "sulfur" ]
+  ]
+}

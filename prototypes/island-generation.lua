@@ -69,6 +69,13 @@ nauvis_copy.map_gen_settings.property_expression_names = {
     ["tile:lava:probability"] = "0 - elevation",
 }
 
+-- Mark this Nauvis as the LavaBlock lava-ocean world. Recipes use this instead
+-- of fingerprinting the planet by its exact pressure/gravity pair, so that
+-- planets added by other mods keep working (they get the default value 0).
+-- See prototypes/surface-properties.lua.
+nauvis_copy.surface_properties = nauvis_copy.surface_properties or {}
+nauvis_copy.surface_properties["lava-block-lava-ocean"] = 1
+
 nauvis_copy.map_gen_settings.autoplace_settings.tile.settings = {}
 nauvis_copy.map_gen_settings.autoplace_settings.tile.settings["lava"] = {}
 nauvis_copy.map_gen_settings.autoplace_settings.tile.settings["grass-1"] = {}

@@ -1,9 +1,15 @@
 local air_extraction = {
     type = "recipe",
     name = "air-extraction",
-    energy_required = 2,
+    energy_required = 4,
     enabled = false,
-    ingredients = {},
+    -- Air is not free: compressing it costs steam, which ties the "everything
+    -- comes from lava" premise back into this branch. Without an input this
+    -- recipe created matter out of nothing and made the whole lava economy
+    -- redundant once air-cooler was researched.
+    ingredients = {
+        { type = "fluid", name = "steam", amount = 100 }
+    },
     results = {
         { type = "fluid", name = "compressed-air", amount = 500 }
     },

@@ -14,6 +14,10 @@ local sulfur_lava = {
     icon_size = 64,
     category = "chemistry",
     subgroup = "fluid-recipes",
-    surface_conditions = { { property = "pressure", min = 1000, max = 1000 }, { property = "gravity", min = 10, max = 10 } },
+    -- Only craftable on the LavaBlock lava-ocean world. The vanilla `sulfur`
+    -- recipe gets the complementary condition in data-final-fixes.lua, so the
+    -- two never overlap and every other planet (including modded ones) keeps
+    -- the vanilla recipe.
+    surface_conditions = { { property = "lava-block-lava-ocean", min = 1, max = 1 } },
 }
 return sulfur_lava

@@ -5,3 +5,4 @@ package-lock.json
 space-age
 runtime-api.json
 prototype-api.json
+*.zip

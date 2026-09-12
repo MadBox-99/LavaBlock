@@ -3,7 +3,10 @@ local utils = require("lib.utils")
 local industrialised_chemical_plant = table.deepcopy(data.raw["assembling-machine"]["chemical-plant"])
 industrialised_chemical_plant.name = "industrialised-chemical-plant"
 industrialised_chemical_plant.minable.result = "industrialised-chemical-plant"
-industrialised_chemical_plant.crafting_categories = { "chemical" }
+-- "chemical" is used by exactly zero recipes in this mod (and in vanilla); the
+-- mod's 14 chemical recipes are all "chemistry". With the old value the machine
+-- was buildable but permanently empty.
+industrialised_chemical_plant.crafting_categories = { "chemistry" }
 industrialised_chemical_plant.crafting_speed = 2.0
 
 industrialised_chemical_plant.graphics_set = utils.make_rotated_graphics_set({

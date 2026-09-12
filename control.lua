@@ -108,10 +108,21 @@ end
 
 -- Helper function to give starting items to a player
 local function give_starting_items(player)
-    -- Give starting items
+    -- The 2 gears + 3 pipes are exactly one offshore pump (vanilla 2.0 recipe:
+    -- 2 iron-gear-wheel + 3 pipe). on_init researches steam-power, which unlocks
+    -- the offshore-pump recipe at tick 0, so the opening move is:
+    -- craft pump -> place on lava -> feed the chemical plant.
+    --
+    -- Power budget for that first setup:
+    --   chemical-plant 210 kW + offshore-pump 60 kW = 270 kW
+    --   solar-panel 60 kW each (Nauvis solar-power = 100)
+    -- 2 panels (120 kW) could not even run the plant, and without a buffer the
+    -- whole factory stopped every night. 6 panels cover the 270 kW draw in
+    -- daylight; 3 accumulators (5 MJ each) carry it through dusk and dawn.
     player.insert({ name = "chemical-plant", count = 1 })
-    player.insert({ name = "solar-panel", count = 2 })
-    player.insert({ name = "small-electric-pole", count = 1 })
+    player.insert({ name = "solar-panel", count = 6 })
+    player.insert({ name = "accumulator", count = 3 })
+    player.insert({ name = "small-electric-pole", count = 4 })
     player.insert({ name = "iron-gear-wheel", count = 2 })
     player.insert({ name = "pipe", count = 3 })
 

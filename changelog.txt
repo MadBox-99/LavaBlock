@@ -1,7 +1,19 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.7
 Date: ????
+  Features:
+    - Added the Industrialised Chemical Plant technology, which finally unlocks the machine of the same name
   Changes:
+    - Sulfur on the Lava Block world now uses a dedicated surface property instead of one cloned recipe per known planet, so the vanilla sulfur recipe keeps working everywhere else, including on planets added by other mods
+    - Removed 34 leftover Pyroclast prototype files that were split out into the standalone Pyroclast mod back in 0.1.1 and have been unreachable dead code ever since
+  Bugfixes:
+    - The Industrialised Chemical Plant was impossible to obtain and would have been useless anyway: no technology unlocked its recipe, the recipe used an invalid crafting_category key, and the entity was restricted to a recipe category that no recipe in the mod uses
+    - Fixed the sulfur recipe migration, which used a name-to-name object instead of the list of name pairs the migration format requires; Factorio rejected the whole file, so machines set to the old per-planet sulfur recipes were not migrated
+  Balancing:
+    - The starting kit now contains 6 solar panels, 3 accumulators and 4 small electric poles. Two panels produced 120 kW while the starting chemical plant and offshore pump together draw 270 kW, so the first factory never ran at full speed and stopped completely every night
+    - Air extraction now consumes steam instead of creating compressed air out of nothing, takes 4 seconds instead of 2, and the air-to-ore recipes yield 5 ore instead of 10. The air route no longer makes the entire lava economy redundant
+    - Air compressors now draw 1.5 MW explicitly instead of inheriting the assembling machine 3 value, so pulling ore out of thin air trades power for lava as intended
+    - Cryogenic lava cooling now produces 1500 steam at 500 C instead of 2000 at 1000 C. The old output contained several times more energy than the lava put into it, which also made the Geo Thermal Turbine pointless. Stone brick byproduct chance reduced from 80% to 50%
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.6
 Date: 2026-07-02

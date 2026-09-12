@@ -82,6 +82,9 @@ local military_science_pack_2 = require("prototypes.technologies.military-scienc
 local asteroid_productivity_simple = require("prototypes.technologies.asteroid-productivity-simple")
 local asteroid_productivity_advanced = require("prototypes.technologies.asteroid-productivity-advanced")
 
+-- Industrialised Chemical Plant technology (space-age only: needs `biochamber`)
+local industrialised_chemical_plant_tech = require("prototypes.technologies.industrialised-chemical-plant")
+
 -- Circuit Science Pack technologies
 local circuit_science_pack_tech = require("prototypes.technologies.circuit-science-pack")
 local circuit_crafting_productivity = require("prototypes.technologies.circuit-crafting-productivity")
@@ -118,5 +121,6 @@ if mods["space-age"] then
         lava_centrifuge_techs[3],
         asteroid_productivity_simple,
         asteroid_productivity_advanced,
+        industrialised_chemical_plant_tech,
     })
 end
