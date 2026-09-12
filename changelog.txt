@@ -6,6 +6,7 @@ Date: ????
   Changes:
     - Sulfur on the Lava Block world now uses a dedicated surface property instead of one cloned recipe per known planet, so the vanilla sulfur recipe keeps working everywhere else, including on planets added by other mods
     - Removed 34 leftover Pyroclast prototype files that were split out into the standalone Pyroclast mod back in 0.1.1 and have been unreachable dead code ever since
+    - Pyroclast is now an optional dependency instead of a required one. LavaBlock no longer ships any Pyroclast content, and the integration in data-updates.lua was already guarded, so there is no reason to force every player to install it. Load order is preserved, so the integration still applies when Pyroclast is present
   Bugfixes:
     - The Industrialised Chemical Plant was impossible to obtain and would have been useless anyway: no technology unlocked its recipe, the recipe used an invalid crafting_category key, and the entity was restricted to a recipe category that no recipe in the mod uses
     - Fixed the sulfur recipe migration, which used a name-to-name object instead of the list of name pairs the migration format requires; Factorio rejected the whole file, so machines set to the old per-planet sulfur recipes were not migrated
