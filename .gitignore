@@ -6,3 +6,5 @@ space-age
 runtime-api.json
 prototype-api.json
 *.zip
+tools/bin/
+__pycache__/

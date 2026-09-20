@@ -1,5 +1,4 @@
 local air_compressor = table.deepcopy(data.raw["assembling-machine"]["assembling-machine-3"])
-local number_tint = { r = 1, g = 1, b = 1, a = 1 }
 air_compressor.name = "air-compressor"
 air_compressor.minable.result = "air-compressor"
 air_compressor.crafting_categories = { "gas", "gas-mix" }
@@ -9,12 +8,51 @@ air_compressor.crafting_speed = 2.0
 -- meant to trade power for lava, so state the cost explicitly.
 air_compressor.energy_usage = "1500kW"
 air_compressor.fluid_boxes_off_when_no_fluid_recipe = true
-air_compressor.graphics_set.animation = {
-    filename = "__LavaBlock__/graphics/entity/air-filter/air-filter.png",
-    width = 128,
-    height = 128,
-    frame_count = 1,
-    tint = number_tint,
+-- Custom model, built and rendered in Blender (see docs/blender-renders.md).
+-- Cold grey against the lava centrifuge's orange, because this is the air
+-- route rather than the lava route and the two need telling apart at a glance.
+-- One sheet pair per facing: the fluid connections rotate with the entity, so
+-- the modelled ports have to rotate with them. Dimensions and shift are read
+-- from the data files spritter writes next to each sheet, so a re-pack never
+-- needs numbers copied by hand.
+local GFX = "__LavaBlock__/graphics/entity/air-compressor/"
+
+local function layer(kind, dir, extra)
+    local name = "air-compressor-" .. kind .. "-" .. dir
+    local sheet = require("__LavaBlock__/graphics/entity/air-compressor/" .. name)
+    local l = {
+        filename = GFX .. name .. ".png",
+        priority = "high",
+        width = sheet.width,
+        height = sheet.height,
+        frame_count = sheet.sprite_count,
+        line_length = sheet.line_length,
+        animation_speed = 1.0,          -- it is a fan, it should look busy
+        scale = sheet.scale,
+        shift = sheet.shift,
+    }
+    for k, v in pairs(extra or {}) do
+        l[k] = v
+    end
+    return l
+end
+
+local function fan_layers(dir)
+    return {
+        layer("entity", dir),
+        layer("shadow", dir, { draw_as_shadow = true }),
+    }
+end
+
+-- No idle_animation: Factorio requires it to match `animation`'s frame count,
+-- and with `animation` alone the fan simply freezes when the machine stops.
+air_compressor.graphics_set = {
+    animation = {
+        north = { layers = fan_layers("north") },
+        east = { layers = fan_layers("east") },
+        south = { layers = fan_layers("south") },
+        west = { layers = fan_layers("west") },
+    },
 }
 air_compressor.fluid_boxes = {
     {

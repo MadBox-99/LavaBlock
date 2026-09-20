@@ -4,6 +4,7 @@ Date: 2026-09-20
   Graphics:
     - The Lava Centrifuge now has its own animated model instead of reusing the vanilla centrifuge: a squat armoured vessel on a bolted plinth, with cooling fins, a rotor glowing molten orange behind the drum cage, and three counterweight arms turning on top. It casts its own shadow, spins while it is working and stands still when it is idle, turns to face the way you rotate it, and throws an orange glow onto the ground around it while it runs
     - The Lava Centrifuge now has a matching icon, so it can finally be told apart from the vanilla centrifuge in the inventory, the crafting menu and Factoriopedia
+    - The Air Compressor now has its own animated model in place of the flat, shadowless placeholder image it shipped with: a pressure receiver on saddles along the back, an eight-blade intake fan spinning behind a guard ring, and a finned motor driving it. Deliberately cold grey next to the Lava Centrifuge's orange, so the air route and the lava route can be told apart at a glance on a crowded base. It casts a shadow and turns to face the way you rotate it
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.7
 Date: 2026-09-12

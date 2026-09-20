@@ -55,19 +55,36 @@ the right and slightly down, matching the base-game shadow `shift` offsets.
 ## Producing the sheets
 
 ```sh
-bash tools/blender/render_all.sh /abs/path/to/scratch 32
-python tools/blender/pack4.py /abs/path/to/scratch/seq \
-       graphics/entity/lava-centrifuge/lava-centrifuge
+bash tools/blender/render_all.sh tools/blender/lava_centrifuge.py \
+     lava-centrifuge /abs/path/to/scratch 32
+cp /abs/path/to/scratch/sheets/*.png /abs/path/to/scratch/sheets/*.lua \
+   graphics/entity/lava-centrifuge/
 ```
 
-`render_all.sh` renders both passes for all four facings into
-`<scratch>/seq/<direction>/`, 256 frames in all, and retries a pass from the
-last written frame if Cycles dies partway through. `pack4.py` crops every
-facing to one shared bounding box, so all four sheets get identical `width`,
-`height` and `shift` and the Lua stays readable, then prints it ready to paste.
-`shift` is just the crop centre's offset from the canvas centre, in tiles.
+For an entity that cannot be rotated, add `north` as a fifth argument and only
+that one facing is rendered - a quarter of the work.
 
-`pack.py` is the single-facing version, for an entity that does not rotate.
+Packing is done by [spritter](https://github.com/fgardt/factorio-spritter),
+which crops each sheet, lays the frames out, runs oxipng, and writes a `.lua`
+data file next to every sheet with its `width`, `height`, `line_length`,
+`scale` and `shift`. Put the binary in `tools/bin/` (gitignored); grab the
+`x86_64-pc-windows-gnu` build from its releases page.
+
+**Ship the `.lua` files alongside the `.png`s and `require` them from the
+prototype** instead of copying numbers by hand - see `lava-centrifuge.lua`.
+A re-pack then needs no prototype edit at all, which matters because spritter
+crops each facing separately, so all four differ.
+
+Entity and shadow are packed in separate runs. The shadow needs `-a 16`, a
+crop alpha high enough to ignore Cycles' sampling noise, which would otherwise
+stretch the crop across the whole canvas. Never pass `--transparent-black` on a
+shadow: it turns "black" pixels transparent, and a shadow is entirely black.
+
+`spritter optimize` on the result saves nothing, because the spritesheet
+command already runs oxipng. `--lossy` (pngquant) is a different matter: it cut
+the lava centrifuge's eight sheets from 5.4 MB to 1.4 MB with differences
+confined to the alpha edges and some faint dithering, invisible at the 50% the
+game draws them at.
 
 Pass `--out` an **absolute** path: Blender resolves a relative `filepath`
 against the blend file root, not the working directory, and silently writes to
@@ -131,6 +148,19 @@ render before committing to a full sequence.
 The rotor and the three counterweight arms turn 120 degrees over the 32 frames.
 Because the arms are 120 degrees apart, frame 32 lands exactly on frame 0, so
 the loop is seamless at any `animation_speed`.
+
+### The spin axis
+
+`run(build, spin_degrees=N)` turns the moving parts about the **entity centre**
+by default, which is only right when the moving assembly is modelled there, as
+the centrifuge rotor is. Anything mounted off-centre - the air compressor's
+impeller sits front left - has to be given its own axis with
+`pivot=(x, y, 0)`, or it orbits the machine instead of spinning in place. The
+symptom is subtle in a still and obvious in motion.
+
+Quick check without watching the animation: render two frames and take the
+bounding box of the pixels that differ. It should cover the moving part and
+nothing else.
 
 `graphics_set` deliberately has no `idle_animation`: Factorio rejects an idle
 animation whose frame count differs from `animation`, and with `animation`

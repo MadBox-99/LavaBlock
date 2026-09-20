@@ -25,33 +25,35 @@ local GFX = "__LavaBlock__/graphics/entity/lava-centrifuge/"
 
 -- One sheet pair per facing. The fluid connections rotate with the entity, so
 -- the modelled pipe stubs have to rotate with them; a single sheet would leave
--- the stubs pointing the wrong way on any rotated machine. All four facings
--- share one crop, hence the identical width, height and shift.
+-- the stubs pointing the wrong way on any rotated machine.
+--
+-- Dimensions and shift come from the data files spritter writes next to each
+-- sheet, so a re-pack never needs numbers copied by hand. Every facing is
+-- cropped on its own, which is why they differ.
+local function layer(kind, dir, extra)
+    local name = "lava-centrifuge-" .. kind .. "-" .. dir
+    local sheet = require("__LavaBlock__/graphics/entity/lava-centrifuge/" .. name)
+    local l = {
+        filename = GFX .. name .. ".png",
+        priority = "high",
+        width = sheet.width,
+        height = sheet.height,
+        frame_count = sheet.sprite_count,
+        line_length = sheet.line_length,
+        animation_speed = 0.5,
+        scale = sheet.scale,
+        shift = sheet.shift,
+    }
+    for k, v in pairs(extra or {}) do
+        l[k] = v
+    end
+    return l
+end
+
 local function spin_layers(dir)
     return {
-        {
-            filename = GFX .. "lava-centrifuge-entity-" .. dir .. ".png",
-            priority = "high",
-            width = 218,
-            height = 254,
-            frame_count = 32,
-            line_length = 8,
-            animation_speed = 0.5,
-            scale = 0.5,
-            shift = { 0.0000, -0.4219 },
-        },
-        {
-            filename = GFX .. "lava-centrifuge-shadow-" .. dir .. ".png",
-            priority = "high",
-            draw_as_shadow = true,
-            width = 236,
-            height = 226,
-            frame_count = 32,
-            line_length = 8,
-            animation_speed = 0.5,
-            scale = 0.5,
-            shift = { 0.2656, 0.1719 },
-        },
+        layer("entity", dir),
+        layer("shadow", dir, { draw_as_shadow = true }),
     }
 end
 

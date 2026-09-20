@@ -1,30 +1,54 @@
 #!/bin/bash
-# Render every pass for every facing, resuming a pass if the CUDA driver dies
-# mid-sequence (Cycles on OptiX throws "Misaligned address in CUDA queue" every
-# so often on this machine).
+# Render every pass for every facing, then pack the frames into Factorio
+# spritesheets with spritter.
 #
-#   render_all.sh <scratch-dir> [frames]
+#   render_all.sh <model-script> <entity-name> <scratch-dir> [frames] [facings]
 #
-# Frames land in <scratch-dir>/seq/<direction>/<pass>_<frame>.png.
+#   facings: "all" (default) for a rotatable entity, or "north" for one that
+#            cannot be rotated - a quarter of the render time.
+#
+# Frames land in <scratch>/frames/<pass>/<entity>-<pass>-<facing>/, which is the
+# one-folder-per-sheet layout spritter's --recursive mode expects. Sheets and
+# their .lua data files land in <scratch>/sheets/.
+#
+# Cycles on OptiX dies with "Misaligned address in CUDA queue" every so often on
+# this machine, so each pass is retried from the last frame it managed to write.
 set -u
-B="/c/Program Files/Blender Foundation/Blender 5.0/blender.exe"
-SP="$1"
-N="${2:-32}"
-SCRIPT="$(cd "$(dirname "$0")" && pwd)/lava_centrifuge.py"
+BLENDER="/c/Program Files/Blender Foundation/Blender 5.0/blender.exe"
+HERE="$(cd "$(dirname "$0")" && pwd)"
+SPRITTER="$HERE/../bin/spritter.exe"
 
-for dir in north east south west; do
+MODEL="$1"
+ENTITY="$2"
+SP="$3"
+N="${4:-32}"
+FACINGS="${5:-all}"
+[ "$FACINGS" = "all" ] && FACINGS="north east south west"
+
+for dir in $FACINGS; do
   for spec in "entity 160" "shadow 64"; do
     set -- $spec
     pass="$1"; samples="$2"
-    out="$SP/seq/$dir"
+    out="$SP/frames/$pass/$ENTITY-$pass-$dir"
     mkdir -p "$out"
     for attempt in 1 2 3 4 5 6; do
-      have=$(ls "$out/${pass}_"*.png 2>/dev/null | wc -l)
+      have=$(ls "$out"/*.png 2>/dev/null | wc -l)
       [ "$have" -ge "$N" ] && break
-      "$B" --background --factory-startup --python "$SCRIPT" -- \
+      "$BLENDER" --background --factory-startup --python "$MODEL" -- \
            --pass "$pass" --direction "$dir" --frames "$N" --start "$have" \
            --samples "$samples" --out "$out" >> "$SP/render_${dir}_${pass}.log" 2>&1
     done
-    echo "$dir/$pass: $(ls "$out/${pass}_"*.png 2>/dev/null | wc -l)/$N"
+    echo "$dir/$pass: $(ls "$out"/*.png 2>/dev/null | wc -l)/$N"
   done
 done
+
+# Entity and shadow are packed separately: the shadow needs a crop-alpha high
+# enough to ignore Cycles' sampling noise, which would otherwise stretch the
+# crop across the whole canvas. Never pass --transparent-black here, it would
+# erase a shadow entirely.
+mkdir -p "$SP/sheets"
+"$SPRITTER" spritesheet -r -l -t 64        "$SP/frames/entity" "$SP/sheets"
+"$SPRITTER" spritesheet -r -l -t 64 -a 16  "$SP/frames/shadow" "$SP/sheets"
+echo
+echo "sheets in $SP/sheets - copy the .png AND .lua files into graphics/entity/$ENTITY/"
+du -sh "$SP/sheets"
