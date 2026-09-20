@@ -33,6 +33,7 @@
             "CLAUDE.md",
             "REVIEW.md",
             "docs/**",
+            "tools/**",
             "space-age/**",
             "space-age-template.json",
             "runtime-api.json",

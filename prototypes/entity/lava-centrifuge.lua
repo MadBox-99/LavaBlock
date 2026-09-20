@@ -7,13 +7,75 @@ local lava_centrifuge = table.deepcopy(data.raw["assembling-machine"]["centrifug
 lava_centrifuge.name = "lava-centrifuge"
 lava_centrifuge.minable.result = "lava-centrifuge"
 
+-- Same icon as the item, so alt-mode and Factoriopedia match the new model
+lava_centrifuge.icon = "__LavaBlock__/graphics/icons/items/lava-centrifuge.png"
+lava_centrifuge.icon_size = 64
+lava_centrifuge.icons = nil
+
 -- Custom crafting category for lava centrifuge recipes
 lava_centrifuge.crafting_categories = { "lava-centrifuge" }
 
--- Orange/red tint for lava theme
-lava_centrifuge.crafting_machine_tint = {
-    primary = { r = 1.0, g = 0.4, b = 0.0, a = 1.0 },
-    secondary = { r = 1.0, g = 0.2, b = 0.0, a = 1.0 },
+-- Custom model, built and rendered in Blender (see docs/blender-renders.md).
+-- Orthographic camera at 45 deg elevation, 6 tile frame at 384 px => 64 px per
+-- tile, so scale = 32/64 = 0.5. Sheets are cropped to the union bounding box of
+-- all frames, and `shift` is the crop centre's offset from the entity origin.
+-- The rotor turns 120 deg over the 32 frames; the three arms are 120 deg apart,
+-- so the loop is seamless.
+local GFX = "__LavaBlock__/graphics/entity/lava-centrifuge/"
+
+-- One sheet pair per facing. The fluid connections rotate with the entity, so
+-- the modelled pipe stubs have to rotate with them; a single sheet would leave
+-- the stubs pointing the wrong way on any rotated machine. All four facings
+-- share one crop, hence the identical width, height and shift.
+local function spin_layers(dir)
+    return {
+        {
+            filename = GFX .. "lava-centrifuge-entity-" .. dir .. ".png",
+            priority = "high",
+            width = 218,
+            height = 254,
+            frame_count = 32,
+            line_length = 8,
+            animation_speed = 0.5,
+            scale = 0.5,
+            shift = { 0.0000, -0.4219 },
+        },
+        {
+            filename = GFX .. "lava-centrifuge-shadow-" .. dir .. ".png",
+            priority = "high",
+            draw_as_shadow = true,
+            width = 236,
+            height = 226,
+            frame_count = 32,
+            line_length = 8,
+            animation_speed = 0.5,
+            scale = 0.5,
+            shift = { 0.2656, 0.1719 },
+        },
+    }
+end
+
+-- No idle_animation on purpose: Factorio requires it to have the same frame
+-- count as `animation`, and with `animation` alone the machine simply freezes
+-- on its current frame when it stops crafting, which is what we want.
+lava_centrifuge.graphics_set = {
+    animation = {
+        north = { layers = spin_layers("north") },
+        east = { layers = spin_layers("east") },
+        south = { layers = spin_layers("south") },
+        west = { layers = spin_layers("west") },
+    },
+    working_visualisations = {
+        {
+            fadeout = true,
+            light = {
+                intensity = 0.45,
+                size = 6,
+                shift = { 0, -0.2 },
+                color = { r = 1.0, g = 0.45, b = 0.12 },
+            },
+        },
+    },
 }
 
 -- Energy and performance settings
@@ -22,6 +84,13 @@ lava_centrifuge.crafting_speed = 1
 lava_centrifuge.module_slots = 4
 
 -- Add fluid boxes for lava input and secondary fluid input
+-- The east and south pipe graphics sit correctly against the model; only the
+-- north one is a problem, because the machine is tall enough that its body
+-- covers the north connection tile, so the pipe ends up drawn across the
+-- glowing drum. secondary_draw_orders pushes it behind the entity, which is
+-- exactly what assembling machine 2 and 3 do with their north connections.
+local PIPE_BEHIND_AT_NORTH = { north = -1 }
+
 lava_centrifuge.fluid_boxes = {
     {
         production_type = "input",
@@ -30,6 +99,7 @@ lava_centrifuge.fluid_boxes = {
         },
         pipe_picture = assembler2pipepictures(),
         pipe_covers = pipecoverspictures(),
+        secondary_draw_orders = PIPE_BEHIND_AT_NORTH,
         volume = 2000,
     },
     {
@@ -39,6 +109,7 @@ lava_centrifuge.fluid_boxes = {
         },
         pipe_picture = assembler2pipepictures(),
         pipe_covers = pipecoverspictures(),
+        secondary_draw_orders = PIPE_BEHIND_AT_NORTH,
         volume = 1000,
     },
     {
@@ -48,6 +119,7 @@ lava_centrifuge.fluid_boxes = {
         },
         pipe_picture = assembler2pipepictures(),
         pipe_covers = pipecoverspictures(),
+        secondary_draw_orders = PIPE_BEHIND_AT_NORTH,
         volume = 2000,
     },
 }

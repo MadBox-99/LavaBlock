@@ -1,7 +1,9 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.8
 Date: ????
-  Changes:
+  Graphics:
+    - The Lava Centrifuge now has its own animated model instead of reusing the vanilla centrifuge: a squat armoured vessel on a bolted plinth, with cooling fins, a rotor glowing molten orange behind the drum cage, and three counterweight arms turning on top. It casts its own shadow, spins while it is working and stands still when it is idle, turns to face the way you rotate it, and throws an orange glow onto the ground around it while it runs
+    - The Lava Centrifuge now has a matching icon, so it can finally be told apart from the vanilla centrifuge in the inventory, the crafting menu and Factoriopedia
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.7
 Date: 2026-09-12
