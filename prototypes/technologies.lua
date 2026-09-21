@@ -72,6 +72,21 @@ local enchanted_science_pack = require("prototypes.technologies.enchanted-scienc
 -- Lava Centrifuge technologies
 local lava_centrifuge_techs = require("prototypes.technologies.lava-centrifuge")
 
+-- Bio Garden technology
+local bio_garden_tech = require("prototypes.technologies.bio-garden")
+
+-- Oxygen technology
+local oxygen_processing_tech = require("prototypes.technologies.oxygen-processing")
+
+-- Blue algae: needs the air chain, so it follows the compressor line
+local nitrogen_fixation_tech = require("prototypes.technologies.nitrogen-fixation")
+
+-- Arboretum technology
+local arboretum_tech = require("prototypes.technologies.arboretum")
+
+-- Water Condenser technology
+local water_condenser_tech = require("prototypes.technologies.water-condenser")
+
 -- XP Lab technology
 local xp_lab = require("prototypes.technologies.xp-lab")
 
@@ -107,6 +122,11 @@ data:extend({
     lava_speed_module_3,
     lava_flying_robot_frame,
     enchanted_science_pack,
+    arboretum_tech,
+    bio_garden_tech,
+    oxygen_processing_tech,
+    nitrogen_fixation_tech,
+    water_condenser_tech,
     lava_centrifuge_techs[1],
     lava_centrifuge_techs[2],
     xp_lab,

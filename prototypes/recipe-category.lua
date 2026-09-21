@@ -21,6 +21,18 @@ data:extend({
     },
     {
         type = "recipe-category",
+        name = "water-condensing"
+    },
+    {
+        type = "recipe-category",
+        name = "arboretum"
+    },
+    {
+        type = "recipe-category",
+        name = "bio-garden"
+    },
+    {
+        type = "recipe-category",
         name = "lava-centrifuge",
     }
 })

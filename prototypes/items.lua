@@ -1,4 +1,5 @@
 local lava_mech_armor = require("prototypes.items.lava-mech-armor")
+local algae = require("prototypes.items.algae")
 
 data:extend({
     require("prototypes.items.foundation-catalyst"),
@@ -8,8 +9,15 @@ data:extend({
     require("prototypes.items.air-compressor"),
     require("prototypes.items.industrialised-chemical-plan"),
     require("prototypes.items.lava-centrifuge"),
+    require("prototypes.items.arboretum"),
+    require("prototypes.items.bio-garden"),
+    require("prototypes.items.water-condenser"),
     require("prototypes.items.xp-lab"),
     lava_mech_armor,
+    -- Bio garden harvest
+    algae[1],
+    algae[2],
+    algae[3],
 })
 
 -- Space Age only items

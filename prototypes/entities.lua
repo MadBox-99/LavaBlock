@@ -4,5 +4,8 @@ data:extend({
     require("prototypes.entity.air-compressor"),
     require("prototypes.entity.industrialised-chemical-plant"),
     require("prototypes.entity.lava-centrifuge"),
+    require("prototypes.entity.arboretum"),
+    require("prototypes.entity.bio-garden"),
+    require("prototypes.entity.water-condenser"),
     require("prototypes.entity.xp-lab"),
 })

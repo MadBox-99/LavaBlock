@@ -31,7 +31,11 @@ DIRECTION = arg('--direction', 'north')
 assert DIRECTION in DIRECTIONS, DIRECTION
 
 PX_PER_TILE = 64
-RES = 384                        # 6x6 tiles of room around the entity centre
+# Tiles of room around the entity centre. Six is enough for a 3x3 machine and
+# its shadow; a bigger footprint needs a bigger frame or the sun-side shadow
+# runs off the canvas and the sheet crops to a lie. A model script passes its
+# own default to run(); --frame-tiles overrides it.
+FRAME_TILES = float(arg('--frame-tiles', 0)) or None
 ELEV = 45.0                      # camera elevation above the ground plane
 
 # A camera tilted to ELEV squashes the ground plane by sin(ELEV), but base-game
@@ -42,6 +46,14 @@ ELEV = 45.0                      # camera elevation above the ground plane
 YSCALE = float(arg('--yscale', 1.0 / math.sin(math.radians(ELEV))))
 
 MATS = {}
+
+# The recipe-tinted layer. Factorio multiplies a working visualisation by the
+# recipe's own colour, so the same machine can show green, blue or red
+# contents without three sprite sheets. TINT holds the objects that layer is
+# made of; CLEAR holds glass and the like, which must neither appear in it nor
+# punch a hole in it, because they are already drawn in the entity sheet.
+TINT = []
+CLEAR = []
 
 
 # ---------------------------------------------------------------- materials
@@ -144,6 +156,38 @@ def box(sx, sy, sz, loc, rot=(0, 0, 0), m=None, name="b"):
     return o
 
 
+def bar(p1, p2, thickness, material):
+    """A square bar spanning two points - a rib, a brace, a run of pipe.
+
+    A box rotated by (0, pitch, yaw) sends its local +X to
+    (cos p cos y, cos p sin y, -sin p), so the pitch is negated.
+    """
+    d = (p2[0] - p1[0], p2[1] - p1[1], p2[2] - p1[2])
+    length = math.sqrt(sum(c * c for c in d))
+    mid = tuple((a + b) / 2 for a, b in zip(p1, p2))
+    yaw = math.atan2(d[1], d[0])
+    pitch = -math.asin(d[2] / length)
+    return box(length, thickness, thickness, mid, rot=(0, pitch, yaw),
+               m=material)
+
+
+def torus_at(loc, major, minor, material, rot=(0, 0, 0), segments=40):
+    bpy.ops.mesh.primitive_torus_add(location=loc, rotation=rot,
+                                     major_radius=major, minor_radius=minor,
+                                     major_segments=segments, minor_segments=8)
+    o = bpy.context.object
+    o.data.materials.append(material)
+    return o
+
+
+def cone_at(x, y, z, r1, r2, h, m, verts=24):
+    bpy.ops.mesh.primitive_cone_add(vertices=verts, radius1=r1, radius2=r2,
+                                    depth=h, location=(x, y, z + h / 2))
+    o = bpy.context.object
+    o.data.materials.append(m)
+    return o
+
+
 def ring_of(fn, count, radius, z, phase=0.0):
     out = []
     for i in range(count):
@@ -173,34 +217,164 @@ def finish(objs, width=0.012, segments=2):
 # ---------------------------------------------------------------- the model
 
 
-def assemble(static, spin, pivot=(0, 0, 0)):
+AXES = {'X': 0, 'Y': 1, 'Z': 2}
+
+
+class Spin:
+    """One independently turning assembly.
+
+    A machine is rarely one moving thing. Each Spin carries its own objects,
+    its own axis of rotation, and how far it turns over the whole sheet - so a
+    big slow fan and two small quick extractors can live in the same model and
+    still loop seamlessly, as long as each angle is one the parts are
+    symmetric under.
+
+    `axis` is 'X', 'Y' or 'Z' in entity space. Z is a fan lying flat; Y is a
+    wheel standing up and facing the camera.
+    """
+
+    def __init__(self, objs, pivot=(0, 0, 0), axis='Z', degrees=None):
+        assert axis in AXES, axis
+        self.objs = list(objs)
+        self.pivot = pivot
+        self.axis = axis
+        self.degrees = degrees        # None: take run()'s spin_degrees
+
+    def pose(self, empty, f, frames):
+        rot = [0.0, 0.0, 0.0]
+        rot[AXES[self.axis]] = math.radians(self.degrees) * f / frames
+        empty.rotation_euler = rot
+
+
+class Slide:
+    """One independently reciprocating assembly - a piston, a ram, a shuttle.
+
+    Not everything on a machine turns, and a part that only goes up and down
+    says "pump" in a way no amount of spinning does. Offset over the sheet is
+    amplitude*sin(2*pi*f/frames), which is back where it started on the last
+    frame, so the loop closes for the same reason a whole number of turns
+    does - and it eases at both ends of the stroke, the way a crank-driven
+    piston actually moves.
+
+    `phase` is in turns, so two rams can be given 0 and 0.5 to work against
+    each other.
+    """
+
+    def __init__(self, objs, axis='Z', amplitude=0.15, phase=0.0):
+        assert axis in AXES, axis
+        self.objs = list(objs)
+        self.pivot = (0, 0, 0)        # children keep their authored positions
+        self.axis = axis
+        self.amplitude = amplitude
+        self.phase = phase
+
+    def pose(self, empty, f, frames):
+        loc = [0.0, 0.0, 0.0]
+        loc[AXES[self.axis]] = self.amplitude * math.sin(
+            2 * math.pi * (f / frames + self.phase))
+        empty.location = loc
+
+
+class Grow:
+    """One assembly that fills up in place and then drains - a culture tube,
+    a hopper, a settling tank.
+
+    Growth is the one motion that does not loop by itself: a thing that gets
+    bigger every frame has to get back to nothing somehow. It does that by
+    draining over the tail of the sheet instead of snapping back, so the
+    curve is continuous at the seam and there is no pop. `hold` is the
+    fraction of the sheet spent filling; the rest is the drain.
+
+    `phase` is in turns. A ring of tubes given evenly spaced phases never all
+    drains at once, which is what makes a rack of them read as a process
+    rather than as one animation copied six times.
+
+    `low` keeps a sliver of substance at the bottom: a zero-scaled mesh
+    renders as a degenerate sliver rather than as nothing, and an empty tube
+    that is never quite empty also just looks better.
+    """
+
+    def __init__(self, objs, pivot=(0, 0, 0), axis='Z', phase=0.0,
+                 low=0.05, hold=0.85):
+        assert axis in AXES, axis
+        assert 0.0 < hold < 1.0, hold
+        self.objs = list(objs)
+        self.pivot = pivot            # scale about the base, not the centre
+        self.axis = axis
+        self.phase = phase
+        self.low = low
+        self.hold = hold
+
+    def pose(self, empty, f, frames):
+        t = (f / frames + self.phase) % 1.0
+        k = t / self.hold if t < self.hold else (1.0 - t) / (1.0 - self.hold)
+        sc = [1.0, 1.0, 1.0]
+        sc[AXES[self.axis]] = self.low + (1.0 - self.low) * max(0.0, min(1.0, k))
+        empty.scale = sc
+
+
+def _as_groups(spin, pivot, default_degrees):
+    """Accept either a flat list of objects (one group, the common case) or a
+    list of Spin/Slide groups."""
+    if spin and isinstance(spin[0], (Spin, Slide, Grow)):
+        groups = spin
+    else:
+        groups = [Spin(spin, pivot=pivot)]
+    for g in groups:
+        if isinstance(g, Spin) and g.degrees is None:
+            g.degrees = default_degrees
+    return groups
+
+
+def assemble(static, spin, pivot=(0, 0, 0), degrees=120):
     """Wire a model's objects into the hierarchy the renderer expects.
 
-    PIVOT  - the moving parts; run() turns this once per frame. It sits at
-             `pivot`, which must be the moving assembly's own axis: a part
-             modelled away from the origin would otherwise orbit the entity
-             centre instead of spinning in place.
+    SPIN.n - one empty per moving assembly; run() turns each once per frame.
+             Each sits at its group's own axis: a part modelled away from the
+             origin would otherwise orbit the entity centre instead of
+             spinning in place.
     TURN   - the entity's facing. It sits UNDER the Y pre-stretch, so the
              machine turns in plan; rotating above ROOT would shear it.
     ROOT   - the Y pre-stretch that squares up the footprint.
     """
-    finish(static + spin)
+    groups = _as_groups(spin, pivot, degrees)
+    moving = [o for g in groups for o in g.objs]
 
-    bpy.ops.object.empty_add(location=pivot)
-    piv = bpy.context.object
-    piv.name = "PIVOT"
-    # Cancel the pivot's own translation, so the children keep the world
-    # positions build() gave them and only the rotation centre moves.
-    inv = Matrix.Translation(-Vector(pivot))
-    for o in spin:
-        o.parent = piv
-        o.matrix_parent_inverse = inv
+    # A model that builds an object but forgets to hand it back is the easiest
+    # mistake to make here and the hardest to see: it still renders, but it
+    # never gets parented, so it keeps its own position while the rest of the
+    # machine is turned to face a direction and pre-stretched along Y - and in
+    # the tint pass it is never made a holdout either. Catch it now rather
+    # than in a sheet three facings later.
+    known = set(id(o) for o in static + moving)
+    stray = [o.name for o in bpy.data.objects
+             if o.type == 'MESH' and id(o) not in known]
+    assert not stray, "objects built but not returned by build(): %s" % stray
+    for name, group in (('TINT', TINT), ('CLEAR', CLEAR)):
+        loose = [o.name for o in group if id(o) not in known]
+        assert not loose, "%s objects missing from static/moving: %s" % (
+            name, loose)
+
+    finish(static + moving)
+
+    pivots = []
+    for i, g in enumerate(groups):
+        bpy.ops.object.empty_add(location=g.pivot)
+        piv = bpy.context.object
+        piv.name = "SPIN.%d" % i
+        # Cancel the pivot's own translation, so the children keep the world
+        # positions build() gave them and only the rotation centre moves.
+        inv = Matrix.Translation(-Vector(g.pivot))
+        for o in g.objs:
+            o.parent = piv
+            o.matrix_parent_inverse = inv
+        pivots.append((piv, g))
 
     bpy.ops.object.empty_add(location=(0, 0, 0))
     turn = bpy.context.object
     turn.name = "TURN"
     turn.rotation_euler = (0, 0, -math.radians(DIRECTIONS[DIRECTION]))
-    for o in static + [piv]:
+    for o in static + [p for p, _ in pivots]:
         o.parent = turn
         o.matrix_parent_inverse = Matrix.Identity(4)
 
@@ -210,16 +384,16 @@ def assemble(static, spin, pivot=(0, 0, 0)):
     root.scale = (1.0, YSCALE, 1.0)
     turn.parent = root
     turn.matrix_parent_inverse = Matrix.Identity(4)
-    return piv, static + spin
+    return pivots, static + moving
 
 
-def setup_scene(objs):
+def setup_scene(objs, frame_tiles):
     sc = bpy.context.scene
 
     # The icon is the same model under the same camera, just framed tight and
     # rendered large so it can be downsampled to a crisp 64 px item icon.
-    res = 512 if PASS == 'icon' else RES
-    tiles_across = 4.3 if PASS == 'icon' else RES / PX_PER_TILE
+    res = 512 if PASS == 'icon' else int(round(frame_tiles * PX_PER_TILE))
+    tiles_across = 4.3 if PASS == 'icon' else frame_tiles
 
     cam_d = bpy.data.cameras.new("cam")
     cam_d.type = 'ORTHO'
@@ -230,6 +404,27 @@ def setup_scene(objs):
     rx = math.radians(90 - ELEV)
     cam.rotation_euler = (rx, 0, 0)
     cam.location = (0, -math.sin(rx) * 40, math.cos(rx) * 40)
+
+    if PASS == 'icon':
+        # Centre and fit the icon frame on the model. The world sprite must
+        # stay anchored on the entity origin - Factorio needs a stable origin
+        # to line the sheet up with the tile - but an icon only has to show the
+        # whole machine, and a tall one runs straight out of the top of a frame
+        # centred on the ground.
+        bpy.context.view_layer.update()
+        up = Vector((0, math.cos(rx), math.sin(rx)))     # screen up, in world
+        right = Vector((1, 0, 0))
+        us, rs = [], []
+        for o in objs:
+            if o.type != 'MESH':
+                continue
+            for c in o.bound_box:
+                w = o.matrix_world @ Vector(c)
+                us.append(w.dot(up))
+                rs.append(w.dot(right))
+        cu, cr = (min(us) + max(us)) / 2, (min(rs) + max(rs)) / 2
+        cam_d.ortho_scale = max(max(us) - min(us), max(rs) - min(rs)) * 1.06
+        cam.location = Vector(cam.location) + up * cu + right * cr
 
     # key sun from WNW ~50 deg up: shadow lands right and slightly down,
     # matching the base-game shadow shift offsets
@@ -242,7 +437,10 @@ def setup_scene(objs):
     so.rotation_euler = d.to_track_quat('-Z', 'Y').to_euler()
 
     fl = bpy.data.lights.new("fill", 'SUN')
-    fl.energy = 1.1
+    # An icon is read at 64 px with no ground and no neighbours to give it
+    # context, so shadowed faces that are merely moody on a world sprite just
+    # go black and take the silhouette with them. Fill harder for the icon.
+    fl.energy = 2.8 if PASS == 'icon' else 1.1
     fo = bpy.data.objects.new("fill", fl)
     sc.collection.objects.link(fo)
     fo.rotation_euler = Vector((-0.6, 0.7, -0.9)).normalized() \
@@ -252,7 +450,7 @@ def setup_scene(objs):
     sc.world = w
     w.use_nodes = True
     w.node_tree.nodes['Background'].inputs[0].default_value = (0.06, 0.07, 0.09, 1)
-    w.node_tree.nodes['Background'].inputs[1].default_value = 0.45
+    w.node_tree.nodes['Background'].inputs[1].default_value = 0.9 if PASS == 'icon' else 0.45
 
     sc.render.engine = 'CYCLES'
     prefs = bpy.context.preferences.addons['cycles'].preferences
@@ -276,6 +474,28 @@ def setup_scene(objs):
     sc.render.image_settings.color_mode = 'RGBA'
     sc.view_settings.view_transform = 'Standard'     # no AgX washout on the glow
 
+    if PASS == 'tint':
+        # Everything that is not the tinted contents becomes a holdout: it
+        # stays in the scene, so the contents are still lit and shadowed the
+        # way they are in the entity sheet, but it renders as a hole. That is
+        # what makes the layer safe to draw on top - a rib crossing a tube
+        # cuts the tube out of this sheet exactly where it covers it.
+        keep, see = set(o.name for o in TINT), set(o.name for o in CLEAR)
+        for o in objs:
+            if o.name in keep:
+                continue
+            if o.name in see:
+                o.visible_camera = False
+            else:
+                o.is_holdout = True
+
+    elif PASS in ('entity', 'shadow'):
+        # The tinted contents belong to their own sheet only. Drawing them in
+        # the entity sheet as well would paint them twice, once untinted.
+        # The icon keeps them: an item icon of six empty tubes says nothing.
+        for o in TINT:
+            o.visible_camera = False
+
     if PASS == 'shadow':
         bpy.ops.mesh.primitive_plane_add(size=40, location=(0, 0, 0))
         bpy.context.object.is_shadow_catcher = True
@@ -289,18 +509,19 @@ def setup_scene(objs):
 
 
 # ---------------------------------------------------------------- render
-def run(build, spin_degrees=120, pivot=(0, 0, 0)):
+def run(build, spin_degrees=120, pivot=(0, 0, 0), frame_tiles=6):
     """Entry point for a model script.
 
-    `build` returns (static_objects, moving_objects). The moving ones are
-    turned by `spin_degrees` about `pivot` over the whole frame range; choose
-    an angle they are symmetric under so the loop closes seamlessly - 120 for
-    three arms. `pivot` defaults to the origin, which is right only when the
-    moving assembly is modelled there.
+    `build` returns (static_objects, moving). `moving` is either a flat list of
+    objects, all turned by `spin_degrees` about `pivot`, or a list of Spin and
+    Slide groups, each with its own axis and motion. Choose turn angles the
+    parts are symmetric under so the loop closes seamlessly - 120 for three
+    arms, 60 for a six-blade fan; a Slide closes on its own. `pivot` defaults
+    to the origin, which is right only when the moving assembly is modelled
+    there.
     """
-    spin = math.radians(spin_degrees)
-    piv, objs = assemble(*build(), pivot=pivot)
-    sc = setup_scene(objs)
+    pivots, objs = assemble(*build(), pivot=pivot, degrees=spin_degrees)
+    sc = setup_scene(objs, FRAME_TILES or frame_tiles)
     os.makedirs(OUTDIR, exist_ok=True)
     if PASS == 'icon':
         frames = [0]
@@ -309,7 +530,8 @@ def run(build, spin_degrees=120, pivot=(0, 0, 0)):
     else:
         frames = range(START, FRAMES)
     for f in frames:
-        piv.rotation_euler = (0, 0, spin * f / FRAMES)
+        for piv, g in pivots:
+            g.pose(piv, f, FRAMES)
         sc.render.filepath = os.path.join(OUTDIR, "%s_%03d.png" % (PASS, f))
         bpy.ops.render.render(write_still=True)
         print("FRAME", f, flush=True)

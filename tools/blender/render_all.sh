@@ -26,7 +26,9 @@ FACINGS="${5:-all}"
 [ "$FACINGS" = "all" ] && FACINGS="north east south west"
 
 for dir in $FACINGS; do
-  for spec in "entity 160" "shadow 64"; do
+  # The tint pass is mostly holdout, so it is cheap; it still wants enough
+  # samples not to grain up the one thing the player is looking at.
+  for spec in "entity 160" "shadow 64" "tint 128"; do
     set -- $spec
     pass="$1"; samples="$2"
     out="$SP/frames/$pass/$ENTITY-$pass-$dir"
@@ -49,6 +51,11 @@ done
 mkdir -p "$SP/sheets"
 "$SPRITTER" spritesheet -r -l -t 64        "$SP/frames/entity" "$SP/sheets"
 "$SPRITTER" spritesheet -r -l -t 64 -a 16  "$SP/frames/shadow" "$SP/sheets"
+# A model with no recipe-tinted contents renders an empty tint pass; skip it
+# rather than handing spritter a folder of blank frames.
+if [ -n "$(find "$SP/frames/tint" -name '*.png' -size +1k 2>/dev/null | head -1)" ]; then
+  "$SPRITTER" spritesheet -r -l -t 64      "$SP/frames/tint" "$SP/sheets"
+fi
 echo
 echo "sheets in $SP/sheets - copy the .png AND .lua files into graphics/entity/$ENTITY/"
 du -sh "$SP/sheets"

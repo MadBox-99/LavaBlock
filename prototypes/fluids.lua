@@ -3,6 +3,7 @@ data:extend({
     require("prototypes.fluids.gases.argon"),
     require("prototypes.fluids.gases.air"),
     require("prototypes.fluids.gases.compressed-air"),
+    require("prototypes.fluids.gases.oxygen"),
     require("prototypes.fluids.gases.chlorine"),
     require("prototypes.fluids.purified-lava"),
 })

@@ -1,6 +1,15 @@
 -- Disable base recipes
 data.raw.recipe['burner-mining-drill'].enabled = false
 
+-- The arboretum closes its own loop, so Space Age's seed recipe has to be
+-- runnable in it. additional_categories is additive: wood-processing keeps
+-- working everywhere it already worked.
+local wp = data.raw.recipe['wood-processing']
+if wp then
+    wp.additional_categories = wp.additional_categories or {}
+    table.insert(wp.additional_categories, 'arboretum')
+end
+
 -- Air recipes
 local air_compressor = require("prototypes.recipes.air.air-compressor")
 local air_electrostatic_adsorption = require("prototypes.recipes.air.air-electrostatic-adsorption")
@@ -51,6 +60,23 @@ local circuit_science_pack = require("prototypes.recipes.circuit-science-pack")
 
 -- XP Lab recipe
 local xp_lab = require("prototypes.recipes.xp-lab")
+
+-- Bio Garden recipes
+local bio_garden = require("prototypes.recipes.bio-garden")
+local algae_cultivation = require("prototypes.recipes.algae.algae-cultivation")
+local algae_processing = require("prototypes.recipes.algae.algae-processing")
+
+-- Oxygen recipes
+local water_electrolysis = require("prototypes.recipes.gases.water-electrolysis")
+local oxygen_enriched = require("prototypes.recipes.smelting.oxygen-enriched")
+
+-- Arboretum recipes
+local arboretum = require("prototypes.recipes.arboretum")
+local tree_cultivation = require("prototypes.recipes.wood.tree-cultivation")
+
+-- Water Condenser recipes
+local water_condenser = require("prototypes.recipes.water-condenser")
+local steam_condensing = require("prototypes.recipes.water.steam-condensing")
 
 -- Lava Centrifuge recipes
 local lava_centrifuge = require("prototypes.recipes.lava-centrifuge")
@@ -131,6 +157,24 @@ data:extend({
     circuit_science_pack,
     -- XP Lab recipe
     xp_lab,
+    -- Bio Garden recipes
+    bio_garden,
+    algae_cultivation[1],
+    algae_cultivation[2],
+    algae_cultivation[3],
+    algae_processing[1],
+    algae_processing[2],
+    algae_processing[3],
+    -- Oxygen recipes
+    water_electrolysis,
+    oxygen_enriched[1],
+    oxygen_enriched[2],
+    -- Arboretum recipes
+    arboretum,
+    tree_cultivation,
+    -- Water Condenser recipes
+    water_condenser,
+    steam_condensing,
     -- Lava Centrifuge recipes
     lava_centrifuge,
     lava_purification,

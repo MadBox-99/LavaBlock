@@ -31,13 +31,25 @@ this is the `ROOT` empty, which everything is parented to; the rotor spins
 | | |
 |---|---|
 | 1 Blender unit | 1 Factorio tile |
-| Camera | orthographic, `rotation_euler.x = 90 - 45`, `ortho_scale = 6` |
-| Render | 384 x 384, so 6 tiles across = **64 px per tile** |
+| Camera | orthographic, `rotation_euler.x = 90 - 45`, `ortho_scale` = frame tiles |
+| Render | frame tiles x 64 px square, so always **64 px per tile** |
 | Sprite `scale` | `32 / 64 = 0.5` |
 | Model centre | world origin, which lands at the canvas centre |
 
 `view_transform` is set to `Standard`; Blender's default AgX washes the lava
 emission out to white.
+
+### Frame size
+
+Six tiles fits a 3x3 machine and its shadow, and that is the default. A bigger
+footprint needs a bigger frame: the sun throws the shadow up and to the right
+by roughly 0.56 tiles of x and 0.62 tiles of y per tile of height, so a 5x5
+building 1.9 tiles tall reaches nearly four tiles from the origin on the far
+side. Run off the edge and the sheet still packs, it just crops to a lie.
+
+A model script passes its own default (`run(..., frame_tiles=9)` for the 5x5
+arboretum) and `--frame-tiles N` overrides it. Nothing else changes: the pixels
+per tile, and so the sprite `scale`, stay the same at any frame size.
 
 ## Passes
 
@@ -48,6 +60,8 @@ emission out to white.
   occlusion halo, which is not what a Factorio shadow sprite is. The catcher
   already writes black RGB with the shadow in alpha, so no conversion is needed
   beyond clipping sampling noise below alpha 16.
+- **tint** — only the contents that Factorio recolours per recipe, on their own
+  film. See *Recipe-tinted contents* below.
 
 The sun points west-north-west at roughly 50 degrees up, so the shadow falls to
 the right and slightly down, matching the base-game shadow `shift` offsets.
@@ -105,9 +119,8 @@ turns, which is what you want - the shadow must keep falling the same way.
 ## The item icon
 
 `--pass icon` reuses the same model, camera and Y stretch, so the icon and the
-in-world machine read as the same object. It only frames tighter
-(`ortho_scale = 4.3`), pushes the key light up a little because an icon is read
-at 64 px, and renders one frame at 512 px:
+in-world machine read as the same object. It pushes the key light up a little
+because an icon is read at 64 px, and renders one frame at 512 px:
 
 ```sh
 blender --background --factory-startup --python tools/blender/lava_centrifuge.py -- \
@@ -120,15 +133,35 @@ python tools/blender/make_icon.py /tmp/icon/icon_000.png \
 which keeps the 64 px result crisp. Factorio 2.0 generates icon mipmaps itself,
 so there is no need for the packed mipmap strip older base-game icons use.
 
+Unlike the entity and shadow passes, the icon frame is **not** anchored on the
+entity origin: it is centred and fitted to the model's own bounding box. The
+world sprite has to keep a fixed origin so the sheet lines up with the tile,
+but that frame is centred on the ground, and a tall machine - the water
+condenser's cooling columns reach 1.6 tiles - runs straight out of the top of
+it. Nothing else about the two passes differs.
+
 ## Fluid connections
 
-If the model has its own pipe stubs, drop `pipe_picture` and `pipe_covers` from
-the fluid boxes. Factorio draws them on top of the entity animation, so on a
-tall machine the north one ends up lying across the middle of the body. The
-base game works around this with `secondary_draw_orders = { north = -1 }`, but
-with modelled stubs the graphics are redundant anyway, so removing them is the
-simpler fix. `air-compressor.lua` already had them commented out for the same
-reason.
+Pick one of two arrangements and commit to it. Mixing them is what goes wrong.
+
+**Modelled stubs.** Drop `pipe_picture` and `pipe_covers`, and model the port
+yourself all the way out. This is what every machine in the mod does, and it
+is the one that looks right here: the vanilla cover is a small brass disc
+drawn flat on the ground, which reads as a spare part stuck on a machine whose
+ports are modelled in perspective.
+
+**Vanilla graphics.** Keep both, and stop the model at the body. They are
+one-tile sprites drawn centred on the connection's own `position` tile - for a
+3x3 machine that is the machine's own edge tile, not the neighbour's - so the
+model must not reach past it. Add `secondary_draw_orders = { north = -1 }` or
+the north cover lies across the middle of a tall machine.
+
+The failure mode is doing both at once: a stub reaching to 1.46 with a cover
+drawn at 1.0 leaves a brass cap floating half a tile up the body, nowhere near
+the port it is supposed to cap. Worth checking by compositing
+`base/graphics/entity/pipe-covers/pipe-cover-*.png` (128 px at `scale = 0.5`,
+so 64 px, no shift) onto a test render at the connection tile before
+committing to a sequence.
 
 Size the stubs against the vanilla pipe, or they will not read as connected:
 
@@ -162,9 +195,112 @@ Quick check without watching the animation: render two frames and take the
 bounding box of the pixels that differ. It should cover the moving part and
 nothing else.
 
+### Several moving parts
+
+`build()` can return a list of `Spin` groups instead of a flat list of
+objects. Each group has its own objects, its own `pivot`, its own `axis`
+(`'X'`, `'Y'` or `'Z'` in entity space) and its own `degrees` over the sheet:
+
+```python
+spin.append(Spin(fan, pivot=(FX, FY, 0), degrees=60))       # flat, 6 blades
+spin.append(Spin(ext, pivot=(cx, cy, 0), degrees=-60))      # the other way
+spin.append(Slide(ram, axis='Z', amplitude=0.13))           # a piston
+```
+
+The loop closes when **every** `Spin` angle is a symmetry of its own part, so
+they all come back together on the last frame. Negative angles are fine and
+are the cheap way to make two identical assemblies not look copy-pasted. Axis
+`'Y'` puts a wheel face-on to the camera; `'Z'` is a fan lying flat.
+
+`Slide` reciprocates instead of turning: the offset is
+`amplitude*sin(2*pi*f/frames)`, so it closes on its own whatever the frame
+count, and it eases at both ends of the stroke the way a crank-driven ram
+does. `phase` is in turns, so two rams can be given 0 and 0.5.
+
+`Grow` scales a group along one axis about its `pivot`, which is how a tank
+fills or a culture tube grows. Growth is the one motion that does not loop by
+itself - a thing that gets bigger every frame has to get back to nothing - so
+it fills over `hold` of the sheet and **drains** over the rest instead of
+snapping back. That keeps the curve continuous at the seam, so there is no
+pop. Put the pivot at the base of the thing, not its centre, or it grows in
+both directions.
+
+A ring of `Grow` groups given evenly spaced `phase` values is what makes a
+rack read as a process rather than as one animation copied six times: there is
+always one nearly full and one nearly empty, and they never all drain at once.
+Note that staggered phases and a turntable do not combine - a rotation that
+moves each pod one slot along forces every pod to the same phase, so pick one
+or the other.
+
+One turning part on a large machine reads as a still picture with a detail
+stuck to it. Give a big machine two or three, at different rates - and if
+everything on it spins, one part that does not is worth more than another fan.
+A moving part still has to have a job: a wheel turning on the side of a
+condenser is decoration, a ram pumping condensate is the machine working.
+
+### Frame count and symmetry
+
+Spin the parts by **one** symmetry step over the whole sheet, not several. The
+air compressor turns two blade pitches (90 degrees on an 8-blade fan) across 32
+frames, so frame 16 is pixel-identical to frame 0 and half the sheet is wasted.
+The water condenser turns one pitch (60 degrees on a 6-blade fan) across 16
+frames: every frame is unique and the sheet is half the size for the same
+motion. The per-frame angle, and so the apparent speed, is what `frame_count`
+and `animation_speed` decide together - a longer sheet is not a faster fan.
+
+### Clearance around moving parts
+
+Anything static that overlaps the swept volume reads as broken geometry, and it
+is much harder to spot in a still than in motion. Work the sweep out in numbers
+rather than by eye: a blade of length `L` pitched by `p` about its own axis
+reaches `z_hub + (L/2)*sin(p) + (t/2)*cos(p)`, plus the bevel width. The
+condenser keeps those two figures as constants next to the guard height for
+exactly this reason.
+
 `graphics_set` deliberately has no `idle_animation`: Factorio rejects an idle
 animation whose frame count differs from `animation`, and with `animation`
 alone the machine simply freezes on its current frame when it stops crafting.
+
+### Recipe-tinted contents
+
+A machine that makes several things can show which one it is making, the way
+the vanilla chemical plant does: put the liquid, the culture, the glowing
+charge on its own sheet and hang it off `graphics_set.working_visualisations`
+with `apply_recipe_tint = "primary"`. Factorio multiplies that sheet by the
+recipe's `crafting_machine_tint`, so one sheet covers every recipe, and being
+a working visualisation it is drawn only while the machine runs - an idle
+machine correctly shows empty glass.
+
+Two things have to be true of the sheet.
+
+**It must be near-neutral.** The tint is a multiply, so any hue left in the
+render fights it: a green culture rendered green goes black under a red
+recipe. Render the contents at around 0.72 grey and let the tint supply all
+the colour. The icon pass is not tinted, so give the same material its real
+colour there:
+
+```python
+m['algae'] = mat("algae", (0.72, 0.72, 0.705) if fr.PASS == 'tint'
+                 else (0.095, 0.38, 0.13), 0.33, 0.0)
+```
+
+**It must be occluded correctly.** A working visualisation is drawn *over* the
+entity sheet, so anything of the machine that stands in front of the contents
+has to cut itself out of it. The `tint` pass does that with Cycles holdouts:
+objects in `fr.TINT` render normally, objects in `fr.CLEAR` (glass, which is
+already drawn in the entity sheet and must not appear twice) are hidden from
+the camera, and **everything else becomes a holdout** - still in the scene, so
+the contents are lit and shadowed exactly as they are in the entity sheet, but
+rendering as a hole. A dome rib crossing a tube then cuts the tube out of the
+tint sheet precisely where it covers it.
+
+The same objects are hidden from the entity and shadow passes, or they would
+be painted twice, once untinted. The icon keeps them: an item icon of six
+empty tubes says nothing about the machine.
+
+A dark recess modelled behind each window pays for itself - it is in the
+entity sheet, so an idle machine reads as a dark porthole rather than as a
+hole in the shell.
 
 ## Notes
 
