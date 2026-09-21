@@ -75,4 +75,61 @@ function utils.remove_pipe_covers(entity)
     return entity
 end
 
+-- Chimney smoke for a crafting machine, as working visualisations.
+--
+-- Not the `smoke` field: that belongs to generators, boilers and reactors,
+-- and an assembling machine silently ignores it - the data stage loads
+-- cleanly and nothing ever appears. Not baked into the entity sheet either,
+-- or it would show on an idle machine and have to share the sheet's frame
+-- count. A working visualisation is drawn only while the machine crafts.
+--
+-- Three puffs up the same line, each larger, fainter and slower than the one
+-- below it. One puff on its own just pulses in place, because a working
+-- visualisation cannot move; three at increasing heights read as a plume
+-- rising and thinning out. Their speeds are deliberately not multiples of
+-- each other, so they drift apart instead of pulsing in unison.
+--
+-- @param stack table - { north = {x, y}, east = ..., south = ..., west = ... }
+--                      the top of the machine in tiles from its centre.
+--                      Measure it off the finished sheet rather than working
+--                      it out from the camera angle: the tallest point is
+--                      rarely over the entity centre, so the vertical factor
+--                      differs per model.
+-- @return table - working_visualisations entries, ready to append
+function utils.stack_smoke(stack)
+    local steps = {
+        { rise = 0.00, scale = 0.42, alpha = 0.40, speed = 0.150 },
+        { rise = 0.38, scale = 0.58, alpha = 0.29, speed = 0.113 },
+        { rise = 0.74, scale = 0.76, alpha = 0.18, speed = 0.087 },
+    }
+    local out = {}
+    for _, s in pairs(steps) do
+        local v = {
+            animation = {
+                filename = "__base__/graphics/entity/smoke-fast/smoke-fast.png",
+                priority = "high",
+                width = 50,
+                height = 50,
+                frame_count = 16,
+                animation_speed = s.speed,
+                scale = s.scale,
+                tint = { r = 0.60, g = 0.58, b = 0.56, a = s.alpha },
+            },
+            -- Puffs at its own rate. Without this the smoke speeds up with
+            -- the machine, so a beaconed plant looks like it is on fire.
+            constant_speed = true,
+            fadeout = true,
+            render_layer = "building-smoke",
+        }
+        for _, dir in pairs({ "north", "east", "south", "west" }) do
+            v[dir .. "_position"] = {
+                stack[dir][1],
+                stack[dir][2] - s.rise,
+            }
+        end
+        table.insert(out, v)
+    end
+    return out
+end
+
 return utils

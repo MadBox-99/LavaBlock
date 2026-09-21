@@ -13,7 +13,16 @@ import math                                                   # noqa: E402
 import bpy                                                    # noqa: E402
 import factorio_render as fr                                  # noqa: E402
 from factorio_render import (build_materials, cyl, cyl_at,    # noqa: E402
-                             cone, box, ring_of, MATS)
+                             cone, box, ring_of, perforated_drum, MATS)
+
+SPIN_DEGREES = 120          # three counterweight arms, 120 deg apart
+BASKET_HOLES = 24           # holes round each row of the rotor basket
+# The basket's pattern repeats every 360/BASKET_HOLES degrees. If the sheet
+# does not turn it by a whole number of those, frame 0 and frame 32 show the
+# holes in different places and the loop jumps once a revolution.
+assert (SPIN_DEGREES * BASKET_HOLES) % 360 == 0, \
+    "the basket hole pattern does not close over the sheet"
+
 
 def build():
     bpy.ops.wm.read_factory_settings(use_empty=True)
@@ -50,10 +59,18 @@ def build():
         12, 0.825, 1.395)
 
     # --- rotor (animated) ------------------------------------------------
+    # A drilled basket over the glowing core, not a ring of nine flat bars.
+    # At 64 px a tile the gaps between those bars closed up and the rotor
+    # read as a plain dark tube with a hot edge; through a perforated wall
+    # the glow comes out as a grid of points that is unmistakably turning.
+    #
+    # Outer radius stays inside the static cage bars, whose inner faces sit
+    # at 0.825 - 0.085/2 = 0.782.
     spin.append(cyl(0.68, 0.95, 0.90, m=m['lava'], name="rotorCore"))
-    spin += ring_of(
-        lambda x, y, a, z: box(0.10, 0.055, 0.88, (x, y, z), rot=(0, 0, a), m=m['dark']),
-        9, 0.68, 1.38)
+    assert 0.755 + 0.005 < 0.825 - 0.085 / 2, "rotor basket fouls the cage bars"
+    spin.append(perforated_drum(0, 0, 1.37, 0.755, 0.05, 0.90, m['iron'],
+                                rows=6, per_row=BASKET_HOLES, hole_r=0.045,
+                                name="basket"))
     spin.append(cyl(0.72, 0.05, 0.88, verts=32, m=m['iron'], name="rotorLip"))
 
     # --- top cap + spindle (flat, so it doesn't swallow the drum) --------
@@ -101,4 +118,4 @@ def build():
     return static, spin
 
 
-fr.run(build, spin_degrees=120)   # three arms 120 deg apart -> seamless loop
+fr.run(build, spin_degrees=SPIN_DEGREES)   # arms and basket both close

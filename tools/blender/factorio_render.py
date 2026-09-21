@@ -180,6 +180,75 @@ def torus_at(loc, major, minor, material, rot=(0, 0, 0), segments=40):
     return o
 
 
+def perforated_drum(x, y, z, r_out, wall, h, m, rows=6, per_row=24,
+                    hole_r=0.045, stagger=True, verts=48, name="drum"):
+    """A thin-walled cylinder drilled with a grid of round holes.
+
+    Standing in front of something lit - a glowing rotor, a culture, a flame
+    - the holes are what make it read as a screen rather than as a painted
+    tube. A ring of separate bars does not: at 64 px a tile the gaps between
+    bars close up and it goes back to being a tube.
+
+    The pattern repeats every 360/per_row degrees, and a staggered row is
+    offset by half of one step, so every row shares that same symmetry. A
+    Spin over the sheet must therefore turn the drum by a whole number of
+    steps or the loop jumps - assert it at the call site, the way the fan
+    blades do.
+    """
+    bpy.ops.mesh.primitive_cylinder_add(vertices=verts, radius=r_out,
+                                        depth=h, location=(x, y, z))
+    shell = bpy.context.object
+    shell.name = name
+    shell.data.materials.append(m)
+
+    # Bore and holes are two separate booleans on purpose. Joined into one
+    # cutter they would overlap each other, and the exact solver is much
+    # happier subtracting two clean meshes than one self-intersecting one.
+    bpy.ops.mesh.primitive_cylinder_add(vertices=verts, radius=r_out - wall,
+                                        depth=h + 0.02, location=(x, y, z))
+    bore = bpy.context.object
+
+    step = 2 * math.pi / per_row
+    holes = []
+    for i in range(rows):
+        cz = z - h / 2 + h * (i + 0.5) / rows
+        off = step / 2 if (stagger and i % 2) else 0.0
+        for k in range(per_row):
+            a = k * step + off
+            bpy.ops.mesh.primitive_cylinder_add(
+                vertices=12, radius=hole_r, depth=wall * 4,
+                location=(x + (r_out - wall / 2) * math.cos(a),
+                          y + (r_out - wall / 2) * math.sin(a), cz),
+                rotation=(0, math.pi / 2, a))
+            holes.append(bpy.context.object)
+
+    # One join and one solve. A modifier per hole would be a hundred and
+    # fifty boolean solves every time build() runs, and it runs once per
+    # facing per pass.
+    bpy.ops.object.select_all(action='DESELECT')
+    for o in holes:
+        o.select_set(True)
+    bpy.context.view_layer.objects.active = holes[0]
+    bpy.ops.object.join()
+    drill = bpy.context.object
+
+    for cutter in (bore, drill):
+        mod = shell.modifiers.new("cut", 'BOOLEAN')
+        mod.operation = 'DIFFERENCE'
+        mod.object = cutter
+        bpy.context.view_layer.objects.active = shell
+        bpy.ops.object.modifier_apply(modifier=mod.name)
+
+    # Delete the cutters outright. assemble() asserts that every mesh in the
+    # scene came back from build(), and a cutter left behind would trip it -
+    # which is exactly what that assert is there for.
+    for cutter in (bore, drill):
+        mesh = cutter.data
+        bpy.data.objects.remove(cutter, do_unlink=True)
+        bpy.data.meshes.remove(mesh)
+    return shell
+
+
 def cone_at(x, y, z, r1, r2, h, m, verts=24):
     bpy.ops.mesh.primitive_cone_add(vertices=verts, radius1=r1, radius2=r2,
                                     depth=h, location=(x, y, z + h / 2))

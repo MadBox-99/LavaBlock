@@ -1,3 +1,4 @@
+local utils = require("lib.utils")
 require("__core__.lualib.util")
 require("__base__.prototypes.entity.pipecovers")
 require("__base__.prototypes.entity.assemblerpipes")
@@ -79,6 +80,18 @@ lava_centrifuge.graphics_set = {
         },
     },
 }
+
+-- Smoke off the spindle. The positions are the topmost opaque pixel of each
+-- facing's own sheet, measured rather than calculated; the spindle is over
+-- the centre, so they barely move as the machine turns.
+for _, v in pairs(utils.stack_smoke({
+    north = { -0.05, -2.28 },
+    east = { 0.00, -2.25 },
+    south = { 0.03, -2.28 },
+    west = { -0.01, -2.36 },
+})) do
+    table.insert(lava_centrifuge.graphics_set.working_visualisations, v)
+end
 
 -- Energy and performance settings
 lava_centrifuge.energy_usage = "500kW"

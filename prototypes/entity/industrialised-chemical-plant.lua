@@ -77,6 +77,19 @@ industrialised_chemical_plant.graphics_set = {
     },
 }
 
+-- Smoke off the tallest column. The positions are the topmost opaque pixel
+-- of each facing's own sheet, measured rather than calculated; the column is
+-- well off centre, so the stack swings right across the sprite as the plant
+-- is turned.
+for _, v in pairs(utils.stack_smoke({
+    north = { -0.59, -2.70 },
+    east = { 0.61, -2.67 },
+    south = { 0.02, -2.02 },
+    west = { -0.36, -2.36 },
+})) do
+    table.insert(industrialised_chemical_plant.graphics_set.working_visualisations, v)
+end
+
 -- The model carries its own port stubs; a one-tile cover sprite cannot meet a
 -- stub that reaches past that tile. See docs/blender-renders.md.
 utils.remove_pipe_covers(industrialised_chemical_plant)

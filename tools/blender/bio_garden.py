@@ -52,6 +52,11 @@ RAKE_ARMS = 2
 RAKE_SPIN = 360 / RAKE_ARMS     # a bridge, so half a turn closes it
 RAKE_Z = 0.74
 RAKE_REACH = PAN_R * 0.95       # the bridge stops just short of the pan rim
+
+POOL_R = 0.36                   # the recipe-tinted mound at the feedwell
+POOL_LOBES = 6
+POOL_SPIN = 360 / POOL_LOBES    # one lobe per sheet, so the swirl closes
+assert POOL_R + 0.08 < RAKE_REACH, "the pool reaches past the rake bridge"
 assert RAKE_Z + 0.10 < dome_z(RAKE_REACH), "rake bridge hits the dome"
 
 # The hopper and the press both sit outside the glass, on the near corners.
@@ -187,9 +192,22 @@ def build():
     # whatever base grey it was given, and the machine wore a sheet of
     # poster green. A cone this size shades across itself and reads as wet
     # pulp coming up the feedwell.
-    pool = cone_at(0, 0, PAN_Z + 0.105, 0.36, 0.11, 0.08, m['pulp'])
-    add(pool)
-    fr.TINT.append(pool)
+    # The mound, and a ring of lumps riding just under its surface, turning
+    # together. A real fluid solve cannot be made to close over 16 frames -
+    # a simulation is a transient, so its last frame never matches its
+    # first - but a lobed surface rotating by exactly one lobe closes by
+    # construction, and at this size that is what stirred slurry looks like.
+    pool = [cone_at(0, 0, PAN_Z + 0.105, POOL_R, 0.11, 0.08, m['pulp'])]
+    for i in range(POOL_LOBES):
+        a = 2 * math.pi * i / POOL_LOBES
+        pool.append(cyl_at(POOL_R * 0.58 * math.cos(a),
+                           POOL_R * 0.58 * math.sin(a),
+                           PAN_Z + 0.15, 0.075, 0.05, m['pulp'], verts=12))
+    # Into the group and the tint layer only. In `static` as well and
+    # assemble() would parent them last, quietly undoing the group.
+    for o in pool:
+        fr.TINT.append(o)
+    spin.append(Spin(pool, degrees=POOL_SPIN))
     add(cyl_at(0, 0, PAN_Z + 0.10, 0.16, 0.14, m['dark'], verts=16))
 
     # --- glass dome -------------------------------------------------------

@@ -238,6 +238,43 @@ everything on it spins, one part that does not is worth more than another fan.
 A moving part still has to have a job: a wheel turning on the side of a
 condenser is decoration, a ram pumping condensate is the machine working.
 
+### Screens, liquid and smoke
+
+Three things that look like they need a simulation, and do not.
+
+**A perforated drum** is `perforated_drum()`: a thin-walled cylinder, one
+boolean for the bore and a second for the joined hole cutters, with the
+cutters deleted afterwards so the stray-object assert stays honest. In front
+of something lit - a glowing rotor, a culture - it is worth far more than a
+ring of bars, which closes up into a plain tube at this size. Its pattern
+repeats every `360/per_row` degrees, so the sheet must turn it by a whole
+number of those; assert that at the call site, as `lava_centrifuge.py` does.
+
+**Moving liquid** does not want Mantaflow, and not because baking is slow: a
+simulation is a transient, so its last frame never matches its first, and
+nothing makes a seamless 16-frame loop out of one. A surface with N lobes
+turning by exactly one lobe over the sheet closes by construction, and at 64
+px a tile that is what stirred liquid looks like. The bio garden's pulp is a
+cone with six lumps riding on it, turning 60 degrees.
+
+**Smoke does not belong in the render at all.** A volume is slow in Cycles,
+does not loop, and misbehaves in both the shadow pass (it confuses the shadow
+catcher) and the tint pass (it will not hold out cleanly). Let Factorio draw
+it: `utils.stack_smoke()` builds three working visualisations up one line,
+each larger, fainter and slower than the last, which reads as a plume rising
+and thinning. Two traps:
+
+- `smoke` is a field on generators, boilers and reactors, **not** on crafting
+  machines. An assembling machine ignores it in silence, so the data stage
+  loads clean, `data-raw-dump.json` shows the field - it dumps the Lua table,
+  not the loaded prototype - and nothing ever appears in game.
+- Put the plume at the top of the machine by **measuring the sheet**, not by
+  working it back from the camera angle. The tallest point is rarely over the
+  entity centre, so the vertical factor comes out different for every model.
+  Find the highest opaque row, take the centroid of the pixels just below it,
+  and convert with the sheet's own `shift` - and do it per facing, because a
+  stack that is off-centre swings across the sprite as the machine turns.
+
 ### Frame count and symmetry
 
 Spin the parts by **one** symmetry step over the whole sheet, not several. The
