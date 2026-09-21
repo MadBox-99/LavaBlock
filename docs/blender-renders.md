@@ -298,6 +298,17 @@ The same objects are hidden from the entity and shadow passes, or they would
 be painted twice, once untinted. The icon keeps them: an item icon of six
 empty tubes says nothing about the machine.
 
+**Hiding them means every ray type, not just the camera.** Cycles'
+`visible_camera = False` only stops an object being *seen*; it still blocks
+light and casts shadows. The bio garden's pool of pulp is a disc filling the
+whole thickener pan, and while the entity sheet did not show it, it laid a
+shadow over everything in the pan - the dome came out with a black hole under
+it and nothing in the model explained why. `hide_completely()` in
+`factorio_render` clears all six visibility flags; use it, never the camera
+flag alone. Objects in `fr.CLEAR` are a different case and keep their other
+rays on, because the glass really is there in the entity sheet and the
+contents must be lit through it the same way in both.
+
 A dark recess modelled behind each window pays for itself - it is in the
 entity sheet, so an idle machine reads as a dark porthole rather than as a
 hole in the shell.

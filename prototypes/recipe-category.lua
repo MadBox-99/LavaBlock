@@ -33,6 +33,10 @@ data:extend({
     },
     {
         type = "recipe-category",
+        name = "algae-tank"
+    },
+    {
+        type = "recipe-category",
         name = "lava-centrifuge",
     }
 })

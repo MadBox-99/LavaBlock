@@ -63,6 +63,7 @@ local xp_lab = require("prototypes.recipes.xp-lab")
 
 -- Bio Garden recipes
 local bio_garden = require("prototypes.recipes.bio-garden")
+local algae_tank = require("prototypes.recipes.algae-tank")
 local algae_cultivation = require("prototypes.recipes.algae.algae-cultivation")
 local algae_processing = require("prototypes.recipes.algae.algae-processing")
 
@@ -159,6 +160,7 @@ data:extend({
     xp_lab,
     -- Bio Garden recipes
     bio_garden,
+    algae_tank,
     algae_cultivation[1],
     algae_cultivation[2],
     algae_cultivation[3],

@@ -346,6 +346,14 @@ def assemble(static, spin, pivot=(0, 0, 0), degrees=120):
     # machine is turned to face a direction and pre-stretched along Y - and in
     # the tint pass it is never made a holdout either. Catch it now rather
     # than in a sheet three facings later.
+    # An object handed back in *both* lists is the nastiest version of the
+    # same mistake: the static pass below re-parents it to TURN after its
+    # group has claimed it, so it renders in the right place and simply never
+    # moves. Nothing looks broken; the animation is just dead.
+    static_ids = set(id(o) for o in static)
+    both = [o.name for o in moving if id(o) in static_ids]
+    assert not both, "objects in both static and a moving group: %s" % both
+
     known = set(id(o) for o in static + moving)
     stray = [o.name for o in bpy.data.objects
              if o.type == 'MESH' and id(o) not in known]
@@ -385,6 +393,19 @@ def assemble(static, spin, pivot=(0, 0, 0), degrees=120):
     turn.parent = root
     turn.matrix_parent_inverse = Matrix.Identity(4)
     return pivots, static + moving
+
+
+def hide_completely(o):
+    """Take an object out of the render entirely, for every ray type.
+
+    Cycles' visible_camera only stops the object being seen directly; it
+    still blocks light, casts shadows and bounces colour. For contents that
+    belong to another sheet that is never what is wanted.
+    """
+    for attr in ('visible_camera', 'visible_diffuse', 'visible_glossy',
+                 'visible_transmission', 'visible_volume_scatter',
+                 'visible_shadow'):
+        setattr(o, attr, False)
 
 
 def setup_scene(objs, frame_tiles):
@@ -493,8 +514,14 @@ def setup_scene(objs, frame_tiles):
         # The tinted contents belong to their own sheet only. Drawing them in
         # the entity sheet as well would paint them twice, once untinted.
         # The icon keeps them: an item icon of six empty tubes says nothing.
+        #
+        # Out of every ray type, not just the camera. Clearing visible_camera
+        # alone leaves the object lighting the scene: the bio garden's pool of
+        # pulp is a disc filling the whole thickener pan, and although the
+        # entity sheet did not show it, it laid a shadow over everything in
+        # the pan - which came out as a black hole under a glass dome.
         for o in TINT:
-            o.visible_camera = False
+            hide_completely(o)
 
     if PASS == 'shadow':
         bpy.ops.mesh.primitive_plane_add(size=40, location=(0, 0, 0))

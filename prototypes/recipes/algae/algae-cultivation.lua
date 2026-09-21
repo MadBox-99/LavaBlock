@@ -1,7 +1,7 @@
--- Algae cultivation: the three things the bio garden grows.
+-- Algae cultivation: the three things the algae tank grows.
 --
--- Each strain lives off a different solution, which is what makes the garden
--- a machine you route pipes to rather than a box that turns water into one
+-- Each strain lives off a different solution, which is what makes the tank a
+-- machine you route pipes to rather than a box that turns water into one
 -- thing. Water is always the medium; the second fluid is the difference.
 --
 --   green - water thick with dissolved rock. Mineral-fed algae build fibre,
@@ -18,7 +18,7 @@ local function cultivate(colour, order, medium, amount, seconds, yield, tint)
     return {
         type = "recipe",
         name = "algae-" .. colour,
-        category = "bio-garden",
+        category = "algae-tank",
         subgroup = "raw-material",
         order = "a[algae]-" .. order .. "[algae-" .. colour .. "]",
         enabled = false,

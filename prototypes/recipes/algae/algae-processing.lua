@@ -1,8 +1,15 @@
 -- Extracting what each strain concentrated while it grew.
 --
--- All three run in a chemical plant, because that is where this mod turns one
--- material into another, and because the recipes are all the same operation:
--- break up the harvested mass and take out the substance it metabolised.
+-- All three run in the bio garden itself, not in a chemical plant. The garden
+-- grows the mass and presses it in the same building, the way the arboretum
+-- turns its own logs back into seed: one machine closes the loop, and you are
+-- not belting harvest across the base to a generic chemical plant that has no
+-- other reason to be in the biology chain.
+--
+-- It does mean the garden is a busy building - six recipes - and that the
+-- processing runs at the garden's crafting speed of 1.0 rather than a
+-- chemical plant's 2.0, so a harvest line needs roughly twice the buildings
+-- it would have. That is the trade for keeping the chain in one machine.
 --
 -- The costs below are quoted in lava, since that is the island's only real
 -- input. The conversions used: 500 steam -> 250 water in the condenser, and
@@ -18,7 +25,7 @@ local ICON = "__LavaBlock__/graphics/icons/items/algae-%s.png"
 local fibre_pressing = {
     type = "recipe",
     name = "algae-fibre-pressing",
-    category = "chemistry",
+    category = "bio-garden",
     subgroup = "raw-material",
     order = "a[wood]-c[algae-fibre-pressing]",
     enabled = false,
@@ -52,7 +59,7 @@ local fibre_pressing = {
 local nitrogen_fixation = {
     type = "recipe",
     name = "nitrogen-fixation",
-    category = "chemistry",
+    category = "bio-garden",
     subgroup = "fluid-recipes",
     order = "a[fluid-chemistry]-d[nitrogen-fixation]",
     enabled = false,
@@ -90,7 +97,7 @@ local nitrogen_fixation = {
 local calcite_precipitation = {
     type = "recipe",
     name = "calcite-precipitation",
-    category = "chemistry",
+    category = "bio-garden",
     subgroup = "raw-material",
     order = "a[algae]-d[calcite-precipitation]",
     enabled = false,

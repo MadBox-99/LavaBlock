@@ -6,13 +6,13 @@ bio_garden.crafting_speed = 1.0
 -- Lamps and a circulation pump; the planting does the work.
 bio_garden.energy_usage = "150kW"
 bio_garden.module_slots = 2
--- Everything is allowed here, unlike the condenser. Growing matter is the one
--- case where a productivity bonus is not invented mass: a better-run tank
--- really does yield more harvest off the same feed. Productivity modules also
--- carry a pollution effect, which multiplies a negative emission - so a
--- productivity-stuffed garden scrubs slightly harder, which is the right way
--- round. Efficiency modules cut consumption and therefore cut absorption too,
--- which is the trade the player gets to make.
+-- Everything is allowed here, unlike the condenser. Getting more substance
+-- out of the same harvest is what a better press does, so productivity is
+-- honest here. Productivity modules also carry a pollution effect, which
+-- multiplies a negative emission - so a productivity-stuffed garden scrubs
+-- slightly harder, which is the right way round. Efficiency modules cut
+-- consumption and therefore cut absorption too, which is the trade the
+-- player gets to make.
 bio_garden.allowed_effects = {
     "consumption", "speed", "productivity", "pollution", "quality",
 }
@@ -37,9 +37,10 @@ bio_garden.icon_size = 64
 bio_garden.icons = nil
 
 -- Custom model, built and rendered in Blender (see docs/blender-renders.md).
--- A ribbed glass dome over a rack of six culture tubes: round and small
+-- A ribbed glass dome over a settling pan and a press: round and small
 -- against the arboretum's big square glasshouse, so the two read as the same
--- family without being the same building.
+-- family without being the same building. The culture tubes that used to
+-- stand in here moved to the algae tank along with the growing.
 local GFX = "__LavaBlock__/graphics/entity/bio-garden/"
 
 local function layer(kind, dir, extra)
@@ -100,11 +101,10 @@ bio_garden.graphics_set = {
 -- No pipe_picture or pipe_covers: the model carries its own ports. See
 -- docs/blender-renders.md for why the two cannot be mixed.
 --
--- Two inputs and no fluid output: the harvest leaves as items on a belt. The
--- north box is pinned to water, which every strain drinks; the south box is
--- deliberately unfiltered, because the second feed is what picks the strain -
--- lava for green, air for blue, steam for red. Swapping the recipe swaps what
--- that pipe has to carry, which is the whole reason the building has two.
+-- Water in, liquid nitrogen out. Only one of the three recipes touches fluid
+-- at all - fibre pressing and calcite precipitation are solids both ends -
+-- so the pipes vanish on those, which is what
+-- `fluid_boxes_off_when_no_fluid_recipe` is for.
 bio_garden.fluid_boxes = {
     {
         production_type = "input",
@@ -115,9 +115,10 @@ bio_garden.fluid_boxes = {
         volume = 1000,
     },
     {
-        production_type = "input",
+        production_type = "output",
+        filter = "liquid-nitrogen",
         pipe_connections = {
-            { direction = 8, position = { 0, 1 }, flow_direction = "input", }
+            { direction = 8, position = { 0, 1 }, flow_direction = "output", }
         },
         volume = 1000,
     }

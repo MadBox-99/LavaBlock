@@ -11,6 +11,7 @@ data:extend({
     require("prototypes.items.lava-centrifuge"),
     require("prototypes.items.arboretum"),
     require("prototypes.items.bio-garden"),
+    require("prototypes.items.algae-tank"),
     require("prototypes.items.water-condenser"),
     require("prototypes.items.xp-lab"),
     lava_mech_armor,

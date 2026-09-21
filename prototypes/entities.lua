@@ -6,6 +6,7 @@ data:extend({
     require("prototypes.entity.lava-centrifuge"),
     require("prototypes.entity.arboretum"),
     require("prototypes.entity.bio-garden"),
+    require("prototypes.entity.algae-tank"),
     require("prototypes.entity.water-condenser"),
     require("prototypes.entity.xp-lab"),
 })

@@ -20,9 +20,11 @@ industrialised_chemical_plant.icons = nil
 -- What was here before was four unrelated buildings, one per facing, drawn at
 -- a camera angle of their own and in a much lighter palette than the rest of
 -- the mod - so rotating the machine rebuilt it, and it never sat next to the
--- other lava machines. This is one building seen from four sides: two
--- fractionating columns at the back, an agitated reactor in front of them,
--- a feed ram and a control cabinet.
+-- other lava machines. This is one building seen from four sides, and a
+-- deliberately crowded one: five hooped vessels, a spherical accumulator, a
+-- reactor drum across the front, a pipe rack, galleries, ladders and a big
+-- elbow. The old sprite was a dense picture, and a tidy three-vessel model
+-- read as a step backwards however correct it was.
 local GFX = "__LavaBlock__/graphics/entity/industrialised-chemical-plant/"
 
 local function layer(kind, dir, extra)
