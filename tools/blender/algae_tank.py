@@ -5,9 +5,9 @@
 
 The camera, materials, primitives and render loop live in factorio_render.
 
-A sealed photobioreactor: four tall culture columns in a square, inside a
-framed housing with a service gantry and a manifold over them, a circulation
-pump at one corner and a dosing ram at the other.
+A sealed photobioreactor: four tall culture columns in a square with
+nothing standing over them, a circulation pump at one corner and a dosing
+ram at the other.
 
 Growing is this building's only job - the bio garden presses the harvest - so
 the culture is most of what the model is, and the columns are deliberately
@@ -56,9 +56,6 @@ for _x, _y in COL_POS:
             "culture column fouls a pipe stub"
 assert 2 * COL_SPAN > 2 * COL_R + 0.10, "culture columns touch each other"
 
-POST = 1.06                         # housing corner posts
-GANTRY_Z = 2.10
-assert GANTRY_Z > COL_TOP + 0.14, "gantry sits on the column heads"
 
 PUMP_BLADES = 6
 PUMP_SPIN = 360 / PUMP_BLADES
@@ -155,41 +152,12 @@ def build():
         spin.append(Grow(col, pivot=(cx, cy, CULTURE_BASE),
                          phase=i / COLUMNS, low=0.06))
 
-    # --- the housing round the bank ---------------------------------------
-    # Four corner posts and a top frame: what makes the bank read as one
-    # sealed object rather than as four loose pipes standing on a slab.
-    for sx in (-POST, POST):
-        for sy in (-POST, POST):
-            add(box(0.09, 0.09, GANTRY_Z - 0.24,
-                    (sx, sy, 0.24 + (GANTRY_Z - 0.24) / 2), m=m['frame']))
-    for sy in (-POST, POST):
-        add(bar((-POST, sy, GANTRY_Z - 0.06), (POST, sy, GANTRY_Z - 0.06),
-                0.075, m['frame']))
-    for sx in (-POST, POST):
-        add(bar((sx, -POST, GANTRY_Z - 0.06), (sx, POST, GANTRY_Z - 0.06),
-                0.075, m['frame']))
-
-    # --- service gantry and the manifold over the columns ------------------
-    # Behind the bank, not in front of it. -Y is towards the camera, so a
-    # walkway on the near side lay straight across the culture and hid the
-    # one thing this machine exists to show.
-    add(box(2.00, 0.26, 0.05, (0, 0.92, GANTRY_Z), m=m['frame']))
-    for px in (-0.86, -0.28, 0.30, 0.88):
-        add(box(0.024, 0.024, 0.19, (px, 0.80, GANTRY_Z + 0.10),
-                m=m['yellow']))
-    for f in (0.19, 0.11):
-        add(bar((-0.90, 0.80, GANTRY_Z + f), (0.92, 0.80, GANTRY_Z + f),
-                0.016, m['yellow']))
-    # Manifold: a run along each column pair, a crossover between them, and
-    # a drop into every head.
-    for my in (-COL_SPAN, COL_SPAN):
-        add(cyl_at(0, my, GANTRY_Z - 0.22, 0.055, 2 * COL_SPAN + 0.30,
-                   m['steel'], verts=10, rot=(0, math.pi / 2, 0)))
-    add(cyl_at(0, 0, GANTRY_Z - 0.22, 0.05, 2 * COL_SPAN, m['steel'],
-               verts=10, rot=(math.pi / 2, 0, 0)))
-    for cx, cy in COL_POS:
-        add(bar((cx, cy, GANTRY_Z - 0.22), (cx, cy, COL_TOP + 0.02), 0.045,
-                m['steel']))
+    # Nothing stands over the columns. There were three goes at ironwork up
+    # here - a four-post cage, then a service gantry on legs, then a feed
+    # manifold running across the heads - and every one of them did the same
+    # thing: put a lattice of bar between the camera and the culture, which
+    # is the only thing this machine exists to show. The columns are fed
+    # from their bases instead, and the top of the sprite is left to them.
 
     # --- circulation pump: the one thing that obviously turns --------------
     add(box(0.40, 0.36, 0.44, (PUMP_X, PUMP_Y, 0.36), m=m['iron']))

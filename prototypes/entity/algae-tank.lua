@@ -24,8 +24,8 @@ algae_tank.icons = nil
 
 -- Custom model, built and rendered in Blender (see docs/blender-renders.md).
 --
--- A sealed photobioreactor: four tall culture columns behind armoured glass
--- with a service gantry over them. Growing is now this building's only job -
+-- A sealed photobioreactor: four tall culture columns behind armoured glass,
+-- with nothing standing over them. Growing is now this building's only job -
 -- the bio garden presses the harvest - so the culture is what the model is
 -- almost entirely made of, and it fills and drains where you can see it.
 local GFX = "__LavaBlock__/graphics/entity/algae-tank/"

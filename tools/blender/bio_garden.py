@@ -126,6 +126,13 @@ def build():
                        (0.760, 0.760, 0.745) if fr.PASS == 'tint'
                        else (0.130, 0.330, 0.150),
                        0.32, 0.0)
+    # The mound of pulp at the feedwell: the same stuff as the window, a
+    # little darker and rougher, because it is wet solids rather than
+    # liquor behind glass.
+    m['pulp'] = mat("pulp",
+                    (0.560, 0.560, 0.548) if fr.PASS == 'tint'
+                    else (0.115, 0.290, 0.130),
+                    0.52, 0.0)
 
     static, spin = [], []
     add = static.append
@@ -168,14 +175,19 @@ def build():
     # --- thickener pan ----------------------------------------------------
     add(cyl_at(0, 0, PAN_Z + 0.03, PAN_R, 0.07, m['basin'], verts=40))
     add(torus_at((0, 0, PAN_Z + 0.07), PAN_R, 0.026, m['frame']))
-    # The pan full of pulp, tinted by the recipe. The hopper window alone
-    # showed the colour from one side only - turn the machine and the works
-    # hid it. A pool read straight down through the glass survives every
-    # facing, and the rake cuts across it, which is the point of the rake.
+    # Settled pulp over the whole pan floor, so the dome is never standing
+    # over an empty dark disc, and the recipe-tinted mound at the feedwell
+    # on top of it. The tint wants to be read from every facing, which a
+    # horizontal surface under the glass is, and the rake bridge cuts across
+    # it, which is the point of the rake.
     add(cyl_at(0, 0, PAN_Z + 0.075, PAN_R - 0.05, 0.05, m['sludge'],
                verts=40))
-    pool = cyl_at(0, 0, PAN_Z + 0.105, PAN_R - 0.06, 0.05, m['product'],
-                  verts=40)
+    # A mound, not a pool filling the pan. A flat disc that wide is a
+    # horizontal surface in full sun, so the tint multiply landed on white
+    # whatever base grey it was given, and the machine wore a sheet of
+    # poster green. A cone this size shades across itself and reads as wet
+    # pulp coming up the feedwell.
+    pool = cone_at(0, 0, PAN_Z + 0.105, 0.36, 0.11, 0.08, m['pulp'])
     add(pool)
     fr.TINT.append(pool)
     add(cyl_at(0, 0, PAN_Z + 0.10, 0.16, 0.14, m['dark'], verts=16))

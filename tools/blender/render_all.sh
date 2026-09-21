@@ -51,9 +51,13 @@ done
 mkdir -p "$SP/sheets"
 "$SPRITTER" spritesheet -r -l -t 64        "$SP/frames/entity" "$SP/sheets"
 "$SPRITTER" spritesheet -r -l -t 64 -a 16  "$SP/frames/shadow" "$SP/sheets"
-# A model with no recipe-tinted contents renders an empty tint pass; skip it
-# rather than handing spritter a folder of blank frames.
-if [ -n "$(find "$SP/frames/tint" -name '*.png' -size +1k 2>/dev/null | head -1)" ]; then
+# A model with no recipe-tinted contents renders a tint pass of fully
+# transparent frames; skip it rather than handing spritter a folder of blank
+# frames, which it answers with four "all images are empty" errors. A file
+# size test does not find them - a transparent 384x384 PNG out of Cycles
+# still weighs 30 KB, because the RGB channels are full of sampling noise
+# under a zero alpha. Ask about the alpha itself.
+if python "$HERE/has_alpha.py" "$SP/frames/tint"; then
   "$SPRITTER" spritesheet -r -l -t 64      "$SP/frames/tint" "$SP/sheets"
 fi
 echo
