@@ -40,18 +40,24 @@ end
 -- industrial machine is therefore an ordinary electric one with a fluid
 -- input, and it is its recipes that ask for the oil.
 --
--- The connection is on the south edge because that is the side the model
--- draws the stub on - the near side at this camera, where the player can
--- actually see it. A fluid box whose connection is on the far edge from its
--- nozzle gives a machine you plug into thin air.
+-- North, because that is the edge the model draws the stub on, and a fluid
+-- box whose connection is on the far edge from its nozzle gives a machine
+-- you plug into thin air.
+--
+-- Note the sign flip, which is the easy thing to get wrong here and was got
+-- wrong once already. Blender's +Y renders at the top of the sprite and the
+-- top of a sprite is north, but Factorio counts Y southwards, so north is
+-- position {0,-1}. A stub modelled at y = +1.46 is therefore {0,-1}, not
+-- {0,1}: the model coordinate and the prototype coordinate have opposite
+-- signs. X does not flip - modelled +X is east is {1,0}.
 local LUBRICANT_BOX = {
     {
         production_type = "input",
         filter = "lubricant",
         pipe_connections = {
             {
-                direction = defines.direction.south,
-                position = { 0, 1 },
+                direction = defines.direction.north,
+                position = { 0, -1 },
                 flow_direction = "input",
             }
         },

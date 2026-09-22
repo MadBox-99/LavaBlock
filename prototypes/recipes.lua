@@ -82,6 +82,12 @@ local culture_column = require("prototypes.recipes.parts.culture-column")
 local crystallizer = require("prototypes.recipes.crystallizer")
 local silica_crystallizing = require("prototypes.recipes.crystallizer.silica-crystallizing")
 local silica_crystallizing_purified = require("prototypes.recipes.crystallizer.silica-crystallizing-purified")
+local silica_crystallizing_shielded = require("prototypes.recipes.crystallizer.silica-crystallizing-shielded")
+
+-- Gas combiner recipes
+local gas_combiner = require("prototypes.recipes.gas-combiner")
+local shielding_gas = require("prototypes.recipes.gas-combiner.shielding-gas")
+local argon_extraction = require("prototypes.recipes.air.argon-extraction")
 local glass = require("prototypes.recipes.smelting.glass")
 local glazed_panel = require("prototypes.recipes.parts.glazed-panel")
 local grow_lamp = require("prototypes.recipes.parts.grow-lamp")
@@ -202,6 +208,11 @@ data:extend({
     crystallizer,
     silica_crystallizing,
     silica_crystallizing_purified,
+    silica_crystallizing_shielded,
+    -- Gas combiner recipes
+    gas_combiner,
+    shielding_gas,
+    argon_extraction,
     glass,
     glazed_panel,
     grow_lamp,

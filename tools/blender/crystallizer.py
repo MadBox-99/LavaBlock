@@ -119,6 +119,9 @@ def build():
     m['crystal'] = mat("crystal", (0.205, 0.135, 0.395), 0.18, 0.0,
                        emit=(0.40, 0.26, 0.86), emit_str=0.26)
     m['brick'] = mat("brick", (0.196, 0.134, 0.106), 0.88, 0.0, wear=0.66)
+    # Brass, only for the gas line, so the two inlets differ in colour as
+    # well as in bore. It is the gas combiner's material next door.
+    m['brass'] = mat("brass", (0.370, 0.256, 0.078), 0.32, 1.0, wear=0.62)
     # Its own melt, not the shared `lava`. That one is mixed for a pipe or a
     # ladle seen edge-on; here the player looks straight down a half-metre
     # disc of it, and at 1.9 the whole pan clips to a flat white-orange hole
@@ -203,30 +206,44 @@ def build():
                         rot=(0, 0, a + 0.30), m=m['dark']))
     spin.append(Spin(arms, pivot=(0, 0, 0), axis='Z'))
 
-    # --- lava inlet, west -------------------------------------------------
-    # West, not north: the output chute is on the near edge where the player
-    # can see it, and two things fighting for the front edge is how a model
-    # ends up with a port you cannot find. West is the left flank at this
-    # camera, fully visible, and it is the side the prototype declares.
-    add(box(0.46, 0.36, 0.42, (-1.06, 0, 0.37), m=m['case']))
-    add(cyl_at(-1.30, 0, 0.37, 0.165, 0.70, m['steel'], verts=24,
-               rot=(0, math.pi / 2, 0)))
-    add(cyl_at(-1.46, 0, 0.37, 0.215, 0.10, m['dark'], verts=24,
-               rot=(0, math.pi / 2, 0)))
-    add(bar((-1.06, 0, 0.56), (-0.80, 0, SHELF_TOP - 0.04), 0.075,
-            m['steel']))
+    # --- the two inlets, on the flanks -------------------------------------
+    # Model -X is the left of the sprite and Factorio's west, model +X the
+    # right and east; the X sign does not flip between the two. Y does -
+    # modelled +Y renders at the top of the sprite, the top of a sprite is
+    # north, and Factorio counts Y southwards, so a stub at +Y is {0,-1}.
+    #
+    # Both flanks, because the shielded recipe wants melt and gas at once
+    # and a machine with two feeds has to show two. Lava on the left in a
+    # heavy pipe, gas on the right in a thin one, so which is which can be
+    # read off the model rather than guessed.
+    def inlet(sx, r_pipe, r_flange, box_h, m_pipe):
+        add(box(0.46, 0.36, box_h, (sx * 1.06, 0, box_h / 2 + 0.16),
+                m=m['case']))
+        add(cyl_at(sx * 1.30, 0, 0.37, r_pipe, 0.70, m_pipe, verts=24,
+                   rot=(0, math.pi / 2, 0)))
+        add(cyl_at(sx * 1.46, 0, 0.37, r_flange, 0.10, m['dark'], verts=24,
+                   rot=(0, math.pi / 2, 0)))
+        add(bar((sx * 1.06, 0, 0.56), (sx * 0.80, 0, SHELF_TOP - 0.04),
+                0.075, m['steel']))
+
+    inlet(-1, 0.165, 0.215, 0.42, m['steel'])     # west  {-1, 0} - the melt
+    inlet(1, 0.105, 0.150, 0.34, m['brass'])      # east  { 1, 0} - the gas
 
     # --- product chute, south (the near edge) ------------------------------
-    add(box(0.74, 0.40, 0.16, (0, 1.16, 0.46), rot=(-0.42, 0, 0), m=m['case']))
-    add(box(0.82, 0.10, 0.30, (0, 1.32, 0.30), m=m['dark']))
+    # South is -Y here. The first version put it at +Y calling it the near
+    # edge, which is the back of the sprite, and the chute spent four
+    # facings hidden behind the machine's own body.
+    add(box(0.74, 0.40, 0.16, (0, -1.16, 0.46), rot=(0.42, 0, 0),
+            m=m['case']))
+    add(box(0.82, 0.10, 0.30, (0, -1.32, 0.30), m=m['dark']))
     for sx in (-1, 1):
-        add(bar((sx * 0.36, 1.30, 0.34), (sx * 0.36, 1.06, DECK_TOP),
+        add(bar((sx * 0.36, -1.30, 0.34), (sx * 0.36, -1.06, DECK_TOP),
                 0.055, m['steel']))
 
-    # --- switchgear, east --------------------------------------------------
-    add(box(0.34, 0.72, 0.56, (1.12, -0.30, 0.49), m=m['case']))
-    add(box(0.05, 0.46, 0.24, (1.30, -0.30, 0.60), m=m['panel']))
-    add(cyl_at(1.12, 0.36, 0.44, 0.09, 0.46, m['steel'], verts=12))
+    # --- switchgear, north (the back) --------------------------------------
+    add(box(0.72, 0.34, 0.56, (-0.30, 1.12, 0.49), m=m['case']))
+    add(box(0.46, 0.05, 0.24, (-0.30, 0.94, 0.60), m=m['panel']))
+    add(cyl_at(0.42, 1.12, 0.44, 0.09, 0.46, m['steel'], verts=12))
 
     return static, spin + grow
 

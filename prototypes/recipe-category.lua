@@ -57,6 +57,12 @@ data:extend({
         name = "lava-crystallizing"
     },
     {
+        -- Prefixed for the same reason as the one above: "gas-combining"
+        -- shared with another mod would let its blender run these recipes.
+        type = "recipe-category",
+        name = "gas-combining"
+    },
+    {
         type = "recipe-category",
         name = "lava-centrifuge",
     }

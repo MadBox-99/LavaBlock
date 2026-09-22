@@ -5,6 +5,7 @@ data:extend({
     require("prototypes.fluids.gases.compressed-air"),
     require("prototypes.fluids.gases.oxygen"),
     require("prototypes.fluids.gases.chlorine"),
+    require("prototypes.fluids.gases.shielding-gas"),
     require("prototypes.fluids.purified-lava"),
 })
 

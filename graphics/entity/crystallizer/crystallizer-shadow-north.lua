@@ -6,7 +6,7 @@ return {
   ["line_length"] = 6,
   ["lines_per_file"] = 6,
   ["scale"] = 0.5,
-  ["shift"] = {11.5 / 64, 11 / 64},
+  ["shift"] = {12.5 / 64, 11 / 64},
   ["sprite_count"] = 32,
-  ["width"] = 219,
+  ["width"] = 221,
 }

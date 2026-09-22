@@ -69,17 +69,22 @@ crystallizer.graphics_set = {
     },
 }
 
--- No pipe_picture or pipe_covers: the model carries its own port. See
+-- No pipe_picture or pipe_covers: the model carries its own ports. See
 -- docs/blender-renders.md for why the two cannot be mixed.
 --
--- One input, on the west edge, because that is the side the model draws the
--- stub on - the near-left flank at this camera. The front edge is taken by
--- the product chute, and two things competing for it is how a machine ends
--- up with a port nobody can find.
+-- Two inputs, on the two flanks, each where the model draws its stub: the
+-- melt on the west in a heavy pipe, the gas on the east in a thin brass
+-- one. The front edge is taken by the product chute and the back by the
+-- switchgear. Modelled -X is west and +X is east - X keeps its sign
+-- between the model and the prototype, unlike Y.
 --
--- Unfiltered on purpose. The hearth takes raw lava early and purified lava
--- once the centrifuge is running, and a filter would pin it to whichever of
--- the two was written here and quietly break the other recipe.
+-- The melt box is unfiltered on purpose: the hearth takes raw lava early
+-- and purified lava once the centrifuge is running, and a filter would pin
+-- it to whichever of the two was named here and break the other recipe.
+--
+-- The gas box is filtered, because there is only ever one gas it can take,
+-- and the filter is what stops a stray oxygen line stalling the machine
+-- with a fluid no recipe here will ever consume.
 crystallizer.fluid_boxes = {
     {
         production_type = "input",
@@ -91,12 +96,24 @@ crystallizer.fluid_boxes = {
             }
         },
         volume = 1000,
+    },
+    {
+        production_type = "input",
+        filter = "shielding-gas",
+        pipe_connections = {
+            {
+                direction = defines.direction.east,
+                position = { 1, 0 },
+                flow_direction = "input",
+            }
+        },
+        volume = 400,
     }
 }
 
 -- assembling-machine-2 hides its fluid boxes until a fluid recipe is set.
--- That is wrong here: the port is part of the model and always visible, so
--- a pipe has to be able to reach it on an empty machine.
+-- That is wrong here: the ports are part of the model and always visible,
+-- so a pipe has to be able to reach them on an empty machine.
 crystallizer.fluid_boxes_off_when_no_fluid_recipe = nil
 utils.remove_pipe_covers(crystallizer)
 

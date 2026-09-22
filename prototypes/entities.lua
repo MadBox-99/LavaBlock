@@ -13,6 +13,7 @@ data:extend({
     crushers[2],
     crushers[3],
     require("prototypes.entity.crystallizer"),
+    require("prototypes.entity.gas-combiner"),
     require("prototypes.entity.water-condenser"),
     require("prototypes.entity.xp-lab"),
 })
