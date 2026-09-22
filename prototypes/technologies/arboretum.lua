@@ -16,6 +16,7 @@ return {
     icon = "__LavaBlock__/graphics/technology/arboretum.png",
     icon_size = 256,
     effects = {
+        { type = "unlock-recipe", recipe = "grow-lamp" },
         { type = "unlock-recipe", recipe = "arboretum" },
         { type = "unlock-recipe", recipe = "tree-cultivation" },
         { type = "unlock-recipe", recipe = "wood-processing" },

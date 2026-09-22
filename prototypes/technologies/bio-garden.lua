@@ -1,9 +1,12 @@
--- Follows the arboretum: you learn to grow things, then you learn to grow the
--- things that are not trees. Two buildings, because growing and pressing are
--- different jobs: the algae tank raises the culture, the bio garden presses
--- the harvest and scrubs the air while it does. Green and red algae, and the
--- two substances pressed back out of them; blue waits for
--- [nitrogen-fixation], which is where the air to feed it finally exists.
+-- The pressing half. Growing and pressing are different jobs done by
+-- different buildings, so they are now different technologies too: this one
+-- used to hand over both machines and six recipes at once, which is more
+-- than any single research in the mod gives and left the player with a tank
+-- and a garden and no idea which came first.
+--
+-- [algae-cultivation] raises the culture; this presses it for what it grew
+-- on. It is researched second because there is nothing to press until the
+-- tank is running.
 return {
     type = "technology",
     name = "bio-garden",
@@ -11,15 +14,12 @@ return {
     icon_size = 256,
     effects = {
         { type = "unlock-recipe", recipe = "bio-garden" },
-        { type = "unlock-recipe", recipe = "algae-tank" },
-        { type = "unlock-recipe", recipe = "algae-green" },
-        { type = "unlock-recipe", recipe = "algae-red" },
         { type = "unlock-recipe", recipe = "algae-fibre-pressing" },
         { type = "unlock-recipe", recipe = "calcite-precipitation" },
     },
-    prerequisites = { "arboretum", "chemical-science-pack" },
+    prerequisites = { "algae-cultivation" },
     unit = {
-        count = 300,
+        count = 200,
         ingredients = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack",   1 },

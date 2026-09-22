@@ -17,6 +17,12 @@ data:extend({
     crusher_items[2],
     crusher_items[3],
     require("prototypes.items.basalt"),
+    require("prototypes.items.basalt-gravel"),
+    -- The mod's own machine parts
+    require("prototypes.items.crusher-roll"),
+    require("prototypes.items.culture-column"),
+    require("prototypes.items.grow-lamp"),
+    require("prototypes.items.condenser-coil"),
     require("prototypes.items.water-condenser"),
     require("prototypes.items.xp-lab"),
     lava_mech_armor,

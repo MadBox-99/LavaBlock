@@ -75,6 +75,10 @@ local oxygen_enriched = require("prototypes.recipes.smelting.oxygen-enriched")
 local crusher_recipes = require("prototypes.recipes.crusher")
 local basalt_casting = require("prototypes.recipes.crusher.basalt-casting")
 local stone_crushing = require("prototypes.recipes.crusher.stone-crushing")
+local crusher_roll = require("prototypes.recipes.parts.crusher-roll")
+local culture_column = require("prototypes.recipes.parts.culture-column")
+local grow_lamp = require("prototypes.recipes.parts.grow-lamp")
+local condenser_coil = require("prototypes.recipes.parts.condenser-coil")
 
 -- Arboretum recipes
 local arboretum = require("prototypes.recipes.arboretum")
@@ -184,6 +188,11 @@ data:extend({
     stone_crushing[1],
     stone_crushing[2],
     stone_crushing[3],
+    stone_crushing[4],
+    crusher_roll,
+    culture_column,
+    grow_lamp,
+    condenser_coil,
     -- Arboretum recipes
     arboretum,
     tree_cultivation,

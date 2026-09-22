@@ -87,6 +87,7 @@ local stone_crushing_techs = require("prototypes.technologies.stone-crushing")
 
 -- Arboretum technology
 local arboretum_tech = require("prototypes.technologies.arboretum")
+local algae_cultivation_tech = require("prototypes.technologies.algae-cultivation")
 
 -- Water Condenser technology
 local water_condenser_tech = require("prototypes.technologies.water-condenser")
@@ -129,7 +130,10 @@ data:extend({
     stone_crushing_techs[1],
     stone_crushing_techs[2],
     stone_crushing_techs[3],
+    stone_crushing_techs[4],
+    stone_crushing_techs[5],
     arboretum_tech,
+    algae_cultivation_tech,
     bio_garden_tech,
     oxygen_processing_tech,
     nitrogen_fixation_tech,

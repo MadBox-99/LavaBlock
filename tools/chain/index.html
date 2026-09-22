@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LavaBlock production chain</title>
+<!--
+  Open this file directly in a browser - there is no server and no build step.
+  Everything it needs is beside it: the three vendored libraries and
+  chain-data.js, which tools/chain/build.py regenerates from a data dump.
+-->
+<style>
+  :root {
+    --ground: #f2f0f4;
+    --panel: #ffffff;
+    --sunk: #e8e5ed;
+    --ink: #1b1820;
+    --muted: #6b6478;
+    --faint: #8c8499;
+    --line: #dad4e2;
+    --line-hard: #bfb7cb;
+    --molten: #b9490b;
+    --fluid: #1c6b80;
+    --tech: #7f5c0c;
+    --pick: #6231c9;
+    --node: #ffffff;
+    --node-line: #b1a8c0;
+    --edge: #b6aec4;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground: #141219;
+      --panel: #1d1a24;
+      --sunk: #191620;
+      --ink: #ece9f1;
+      --muted: #9d95ab;
+      --faint: #7d7590;
+      --line: #322d3d;
+      --line-hard: #473f57;
+      --molten: #f0803c;
+      --fluid: #5cc0d6;
+      --tech: #dfb452;
+      --pick: #b193f5;
+      --node: #262130;
+      --node-line: #4a4259;
+      --edge: #4a4259;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    background: var(--ground); color: var(--ink);
+    font: 14px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    display: flex; flex-direction: column;
+  }
+
+  header {
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    padding: 9px 14px; border-bottom: 1px solid var(--line);
+    background: var(--panel);
+  }
+  h1 {
+    font-size: 15px; margin: 0; font-weight: 600; letter-spacing: .01em;
+    white-space: nowrap;
+  }
+  h1 span { color: var(--molten); }
+  .groups { display: flex; gap: 5px; flex-wrap: wrap; }
+  .groups button {
+    font: inherit; font-size: 12.5px; padding: 3px 10px; cursor: pointer;
+    border: 1px solid var(--line-hard); border-radius: 99px;
+    background: transparent; color: var(--muted);
+  }
+  .groups button[aria-pressed="true"] {
+    background: var(--ink); border-color: var(--ink); color: var(--ground);
+  }
+  .groups button:focus-visible { outline: 2px solid var(--pick); outline-offset: 1px; }
+  #find {
+    font: inherit; font-size: 13px; padding: 4px 9px; min-width: 190px;
+    border: 1px solid var(--line-hard); border-radius: 5px;
+    background: var(--ground); color: var(--ink);
+  }
+  .spacer { flex: 1 1 auto; }
+  .note { font-size: 12px; color: var(--faint); white-space: nowrap; }
+
+  main { flex: 1 1 auto; position: relative; min-height: 0; }
+  #cy { position: absolute; inset: 0; }
+
+  #side {
+    position: absolute; top: 12px; right: 12px; width: 310px; max-width: 46vw;
+    max-height: calc(100% - 24px); overflow: auto;
+    background: var(--panel); border: 1px solid var(--line-hard);
+    border-radius: 8px; padding: 13px 14px;
+    box-shadow: 0 10px 30px -18px rgba(0, 0, 0, .6);
+  }
+  #side[hidden] { display: none; }
+  #side h2 {
+    font-size: 16px; margin: 0 0 2px; display: flex; align-items: center; gap: 8px;
+  }
+  #side h2 img { width: 26px; height: 26px; }
+  #side .kind {
+    font-size: 11.5px; text-transform: uppercase; letter-spacing: .08em;
+    color: var(--faint); margin-bottom: 10px;
+  }
+  #side dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; }
+  #side dt {
+    font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em;
+    color: var(--faint); padding-top: 2px;
+  }
+  #side dd { margin: 0; font-size: 13px; }
+  #side .list { display: flex; flex-direction: column; gap: 3px; }
+  #side .list button {
+    font: inherit; font-size: 13px; text-align: left; cursor: pointer;
+    background: none; border: 0; padding: 1px 0; color: var(--pick);
+    text-decoration: underline; text-underline-offset: 2px;
+  }
+  #side .none { color: var(--molten); font-weight: 600; }
+  #side .close {
+    position: absolute; top: 9px; right: 10px; cursor: pointer;
+    border: 1px solid var(--line-hard); background: var(--sunk);
+    color: var(--muted); border-radius: 5px; font: inherit; font-size: 12px;
+    padding: 1px 8px;
+  }
+  .stack { display: flex; flex-wrap: wrap; gap: 4px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 4px; font-size: 12px;
+    border: 1px solid var(--line); border-radius: 5px; padding: 1px 6px 1px 3px;
+    background: var(--sunk);
+  }
+  .pill img { width: 17px; height: 17px; }
+  .pill b { font-variant-numeric: tabular-nums; }
+
+  #empty {
+    position: absolute; inset: 0; display: grid; place-items: center;
+    color: var(--faint); font-size: 14px; pointer-events: none;
+  }
+  #empty[hidden] { display: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Lava<span>Block</span> production chain</h1>
+  <div class="groups" id="groups"></div>
+  <input id="find" type="search" placeholder="Find an item or recipe" autocomplete="off">
+  <div class="spacer"></div>
+  <div class="note" id="count"></div>
+</header>
+
+<main>
+  <div id="cy"></div>
+  <div id="empty" hidden>Nothing selected to show &mdash; turn a group on.</div>
+  <aside id="side" hidden>
+    <button class="close" id="close" type="button">Clear</button>
+    <h2 id="sName"></h2>
+    <div class="kind" id="sKind"></div>
+    <dl id="sBody"></dl>
+  </aside>
+</main>
+
+<script src="vendor/cytoscape.min.js"></script>
+<script src="vendor/dagre.min.js"></script>
+<script src="vendor/cytoscape-dagre.min.js"></script>
+<script src="chain-data.js"></script>
+<script>
+(function () {
+  "use strict";
+  if (!window.CHAIN) {
+    document.getElementById("empty").hidden = false;
+    document.getElementById("empty").textContent =
+      "chain-data.js is missing - run tools/chain/build.py first.";
+    return;
+  }
+  cytoscape.use(cytoscapeDagre);
+
+  var D = window.CHAIN;
+  var ICON = D.icons;
+  var css = getComputedStyle(document.documentElement);
+  function tok(n) { return css.getPropertyValue(n).trim(); }
+
+  /* Which groups start on: the lines the new machines run, not the whole mod.
+     Turning Build on as well roughly doubles the graph. */
+  var DEFAULT_ON = ["Rock", "Water", "Wood", "Algae"];
+  var GROUPS = [];
+  D.recipes.forEach(function (r) {
+    if (GROUPS.indexOf(r.group) < 0) GROUPS.push(r.group);
+  });
+  GROUPS.sort();
+  var on = {};
+  GROUPS.forEach(function (g) { on[g] = DEFAULT_ON.indexOf(g) >= 0; });
+  if (!GROUPS.some(function (g) { return on[g]; })) {
+    GROUPS.forEach(function (g) { on[g] = true; });
+  }
+
+  /* ---- look up who makes and who eats each thing, once ---------------- */
+  var madeBy = {}, usedIn = {}, recipeByName = {};
+  D.recipes.forEach(function (r) {
+    recipeByName[r.n] = r;
+    r.out.forEach(function (o) { (madeBy[o.n] = madeBy[o.n] || []).push(r); });
+    r["in"].forEach(function (i) { (usedIn[i.n] = usedIn[i.n] || []).push(r); });
+  });
+  function label(n) {
+    var hit = n;
+    D.recipes.some(function (r) {
+      return r["in"].concat(r.out).some(function (x) {
+        if (x.n === n) { hit = x.l; return true; }
+        return false;
+      });
+    });
+    return hit;
+  }
+
+  /* ---- graph ---------------------------------------------------------- */
+  var cy = cytoscape({
+    container: document.getElementById("cy"),
+    wheelSensitivity: 0.25,
+    style: [
+      { selector: "node.item", style: {
+          "shape": "round-rectangle", "width": 46, "height": 46,
+          "background-color": tok("--node"),
+          "background-image": "data(icon)", "background-fit": "contain",
+          "background-clip": "none", "background-image-opacity": 1,
+          "border-width": 1.5, "border-color": tok("--node-line"),
+          "label": "data(label)", "font-size": 10, "text-valign": "bottom",
+          "text-margin-y": 4, "color": tok("--ink"),
+          "text-background-color": tok("--ground"),
+          "text-background-opacity": 0.85, "text-background-padding": 2,
+          "text-max-width": 96, "text-wrap": "ellipsis" } },
+      { selector: "node.item.fluid", style: { "border-color": tok("--fluid") } },
+      { selector: "node.recipe", style: {
+          "shape": "round-rectangle", "width": "label", "height": 24,
+          "padding": 7, "background-color": tok("--panel"),
+          "border-width": 1.5, "border-color": tok("--line-hard"),
+          "label": "data(label)", "font-size": 11, "font-weight": 600,
+          "color": tok("--ink"), "text-valign": "center",
+          "text-halign": "center", "text-max-width": 150,
+          "text-wrap": "ellipsis" } },
+      { selector: "node.recipe.oiled", style: { "border-color": tok("--molten") } },
+      { selector: "edge", style: {
+          "width": 1.4, "line-color": tok("--edge"),
+          "target-arrow-color": tok("--edge"), "target-arrow-shape": "triangle",
+          "arrow-scale": 0.8, "curve-style": "bezier",
+          "label": "data(label)", "font-size": 9, "color": tok("--faint"),
+          "text-background-color": tok("--ground"),
+          "text-background-opacity": 0.9, "text-background-padding": 1.5 } },
+      { selector: "edge.fluid", style: { "line-color": tok("--fluid"),
+          "target-arrow-color": tok("--fluid"), "line-style": "dashed" } },
+      { selector: ".faded", style: { "opacity": 0.12, "text-opacity": 0 } },
+      { selector: ".lit", style: {
+          "border-color": tok("--pick"), "border-width": 3, "z-index": 10 } },
+      { selector: "edge.lit", style: {
+          "line-color": tok("--pick"), "target-arrow-color": tok("--pick"),
+          "width": 2.4, "z-index": 10 } }
+    ]
+  });
+
+  function build() {
+    var els = [], seen = {};
+    function itemNode(x) {
+      var id = "i:" + x.n;
+      if (seen[id]) return id;
+      seen[id] = true;
+      els.push({ data: { id: id, label: x.l, icon: ICON[x.n] || "", key: x.n,
+                         kind: "item" },
+                 classes: "item" + (x.f ? " fluid" : "") });
+      return id;
+    }
+    D.recipes.forEach(function (r) {
+      if (!on[r.group]) return;
+      var rid = "r:" + r.n;
+      els.push({ data: { id: rid, label: r.l, key: r.n, kind: "recipe" },
+                 classes: "recipe" + (r.cat.indexOf("oiled") >= 0 ? " oiled" : "") });
+      r["in"].forEach(function (x) {
+        els.push({ data: { id: "e:" + x.n + ">" + r.n, source: itemNode(x),
+                           target: rid, label: String(x.a) },
+                   classes: x.f ? "fluid" : "" });
+      });
+      r.out.forEach(function (x) {
+        els.push({ data: { id: "e:" + r.n + ">" + x.n, source: rid,
+                           target: itemNode(x), label: String(x.a) },
+                   classes: x.f ? "fluid" : "" });
+      });
+    });
+
+    cy.elements().remove();
+    cy.add(els);
+    cy.layout({ name: "dagre", rankDir: "LR", nodeSep: 26, rankSep: 84,
+                edgeSep: 12, animate: false, fit: true, padding: 30 }).run();
+    document.getElementById("count").textContent =
+      cy.nodes(".recipe").length + " recipes · "
+      + cy.nodes(".item").length + " items";
+    document.getElementById("empty").hidden = cy.nodes().length > 0;
+    clear();
+  }
+
+  /* ---- selection: light the whole chain through a node ---------------- */
+  function reach(node, dir) {
+    var seen = cy.collection(), frontier = node;
+    while (frontier.length) {
+      var next = dir === "up" ? frontier.incomers() : frontier.outgoers();
+      next = next.difference(seen);
+      seen = seen.union(next);
+      frontier = next.nodes();
+    }
+    return seen;
+  }
+
+  function clear() {
+    cy.elements().removeClass("faded lit");
+    document.getElementById("side").hidden = true;
+  }
+
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  }
+  function pill(x) {
+    var s = el("span", "pill");
+    if (ICON[x.n]) { var i = el("img"); i.src = ICON[x.n]; i.alt = ""; s.appendChild(i); }
+    s.appendChild(el("b", null, String(x.a)));
+    s.appendChild(document.createTextNode(x.l));
+    return s;
+  }
+  function jump(key, prefix, text) {
+    var b = el("button", null, text);
+    b.type = "button";
+    b.addEventListener("click", function () {
+      var n = cy.getElementById(prefix + key);
+      if (n.length) { select(n); cy.animate({ center: { eles: n } }, { duration: 200 }); }
+    });
+    return b;
+  }
+
+  function row(dl, k, node) {
+    dl.appendChild(el("dt", null, k));
+    var dd = el("dd");
+    dd.appendChild(node);
+    dl.appendChild(dd);
+  }
+
+  function select(node) {
+    var keep = reach(node, "up").union(reach(node, "down")).union(node);
+    cy.elements().addClass("faded");
+    keep.removeClass("faded");
+    cy.elements().removeClass("lit");
+    node.addClass("lit");
+
+    var side = document.getElementById("side");
+    var body = document.getElementById("sBody");
+    body.textContent = "";
+    var key = node.data("key");
+    var h = document.getElementById("sName");
+    h.textContent = "";
+
+    if (node.data("kind") === "recipe") {
+      var r = recipeByName[key];
+      h.appendChild(document.createTextNode(r.l));
+      document.getElementById("sKind").textContent = r.group + " · " + r.cat;
+      var ins = el("div", "stack");
+      r["in"].forEach(function (x) { ins.appendChild(pill(x)); });
+      row(body, "In", ins);
+      var outs = el("div", "stack");
+      r.out.forEach(function (x) { outs.appendChild(pill(x)); });
+      row(body, "Out", outs);
+      row(body, "Time", el("span", null, r.t + " s"));
+      var mach = el("div", "list");
+      if (r.machines.length) {
+        r.machines.forEach(function (mm) { mach.appendChild(el("div", null, mm.l)); });
+      } else {
+        mach.appendChild(el("div", "none", "no machine runs this category"));
+      }
+      row(body, "Machine", mach);
+      var t = r.tech && D.techs[r.tech];
+      row(body, "Research", el("span", t ? null : "none",
+        t ? t.l + "  (" + t.count + " × " + t.packs.join(" + ") + ")"
+          : "never unlocked"));
+      if (r.prod) row(body, "Modules", el("span", null, "productivity allowed"));
+    } else {
+      if (ICON[key]) { var im = el("img"); im.src = ICON[key]; im.alt = ""; h.appendChild(im); }
+      h.appendChild(document.createTextNode(label(key)));
+      document.getElementById("sKind").textContent = "item";
+      var made = el("div", "list");
+      (madeBy[key] || []).forEach(function (r) {
+        made.appendChild(jump(r.n, "r:", r.l));
+      });
+      if (!made.childNodes.length) {
+        made.appendChild(el("div", "none", "nothing here makes it — base game"));
+      }
+      row(body, "Made by", made);
+      var used = el("div", "list");
+      (usedIn[key] || []).forEach(function (r) {
+        used.appendChild(jump(r.n, "r:", r.l));
+      });
+      if (!used.childNodes.length) {
+        used.appendChild(el("div", "none", "nothing here eats it — end of the line"));
+      }
+      row(body, "Used in", used);
+    }
+    side.hidden = false;
+  }
+
+  cy.on("tap", "node", function (e) { select(e.target); });
+  cy.on("tap", function (e) { if (e.target === cy) clear(); });
+  document.getElementById("close").addEventListener("click", clear);
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") clear();
+  });
+
+  /* ---- group buttons and search --------------------------------------- */
+  var host = document.getElementById("groups");
+  GROUPS.forEach(function (g) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.textContent = g;
+    b.setAttribute("aria-pressed", String(on[g]));
+    b.addEventListener("click", function () {
+      on[g] = !on[g];
+      b.setAttribute("aria-pressed", String(on[g]));
+      build();
+    });
+    host.appendChild(b);
+  });
+
+  var find = document.getElementById("find");
+  find.addEventListener("input", function () {
+    var q = find.value.trim().toLowerCase();
+    if (!q) { clear(); return; }
+    var hit = cy.nodes().filter(function (n) {
+      return String(n.data("label")).toLowerCase().indexOf(q) >= 0;
+    });
+    if (!hit.length) { clear(); return; }
+    select(hit[0]);
+    cy.animate({ center: { eles: hit[0] }, zoom: 1.1 }, { duration: 220 });
+  });
+
+  build();
+}());
+</script>
+</body>
+</html>
