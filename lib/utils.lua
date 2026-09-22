@@ -132,4 +132,23 @@ function utils.stack_smoke(stack)
     return out
 end
 
+--- A machine icon with its tier badge laid over it.
+---
+--- The badge is drawn on its own full-size canvas, already in the corner, so
+--- both layers sit at the default scale with no shift. Anything else has to
+--- be checked in-game; this cannot land in the wrong place.
+--- @param name string - entity name; both files are named after it
+function utils.badged_icon(name)
+    return {
+        {
+            icon = "__LavaBlock__/graphics/icons/items/" .. name .. ".png",
+            icon_size = 64,
+        },
+        {
+            icon = "__LavaBlock__/graphics/icons/badges/" .. name .. ".png",
+            icon_size = 64,
+        },
+    }
+end
+
 return utils

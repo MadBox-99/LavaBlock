@@ -36,6 +36,19 @@ data:extend({
         name = "algae-tank"
     },
     {
+        -- Not "crushing": that is Space Age's, for the asteroid crusher on
+        -- space platforms. Sharing it would let this machine run asteroid
+        -- recipes and the asteroid crusher grind basalt.
+        type = "recipe-category",
+        name = "rock-crushing"
+    },
+    {
+        -- Only the industrial crusher has this one, so the oiled recipes
+        -- cannot be run on a machine with no lubricant port.
+        type = "recipe-category",
+        name = "rock-crushing-oiled"
+    },
+    {
         type = "recipe-category",
         name = "lava-centrifuge",
     }

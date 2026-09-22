@@ -1,3 +1,4 @@
+local crusher_items = require("prototypes.items.crusher")
 local lava_mech_armor = require("prototypes.items.lava-mech-armor")
 local algae = require("prototypes.items.algae")
 
@@ -12,6 +13,10 @@ data:extend({
     require("prototypes.items.arboretum"),
     require("prototypes.items.bio-garden"),
     require("prototypes.items.algae-tank"),
+    crusher_items[1],
+    crusher_items[2],
+    crusher_items[3],
+    require("prototypes.items.basalt"),
     require("prototypes.items.water-condenser"),
     require("prototypes.items.xp-lab"),
     lava_mech_armor,

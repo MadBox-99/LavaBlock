@@ -116,6 +116,26 @@ entity clockwise on screen, which is negative Z in Blender.
 The lights are not parented to `ROOT`, so the sun stays put while the machine
 turns, which is what you want - the shadow must keep falling the same way.
 
+### Depth separates badly, width separates perfectly
+
+Two identical parts set apart along **Y** do not read as two. The projection
+collapses a depth offset to `d / sqrt(2)` on screen, so parts of diameter `w`
+only show daylight between them once `d > w * sqrt(2)` - and at that spacing
+they are no longer obviously one assembly. Anything short of it and the near
+part simply eats the far one: same material, same silhouette, no gap, one
+blob. The crusher's two rolls were laid out this way first and the pair read
+as a single studded slab.
+
+Set apart along **X** the offset survives the projection untouched, `d > w` is
+enough, and the gap between them is a clean vertical slot. So: whenever the
+point of a model is that there are *two* of something, stand them side by
+side across the sprite, never one behind the other.
+
+The catch is that a rotated facing turns X into Y. The crusher's rolls are
+unmistakable facing north and south and merge into one mass facing east and
+west, and there is no arrangement that avoids it - a pair can only be
+side-by-side on one axis. Pick the axis that makes the default facing right.
+
 ## The item icon
 
 `--pass icon` reuses the same model, camera and Y stretch, so the icon and the
@@ -139,6 +159,51 @@ world sprite has to keep a fixed origin so the sheet lines up with the tile,
 but that frame is centred on the ground, and a tall machine - the water
 condenser's cooling columns reach 1.6 tiles - runs straight out of the top of
 it. Nothing else about the two passes differs.
+
+### Tiers of the same machine
+
+Three tiers rendered from one model with a different part bolted on each -
+a chimney, a motor, an oil tank - look identical everywhere the player
+actually meets them. On the ground a 3x3 machine is about 90 px, and a part
+small enough to sit on the drive bed is a handful of pixels inside that; in
+an inventory slot the whole machine is 32 px. The add-on is the right way to
+build the model and the wrong thing to rely on for telling tiers apart.
+
+Two things fix it, and both are needed:
+
+**Paint the casing, not the working parts.** Give each tier its own body
+colour and leave whatever says what the machine *does* alone. On the roll
+crushers the bed, the switchgear, the bearing housings and the engine
+cylinders are tiered - dark rust, steel grey, ochre - and the rolls and
+their teeth are the same steel in all three. Recolour the rolls too and the
+tiers stop reading as one family and start reading as three unrelated
+machines.
+
+Separate them in **value as well as hue**. Three colours of the same
+brightness collapse into one grey at night, in a screenshot, and for a
+colourblind player. Dark, mid, bright is worth more than red, green, blue.
+
+Watch the brightness ceiling while picking: this sun is hard, and a whole
+body in the mod's `yellow` blows out the same way a small horizontal steel
+face does. The ochre used here is deliberately duller than that paint.
+
+**Badge the icon.** At 32 px even a body colour is a wash, and the reliable
+signal is a small high-contrast glyph. Draw it on its own full-size canvas,
+already sitting in the corner, and lay it over the machine icon as a second
+`icons` layer with no `scale` and no `shift`:
+
+```lua
+icons = {
+    { icon = ".../icons/items/" .. name .. ".png",  icon_size = 64 },
+    { icon = ".../icons/badges/" .. name .. ".png", icon_size = 64 },
+}
+```
+
+The arithmetic behind `scale` and `shift` can only be checked by loading the
+game; a badge pre-placed on the canvas cannot land in the wrong place. Name
+the badge file after the entity and no second table has to be kept in step.
+`tools/icons/make_tier_badge.py` builds them from the base game's own signal
+sprites, tinted.
 
 ## Fluid connections
 
@@ -284,6 +349,22 @@ The water condenser turns one pitch (60 degrees on a 6-blade fan) across 16
 frames: every frame is unique and the sheet is half the size for the same
 motion. The per-frame angle, and so the apparent speed, is what `frame_count`
 and `animation_speed` decide together - a longer sheet is not a faster fan.
+
+#### One asymmetric part sets the price for the whole group
+
+Everything on a `Spin` shares its closing angle, so the least symmetric part
+decides it. A ring of six bolts on a roll that closes on a 14-tooth pitch
+(360/14) does not land back on itself and the sheet jumps at the wrap; move
+the bolts onto the static bearing cap and the problem is gone. A crank arm
+cannot be moved off - it is the thing that has to turn - so it forces the
+group to close on a whole 360.
+
+That in turn caps how finely the rest of the group may be patterned. A
+repeating pattern advancing more than about **0.4 of its own pitch per frame**
+reads as crawling backwards, and on a group closing on a full turn the step is
+exactly `count / FRAMES` of a pitch. So `count < 0.4 * FRAMES`: 12 teeth need
+32 frames, and at 16 frames the same roll could only carry 6. Pattern count
+and frame count are one decision, not two.
 
 ### Clearance around moving parts
 

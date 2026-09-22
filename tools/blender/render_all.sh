@@ -2,7 +2,10 @@
 # Render every pass for every facing, then pack the frames into Factorio
 # spritesheets with spritter.
 #
-#   render_all.sh <model-script> <entity-name> <scratch-dir> [frames] [facings]
+#   render_all.sh <model-script> <entity-name> <scratch-dir> [frames] [facings] [extra]
+#
+#   extra:   handed straight to the model script, unquoted, for models that
+#            render more than one machine - e.g. "--variant burner".
 #
 #   facings: "all" (default) for a rotatable entity, or "north" for one that
 #            cannot be rotated - a quarter of the render time.
@@ -23,6 +26,7 @@ ENTITY="$2"
 SP="$3"
 N="${4:-32}"
 FACINGS="${5:-all}"
+EXTRA="${6:-}"
 [ "$FACINGS" = "all" ] && FACINGS="north east south west"
 
 for dir in $FACINGS; do
@@ -38,7 +42,8 @@ for dir in $FACINGS; do
       [ "$have" -ge "$N" ] && break
       "$BLENDER" --background --factory-startup --python "$MODEL" -- \
            --pass "$pass" --direction "$dir" --frames "$N" --start "$have" \
-           --samples "$samples" --out "$out" >> "$SP/render_${dir}_${pass}.log" 2>&1
+           --samples "$samples" --out "$out" $EXTRA \
+           >> "$SP/render_${dir}_${pass}.log" 2>&1
     done
     echo "$dir/$pass: $(ls "$out"/*.png 2>/dev/null | wc -l)/$N"
   done

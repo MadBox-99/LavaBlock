@@ -71,6 +71,11 @@ local algae_processing = require("prototypes.recipes.algae.algae-processing")
 local water_electrolysis = require("prototypes.recipes.gases.water-electrolysis")
 local oxygen_enriched = require("prototypes.recipes.smelting.oxygen-enriched")
 
+-- Crusher recipes
+local crusher_recipes = require("prototypes.recipes.crusher")
+local basalt_casting = require("prototypes.recipes.crusher.basalt-casting")
+local stone_crushing = require("prototypes.recipes.crusher.stone-crushing")
+
 -- Arboretum recipes
 local arboretum = require("prototypes.recipes.arboretum")
 local tree_cultivation = require("prototypes.recipes.wood.tree-cultivation")
@@ -171,6 +176,14 @@ data:extend({
     water_electrolysis,
     oxygen_enriched[1],
     oxygen_enriched[2],
+    -- Crusher recipes
+    crusher_recipes[1],
+    crusher_recipes[2],
+    crusher_recipes[3],
+    basalt_casting,
+    stone_crushing[1],
+    stone_crushing[2],
+    stone_crushing[3],
     -- Arboretum recipes
     arboretum,
     tree_cultivation,

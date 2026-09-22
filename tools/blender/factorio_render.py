@@ -382,10 +382,114 @@ class Grow:
         empty.scale = sc
 
 
+def slider_crank(centre, radius, length, f, frames, sign=1, phase=0.0,
+                 bore=(0.0, 1.0)):
+    """Where the two ends of a connecting rod are on frame f.
+
+    The big end runs round an eccentric or crank pin of `radius` on the shaft
+    at `centre`; the small end is held on a bore through that shaft, so its
+    travel is not a sine - the rod leans, and a short rod leans a lot, so the
+    small end dwells noticeably longer at the far end of its stroke than at
+    the near one. A Slide gives the symmetric version of the same stroke, and
+    that reads as a pump rather than as an engine.
+
+    `bore` is the direction the small end runs, in the XZ plane - the plane
+    the eccentric turns in, since the shaft lies along Y. It does not have to
+    be straight up, and usually should not be: a bore pointing at the sky puts
+    the cylinder over whatever the machine is there to show, while one angled
+    outwards puts it in the corner of the sprite where there is nothing.
+
+    Returns (big_x, big_z, tilt, small_x, small_z) in entity space.
+    """
+    assert length > radius, "a rod shorter than the throw cannot turn the shaft"
+    ux, uz = bore
+    n = math.hypot(ux, uz)
+    assert n > 1e-9, "the bore has no direction"
+    ux, uz = ux / n, uz / n
+    a = 2 * math.pi * (sign * f / frames + phase)
+    bx = centre[0] + radius * math.sin(a)
+    bz = centre[2] + radius * math.cos(a)
+    k = ux * (bx - centre[0]) + uz * (bz - centre[2])
+    disc = length * length - radius * radius + k * k
+    assert disc > 0.0, "the rod cannot reach the bore"
+    t = k + math.sqrt(disc)
+    sx, sz = centre[0] + t * ux, centre[2] + t * uz
+    return bx, bz, math.atan2(sx - bx, sz - bz), sx, sz
+
+
+class Rod:
+    """A connecting rod: round big end on the shaft, small end in the bore.
+
+    Unlike Spin and Slide this poses both the location and the rotation of its
+    empty, because a rod neither turns in place nor slides in a line - it does
+    both at once, and that combination is the whole reason it reads as an
+    engine rather than as a part being animated.
+
+    Model the shank running straight up (+Z) from the big end, wherever the
+    bore actually points: the empty carries the whole tilt, including on
+    frame 0, so the authored pose only has to get the length right.
+
+    `sign` and `phase` must match the Spin of the shaft it sits on, or the
+    big end parts company with its pin - and nothing will warn you, the two
+    just drift.
+    """
+
+    def __init__(self, objs, centre, radius, length, phase=0.0, sign=1,
+                 bore=(0.0, 1.0)):
+        self.objs = list(objs)
+        self.centre = tuple(centre)
+        self.radius = radius
+        self.length = length
+        self.phase = phase
+        self.sign = sign
+        self.bore = bore
+        bx, bz = self._solve(0, 1)[0], self._solve(0, 1)[1]
+        self.pivot = (bx, centre[1], bz)          # rest pose, frame 0
+
+    def _solve(self, f, frames):
+        return slider_crank(self.centre, self.radius, self.length, f, frames,
+                            self.sign, self.phase, self.bore)
+
+    def pose(self, empty, f, frames):
+        bx, bz, tilt, _, _ = self._solve(f, frames)
+        empty.location = (bx, self.centre[1], bz)
+        empty.rotation_euler = (0, tilt, 0)
+
+
+class Piston:
+    """The small end of a Rod - the crosshead, or the piston itself.
+
+    Its own group because it does not tilt with the rod, it only rides the
+    bore. Built with the same centre, radius, length and bore as its Rod, and
+    posed from the same solution, so the two cannot drift apart. Model it
+    where frame 0 puts it, like the rod.
+    """
+
+    def __init__(self, objs, centre, radius, length, phase=0.0, sign=1,
+                 bore=(0.0, 1.0)):
+        self.objs = list(objs)
+        self.centre = tuple(centre)
+        self.radius = radius
+        self.length = length
+        self.phase = phase
+        self.sign = sign
+        self.bore = bore
+        self.pivot = (0, 0, 0)        # children keep their authored positions
+        self.rest = self._solve(0, 1)[3:]
+
+    def _solve(self, f, frames):
+        return slider_crank(self.centre, self.radius, self.length, f, frames,
+                            self.sign, self.phase, self.bore)
+
+    def pose(self, empty, f, frames):
+        sx, sz = self._solve(f, frames)[3:]
+        empty.location = (sx - self.rest[0], 0, sz - self.rest[1])
+
+
 def _as_groups(spin, pivot, default_degrees):
     """Accept either a flat list of objects (one group, the common case) or a
     list of Spin/Slide groups."""
-    if spin and isinstance(spin[0], (Spin, Slide, Grow)):
+    if spin and isinstance(spin[0], (Spin, Slide, Grow, Rod, Piston)):
         groups = spin
     else:
         groups = [Spin(spin, pivot=pivot)]

@@ -81,6 +81,10 @@ local oxygen_processing_tech = require("prototypes.technologies.oxygen-processin
 -- Blue algae: needs the air chain, so it follows the compressor line
 local nitrogen_fixation_tech = require("prototypes.technologies.nitrogen-fixation")
 
+-- Crusher technology: early, because land expansion is available from the
+-- first minute and its stone bill is the biggest cost in the mod.
+local stone_crushing_techs = require("prototypes.technologies.stone-crushing")
+
 -- Arboretum technology
 local arboretum_tech = require("prototypes.technologies.arboretum")
 
@@ -122,6 +126,9 @@ data:extend({
     lava_speed_module_3,
     lava_flying_robot_frame,
     enchanted_science_pack,
+    stone_crushing_techs[1],
+    stone_crushing_techs[2],
+    stone_crushing_techs[3],
     arboretum_tech,
     bio_garden_tech,
     oxygen_processing_tech,
