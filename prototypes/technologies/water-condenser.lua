@@ -5,7 +5,7 @@
 return {
     type = "technology",
     name = "water-condenser",
-    icon = "__base__/graphics/technology/fluid-handling.png",
+    icon = "__LavaBlock__/graphics/technology/water-condenser.png",
     icon_size = 256,
     effects = {
         { type = "unlock-recipe", recipe = "water-condenser" },

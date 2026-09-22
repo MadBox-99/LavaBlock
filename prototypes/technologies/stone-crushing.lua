@@ -1,5 +1,10 @@
 -- Three steps, because the crusher itself comes in three.
 --
+-- Each carries a picture of the machine it hands over, rendered from the same
+-- model by `--pass tech` (see docs/blender-renders.md). Three borrowed
+-- base-game icons said "steel", "power" and "lubricant" - true of the
+-- prerequisites and nothing at all about what the technology gives you.
+--
 -- The first is early on purpose. Land expansion is available from the first
 -- minute and its stone bill is the largest single cost in the mod, so the
 -- answer to it should not sit behind chemical science - and the machine it
@@ -8,7 +13,7 @@ return {
     {
         type = "technology",
         name = "stone-crushing",
-        icon = "__base__/graphics/technology/steel-processing.png",
+        icon = "__LavaBlock__/graphics/technology/stone-crushing.png",
         icon_size = 256,
         effects = {
             { type = "unlock-recipe", recipe = "burner-roll-crusher" },
@@ -32,7 +37,7 @@ return {
         -- keeps working; this is what you build once the grid can carry it.
         type = "technology",
         name = "powered-rock-crushing",
-        icon = "__base__/graphics/technology/electric-energy-distribution-1.png",
+        icon = "__LavaBlock__/graphics/technology/powered-rock-crushing.png",
         icon_size = 256,
         effects = {
             { type = "unlock-recipe", recipe = "roll-crusher" },
@@ -55,7 +60,7 @@ return {
         -- much stone out of the same basalt.
         type = "technology",
         name = "lubricated-rock-crushing",
-        icon = "__base__/graphics/technology/lubricant.png",
+        icon = "__LavaBlock__/graphics/technology/lubricated-rock-crushing.png",
         icon_size = 256,
         effects = {
             { type = "unlock-recipe", recipe = "industrial-roll-crusher" },

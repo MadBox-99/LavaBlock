@@ -13,7 +13,7 @@
 return {
     type = "technology",
     name = "arboretum",
-    icon = "__space-age__/graphics/technology/tree-seeding.png",
+    icon = "__LavaBlock__/graphics/technology/arboretum.png",
     icon_size = 256,
     effects = {
         { type = "unlock-recipe", recipe = "arboretum" },

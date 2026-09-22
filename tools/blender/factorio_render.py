@@ -38,6 +38,15 @@ PX_PER_TILE = 64
 FRAME_TILES = float(arg('--frame-tiles', 0)) or None
 ELEV = 45.0                      # camera elevation above the ground plane
 
+# The technology icon is a different picture of the same machine. Base-game
+# technology icons are product shots, not map sprites: a lower, perspective
+# three-quarter view with a soft contact shadow under the object. Rendering
+# the entity camera bigger instead gives a 256 px copy of the map sprite,
+# which reads as a screenshot pasted into the tech tree.
+TECH_ELEV = 30.0                 # lower than the map, so the machine has a face
+TECH_AZ = 28.0                   # swung round, so two sides show at once
+TECH_LENS = 85.0                 # mild perspective; a wide lens distorts it
+
 # A camera tilted to ELEV squashes the ground plane by sin(ELEV), but base-game
 # entities fill their square tile footprint - a 3x3 machine covers 3x3 tiles on
 # screen, not 3x2.1. Pre-stretching the model along Y by 1/sin(ELEV) cancels the
@@ -586,7 +595,7 @@ def setup_scene(objs, frame_tiles):
 
     # The icon is the same model under the same camera, just framed tight and
     # rendered large so it can be downsampled to a crisp 64 px item icon.
-    res = 512 if PASS == 'icon' else int(round(frame_tiles * PX_PER_TILE))
+    res = 512 if PASS in ('icon', 'tech') else int(round(frame_tiles * PX_PER_TILE))
     tiles_across = 4.3 if PASS == 'icon' else frame_tiles
 
     cam_d = bpy.data.cameras.new("cam")
@@ -620,12 +629,49 @@ def setup_scene(objs, frame_tiles):
         cam_d.ortho_scale = max(max(us) - min(us), max(rs) - min(rs)) * 1.06
         cam.location = Vector(cam.location) + up * cu + right * cr
 
+    if PASS == 'tech':
+        # The Y pre-stretch squares the footprint up under the 45 degree map
+        # camera. This camera is free of that convention, so leaving the
+        # stretch in would simply make the machine half again too deep.
+        bpy.data.objects['ROOT'].scale = (1, 1, 1)
+        bpy.context.view_layer.update()
+        cam_d.type = 'PERSP'
+        cam_d.lens = TECH_LENS
+
+        pts = [o.matrix_world @ Vector(c)
+               for o in objs if o.type == 'MESH' for c in o.bound_box]
+        lo = Vector((min(v.x for v in pts), min(v.y for v in pts),
+                     min(v.z for v in pts)))
+        hi = Vector((max(v.x for v in pts), max(v.y for v in pts),
+                     max(v.z for v in pts)))
+        ctr, radius = (lo + hi) / 2, (hi - lo).length / 2
+
+        az, el = math.radians(TECH_AZ), math.radians(TECH_ELEV)
+        away = Vector((math.sin(az) * math.cos(el),
+                       -math.cos(az) * math.cos(el), math.sin(el)))
+        # Fit the bounding sphere, then back off a little further: the contact
+        # shadow spreads away from the sun and is part of the picture.
+        dist = radius / math.sin(cam_d.angle / 2) * 1.16
+        cam.location = ctr + away * dist
+        cam.rotation_euler = (ctr - cam.location).to_track_quat(
+            '-Z', 'Y').to_euler()
+
     # key sun from WNW ~50 deg up: shadow lands right and slightly down,
     # matching the base-game shadow shift offsets
     d = Vector((0.671, -0.741, -1.19)).normalized()
     s = bpy.data.lights.new("sun", 'SUN')
     # an icon is read at 64 px, so it needs more light than the world sprite
-    s.energy, s.angle = (7.5 if PASS == 'icon' else 5.5), math.radians(2.5)
+    bright = PASS in ('icon', 'tech')
+    s.energy, s.angle = (7.5 if bright else 5.5), math.radians(2.5)
+    if PASS == 'tech':
+        # Steeper and much softer than the map sun. The sprite sun is set up
+        # to throw a long shadow sideways, which is what Factorio draws as a
+        # separate shadow layer; here the shadow is inside the picture, and a
+        # long hard one both pushes the machine out of the frame and reads as
+        # a second object. Base-game technology icons sit on a short, soft
+        # contact shadow instead.
+        d = Vector((0.55, -0.62, -1.75)).normalized()
+        s.angle = math.radians(9.0)
     so = bpy.data.objects.new("sun", s)
     sc.collection.objects.link(so)
     so.rotation_euler = d.to_track_quat('-Z', 'Y').to_euler()
@@ -634,7 +680,7 @@ def setup_scene(objs, frame_tiles):
     # An icon is read at 64 px with no ground and no neighbours to give it
     # context, so shadowed faces that are merely moody on a world sprite just
     # go black and take the silhouette with them. Fill harder for the icon.
-    fl.energy = 2.8 if PASS == 'icon' else 1.1
+    fl.energy = 2.8 if bright else 1.1
     fo = bpy.data.objects.new("fill", fl)
     sc.collection.objects.link(fo)
     fo.rotation_euler = Vector((-0.6, 0.7, -0.9)).normalized() \
@@ -644,7 +690,7 @@ def setup_scene(objs, frame_tiles):
     sc.world = w
     w.use_nodes = True
     w.node_tree.nodes['Background'].inputs[0].default_value = (0.06, 0.07, 0.09, 1)
-    w.node_tree.nodes['Background'].inputs[1].default_value = 0.9 if PASS == 'icon' else 0.45
+    w.node_tree.nodes['Background'].inputs[1].default_value = 0.9 if bright else 0.45
 
     sc.render.engine = 'CYCLES'
     prefs = bpy.context.preferences.addons['cycles'].preferences
@@ -696,6 +742,14 @@ def setup_scene(objs, frame_tiles):
         for o in TINT:
             hide_completely(o)
 
+    if PASS == 'tech':
+        # A shadow catcher, not a floor. With a transparent film Cycles writes
+        # the shadow into the alpha and the ground itself stays invisible,
+        # which is exactly the soft contact shadow base-game technology icons
+        # sit on - and it is what stops the machine floating in the tech tree.
+        bpy.ops.mesh.primitive_plane_add(size=60, location=(0, 0, 0))
+        bpy.context.object.is_shadow_catcher = True
+
     if PASS == 'shadow':
         bpy.ops.mesh.primitive_plane_add(size=40, location=(0, 0, 0))
         bpy.context.object.is_shadow_catcher = True
@@ -723,7 +777,7 @@ def run(build, spin_degrees=120, pivot=(0, 0, 0), frame_tiles=6):
     pivots, objs = assemble(*build(), pivot=pivot, degrees=spin_degrees)
     sc = setup_scene(objs, FRAME_TILES or frame_tiles)
     os.makedirs(OUTDIR, exist_ok=True)
-    if PASS == 'icon':
+    if PASS in ('icon', 'tech'):
         frames = [0]
     elif SINGLE is not None:
         frames = [int(SINGLE)]

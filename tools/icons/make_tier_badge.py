@@ -63,8 +63,11 @@ def tinted(path, colour):
 def build(name, path, colour):
     canvas = Image.new("RGBA", (SIZE, SIZE), (0, 0, 0, 0))
     d = ImageDraw.Draw(canvas)
-    x1, y1 = SIZE - INSET, SIZE - INSET
-    x0, y0 = x1 - PLATE, y1 - PLATE
+    # Top right, not bottom right: Factorio prints the stack count across the
+    # bottom of an inventory slot and it would sit straight on top of a badge
+    # down there.
+    x1, y0 = SIZE - INSET, INSET
+    x0, y1 = x1 - PLATE, y0 + PLATE
     # A dark plate, because the badge sits over machine art and a bare glyph
     # would be read as part of the machine.
     d.rounded_rectangle((x0, y0, x1, y1), RADIUS, fill=(22, 22, 26, 245),

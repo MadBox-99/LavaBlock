@@ -160,6 +160,40 @@ but that frame is centred on the ground, and a tall machine - the water
 condenser's cooling columns reach 1.6 tiles - runs straight out of the top of
 it. Nothing else about the two passes differs.
 
+### The technology icon
+
+`--pass tech` renders the same model as a **product shot**, which is what
+base-game technology icons are and what the map sprite is not. Three things
+change, and all three matter:
+
+- **A perspective camera, lower and swung round** (`TECH_ELEV`, `TECH_AZ`,
+  `TECH_LENS`). The map camera is orthographic at 45 degrees and dead ahead;
+  reused at 256 px it produces a large copy of the sprite, which reads as a
+  screenshot pasted into the tech tree rather than a picture of a thing.
+- **No Y pre-stretch.** That stretch exists only to square the footprint up
+  under the 45 degree camera. This camera is free of the convention, so the
+  pass resets `ROOT` to 1 - otherwise the machine comes out half again too
+  deep.
+- **A contact shadow inside the picture.** A shadow-catcher plane with a
+  transparent film puts the shadow into the alpha, and the sun is steeper and
+  much softer than the map sun. The sprite sun deliberately throws a long hard
+  shadow sideways, because Factorio draws that as its own layer; inside a
+  single icon the same shadow reads as a second object and shoves the machine
+  out of the frame.
+
+```sh
+blender --background --factory-startup --python tools/blender/crusher.py --         --pass tech --frames 1 --samples 256 --out /tmp/tech --variant burner
+python tools/blender/make_icon.py /tmp/tech/tech_000.png        graphics/technology/stone-crushing.png 256 10
+```
+
+The trailing `10` is an alpha floor. The contact shadow fades to nothing over
+a wide area, so cropping on any non-zero pixel frames the faintest fringe of
+it and leaves the machine at half size in the middle of the icon.
+
+Name the file after the **technology**, not the machine: a technology that
+unlocks several things still needs one picture, and the tech is what the file
+is for.
+
 ### Tiers of the same machine
 
 Three tiers rendered from one model with a different part bolted on each -
@@ -188,9 +222,11 @@ body in the mod's `yellow` blows out the same way a small horizontal steel
 face does. The ochre used here is deliberately duller than that paint.
 
 **Badge the icon.** At 32 px even a body colour is a wash, and the reliable
-signal is a small high-contrast glyph. Draw it on its own full-size canvas,
-already sitting in the corner, and lay it over the machine icon as a second
-`icons` layer with no `scale` and no `shift`:
+signal is a small high-contrast glyph. Put it in the **top right**: Factorio
+prints the stack count across the bottom of an inventory slot, and a badge in
+either bottom corner is read over by the number. Draw it on its own full-size
+canvas, already sitting in that corner, and lay it over the machine icon as a
+second `icons` layer with no `scale` and no `shift`:
 
 ```lua
 icons = {
