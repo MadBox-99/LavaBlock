@@ -139,6 +139,26 @@ class Builder(object):
         self.loc = read_locale(mod)
         self.icons = {}
 
+        # Every item in Factorio is an item, but not every item is an "item".
+        # Science packs are tools, jelly and bioflux are capsules, modules,
+        # ammunition, guns and armour are each their own prototype type -
+        # eighteen types in the current dump. Looking only in data.raw.item
+        # left eighteen nodes with no icon, and a node with no icon took the
+        # whole graph down with it.
+        #
+        # What they have in common is a stack size: that is what makes a
+        # prototype an item. Indexing on it rather than on a list of type
+        # names means the next type the game adds is already handled.
+        self.things = {}
+        for kind, protos in self.m.items():
+            if not isinstance(protos, dict):
+                continue
+            for name, proto in protos.items():
+                if isinstance(proto, dict) and "stack_size" in proto:
+                    self.things.setdefault(name, proto)
+        for name, proto in self.m.get("fluid", {}).items():
+            self.things.setdefault(name, proto)
+
         self.cat_machines = {}
         for kind in ("assembling-machine", "furnace"):
             for name, e in self.m.get(kind, {}).items():
@@ -182,7 +202,7 @@ class Builder(object):
         """Embed a 48 px copy of an item or fluid icon, tint applied."""
         if name in self.icons:
             return
-        p = self.m["item"].get(name) or self.m["fluid"].get(name) or {}
+        p = self.things.get(name) or {}
         src = p.get("icon") or (p.get("icons") or [{}])[0].get("icon")
         if not src:
             self.icons[name] = None

@@ -74,8 +74,8 @@ local nitrogen_fixation = {
     allow_productivity = true,
     icons = {
         {
-            icon = "__LavaBlock__/graphics/icons/fluid/liquid_nitrogen.png",
-            icon_size = 32,
+            icon = "__LavaBlock__/graphics/icons/fluid/liquid-nitrogen.png",
+            icon_size = 64,
         },
         {
             icon = string.format(ICON, "blue"),

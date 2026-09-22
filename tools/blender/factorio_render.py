@@ -6,7 +6,7 @@
 1 Blender unit = 1 Factorio tile. Orthographic camera at 45 deg elevation,
 calibrated against the base-game storage-tank and centrifuge sprites.
 """
-import bpy, math, sys, os
+import bpy, math, sys, os, subprocess
 from mathutils import Vector, Matrix
 
 # ---------------------------------------------------------------- arguments
@@ -46,6 +46,10 @@ ELEV = 45.0                      # camera elevation above the ground plane
 TECH_ELEV = 30.0                 # lower than the map, so the machine has a face
 TECH_AZ = 28.0                   # swung round, so two sides show at once
 TECH_LENS = 85.0                 # mild perspective; a wide lens distorts it
+# The technology pass stands its subject on a shadow catcher, because a
+# machine stands on something. A droplet does not, and no fluid icon in the
+# game has a shadow under it, so a model that floats turns the ground off.
+GROUND = arg('--ground', '1') != '0'
 
 # A camera tilted to ELEV squashes the ground plane by sin(ELEV), but base-game
 # entities fill their square tile footprint - a 3x3 machine covers 3x3 tiles on
@@ -590,6 +594,107 @@ def hide_completely(o):
         setattr(o, attr, False)
 
 
+def free_vram():
+    """Megabytes of video memory not already spoken for, or None if unknown."""
+    try:
+        out = subprocess.run(
+            ['nvidia-smi', '--query-gpu=memory.free',
+             '--format=csv,noheader,nounits'],
+            capture_output=True, text=True, timeout=10)
+        return int(out.stdout.split()[0])
+    except Exception:
+        return None
+
+
+# Under this much free video memory, OptiX is liable to fail mid-kernel rather
+# than refuse the job up front. Measured, not guessed: the scenes here fit in
+# well under a gigabyte, and the renders that died were the ones started with
+# the game and a browser already holding four and a half.
+VRAM_FLOOR = 1500
+
+
+def pick_device():
+    """Configure Cycles' compute devices and say which one we got.
+
+    Two things here are worth stating, because either one gets you "Illegal
+    address in CUDA queue" halfway through a sprite sheet and neither shows
+    up in the error.
+
+    The device list holds the same card twice - once as CUDA, once as OPTIX -
+    and the CPU once, shared between the backends. Enabling everything, which
+    is the obvious loop to write, silently turns on hybrid CPU+GPU rendering:
+    the scene is then resident in host memory as well as in VRAM, and at 64
+    to 256 pixels the GPU has finished the frame before the CPU has finished
+    its first tile. All cost, no gain. So only the devices belonging to the
+    backend we asked for are switched on.
+
+    And this is a 6 GB card with the desktop on it. With Factorio and a
+    browser open, under 1.5 GB is left, and OptiX does not report that as out
+    of memory - the allocation fails inside a kernel and surfaces as an
+    illegal address. The free memory is therefore measured and printed,
+    because the fix is to close something and no log line will ever say so.
+    """
+    if DEVICE != 'GPU':
+        print("device: CPU (asked for)", flush=True)
+        return 'CPU'
+
+    prefs = bpy.context.preferences.addons['cycles'].preferences
+    for backend in ('OPTIX', 'CUDA'):
+        try:
+            prefs.compute_device_type = backend
+        except Exception:
+            continue                      # not built in, or no driver for it
+        prefs.get_devices()
+        picked = [d for d in prefs.devices if d.type == backend]
+        if not picked:
+            continue
+        for d in prefs.devices:
+            d.use = d.type == backend     # never the CPU alongside it
+        mb = free_vram()
+        room = "%d MB free" % mb if mb is not None else "free VRAM unknown"
+        print("device: %s, %s (%s)"
+              % (backend, picked[0].name, room), flush=True)
+        if mb is not None and mb < VRAM_FLOOR:
+            print("WARNING: only %d MB of video memory is free. Close"
+                  " Factorio and the browser, or this render will fall back"
+                  " to the CPU part way through." % mb, flush=True)
+        return 'GPU'
+
+    print("device: CPU (no usable GPU backend)", flush=True)
+    return 'CPU'
+
+
+_ON_CPU = False        # once the GPU has let us down, it does not get it back
+
+
+def render_to(sc, path):
+    """Render one frame to `path`, surviving a GPU that dies under us.
+
+    A driver fault is not something a render script can prevent, so it takes
+    the fault instead of the loss and moves the whole run to the CPU on the
+    first failure. Not one GPU retry first: when this card goes it goes three
+    times in a row, so a retry only buys another minute of the same error.
+    Slow frames beat a sheet missing its last ten, which is what a bare
+    render call leaves behind.
+    """
+    global _ON_CPU
+    sc.render.filepath = path
+    for attempt in (1, 2, 3):
+        try:
+            bpy.ops.render.render(write_still=True)
+            if os.path.exists(path):
+                return
+            why = "the render reported success but wrote no file"
+        except Exception as e:
+            why = (str(e).strip().splitlines() or [repr(e)])[0]
+        print("RENDER FAILED (attempt %d): %s" % (attempt, why), flush=True)
+        if not _ON_CPU:
+            _ON_CPU = True
+            sc.cycles.device = 'CPU'
+            print("switching to the CPU for the rest of this run", flush=True)
+    raise RuntimeError("gave up on %s after three attempts" % path)
+
+
 def setup_scene(objs, frame_tiles):
     sc = bpy.context.scene
 
@@ -693,18 +798,7 @@ def setup_scene(objs, frame_tiles):
     w.node_tree.nodes['Background'].inputs[1].default_value = 0.9 if bright else 0.45
 
     sc.render.engine = 'CYCLES'
-    prefs = bpy.context.preferences.addons['cycles'].preferences
-    if DEVICE == 'GPU':
-        try:
-            prefs.compute_device_type = 'OPTIX'
-            prefs.get_devices()
-            for dv in prefs.devices:
-                dv.use = True
-            sc.cycles.device = 'GPU'
-        except Exception:
-            sc.cycles.device = 'CPU'
-    else:
-        sc.cycles.device = 'CPU'
+    sc.cycles.device = pick_device()
     sc.cycles.samples = SAMPLES
     sc.cycles.use_denoising = True
     sc.render.film_transparent = True
@@ -742,7 +836,7 @@ def setup_scene(objs, frame_tiles):
         for o in TINT:
             hide_completely(o)
 
-    if PASS == 'tech':
+    if PASS == 'tech' and GROUND:
         # A shadow catcher, not a floor. With a transparent film Cycles writes
         # the shadow into the alpha and the ground itself stays invisible,
         # which is exactly the soft contact shadow base-game technology icons
@@ -786,8 +880,7 @@ def run(build, spin_degrees=120, pivot=(0, 0, 0), frame_tiles=6):
     for f in frames:
         for piv, g in pivots:
             g.pose(piv, f, FRAMES)
-        sc.render.filepath = os.path.join(OUTDIR, "%s_%03d.png" % (PASS, f))
-        bpy.ops.render.render(write_still=True)
+        render_to(sc, os.path.join(OUTDIR, "%s_%03d.png" % (PASS, f)))
         print("FRAME", f, flush=True)
 
 

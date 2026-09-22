@@ -467,10 +467,45 @@ A dark recess modelled behind each window pays for itself - it is in the
 entity sheet, so an idle machine reads as a dark porthole rather than as a
 hole in the shell.
 
+## The GPU
+
+Renders run on OptiX. The card here is a GTX 1660 Ti with 6 GB, and the
+desktop is on the same card, so the amount left for Cycles depends entirely
+on what else is open — Factorio and a browser between them take about four
+and a half gigabytes.
+
+That matters more than it sounds, because **OptiX does not report running out
+of video memory as running out of video memory**. The allocation fails inside
+a kernel and comes back as `Illegal address in CUDA queue` or `Misaligned
+address in CUDA queue`, which reads like a driver bug and is not one. If a
+render dies with either, close the game and the browser before blaming
+anything else.
+
+`factorio_render.py` handles this in three places:
+
+- **It prints the free memory at startup** and warns below 1.5 GB, because no
+  other line in the log will tell you the fix is to close something.
+- **It enables only the devices of the backend it chose.** The device list
+  holds the same card twice, once as CUDA and once as OptiX, and the CPU once
+  — and the CPU entry is shared between backends. Switching all of them on,
+  which is the obvious loop to write, quietly enables hybrid CPU+GPU
+  rendering: the scene then lives in host memory as well as in VRAM, and at
+  64 to 256 px the GPU has finished the frame before the CPU has finished its
+  first tile. That was the old behaviour, and it is where most of these
+  failures came from.
+- **It falls back to the CPU on the first failed frame** and stays there for
+  the rest of the run. Not a GPU retry first: when this card goes, it goes
+  several times in a row. A slow sequence beats one that is missing its last
+  ten frames.
+
+`--device CPU` forces it from the start. Some subjects need that anyway; a
+fluid droplet is small enough that the CPU costs nothing.
+
+If Blender does not merely error but dies, no Python in the script can catch
+it — that is what the outer retry loop in `render_all.sh` and `--start N` are
+still for.
+
 ## Notes
 
-- Cycles on OptiX occasionally dies mid-sequence with `Misaligned address in
-  CUDA queue`. The script takes `--start N` so a run can resume; see the retry
-  loop in `render_all.sh`.
 - Validate a change with `factorio.exe --dump-data`, which runs the whole data
   stage and exits non-zero on a bad prototype.

@@ -14,8 +14,9 @@
 # one-folder-per-sheet layout spritter's --recursive mode expects. Sheets and
 # their .lua data files land in <scratch>/sheets/.
 #
-# Cycles on OptiX dies with "Misaligned address in CUDA queue" every so often on
-# this machine, so each pass is retried from the last frame it managed to write.
+# factorio_render.py catches a GPU that errors and moves the run to the CPU by
+# itself. This outer loop is for the case it cannot catch - Blender dying
+# outright - so each pass is retried from the last frame it managed to write.
 set -u
 BLENDER="/c/Program Files/Blender Foundation/Blender 5.0/blender.exe"
 HERE="$(cd "$(dirname "$0")" && pwd)"

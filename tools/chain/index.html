@@ -217,14 +217,24 @@
       { selector: "node.item", style: {
           "shape": "round-rectangle", "width": 46, "height": 46,
           "background-color": tok("--node"),
-          "background-image": "data(icon)", "background-fit": "contain",
-          "background-clip": "none", "background-image-opacity": 1,
           "border-width": 1.5, "border-color": tok("--node-line"),
           "label": "data(label)", "font-size": 10, "text-valign": "bottom",
           "text-margin-y": 4, "color": tok("--ink"),
           "text-background-color": tok("--ground"),
           "text-background-opacity": 0.85, "text-background-padding": 2,
           "text-max-width": 96, "text-wrap": "ellipsis" } },
+      /* The picture goes on only where there is one. Handing Cytoscape an
+         undefined background-image throws inside its image loader and takes
+         down the whole render - one item without an icon and the canvas
+         stays blank. An item the generator could not find a picture for is
+         still a real item, so it keeps its box and its label. */
+      { selector: "node.item.pictured", style: {
+          "background-image": "data(icon)", "background-fit": "contain",
+          "background-clip": "none", "background-image-opacity": 1 } },
+      { selector: "node.item.blank", style: {
+          "border-style": "dashed", "label": "data(label)",
+          "text-valign": "center", "text-margin-y": 0, "font-size": 9,
+          "text-max-width": 40, "text-wrap": "wrap" } },
       { selector: "node.item.fluid", style: { "border-color": tok("--fluid") } },
       { selector: "node.recipe", style: {
           "shape": "round-rectangle", "width": "label", "height": 24,
@@ -259,9 +269,14 @@
       var id = "i:" + x.n;
       if (seen[id]) return id;
       seen[id] = true;
-      els.push({ data: { id: id, label: x.l, icon: ICON[x.n] || "", key: x.n,
+      // The class, not the emptiness of the field, is what the stylesheet
+      // keys on: an empty string is still a value as far as a selector is
+      // concerned, and Cytoscape throws on an empty background-image.
+      var pic = ICON[x.n];
+      els.push({ data: { id: id, label: x.l, icon: pic || "", key: x.n,
                          kind: "item" },
-                 classes: "item" + (x.f ? " fluid" : "") });
+                 classes: "item" + (x.f ? " fluid" : "")
+                          + (pic ? " pictured" : " blank") });
       return id;
     }
     D.recipes.forEach(function (r) {
