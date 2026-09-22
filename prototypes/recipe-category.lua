@@ -49,6 +49,14 @@ data:extend({
         name = "rock-crushing-oiled"
     },
     {
+        -- Prefixed, like the centrifuge's. "crystallizing" on its own is a
+        -- name any mod with a crystallizer would reach for, and a shared
+        -- category would let its machine run these recipes and this machine
+        -- run its - which is the same trap `rock-crushing` above avoids.
+        type = "recipe-category",
+        name = "lava-crystallizing"
+    },
+    {
         type = "recipe-category",
         name = "lava-centrifuge",
     }

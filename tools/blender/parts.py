@@ -21,6 +21,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import math                                                   # noqa: E402
 import bpy                                                    # noqa: E402
 import factorio_render as fr                                  # noqa: E402
+from mathutils import Vector                               # noqa: E402
 from factorio_render import (build_materials, cyl_at, box,    # noqa: E402
                              MATS, mat)
 
@@ -29,6 +30,10 @@ PART = fr.arg('--part', 'crusher-roll')
 # Each part is modelled about a unit across. The wear shader reads object
 # coordinates at a fixed scale, so a part built ten times too small comes out
 # polished and a part built ten times too big comes out filthy.
+#
+# Build a part wherever it is natural to build it: sit_on_ground() drops the
+# whole thing onto z = 0 before it is rendered, which it has to be, because
+# the technology pass hides everything under the ground plane.
 
 
 def crusher_roll(m):
@@ -151,14 +156,95 @@ def basalt_gravel(m):
     return out
 
 
+def silica_crystal(m):
+    """A cluster of grown crystal, the way it comes off the hearth shelf.
+
+    Six-sided spikes, not faceted gems. A gem says treasure; a hexagonal
+    prism with a broken base says something was grown and snapped off, which
+    is exactly what the machine does to it.
+    """
+    out = []
+    for x, y, r, h, tilt, turn in ((0.00, 0.00, 0.26, 1.05, 0.06, 0.0),
+                                   (0.30, 0.10, 0.17, 0.68, 0.34, 1.1),
+                                   (-0.22, 0.18, 0.14, 0.52, -0.40, 2.3),
+                                   (0.06, -0.28, 0.12, 0.40, 0.46, 3.6)):
+        o = fr.cone_at(x, y, 0.22, r, r * 0.14, h, m['crystal'], verts=6)
+        o.rotation_euler = (tilt * math.cos(turn), tilt * math.sin(turn), turn)
+        out.append(o)
+    # The rock it grew out of, so the spikes stand on something instead of
+    # hanging in the air the way a floating icon always does.
+    out.append(cyl_at(0, 0, 0.15, 0.78, 0.30, m['basalt'], verts=7))
+    return out
+
+
+def glass(m):
+    """Three cast sheets, stacked and offset.
+
+    One sheet seen at this angle is a rhombus and reads as a plate of metal.
+    Three of them with their edges showing read as sheet glass, because the
+    edge is the only place glass has a colour of its own.
+    """
+    out = []
+    for i, (dx, dy) in enumerate(((-0.20, -0.13), (0.00, 0.00), (0.19, 0.14))):
+        # Enough offset that each sheet's own edge is clear of the one below
+        # it. At a tenth of a sheet's width the stack fuses into one slab,
+        # which is the same green rectangle the single-sheet version was.
+        out.append(box(0.92, 0.66, 0.07, (dx, dy, 0.04 + i * 0.16),
+                       rot=(0, 0, 0.16 * i), m=m['glass']))
+    return out
+
+
+def glazed_panel(m):
+    """A pane in a steel frame - the wall the glasshouses are built from."""
+    W, H, T, Z = 0.98, 0.74, 0.06, 0.05
+    out = [box(W, H, T, (0, 0, Z), m=m['glass'])]
+    for sx, sy, w, h in ((0, 1, W + 0.10, 0.09), (0, -1, W + 0.10, 0.09),
+                         (1, 0, 0.09, H + 0.10), (-1, 0, 0.09, H + 0.10)):
+        out.append(box(w, h, T + 0.05,
+                       (sx * (W / 2 + 0.02), sy * (H / 2 + 0.02), Z),
+                       m=m['frame']))
+    # One mullion across the pane. A bare rectangle of glass in a frame is a
+    # window; a divided one is a built panel, and the difference is what
+    # keeps this from reading as the glass item with a border on it.
+    out.append(box(0.07, H, T + 0.03, (0, 0, Z), m=m['frame']))
+    return out
+
+
 PARTS = {
     'crusher-roll': crusher_roll,
     'culture-column': culture_column,
     'grow-lamp': grow_lamp,
     'condenser-coil': condenser_coil,
     'basalt-gravel': basalt_gravel,
+    'silica-crystal': silica_crystal,
+    'glass': glass,
+    'glazed-panel': glazed_panel,
 }
 assert PART in PARTS, "%s is not one of %s" % (PART, sorted(PARTS))
+
+
+def sit_on_ground(objs):
+    """Lift the part until its lowest point rests on z = 0.
+
+    The technology pass stands its subject on a shadow catcher, and a shadow
+    catcher stands in for the background: anything below it is simply not in
+    the picture. A part authored about the origin - which is the natural way
+    to build one - therefore loses everything under its own centre. The
+    crusher roll was rendering as half a drum, the culture column as
+    everything above its middle hoop, and the condenser coil as half-moons
+    where its fins should be. None of it looked broken; it just looked like
+    a small icon.
+
+    Fixed here rather than by rewriting every coordinate in every part, so a
+    part stays authored about its own centre and this remains one rule in
+    one place that the next part gets for free.
+    """
+    bpy.context.view_layer.update()
+    low = min((o.matrix_world @ Vector(c)).z
+              for o in objs if o.type == 'MESH' for c in o.bound_box)
+    for o in objs:
+        o.location.z -= low
+    bpy.context.view_layer.update()
 
 
 def build():
@@ -180,7 +266,20 @@ def build():
     # colour - is the first thing lost.
     m['lamp'] = mat("lamp", (0.40, 0.06, 0.33), 0.30, 0.0,
                     emit=(1.00, 0.16, 0.80), emit_str=1.25)
-    return PARTS[PART](m), []
+    # The same amethyst the hearth grows, so the item and the machine agree.
+    m['crystal'] = mat("crystal", (0.205, 0.135, 0.395), 0.18, 0.0,
+                       emit=(0.40, 0.26, 0.86), emit_str=0.26)
+    # Glass is the one material here that is mostly not its own colour: it
+    # is what is behind it, plus a green edge. Transmission does that; a
+    # pale opaque blue just gives painted tin.
+    m['glass'] = mat("glass", (0.62, 0.84, 0.74), 0.04, 0.0)
+    _g = m['glass'].node_tree.nodes['Principled BSDF']
+    _g.inputs['Transmission Weight'].default_value = 0.92
+    _g.inputs['IOR'].default_value = 1.50
+    m['frame'] = mat("frame", (0.300, 0.290, 0.278), 0.42, 1.0, wear=0.62)
+    objs = PARTS[PART](m)
+    sit_on_ground(objs)
+    return objs, []
 
 
 fr.run(build, frame_tiles=3)

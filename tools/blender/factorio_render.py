@@ -667,17 +667,46 @@ def pick_device():
 _ON_CPU = False        # once the GPU has let us down, it does not get it back
 
 
+def fall_back_to_cpu(sc):
+    """Take Cycles off the GPU for the rest of this process.
+
+    Setting scene.cycles.device is not enough, and finding that out cost a
+    whole sheet of "Failed to retain CUDA context" retries. Once a kernel
+    faults, the CUDA context is poisoned, and Cycles goes on trying to
+    retain that same dead context for every later render - the scene-level
+    device only chooses which device to *use*, it does not tell the add-on
+    to stop holding the one it already has.
+
+    Turning the backend itself off does: with compute_device_type at NONE
+    and every device unticked, there is no CUDA context to retain.
+    """
+    global _ON_CPU
+    _ON_CPU = True
+    sc.cycles.device = 'CPU'
+    try:
+        prefs = bpy.context.preferences.addons['cycles'].preferences
+        for d in prefs.devices:
+            d.use = d.type == 'CPU'
+        prefs.compute_device_type = 'NONE'
+    except Exception as e:
+        print("could not release the GPU backend: %s" % e, flush=True)
+
+
 def render_to(sc, path):
     """Render one frame to `path`, surviving a GPU that dies under us.
 
     A driver fault is not something a render script can prevent, so it takes
     the fault instead of the loss and moves the whole run to the CPU on the
-    first failure. Not one GPU retry first: when this card goes it goes three
-    times in a row, so a retry only buys another minute of the same error.
-    Slow frames beat a sheet missing its last ten, which is what a bare
-    render call leaves behind.
+    first failure. Not one GPU retry first: when this card goes it goes
+    several times in a row, so a retry only buys another minute of the same
+    error. Slow frames beat a sheet missing its last ten, which is what a
+    bare render call leaves behind.
+
+    The caller is expected to be re-runnable as well - see the retry loop in
+    render_all.sh. A fresh process gets a fresh CUDA context and is back on
+    the GPU, which is much faster than finishing a long sheet on the CPU, so
+    this fallback is the safety net rather than the plan.
     """
-    global _ON_CPU
     sc.render.filepath = path
     for attempt in (1, 2, 3):
         try:
@@ -689,8 +718,7 @@ def render_to(sc, path):
             why = (str(e).strip().splitlines() or [repr(e)])[0]
         print("RENDER FAILED (attempt %d): %s" % (attempt, why), flush=True)
         if not _ON_CPU:
-            _ON_CPU = True
-            sc.cycles.device = 'CPU'
+            fall_back_to_cpu(sc)
             print("switching to the CPU for the rest of this run", flush=True)
     raise RuntimeError("gave up on %s after three attempts" % path)
 

@@ -87,6 +87,7 @@ GROUPS = {
     "gas": "Chemistry",
     "gas-mix": "Chemistry",
     "lava-centrifuge": "Lava",
+    "lava-crystallizing": "Glass",
     "smelting": "Smelting",
     "crafting": "Build",
     "advanced-crafting": "Build",
@@ -96,6 +97,17 @@ GROUPS = {
     "organic": "Wood",
     "organic-or-hand-crafting": "Wood",
     "organic-or-assembling": "Wood",
+}
+
+# A few recipes belong to a line their crafting category cannot express.
+# Glass is smelted in an ordinary furnace and its panel is assembled on an
+# ordinary bench, so by category they land in Smelting and Build - and with
+# those lines off, the graph shows crystal being made and nothing eating it,
+# which is precisely the hole this page exists to find. The line a recipe
+# belongs to is about what it is for, not about which machine runs it.
+RECIPE_GROUPS = {
+    "glass": "Glass",
+    "glazed-panel": "Glass",
 }
 
 VANILLA_NAMES = {
@@ -247,7 +259,7 @@ class Builder(object):
         for mn in machines:
             self.icon(mn)
         return {"n": name, "l": self.recipe_name(name), "cat": cat,
-                "group": GROUPS.get(cat, cat),
+                "group": RECIPE_GROUPS.get(name, GROUPS.get(cat, cat)),
                 "t": r.get("energy_required", 0.5),
                 "in": self.side(r.get("ingredients")),
                 "out": self.side(r.get("results")),

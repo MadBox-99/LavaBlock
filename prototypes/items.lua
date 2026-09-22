@@ -18,6 +18,11 @@ data:extend({
     crusher_items[3],
     require("prototypes.items.basalt"),
     require("prototypes.items.basalt-gravel"),
+    -- Crystallizer line
+    require("prototypes.items.crystallizer"),
+    require("prototypes.items.silica-crystal"),
+    require("prototypes.items.glass"),
+    require("prototypes.items.glazed-panel"),
     -- The mod's own machine parts
     require("prototypes.items.crusher-roll"),
     require("prototypes.items.culture-column"),

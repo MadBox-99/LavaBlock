@@ -194,6 +194,25 @@ Name the file after the **technology**, not the machine: a technology that
 unlocks several things still needs one picture, and the tech is what the file
 is for.
 
+**The shadow catcher hides everything below it.** It stands in for the
+background, so a model that reaches under z = 0 simply loses that part, and
+the giveaway is subtle: nothing looks broken, the subject just comes out
+small with a clean horizontal cut where the ground is. The crusher roll
+rendered as half a drum this way, the condenser coil as a row of half-moons,
+and the culture column as everything above its middle hoop. `parts.py` now
+calls `sit_on_ground()` before rendering, which drops the whole part onto
+z = 0 — so a part can still be authored about its own centre, which is the
+natural way to build one. A model built for `--ground 0`, like a fluid
+droplet, is exempt because it has no catcher under it.
+
+**Machine icons take `--pass icon`, not this one.** The technology pass is
+for the tech tree; an item icon rendered with it is lit and framed unlike
+every other machine in the inventory, and next to its neighbours it reads as
+belonging to a different mod. The rule is simply which list the picture ends
+up in: `graphics/technology/` gets the tech pass, `graphics/icons/items/`
+gets the icon pass, and `graphics/icons/parts/` gets the tech pass because a
+part is a product shot rather than a building on a map.
+
 ### Tiers of the same machine
 
 Three tiers rendered from one model with a different part bolted on each -
@@ -474,12 +493,20 @@ desktop is on the same card, so the amount left for Cycles depends entirely
 on what else is open — Factorio and a browser between them take about four
 and a half gigabytes.
 
-That matters more than it sounds, because **OptiX does not report running out
-of video memory as running out of video memory**. The allocation fails inside
-a kernel and comes back as `Illegal address in CUDA queue` or `Misaligned
-address in CUDA queue`, which reads like a driver bug and is not one. If a
-render dies with either, close the game and the browser before blaming
+That matters, because **OptiX does not report running out of video memory as
+running out of video memory**. The allocation fails inside a kernel and comes
+back as `Illegal address in CUDA queue`, which reads like a driver bug. If a
+render dies with that one, close the game and the browser before blaming
 anything else.
+
+**Do not stop there, because a second fault looks the same and is not that.**
+`Misaligned address in CUDA queue`, in `integrator_shade_surface` or
+`integrator_compact_shadow_states`, turns up on this card with five gigabytes
+free, and only in the **shadow** pass — the crystallizer's entity and tint
+passes rendered all four facings clean while its shadow pass faulted
+twenty-one times. That one is a real driver fault in OptiX's shadow path on a
+1660 Ti, which is Turing without RT cores, and no amount of free memory
+prevents it. From here it is survivable, not fixable.
 
 `factorio_render.py` handles this in three places:
 
@@ -495,15 +522,28 @@ anything else.
   failures came from.
 - **It falls back to the CPU on the first failed frame** and stays there for
   the rest of the run. Not a GPU retry first: when this card goes, it goes
-  several times in a row. A slow sequence beats one that is missing its last
-  ten frames.
+  several times in a row.
+
+  Falling back means turning the *backend* off — `compute_device_type` to
+  `NONE`, every device but the CPU unticked — not just setting
+  `scene.cycles.device`. A faulted kernel poisons the CUDA context, and the
+  scene-level device only says which device to use; it does not tell the
+  add-on to let go of the context it already holds. Setting it alone gets
+  `Failed to retain CUDA context` on every frame after the first, which is
+  exactly what the first version of this did.
 
 `--device CPU` forces it from the start. Some subjects need that anyway; a
 fluid droplet is small enough that the CPU costs nothing.
 
+**The outer retry loop is the real answer, not the fallback.** A fresh
+process gets a fresh CUDA context and is back on the GPU, and resuming costs
+one frame. That is what carried the crystallizer's north shadow pass to
+32/32: six launches, every frame on OptiX. Finishing a long sheet on the CPU
+would have been correct and very slow, so treat the in-process fallback as
+the safety net for one frame and `render_all.sh` with `--start N` as the plan.
+
 If Blender does not merely error but dies, no Python in the script can catch
-it — that is what the outer retry loop in `render_all.sh` and `--start N` are
-still for.
+it — that is the other thing the outer loop is for.
 
 ## Notes
 

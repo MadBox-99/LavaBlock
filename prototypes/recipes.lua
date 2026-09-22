@@ -77,6 +77,13 @@ local basalt_casting = require("prototypes.recipes.crusher.basalt-casting")
 local stone_crushing = require("prototypes.recipes.crusher.stone-crushing")
 local crusher_roll = require("prototypes.recipes.parts.crusher-roll")
 local culture_column = require("prototypes.recipes.parts.culture-column")
+
+-- Crystallizer recipes
+local crystallizer = require("prototypes.recipes.crystallizer")
+local silica_crystallizing = require("prototypes.recipes.crystallizer.silica-crystallizing")
+local silica_crystallizing_purified = require("prototypes.recipes.crystallizer.silica-crystallizing-purified")
+local glass = require("prototypes.recipes.smelting.glass")
+local glazed_panel = require("prototypes.recipes.parts.glazed-panel")
 local grow_lamp = require("prototypes.recipes.parts.grow-lamp")
 local condenser_coil = require("prototypes.recipes.parts.condenser-coil")
 
@@ -191,6 +198,12 @@ data:extend({
     stone_crushing[4],
     crusher_roll,
     culture_column,
+    -- Crystallizer recipes
+    crystallizer,
+    silica_crystallizing,
+    silica_crystallizing_purified,
+    glass,
+    glazed_panel,
     grow_lamp,
     condenser_coil,
     -- Arboretum recipes

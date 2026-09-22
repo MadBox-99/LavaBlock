@@ -30,7 +30,14 @@ return {
             }
         },
     },
-    prerequisites = { "calcite-processing-on-lava-block", "logistic-science-pack" },
+    -- lava-crystallization is new in front of this one: the glasshouse is
+    -- walled in glazed panels now, so the hearth that makes glass has to
+    -- come first. It is a cheap research placed deliberately early.
+    prerequisites = {
+        "calcite-processing-on-lava-block",
+        "logistic-science-pack",
+        "lava-crystallization",
+    },
     unit = {
         count = 100,
         ingredients = {

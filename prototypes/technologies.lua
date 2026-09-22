@@ -86,6 +86,8 @@ local nitrogen_fixation_tech = require("prototypes.technologies.nitrogen-fixatio
 local stone_crushing_techs = require("prototypes.technologies.stone-crushing")
 
 -- Arboretum technology
+local lava_crystallization_tech = require("prototypes.technologies.lava-crystallization")
+local refined_crystallization_tech = require("prototypes.technologies.refined-crystallization")
 local arboretum_tech = require("prototypes.technologies.arboretum")
 local algae_cultivation_tech = require("prototypes.technologies.algae-cultivation")
 
@@ -132,6 +134,8 @@ data:extend({
     stone_crushing_techs[3],
     stone_crushing_techs[4],
     stone_crushing_techs[5],
+    lava_crystallization_tech,
+    refined_crystallization_tech,
     arboretum_tech,
     algae_cultivation_tech,
     bio_garden_tech,

@@ -1,4 +1,7 @@
--- Eight lamps, which is what is hanging under the eaves over the four beds.
+-- Eight lamps, which is what is hanging under the eaves over the four beds,
+-- and twelve glazed panels, which is the glasshouse they hang inside. The
+-- plate count comes down by the same weight of steel the panels carry, so
+-- the building is a step longer to reach and no dearer once you are there.
 return {
     type = "recipe",
     name = "arboretum",
@@ -6,7 +9,8 @@ return {
     energy_required = 12,
     ingredients = {
         { type = "item", name = "grow-lamp",          amount = 8 },
-        { type = "item", name = "steel-plate",        amount = 50 },
+        { type = "item", name = "glazed-panel",       amount = 12 },
+        { type = "item", name = "steel-plate",        amount = 38 },
         { type = "item", name = "iron-gear-wheel",    amount = 30 },
         { type = "item", name = "electronic-circuit", amount = 25 },
         { type = "item", name = "pipe",               amount = 40 },
