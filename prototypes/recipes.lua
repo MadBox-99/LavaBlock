@@ -69,6 +69,7 @@ local algae_processing = require("prototypes.recipes.algae.algae-processing")
 
 -- Oxygen recipes
 local water_electrolysis = require("prototypes.recipes.gases.water-electrolysis")
+local volcanic_gas_scrubbing = require("prototypes.recipes.gases.volcanic-gas-scrubbing")
 local oxygen_enriched = require("prototypes.recipes.smelting.oxygen-enriched")
 
 -- Crusher recipes
@@ -104,6 +105,7 @@ local steam_condensing = require("prototypes.recipes.water.steam-condensing")
 -- Lava Centrifuge recipes
 local lava_centrifuge = require("prototypes.recipes.lava-centrifuge")
 local lava_purification = require("prototypes.recipes.centrifuge.lava-purification")
+local lava_purification_chlorinated = require("prototypes.recipes.centrifuge.lava-purification-chlorinated")
 local rare_mineral_extraction = require("prototypes.recipes.centrifuge.rare-mineral-extraction")
 local concentrated_ore_extraction = require("prototypes.recipes.centrifuge.concentrated-ore-extraction")
 
@@ -191,6 +193,7 @@ data:extend({
     algae_processing[3],
     -- Oxygen recipes
     water_electrolysis,
+    volcanic_gas_scrubbing,
     oxygen_enriched[1],
     oxygen_enriched[2],
     -- Crusher recipes
@@ -226,6 +229,7 @@ data:extend({
     -- Lava Centrifuge recipes
     lava_centrifuge,
     lava_purification,
+    lava_purification_chlorinated,
     rare_mineral_extraction[1],
     concentrated_ore_extraction,
     -- Modified base recipes (Nauvis only)

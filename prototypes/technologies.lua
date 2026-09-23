@@ -89,6 +89,7 @@ local stone_crushing_techs = require("prototypes.technologies.stone-crushing")
 local lava_crystallization_tech = require("prototypes.technologies.lava-crystallization")
 local refined_crystallization_tech = require("prototypes.technologies.refined-crystallization")
 local shielded_crystallization_tech = require("prototypes.technologies.shielded-crystallization")
+local chlorinated_purification_tech = require("prototypes.technologies.chlorinated-purification")
 local arboretum_tech = require("prototypes.technologies.arboretum")
 local algae_cultivation_tech = require("prototypes.technologies.algae-cultivation")
 
@@ -138,6 +139,7 @@ data:extend({
     lava_crystallization_tech,
     refined_crystallization_tech,
     shielded_crystallization_tech,
+    chlorinated_purification_tech,
     arboretum_tech,
     algae_cultivation_tech,
     bio_garden_tech,
