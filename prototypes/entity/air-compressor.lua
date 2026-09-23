@@ -8,6 +8,15 @@ air_compressor.crafting_speed = 2.0
 -- meant to trade power for lava, so state the cost explicitly.
 air_compressor.energy_usage = "1500kW"
 air_compressor.fluid_boxes_off_when_no_fluid_recipe = true
+
+-- Same icon as the item, so alt-mode and Factoriopedia match the model. The
+-- rendered icon has existed since this machine got its model, but only the
+-- item was pointed at it, so the entity went on wearing assembling machine
+-- 3's picture everywhere the item icon is not what gets drawn.
+air_compressor.icon = "__LavaBlock__/graphics/icons/items/air-compressor.png"
+air_compressor.icon_size = 64
+air_compressor.icons = nil
+
 -- Custom model, built and rendered in Blender (see docs/blender-renders.md).
 -- Cold grey against the lava centrifuge's orange, because this is the air
 -- route rather than the lava route and the two need telling apart at a glance.
