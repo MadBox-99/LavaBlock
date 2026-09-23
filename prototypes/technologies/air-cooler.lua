@@ -13,6 +13,13 @@ local air_cooler_tech = {
             recipe = "liquid-nitrogen-production"
         },
         {
+            -- The filter comes with the recipe that needs it. Splitting
+            -- them across two technologies would leave a gap where you can
+            -- research adsorption and own nothing able to run it.
+            type = "unlock-recipe",
+            recipe = "air-filter"
+        },
+        {
             type = "unlock-recipe",
             recipe = "air-electrostatic-adsorption"
         },

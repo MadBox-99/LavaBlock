@@ -87,6 +87,7 @@ local silica_crystallizing_shielded = require("prototypes.recipes.crystallizer.s
 
 -- Gas combiner recipes
 local gas_combiner = require("prototypes.recipes.gas-combiner")
+local air_filter = require("prototypes.recipes.air-filter")
 local shielding_gas = require("prototypes.recipes.gas-combiner.shielding-gas")
 local argon_extraction = require("prototypes.recipes.air.argon-extraction")
 local glass = require("prototypes.recipes.smelting.glass")
@@ -214,6 +215,7 @@ data:extend({
     silica_crystallizing_shielded,
     -- Gas combiner recipes
     gas_combiner,
+    air_filter,
     shielding_gas,
     argon_extraction,
     glass,

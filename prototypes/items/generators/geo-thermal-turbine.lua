@@ -1,15 +1,7 @@
 return {
     type = "item",
     name = "geo-thermal-turbine",
-    icons = {
-        { icon = "__base__/graphics/icons/steam-turbine.png" },
-        {
-            icon = "__space-age__/graphics/icons/fluid/lava.png",
-            icon_size = 64,
-            scale = 0.25,
-            shift = { -8, -8 },
-        },
-    },
+    icon = "__LavaBlock__/graphics/icons/items/geo-thermal-turbine.png",
     icon_size = 64,
     subgroup = "energy",
     order = "f[nuclear-energy]-e[steam-turbine]",

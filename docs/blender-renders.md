@@ -105,6 +105,23 @@ against the blend file root, not the working directory, and silently writes to
 somewhere like `C:\seq`.
 
 ### Four facings
+Four is the count for a **crafting machine**. Two other prototype types in
+this mod want different numbers, and rendering the wrong count is either a
+broken sheet or half an hour of GPU thrown away:
+
+| prototype | animations it asks for | render |
+|---|---|---|
+| assembling-machine, furnace | `graphics_set.animation.{north,east,south,west}` | all four |
+| generator | `vertical_animation`, `horizontal_animation` | `"north east"` |
+| lab | `on_animation`, `off_animation` | `north` only |
+
+A generator is never drawn facing south or west - the game mirrors nothing
+and simply uses the two it has - so `render_all.sh <model> <name> <dir> 32
+"north east"` is the whole job, and north is the vertical sheet because the
+model's long axis runs north-south. A lab has no facing at all, which makes
+it the cheapest sheet here; its idle animation is the running sheet read one
+frame deep, so `off_animation` needs no render of its own.
+
 
 The fluid connections rotate with the entity, so a machine whose model shows
 where its ports are has to be rendered four times; a single sheet leaves the
@@ -135,6 +152,27 @@ The catch is that a rotated facing turns X into Y. The crusher's rolls are
 unmistakable facing north and south and merge into one mass facing east and
 west, and there is no arrangement that avoids it - a pair can only be
 side-by-side on one axis. Pick the axis that makes the default facing right.
+
+### A curve in a plane of constant X has no shape on screen
+
+The same projection has a sharper edge to it. Screen height is driven by
+`y + z` and screen width by `x` alone, so **every point of a shape built in a
+plane of constant X lands on one vertical line.** Whatever the shape is, that
+is all it can ever be.
+
+The air filter's arched pipes were built fore-and-aft first, as semicircles
+in the planes `x = +-0.62`, on the reasoning that this kept them clear of the
+impeller in all four facings. They rendered as two orange stripes. The
+objects were all there - a dump of the scene listed every segment at the
+right place, up to `z = 2.39` - and half an hour went into hunting for a
+culling bug that did not exist before the projection was the answer.
+
+An arch, a hoop, a bent pipe, anything whose point is that it *curves*, has to
+span **X**. Which then puts it across the sprite, and usually across whatever
+is in the middle of the machine - so give it a `y` behind the moving part
+rather than in front. North of the part it is drawn over *by* the part, which
+satisfies both the shape and the rule about nothing covering the working
+parts; south of it, it covers them.
 
 ## The item icon
 
@@ -296,6 +334,52 @@ pipes are drawn far more top-down than this camera; putting the stub's axis at
 so check the overlap by compositing a real `pipe-straight-*.png` next to a test
 render before committing to a full sequence.
 
+## Materials
+
+`mat(name, base, rough, metal, emit=, emit_str=, wear=)`. The first four are
+ordinary Principled inputs. Two of them have a catch.
+
+**`wear` is a switch, not a dial.** It looks like a blend strength and it is
+not. The function sets the mix factor to `wear` and then links a noise ramp
+over that same input, so the authored number is discarded and the factor
+swings the whole way from 0 to 1 across the noise. Wherever the ramp reaches
+1 the patch takes the *full* darkened colour - `base * 0.42 + 0.045` - no
+matter whether `wear=0.85` or `wear=0.05` was passed. What `wear` actually
+controls is whether the grime is wired up at all.
+
+On the dark greys and ochres every machine here is built from, that is
+exactly the weathering the mod wants. On a light colour it is ruinous: the
+air filter's cartridges are meant to be the only white thing in the mod and
+came out of the first render as stacks of dark coins. **A part that has to
+stay light must be given no `wear` at all.**
+
+**Emission above about 1.5 clips to white.** The Standard view transform has
+no tonemapping, so a glow authored to look right in a swatch comes back as a
+white shape with no colour left in it. The crystallizer's amethyst sits at
+0.26, the gas combiner's sight glass at 1.15, and the geothermal turbine's
+feed pipe had to be dropped to 1.10 - at the shared `lava` material's 1.9 a
+thin pipe reads as a strip light painted on the casing rather than as
+something hot inside a pipe. Big open pools can take 1.9; pipes and windows
+cannot.
+
+**But 1.5 is the ceiling for *white*, not the ceiling for a colour.** A warm
+emission is far from balanced - `(1.00, 0.34, 0.05)` puts nearly all of its
+energy in red - so the red channel saturates long before the strength reaches
+anything like 1.5, and once it does, only green and blue are still climbing.
+The colour then walks up towards yellow while the picture is nowhere near
+white. The air filter's impeller glow was authored at 1.15 on that reasoning
+and came back lemon; at 0.45 it is orange. For a warm colour the number to
+watch is `emit_str * emit.r`, and it wants to stay under about 0.5.
+
+**Which way round a lit part is lit changes how far it carries.** The same
+impeller built as orange blades on a dark face, and as dark blades on a lit
+disc, is not the same sprite at 64 px. Emitting blades bloom into each other
+and sixteen of them fuse into one bright wheel with no blade in it; dark
+blades over a lit disc stay sixteen blades however small the sprite gets,
+because the reader is tracking the gaps and the gaps are the bright part.
+When a small round thing has to read as *turning*, light the hole and not the
+spokes.
+
 ## Animation
 
 The rotor and the three counterweight arms turn 120 degrees over the 32 frames.
@@ -303,6 +387,21 @@ Because the arms are 120 degrees apart, frame 32 lands exactly on frame 0, so
 the loop is seamless at any `animation_speed`.
 
 ### The spin axis
+**On a four-way machine, prefer axis `Z`.** A wheel on axis `Y` stands up
+facing the camera, which is what makes it read as turning - but only in two
+of the four facings. Turn the machine ninety degrees and its axis now runs
+across the screen, the wheel is seen edge-on, and the animation is gone. The
+geothermal turbine lost both its moving parts to this in the horizontal
+sheet and had to be rebuilt around it; the fix there was to raise the
+flywheel until its top stands clear above the casing, and to move the second
+moving part to a fan lying flat. A part lying flat is seen from above
+whichever way the machine is turned, because the camera looks down at
+45 degrees in every facing.
+
+So: a generator or a lab, which have one or two fixed facings, can use a
+camera-facing wheel freely. A rotatable machine should put its motion on
+`Z` unless the standing wheel is tall enough to clear everything around it.
+
 
 `run(build, spin_degrees=N)` turns the moving parts about the **entity centre**
 by default, which is only right when the moving assembly is modelled there, as
@@ -314,6 +413,34 @@ symptom is subtle in a still and obvious in motion.
 Quick check without watching the animation: render two frames and take the
 bounding box of the pixels that differ. It should cover the moving part and
 nothing else.
+
+### Swing: a part the machine does not drive
+
+`Spin` turns a thing that is driven and `Slide` strokes a thing that is
+pushed along a line. `Swing` is for a part that is *moved by* what the
+machine does rather than by a shaft: a louvre blade, a hanging plate, a
+damper flap. It rocks its group about a hinge by
+`degrees*sin(2*pi*(f/frames + phase))`, which closes its own loop and eases
+at both ends of the travel the way something moved by a fluid settles.
+
+Its hinge is an **arbitrary vector**, not one of X, Y and Z, because a plate
+on the flank of a round body hinges about a line that is tangential there -
+axis-aligned at only four places round the ring. It asks Blender for the
+rotation in axis-angle form, so no euler composition is needed.
+
+Two things to get right:
+
+- **Hinge along the top, and put the whole plate in one group.** Split the
+  segments of one plate across several groups and each rocks about its own
+  top, so the plate shears apart instead of swinging.
+- **Give a ring of plates evenly spaced phases.** `phase=i/count` runs the
+  movement round the machine as a wave; without it every plate flaps in
+  unison and it reads as one animation copied N times rather than as air
+  moving through a building.
+
+Anything the plate ends in - a thicker block at the bottom, say - must be in
+the swinging group too. A static foot under a swinging plate is lifted clear
+on every stroke and flashes whatever is under it.
 
 ### Several moving parts
 
@@ -504,9 +631,35 @@ anything else.
 `integrator_compact_shadow_states`, turns up on this card with five gigabytes
 free, and only in the **shadow** pass — the crystallizer's entity and tint
 passes rendered all four facings clean while its shadow pass faulted
-twenty-one times. That one is a real driver fault in OptiX's shadow path on a
-1660 Ti, which is Turing without RT cores, and no amount of free memory
-prevents it. From here it is survivable, not fixable.
+twenty-one times. It looks like a driver fault in OptiX's shadow path on a
+1660 Ti, which is Turing without RT cores.
+
+**"No amount of free memory prevents it" was written here, and it was too
+strong.** It came back later on the air filter, again in the shadow pass
+only — but that time with **1.65 GB free, not five**, and it stopped coming
+back the moment the memory did. The reason the memory was that low is the
+lesson: two *abandoned* renders were still running. Stopping a background
+render kills the shell, not the Blender under it, and `render_all.sh`'s
+retry loop then relaunches Blender as fast as you can kill it — so an
+abandoned run keeps rendering, holding VRAM and competing for the CPU that
+feeds the GPU. Kill the shell **and** its Blender together, matching on the
+output directory:
+
+```sh
+# PowerShell; match the scratch dir of the run being abandoned
+$ids = Get-CimInstance Win32_Process |
+       Where-Object { $_.CommandLine -match '<outdir>' -and
+                      $_.Name -match 'bash|blender' } |
+       Select-Object -ExpandProperty ProcessId
+Stop-Process -Id $ids -Force
+```
+
+The same two orphans also made every timing on that run meaningless: GPU
+frames came out five times slower than the same pass on a quiet machine.
+Check what else is on the card before concluding anything from a render
+time. So: shadow-pass faults correlate with memory pressure much more than
+this section first claimed. Survivable either way — see the fallback and the
+relaunch loop below — but look at free VRAM and at stray processes first.
 
 `factorio_render.py` handles this in three places:
 

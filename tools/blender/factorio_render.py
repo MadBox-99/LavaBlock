@@ -357,6 +357,48 @@ class Slide:
         empty.location = loc
 
 
+class Swing:
+    """One assembly hinged on a line and rocked back and forth about it.
+
+    For a part that is held at one end and free at the other: a louvre
+    blade, a hanging plate, a damper flap - anything the airflow through a
+    machine would move rather than drive. Spin turns a thing that is driven;
+    this rocks a thing that is pushed.
+
+    Unlike Spin the hinge is an arbitrary vector, not one of X, Y and Z. A
+    plate standing on the flank of a round tower hinges about a horizontal
+    line that is tangential there, which is only an axis-aligned direction
+    at four places around the ring. Blender is asked for the rotation in
+    axis-angle form, which takes that vector directly and needs no euler
+    gymnastics to compose.
+
+    The angle is degrees*sin(2*pi*(f/frames + phase)), which is back where
+    it started on the last frame, so the loop closes for the same reason
+    Slide's does - and it eases at both ends of the travel, the way
+    something moved by a fluid actually settles rather than snapping.
+
+    `phase` is in turns. Give a ring of plates evenly spaced phases and the
+    movement runs round the machine as a wave instead of every plate
+    flapping in unison, which is the difference between air moving through
+    a building and a row of parts sharing one animation.
+    """
+
+    def __init__(self, objs, pivot, axis_vec, degrees=7.0, phase=0.0):
+        self.objs = list(objs)
+        self.pivot = tuple(pivot)
+        n = math.sqrt(sum(c * c for c in axis_vec))
+        assert n > 1e-9, "Swing needs a non-degenerate axis"
+        self.axis_vec = tuple(c / n for c in axis_vec)
+        self.degrees = degrees
+        self.phase = phase
+
+    def pose(self, empty, f, frames):
+        ang = math.radians(self.degrees) * math.sin(
+            2 * math.pi * (f / frames + self.phase))
+        empty.rotation_mode = 'AXIS_ANGLE'
+        empty.rotation_axis_angle = (ang,) + self.axis_vec
+
+
 class Grow:
     """One assembly that fills up in place and then drains - a culture tube,
     a hopper, a settling tank.
@@ -502,7 +544,8 @@ class Piston:
 def _as_groups(spin, pivot, default_degrees):
     """Accept either a flat list of objects (one group, the common case) or a
     list of Spin/Slide groups."""
-    if spin and isinstance(spin[0], (Spin, Slide, Grow, Rod, Piston)):
+    if spin and isinstance(spin[0], (Spin, Slide, Swing, Grow, Rod,
+                                     Piston)):
         groups = spin
     else:
         groups = [Spin(spin, pivot=pivot)]

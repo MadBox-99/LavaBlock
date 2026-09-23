@@ -21,6 +21,7 @@ data:extend({
     -- Crystallizer line
     require("prototypes.items.crystallizer"),
     require("prototypes.items.gas-combiner"),
+    require("prototypes.items.air-filter"),
     require("prototypes.items.silica-crystal"),
     require("prototypes.items.glass"),
     require("prototypes.items.glazed-panel"),
