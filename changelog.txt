@@ -3,6 +3,7 @@ Version: 0.2.1
 Date: ????
   Graphics:
     - The Gas Combiner's blower turns in every direction the machine can face. It was a wheel standing up facing the camera, which works looking north and south and goes edge-on the moment the machine is rotated - facing east it disappeared altogether and facing west it was a single line. It is now a centrifugal blower with an upright shaft, so the impeller lies flat and is seen turning from all four sides
+    - The lava science pack has been repainted. It was a flat gradient standing in a row of flasks that all have the same angular highlights, which is what made it look out of place; it now carries those highlights too, molten at the top of the glass and deeper towards the bottom, and keeps its steel collar
 ---------------------------------------------------------------------------------------------------
 Version: 0.2.0
 Date: 2026-09-24
