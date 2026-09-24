@@ -5,8 +5,11 @@
 return {
     type = "technology",
     name = "fluid-quenching",
-    -- Placeholder technology icon, like the machine's. See the entity file.
-    icon = "__base__/graphics/technology/fluid-handling.png",
+    -- Rendered from the same model at --tech-elev 42. The default 30 degrees
+    -- is for a machine with a face on its side; from there this one's own
+    -- kerb hides the melt and the product shot is a grey ring with nothing
+    -- in it.
+    icon = "__LavaBlock-graphics__/graphics/technology/quench-pit.png",
     icon_size = 256,
     effects = {
         { type = "unlock-recipe", recipe = "quench-pit" },

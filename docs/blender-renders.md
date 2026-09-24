@@ -186,6 +186,26 @@ rather than in front. North of the part it is drawn over *by* the part, which
 satisfies both the shape and the rule about nothing covering the working
 parts; south of it, it covers them.
 
+### A hole needs an inner wall
+
+There is no primitive for a ring, and the obvious substitute does not work:
+a dark disc laid on top of a solid deck is a painted circle, not a hole. At
+45 degrees a hole is known by the *inner wall* the camera can see down into
+on the far side, and a disc has none.
+
+The fix is a boolean, which is already part of this toolkit -
+`perforated_drum` cuts its bore the same way. An `annulus` helper is eight
+lines: add a cylinder, add a smaller one, subtract, delete the cutter. The
+Quench Pit's deck is one.
+
+Two numbers decide whether the hole reads. Depth from the lip down to
+whatever is at the bottom wants to be most of the hole's radius - at half
+that, the far wall shows too little of itself and the pit looks like a bowl.
+And a **raised kerb** around the lip is what separates deck from drop; flush
+with the deck the edge has no shadow line and the hole goes back to looking
+painted on. The pit's first cut had a deck 0.56 tall and read as a full
+pool; at 0.70 with a 0.11 kerb it reads as a shaft.
+
 ## The item icon
 
 `--pass icon` reuses the same model, camera and Y stretch, so the icon and the
@@ -391,6 +411,23 @@ blades over a lit disc stay sixteen blades however small the sprite gets,
 because the reader is tracking the gaps and the gaps are the bright part.
 When a small round thing has to read as *turning*, light the hole and not the
 spokes.
+
+**A big lit area is the same trap from the other side.** The Quench Pit's
+melt is a disc 1.7 tiles across, and the first cut was one orange disc with
+four dark plates on it: a flat light with dirt on it, no depth and nothing
+to look at. Inverted - crust plates covering about two thirds, the glow
+coming up through the cracks between them - the same disc reads as molten
+rock, because now the bright parts are thin and irregular and the eye has
+edges to follow. The mod's science pack icon works for the same reason.
+
+Both cases give one rule: **on a lit area the eye reads the dark shapes, so
+put the detail in what blocks the light, not in what emits it.**
+
+And the area itself sets the strength. `emit_str * emit.r` near 1 is fine
+for a pool at this size but the shared `lava` material's 1.9 is not - over
+1.7 tiles the red channel saturates across the whole disc and the pit goes
+lemon, which is the warm-colour ceiling above applied to a large area rather
+than a small one.
 
 ## Animation
 

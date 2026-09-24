@@ -56,13 +56,53 @@ quench_pit.fluid_boxes = {
 }
 quench_pit.fluid_boxes_off_when_no_fluid_recipe = false
 
--- PLACEHOLDER GRAPHICS. This is the vanilla chemical plant's model, standing
--- in until the pit is built and rendered in Blender like every other machine
--- here (see docs/blender-renders.md). It is a chemical plant on the map
--- today, which is exactly the kind of collision the mod's own rule against
--- look-alike machines forbids, so it does not ship in a release like this.
-quench_pit.icon = "__base__/graphics/icons/chemical-plant.png"
+-- Same icon as the item, so alt-mode and Factoriopedia match the model.
+quench_pit.icon = "__LavaBlock-graphics__/graphics/icons/items/quench-pit.png"
 quench_pit.icon_size = 64
 quench_pit.icons = nil
+
+-- Custom model, built and rendered in Blender (see docs/blender-renders.md).
+-- Black basalt and hazard yellow: every other machine in the mod is steel,
+-- teal, blue-grey or orange, and none of them is black, which is the right
+-- colour for the one building whose job is to destroy what you feed it.
+--
+-- ONE SHEET, NOT FOUR. Every other machine here needs a sheet per facing
+-- because its modelled ports have to rotate with its fluid connections. This
+-- one has the same connection on all four sides, so a rotated pit is
+-- indistinguishable from an unrotated one and three of the four sheets would
+-- be identical pictures - a quarter of the render time and a quarter of the
+-- download for exactly the same result.
+local GFX = "__LavaBlock-graphics__/graphics/entity/quench-pit/"
+
+local function layer(kind, extra)
+    local name = "quench-pit-" .. kind .. "-north"
+    local sheet = require("__LavaBlock-graphics__/graphics/entity/quench-pit/" .. name)
+    local l = {
+        filename = GFX .. name .. ".png",
+        priority = "high",
+        width = sheet.width,
+        height = sheet.height,
+        frame_count = sheet.sprite_count,
+        line_length = sheet.line_length,
+        -- Slow. The rams are dosing and the melt is breathing, not racing;
+        -- at 1.0 a 32-frame loop of a heave reads as a vibration.
+        animation_speed = 0.5,
+        scale = sheet.scale,
+        shift = sheet.shift,
+    }
+    for k, v in pairs(extra or {}) do
+        l[k] = v
+    end
+    return l
+end
+
+quench_pit.graphics_set = {
+    animation = {
+        layers = {
+            layer("entity"),
+            layer("shadow", { draw_as_shadow = true }),
+        },
+    },
+}
 
 return quench_pit

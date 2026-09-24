@@ -43,7 +43,11 @@ ELEV = 45.0                      # camera elevation above the ground plane
 # three-quarter view with a soft contact shadow under the object. Rendering
 # the entity camera bigger instead gives a 256 px copy of the map sprite,
 # which reads as a screenshot pasted into the tech tree.
-TECH_ELEV = 30.0                 # lower than the map, so the machine has a face
+# 30 degrees suits a machine whose face is on its side. It does not suit one
+# whose subject is INSIDE it looking up: the Quench Pit is a shaft, and from
+# 30 degrees its own kerb hides the melt, so the product shot is a grey ring
+# with nothing in it. --tech-elev raises the camera for those.
+TECH_ELEV = float(arg('--tech-elev', 30.0))
 TECH_AZ = 28.0                   # swung round, so two sides show at once
 TECH_LENS = 85.0                 # mild perspective; a wide lens distorts it
 # The technology pass stands its subject on a shadow catcher, because a
