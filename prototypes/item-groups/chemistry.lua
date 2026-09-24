@@ -116,6 +116,16 @@ data:extend({
         name = "chemical-pyrolysis",
         group = "chemistry",
         order = "o"
+    },
+    {
+        -- Last in the group on purpose. These are the recipes that destroy
+        -- rather than make, and there is one for every fluid in the game -
+        -- put anywhere but the end they would bury the chemistry the player
+        -- actually came here for.
+        type = "item-subgroup",
+        name = "fluid-quenching",
+        group = "chemistry",
+        order = "z"
     }
 
 })

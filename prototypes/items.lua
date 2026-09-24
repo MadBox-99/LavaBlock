@@ -31,6 +31,7 @@ data:extend({
     require("prototypes.items.grow-lamp"),
     require("prototypes.items.condenser-coil"),
     require("prototypes.items.water-condenser"),
+    require("prototypes.items.quench-pit"),
     require("prototypes.items.xp-lab"),
     lava_mech_armor,
     -- Bio garden harvest

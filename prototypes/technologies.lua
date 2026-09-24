@@ -95,6 +95,7 @@ local algae_cultivation_tech = require("prototypes.technologies.algae-cultivatio
 
 -- Water Condenser technology
 local water_condenser_tech = require("prototypes.technologies.water-condenser")
+local quench_pit_tech = require("prototypes.technologies.quench-pit")
 
 -- XP Lab technology
 local xp_lab = require("prototypes.technologies.xp-lab")
@@ -146,6 +147,7 @@ data:extend({
     oxygen_processing_tech,
     nitrogen_fixation_tech,
     water_condenser_tech,
+    quench_pit_tech,
     lava_centrifuge_techs[1],
     lava_centrifuge_techs[2],
     xp_lab,

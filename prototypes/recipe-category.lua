@@ -63,6 +63,13 @@ data:extend({
         name = "gas-combining"
     },
     {
+        -- Prefixed for the reason the others are: a bare "quenching" or
+        -- "voiding" is a name any mod with a fluid sink would take, and a
+        -- shared category would let its machine run these recipes.
+        type = "recipe-category",
+        name = "fluid-quenching"
+    },
+    {
         -- Filtering, not compressing and not separating. The air compressor
         -- keeps "gas" (it makes compressed air) and "gas-mix" (it pulls
         -- metal and argon back out of air); only the adsorption step moves

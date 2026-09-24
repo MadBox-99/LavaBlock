@@ -16,5 +16,6 @@ data:extend({
     require("prototypes.entity.gas-combiner"),
     require("prototypes.entity.air-filter"),
     require("prototypes.entity.water-condenser"),
+    require("prototypes.entity.quench-pit"),
     require("prototypes.entity.xp-lab"),
 })

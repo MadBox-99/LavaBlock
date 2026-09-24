@@ -88,6 +88,10 @@ GROUPS = {
     "gas-mix": "Chemistry",
     "gas-combining": "Chemistry",
     "air-filtering": "Chemistry",
+    # Every fluid in the game has one of these and none of them produce
+    # anything, so they would otherwise scatter dead ends through every
+    # group on the chain.
+    "fluid-quenching": "Chemistry",
     "lava-centrifuge": "Lava",
     "lava-crystallizing": "Glass",
     "smelting": "Smelting",

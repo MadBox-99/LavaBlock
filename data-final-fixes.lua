@@ -136,3 +136,84 @@ if mods["space-age"] then
     }
   end
 end
+
+-- ---------------------------------------------------------------------------
+-- Quench Pit: one void recipe per fluid
+-- ---------------------------------------------------------------------------
+-- Generated, and generated here in final-fixes, because "it deletes any
+-- fluid" has to survive contact with other mods. A hand-written list covers
+-- this mod's nine fluids and goes stale the moment someone loads a mod that
+-- adds a tenth; walking data.raw.fluid at the last data stage covers every
+-- fluid that will exist in the game, whoever added it.
+--
+-- Why a recipe at all, when a fluid energy source would take any fluid with
+-- no recipe needed: it would not meter. `destroy_non_fuel_fluid` empties the
+-- machine's tank rather than draining it at a rate, so throughput would be
+-- whatever the pipes happen to deliver and the number would be unstatable.
+-- A recipe makes it exact, it shows the player what the machine is drinking,
+-- and it means a misplumbed pipe cannot quietly swallow something valuable.
+--
+-- 1200 per second is one pump. That is the unit a Factorio player already
+-- thinks in, so "one pump feeds one pit" needs no arithmetic - and against
+-- this mod's own flows (iron smelting eats 1667 lava/s) it is a real
+-- constraint rather than an infinite drain.
+local QUENCH_AMOUNT = 1200      -- fluid per craft
+local QUENCH_TIME = 1           -- seconds per craft
+
+local function fluid_icon_layers(fluid)
+    if fluid.icons then
+        return table.deepcopy(fluid.icons)
+    end
+    if fluid.icon then
+        return { { icon = fluid.icon, icon_size = fluid.icon_size or 64 } }
+    end
+    return nil
+end
+
+local quench_recipes = {}
+for name, fluid in pairs(data.raw.fluid) do
+    -- `parameter` fluids are blueprint stand-ins and hidden ones are
+    -- scaffolding; neither is something a player can put in a pipe. A fluid
+    -- with no icon at all cannot be given a legible recipe icon either.
+    local layers = fluid_icon_layers(fluid)
+    if not fluid.hidden and not fluid.parameter and layers then
+        -- The bin marks it as a recipe that consumes and returns nothing.
+        -- Without it every void recipe is just the fluid's own icon and the
+        -- subgroup reads as a second copy of the fluid list.
+        table.insert(layers, {
+            icon = "__core__/graphics/icons/mip/trash-white.png",
+            icon_size = 32,
+            scale = 0.5,
+            shift = { 8, 8 },
+        })
+        table.insert(quench_recipes, {
+            type = "recipe",
+            name = "quench-" .. name,
+            localised_name = { "recipe-name.quench-fluid",
+                fluid.localised_name or { "fluid-name." .. name } },
+            localised_description = { "recipe-description.quench-fluid" },
+            category = "fluid-quenching",
+            subgroup = "fluid-quenching",
+            order = fluid.order or name,
+            -- Enabled from the start: the technology gates the machine, and
+            -- gating both would put twenty-odd unlock effects on one
+            -- technology's tooltip for no gain.
+            enabled = true,
+            energy_required = QUENCH_TIME,
+            ingredients = { { type = "fluid", name = name, amount = QUENCH_AMOUNT } },
+            results = {},
+            icons = layers,
+            -- Nothing comes out, so productivity has nothing to multiply and
+            -- the recipe must never be treated as a way of making anything:
+            -- left decomposable it would appear in "total raw" as a source
+            -- of nothing and confuse every ratio the player looks up.
+            allow_productivity = false,
+            allow_decomposition = false,
+            allow_as_intermediate = false,
+            hide_from_player_crafting = true,
+            always_show_made_in = true,
+        })
+    end
+end
+data:extend(quench_recipes)
+log("[LavaBlock] Quench Pit: " .. #quench_recipes .. " void recipes generated")

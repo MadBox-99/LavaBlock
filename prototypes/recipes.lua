@@ -101,6 +101,7 @@ local tree_cultivation = require("prototypes.recipes.wood.tree-cultivation")
 
 -- Water Condenser recipes
 local water_condenser = require("prototypes.recipes.water-condenser")
+local quench_pit = require("prototypes.recipes.quench-pit")
 local steam_condensing = require("prototypes.recipes.water.steam-condensing")
 
 -- Lava Centrifuge recipes
@@ -227,6 +228,7 @@ data:extend({
     tree_cultivation,
     -- Water Condenser recipes
     water_condenser,
+    quench_pit,
     steam_condensing,
     -- Lava Centrifuge recipes
     lava_centrifuge,
