@@ -23,7 +23,11 @@ part worth looking at. The first version did exactly that.
 Brass and deep blue. The air compressor next door is cold grey with a big
 intake fan, and the two will stand side by side in every gas build on the
 island - so this one takes the palette nothing else in the mod uses, and
-keeps its fan small and on the end rather than large and on top.
+keeps its blower small and off to one corner rather than large and on top.
+
+The blower's impeller lies flat. On a machine that can be rotated that is
+not a style choice: see the note at FAN_N for what a standing wheel does to
+the east and west sheets.
 """
 import os
 import sys
@@ -66,19 +70,28 @@ DRUM_Z = 0.60
 DRUM_R = 0.42
 DRUM_LEN = 1.52
 
-# --- the blower wheel ----------------------------------------------------
-# Standing up and facing the camera, not mounted on the end of the drum.
-# The drum's axis runs left to right across the sprite, so a wheel on its
-# end turns about an axis pointing across the screen and is seen edge on -
-# no matter how many blades it has, it reads as a disc with a line through
-# it and never as something turning. Facing the camera, the blades sweep
-# across the sprite, which is the most legible motion this camera allows.
+# --- the blower ----------------------------------------------------------
+# A centrifugal blower with an UPRIGHT shaft, so the impeller lies flat.
+#
+# It stood up facing the camera before, on the reasoning that a wheel on the
+# end of the drum turns about an axis pointing across the screen and is seen
+# edge on. That reasoning was right and it only covered the north facing.
+# This machine rotates, and Factorio turns the whole model about Z: a wheel
+# whose axis is Y facing north has its axis along X facing east, which is
+# exactly the edge-on case it was built to avoid. It vanished completely in
+# the east sheet and came back as a single brass line in the west one, which
+# left those two facings with no visible motion at all.
+#
+# Only Z survives all four. A disc lying flat is turned about Z by the
+# facing and stays lying flat, so the 45-degree camera sees it as an ellipse
+# from every side. Nothing else is safe on a machine that rotates.
 FAN_N = 6                       # blades, so the sheet closes on a sixth turn
 FAN_SPIN = 360.0 / FAN_N
 FAN_X = 0.96
 FAN_Y = -0.56
-FAN_Z = 0.66
-FAN_R = 0.40
+FAN_R = 0.38
+VOLUTE_H = 0.40                 # the housing the impeller sits on top of
+FAN_Z = DECK_TOP + VOLUTE_H + 0.07
 
 
 def receiver(x, y, r, h, m):
@@ -152,24 +165,31 @@ def build():
         add(box(0.05, 0.10, 0.34, (DRUM_X + sx * 0.26, gy - 0.075, DRUM_Z + 0.03),
                 m=m['brass']))
 
-    # --- blower wheel, facing the camera ----------------------------------
-    face = (math.pi / 2, 0, 0)           # lay the disc face-on to the camera
-    add(box(0.30, 0.34, 0.46, (FAN_X, FAN_Y + 0.22, DECK_TOP + 0.23),
-            m=m['case']))
-    add(torus_at((FAN_X, FAN_Y, FAN_Z), FAN_R + 0.05, 0.04, m['brass'],
-                 rot=(math.pi / 2, 0, 0)))
-    fan = [cyl_at(FAN_X, FAN_Y - 0.05, FAN_Z, 0.10, 0.12, m['steel'],
-                  verts=14, rot=face),
-           cyl_at(FAN_X, FAN_Y + 0.02, FAN_Z, FAN_R * 0.30, 0.06, m['brass'],
-                  verts=20, rot=face)]
+    # --- blower, impeller lying flat --------------------------------------
+    # The volute, and a dark face on TOP of it for the blades to turn
+    # against. The blades go above that face, never down inside the
+    # housing: a body that swallows the one part which had to be seen is
+    # the mistake this repo has made more than any other.
+    add(cyl_at(FAN_X, FAN_Y, DECK_TOP + VOLUTE_H / 2, FAN_R + 0.06,
+               VOLUTE_H, m['case'], verts=24))
+    add(cyl_at(FAN_X, FAN_Y, DECK_TOP + VOLUTE_H + 0.015, FAN_R + 0.01,
+               0.03, m['dark'], verts=24))
+    add(torus_at((FAN_X, FAN_Y, FAN_Z + 0.01), FAN_R + 0.05, 0.035,
+                 m['brass']))
+    fan = []
     for i in range(FAN_N):
         a = 2 * math.pi * i / FAN_N
-        fan.append(box(0.16, 0.05, FAN_R * 1.7, (FAN_X, FAN_Y, FAN_Z),
-                       rot=(0, a, 0), m=m['brass']))
-    spin.append(Spin(fan, pivot=(FAN_X, FAN_Y, FAN_Z), axis='Y',
+        fan.append(box(FAN_R * 1.7, 0.10, 0.045, (FAN_X, FAN_Y, FAN_Z),
+                       rot=(0, 0, a), m=m['brass']))
+    fan.append(cyl_at(FAN_X, FAN_Y, FAN_Z + 0.03, 0.10, 0.10, m['steel'],
+                      verts=14))
+    spin.append(Spin(fan, pivot=(FAN_X, FAN_Y, FAN_Z), axis='Z',
                      degrees=FAN_SPIN))
-    add(bar((FAN_X, FAN_Y + 0.10, FAN_Z),
-            (DRUM_X + DRUM_LEN / 2 - 0.06, DRUM_Y, DRUM_Z), 0.05, m['steel']))
+    # The duct back to the drum, leaving the volute's side rather than the
+    # old wheel's hub.
+    add(bar((FAN_X - FAN_R - 0.02, FAN_Y, DECK_TOP + VOLUTE_H * 0.62),
+            (DRUM_X + DRUM_LEN / 2 - 0.06, DRUM_Y, DRUM_Z), 0.07,
+            m['steel']))
 
     # --- the dosing ram, on the deck between drum and receivers -----------
     # A gas is blended by metering it, not by stirring it, so the second

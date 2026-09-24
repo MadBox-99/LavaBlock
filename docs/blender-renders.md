@@ -414,6 +414,55 @@ So: a generator or a lab, which have one or two fixed facings, can use a
 camera-facing wheel freely. A rotatable machine should put its motion on
 `Z` unless the standing wheel is tall enough to clear everything around it.
 
+The gas combiner shipped with this fault for a release. Its blower wheel
+stood facing the camera, and the comment above it argued the case
+correctly - a wheel on the end of that drum turns about an axis pointing
+across the screen and would be seen edge-on - while reasoning about the
+north facing only. Rotating the machine is what turns a `Y` axis into an
+`X` one, so the wheel disappeared entirely in the east sheet and came back
+as a single brass line in the west. The fix was a centrifugal blower with
+an upright shaft: same part, same job, impeller lying flat.
+
+**Look at the difference image; do not trust a pixel count on its own.**
+Subtract two frames, scale the result up and look at it. Every moving part
+shows as a bright blob and everything else is black, so one picture per
+facing answers the question outright - and it is the only form of this test
+that cannot mislead you. The gas combiner's four now show exactly two blobs
+each: a six-pointed star where the impeller turns and a small disc where
+the dosing ram rides.
+
+```python
+a = np.asarray(frame(facing, 0).convert("RGB"), int)
+b = np.asarray(frame(facing, 4).convert("RGB"), int)
+Image.fromarray(np.clip(np.abs(a - b).sum(2) * 2, 0, 255).astype(np.uint8))
+```
+
+Counting the changed pixels is a useful summary **only between two renders
+of the same model at the same settings**, one facing against the same
+facing. Comparing the standing wheel against the flat impeller that way, at
+512 px and 80 samples:
+
+| facing | standing wheel | flat impeller |
+|--------|---------------:|--------------:|
+| north  |            999 |          1406 |
+| east   |            570 |          1272 |
+| south  |            971 |          1307 |
+| west   |            510 |          1222 |
+
+Two facings carrying half the motion of the other two is the signature, and
+the residue in those two is whatever *else* moves.
+
+Two ways to fool yourself with that number, both of which I did:
+
+* **Comparing against the shipped sheets.** spritter crops and scales them,
+  so their counts share no scale with a raw render and the comparison says
+  nothing. It said the old model moved *more*.
+* **Taking the bounding box of the changed pixels.** Cycles noise is
+  scattered over the whole sprite and a sheet's frame edges bleed, so the
+  box covers almost the entire frame however small the real motion is.
+  Raising the threshold does not help; it thins the noise without moving
+  the box.
+
 
 `run(build, spin_degrees=N)` turns the moving parts about the **entity centre**
 by default, which is only right when the moving assembly is modelled there, as
