@@ -47,11 +47,56 @@ pug_mill.fluid_boxes = {
 }
 pug_mill.fluid_boxes_off_when_no_fluid_recipe = false
 
--- PLACEHOLDER GRAPHICS: the vanilla assembling machine 2, standing in until
--- the mill is modelled and rendered in Blender like every other machine here
--- (see docs/blender-renders.md). A look-alike machine must not ship.
-pug_mill.icon = "__base__/graphics/icons/assembling-machine-2.png"
+-- Same icon as the item, so alt-mode and Factoriopedia match the model.
+pug_mill.icon = "__LavaBlock-graphics__/graphics/icons/items/pug-mill.png"
 pug_mill.icon_size = 64
 pug_mill.icons = nil
+
+-- Custom model, built and rendered in Blender (see docs/blender-renders.md).
+-- A fired-clay tub with an iron paddle turning through the mix, and a timber
+-- bench of moulds beside it. Deliberately the least mechanical building in
+-- the mod: everything else here is plate and pipe, and this one's whole
+-- argument is that it needs no furnace and hardly any power.
+--
+-- Four facings, unlike the Quench Pit's one: the water inlet and the bench
+-- are on named sides and both have to turn with the entity.
+local GFX = "__LavaBlock-graphics__/graphics/entity/pug-mill/"
+
+local function layer(kind, dir, extra)
+    local name = "pug-mill-" .. kind .. "-" .. dir
+    local sheet = require("__LavaBlock-graphics__/graphics/entity/pug-mill/" .. name)
+    local l = {
+        filename = GFX .. name .. ".png",
+        priority = "high",
+        width = sheet.width,
+        height = sheet.height,
+        frame_count = sheet.sprite_count,
+        line_length = sheet.line_length,
+        -- Slow. It is an ox-walk paddle through wet grit, not a fan.
+        animation_speed = 0.4,
+        scale = sheet.scale,
+        shift = sheet.shift,
+    }
+    for k, v in pairs(extra or {}) do
+        l[k] = v
+    end
+    return l
+end
+
+local function mill_layers(dir)
+    return {
+        layer("entity", dir),
+        layer("shadow", dir, { draw_as_shadow = true }),
+    }
+end
+
+pug_mill.graphics_set = {
+    animation = {
+        north = { layers = mill_layers("north") },
+        east = { layers = mill_layers("east") },
+        south = { layers = mill_layers("south") },
+        west = { layers = mill_layers("west") },
+    },
+}
 
 return pug_mill

@@ -206,6 +206,17 @@ with the deck the edge has no shadow line and the hole goes back to looking
 painted on. The pit's first cut had a deck 0.56 tall and read as a full
 pool; at 0.70 with a 0.11 kerb it reads as a shaft.
 
+The Pug Mill's tub is the same rule at another scale: rim to mix started at
+0.18 over a 0.82 inner radius and read as a tray, and at 0.36 it reads as a
+tub. Whenever a model has a vessel the camera looks into, that ratio is the
+number to check first.
+
+And **two round things do not share a centre line**. The mill's bench was
+laid on the same axis as its tub and its back edge fell inside the tub's
+radius, so the pair read as one lump with a rake stuck in it. Pushing the
+tub 0.26 north gave the bench its own ground and the silhouette became a
+circle and a rectangle, which is what tells the two halves apart at 64 px.
+
 ## The item icon
 
 `--pass icon` reuses the same model, camera and Y stretch, so the icon and the
@@ -422,6 +433,16 @@ edges to follow. The mod's science pack icon works for the same reason.
 
 Both cases give one rule: **on a lit area the eye reads the dark shapes, so
 put the detail in what blocks the light, not in what emits it.**
+
+**Warm does not mean uniform.** The Pug Mill's first render came back as one
+formless brown lump: pad, tub, bench and the mix in the tub were all within
+a few hundredths of each other, so nothing had an edge against anything
+else. A machine built out of one material family still needs its parts
+spread across the value range, and the easiest way to get that is to take
+one of them out of the family - the pad went black, and the tub had
+something to stand on. The same machine's mix also had to be authored
+*lighter* than looked right in a swatch, because it sits at the bottom of a
+tub in its own shadow; at 0.15 it was a black hole with a rake over it.
 
 And the area itself sets the strength. `emit_str * emit.r` near 1 is fine
 for a pool at this size but the shared `lava` material's 1.9 is not - over

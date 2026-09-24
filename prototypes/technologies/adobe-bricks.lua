@@ -9,9 +9,10 @@
 return {
     type = "technology",
     name = "adobe-bricks",
-    -- Placeholder technology icon, like the machine's. See the entity file.
-    icon = "__base__/graphics/icons/stone-brick.png",
-    icon_size = 64,
+    -- Rendered from the same model at --tech-elev 40. At the default 30 the
+    -- tub's own wall hides the mix and the product shot is an empty crock.
+    icon = "__LavaBlock-graphics__/graphics/technology/pug-mill.png",
+    icon_size = 256,
     effects = {
         { type = "unlock-recipe", recipe = "pug-mill" },
         { type = "unlock-recipe", recipe = "adobe-bricks" },
