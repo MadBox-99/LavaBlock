@@ -13,7 +13,7 @@ return {
             icon_size = 256,
         },
         {
-            icon = "__LavaBlock__/graphics/icons/gas/oxygen.png",
+            icon = "__LavaBlock-graphics__/graphics/icons/gas/oxygen.png",
             icon_size = 64,
             scale = 1.0,
             shift = { 48, 48 },

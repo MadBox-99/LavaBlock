@@ -5,7 +5,7 @@
 return {
     type = "item",
     name = "grow-lamp",
-    icon = "__LavaBlock__/graphics/icons/parts/grow-lamp.png",
+    icon = "__LavaBlock-graphics__/graphics/icons/parts/grow-lamp.png",
     icon_size = 64,
     subgroup = "intermediate-product",
     order = "z[lavablock]-c[grow-lamp]",

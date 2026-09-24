@@ -1,7 +1,7 @@
 return {
     type = "item",
     name = "air-compressor",
-    icon = "__LavaBlock__/graphics/icons/items/air-compressor.png",
+    icon = "__LavaBlock-graphics__/graphics/icons/items/air-compressor.png",
     icon_size = 64,
     subgroup = "production-machine",
     order = "b[assembling-machine-3]",

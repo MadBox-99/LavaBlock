@@ -9,7 +9,7 @@ return {
     base_color = { r = 0.8, g = 1.0, b = 0.5 }, -- Pale yellow-green
     flow_color = { r = 0.9, g = 1.0, b = 0.7 }, -- Lighter yellow-green
     icon_size = 64,
-    icon = "__LavaBlock__/graphics/icons/gas/chlorine.png",
+    icon = "__LavaBlock-graphics__/graphics/icons/gas/chlorine.png",
     order = "a[gas]-z[chlorine]",
     pressure_to_speed_ratio = 0.4,
     flow_to_energy_ratio = 0.59,

@@ -18,7 +18,7 @@ algae_tank.fluid_boxes_off_when_no_fluid_recipe = true
 algae_tank.next_upgrade = nil
 
 -- Same icon as the item, so alt-mode and Factoriopedia match the model.
-algae_tank.icon = "__LavaBlock__/graphics/icons/items/algae-tank.png"
+algae_tank.icon = "__LavaBlock-graphics__/graphics/icons/items/algae-tank.png"
 algae_tank.icon_size = 64
 algae_tank.icons = nil
 
@@ -28,11 +28,11 @@ algae_tank.icons = nil
 -- with nothing standing over them. Growing is now this building's only job -
 -- the bio garden presses the harvest - so the culture is what the model is
 -- almost entirely made of, and it fills and drains where you can see it.
-local GFX = "__LavaBlock__/graphics/entity/algae-tank/"
+local GFX = "__LavaBlock-graphics__/graphics/entity/algae-tank/"
 
 local function layer(kind, dir, extra)
     local name = "algae-tank-" .. kind .. "-" .. dir
-    local sheet = require("__LavaBlock__/graphics/entity/algae-tank/" .. name)
+    local sheet = require("__LavaBlock-graphics__/graphics/entity/algae-tank/" .. name)
     local l = {
         filename = GFX .. name .. ".png",
         priority = "high",

@@ -11,7 +11,7 @@ local liquid_nitrogen_production = {
     results = {
         { type = "fluid", name = "liquid-nitrogen", amount = 50 }
     },
-    icon = "__LavaBlock__/graphics/icons/fluid/liquid-nitrogen.png",
+    icon = "__LavaBlock-graphics__/graphics/icons/fluid/liquid-nitrogen.png",
     icon_size = 64,
     subgroup = "fluid-recipes",
     order = "a[fluid-chemistry]-d[liquid-nitrogen]"

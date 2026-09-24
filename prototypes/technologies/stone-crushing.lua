@@ -21,7 +21,7 @@ return {
         -- downstream waits on it.
         type = "technology",
         name = "basalt-casting",
-        icon = "__LavaBlock__/graphics/lava-cooling-tech-icon-small.png",
+        icon = "__LavaBlock-graphics__/graphics/lava-cooling-tech-icon-small.png",
         icon_size = 128,
         effects = {
             { type = "unlock-recipe", recipe = "basalt-casting" },
@@ -45,7 +45,7 @@ return {
         -- fuel, so it does not wait for a power network either.
         type = "technology",
         name = "stone-crushing",
-        icon = "__LavaBlock__/graphics/technology/stone-crushing.png",
+        icon = "__LavaBlock-graphics__/graphics/technology/stone-crushing.png",
         icon_size = 256,
         effects = {
             { type = "unlock-recipe", recipe = "crusher-roll" },
@@ -91,7 +91,7 @@ return {
         -- keeps working; this is what you build once the grid can carry it.
         type = "technology",
         name = "powered-rock-crushing",
-        icon = "__LavaBlock__/graphics/technology/powered-rock-crushing.png",
+        icon = "__LavaBlock-graphics__/graphics/technology/powered-rock-crushing.png",
         icon_size = 256,
         effects = {
             { type = "unlock-recipe", recipe = "roll-crusher" },
@@ -114,7 +114,7 @@ return {
         -- much stone out of the same gravel.
         type = "technology",
         name = "lubricated-rock-crushing",
-        icon = "__LavaBlock__/graphics/technology/lubricated-rock-crushing.png",
+        icon = "__LavaBlock-graphics__/graphics/technology/lubricated-rock-crushing.png",
         icon_size = 256,
         effects = {
             { type = "unlock-recipe", recipe = "industrial-roll-crusher" },

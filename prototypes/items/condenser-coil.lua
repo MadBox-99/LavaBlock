@@ -5,7 +5,7 @@
 return {
     type = "item",
     name = "condenser-coil",
-    icon = "__LavaBlock__/graphics/icons/parts/condenser-coil.png",
+    icon = "__LavaBlock-graphics__/graphics/icons/parts/condenser-coil.png",
     icon_size = 64,
     subgroup = "intermediate-product",
     order = "z[lavablock]-d[condenser-coil]",

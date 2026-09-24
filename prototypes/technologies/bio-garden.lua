@@ -10,7 +10,7 @@
 return {
     type = "technology",
     name = "bio-garden",
-    icon = "__LavaBlock__/graphics/technology/bio-garden.png",
+    icon = "__LavaBlock-graphics__/graphics/technology/bio-garden.png",
     icon_size = 256,
     effects = {
         { type = "unlock-recipe", recipe = "bio-garden" },

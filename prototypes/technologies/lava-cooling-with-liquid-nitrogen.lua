@@ -1,7 +1,7 @@
 local lava_cooling_with_liquid_nitrogen = {
     type = "technology",
     name = "lava-cooling-with-liquid-nitrogen",
-    icon = "__LavaBlock__/graphics/technologies/lava-cooling-with-liquid-nitrogen.png",
+    icon = "__LavaBlock-graphics__/graphics/technologies/lava-cooling-with-liquid-nitrogen.png",
     icon_size = 256,
     effects = {
         {

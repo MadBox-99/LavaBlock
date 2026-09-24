@@ -9,7 +9,7 @@ local utils = require("lib.utils")
 -- drive bed: a chimney, a motor, an oil tank. The rest of the sprite is the
 -- same model rendered three times.
 
-local GFX = "__LavaBlock__/graphics/entity/"
+local GFX = "__LavaBlock-graphics__/graphics/entity/"
 
 local function layers(dir_name, dir)
     local out = {}

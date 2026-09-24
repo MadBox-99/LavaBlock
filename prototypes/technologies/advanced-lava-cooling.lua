@@ -1,7 +1,7 @@
 local advanced_lava_cooling = {
     type = "technology",
     name = "advanced-lava-cooling",
-    icon = "__LavaBlock__/graphics/lava-cooling-tech-icon-small.png",
+    icon = "__LavaBlock-graphics__/graphics/lava-cooling-tech-icon-small.png",
     icon_size = 128,
     effects =
     {

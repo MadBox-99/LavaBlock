@@ -4,7 +4,7 @@
 return {
     type = "item",
     name = "culture-column",
-    icon = "__LavaBlock__/graphics/icons/parts/culture-column.png",
+    icon = "__LavaBlock-graphics__/graphics/icons/parts/culture-column.png",
     icon_size = 64,
     subgroup = "intermediate-product",
     order = "z[lavablock]-b[culture-column]",

@@ -72,8 +72,20 @@ the right and slightly down, matching the base-game shadow `shift` offsets.
 bash tools/blender/render_all.sh tools/blender/lava_centrifuge.py \
      lava-centrifuge /abs/path/to/scratch 32
 cp /abs/path/to/scratch/sheets/*.png /abs/path/to/scratch/sheets/*.lua \
-   graphics/entity/lava-centrifuge/
+   ../LavaBlock-graphics/graphics/entity/lava-centrifuge/
 ```
+
+**Sheets do not live in this mod.** `graphics/` was split out into
+`LavaBlock-graphics`, a sibling mod that holds every sheet and icon and
+declares no prototypes at all, so that a release touching only recipes,
+balance or text does not make everyone download eighty megabytes of
+unchanged machines. Prototypes reference it as
+`__LavaBlock-graphics__/graphics/...`, including the `require()` of a
+sheet's `.lua` metadata, and `LavaBlock` carries a hard dependency on it.
+
+The two are versioned together. A render that changes a sheet is a release
+of the graphics mod; forgetting it leaves everyone on the old pictures with
+no error to warn them, because the path still resolves.
 
 For an entity that cannot be rotated, add `north` as a fifth argument and only
 that one facing is rendered - a quarter of the work.

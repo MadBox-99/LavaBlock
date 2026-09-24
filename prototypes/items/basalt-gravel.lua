@@ -12,7 +12,7 @@
 return {
     type = "item",
     name = "basalt-gravel",
-    icon = "__LavaBlock__/graphics/icons/parts/basalt-gravel.png",
+    icon = "__LavaBlock-graphics__/graphics/icons/parts/basalt-gravel.png",
     icon_size = 64,
     subgroup = "raw-resource",
     order = "a[basalt]-b[gravel]",

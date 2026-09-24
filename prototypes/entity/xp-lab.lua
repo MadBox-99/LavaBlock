@@ -22,7 +22,7 @@ xp_lab.module_slots = 2
 -- was the vanilla lab's icon under a violet tint, which made this building
 -- a recoloured copy of the one standing next to it rather than its own
 -- thing.
-xp_lab.icon = "__LavaBlock__/graphics/icons/items/xp-lab.png"
+xp_lab.icon = "__LavaBlock-graphics__/graphics/icons/items/xp-lab.png"
 xp_lab.icon_size = 64
 xp_lab.icons = nil
 
@@ -37,11 +37,11 @@ xp_lab.icons = nil
 --
 -- One sheet, not four: a lab has no facing. Factorio asks for an
 -- `on_animation` and an `off_animation` and never for a direction.
-local GFX = "__LavaBlock__/graphics/entity/xp-lab/"
+local GFX = "__LavaBlock-graphics__/graphics/entity/xp-lab/"
 
 local function layer(kind, extra)
     local name = "xp-lab-" .. kind .. "-north"
-    local sheet = require("__LavaBlock__/graphics/entity/xp-lab/" .. name)
+    local sheet = require("__LavaBlock-graphics__/graphics/entity/xp-lab/" .. name)
     local l = {
         filename = GFX .. name .. ".png",
         priority = "high",

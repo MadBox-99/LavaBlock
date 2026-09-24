@@ -149,6 +149,11 @@ class Builder(object):
         self.m = json.load(io.open(dump, encoding="utf-8"))
         self.factorio = factorio.rstrip("/") + "/"
         self.mod = mod.replace("\\", "/").rstrip("/") + "/"
+        # The sprite sheets and icons were split out into LavaBlock-graphics,
+        # which sits next to this mod in the mods folder. Derived rather than
+        # passed in, because there is exactly one place it can be: Factorio
+        # resolves `__LavaBlock-graphics__` the same way.
+        self.graphics = self.mod.rstrip("/") + "-graphics/"
         self.loc = read_locale(mod)
         self.icons = {}
 
@@ -207,6 +212,12 @@ class Builder(object):
                           ("__quality__/", self.factorio + "quality/"),
                           ("__elevated-rails__/",
                            self.factorio + "elevated-rails/"),
+                          # The pictures live in a mod of their own, so that
+                          # a release touching only recipes or text does not
+                          # make everyone download them again. Both tags are
+                          # kept: icons moved, but a path in an older dump
+                          # still says __LavaBlock__.
+                          ("__LavaBlock-graphics__/", self.graphics),
                           ("__LavaBlock__/", self.mod)):
             path = path.replace(tag, root)
         return path

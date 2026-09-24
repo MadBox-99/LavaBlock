@@ -13,7 +13,7 @@
 return {
     type = "technology",
     name = "algae-cultivation",
-    icon = "__LavaBlock__/graphics/technology/algae-cultivation.png",
+    icon = "__LavaBlock-graphics__/graphics/technology/algae-cultivation.png",
     icon_size = 256,
     effects = {
         { type = "unlock-recipe", recipe = "culture-column" },

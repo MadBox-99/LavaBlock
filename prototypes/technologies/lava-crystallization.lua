@@ -9,7 +9,7 @@
 return {
     type = "technology",
     name = "lava-crystallization",
-    icon = "__LavaBlock__/graphics/technology/lava-crystallization.png",
+    icon = "__LavaBlock-graphics__/graphics/technology/lava-crystallization.png",
     icon_size = 256,
     effects = {
         { type = "unlock-recipe", recipe = "crystallizer" },

@@ -67,5 +67,5 @@ if python "$HERE/has_alpha.py" "$SP/frames/tint"; then
   "$SPRITTER" spritesheet -r -l -t 64      "$SP/frames/tint" "$SP/sheets"
 fi
 echo
-echo "sheets in $SP/sheets - copy the .png AND .lua files into graphics/entity/$ENTITY/"
+echo "sheets in $SP/sheets - copy the .png AND .lua files into ../LavaBlock-graphics/graphics/entity/$ENTITY/"
 du -sh "$SP/sheets"

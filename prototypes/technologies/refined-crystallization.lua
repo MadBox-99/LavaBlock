@@ -7,7 +7,7 @@
 return {
     type = "technology",
     name = "refined-crystallization",
-    icon = "__LavaBlock__/graphics/technology/refined-crystallization.png",
+    icon = "__LavaBlock-graphics__/graphics/technology/refined-crystallization.png",
     icon_size = 256,
     effects = {
         { type = "unlock-recipe", recipe = "silica-crystallizing-purified" },

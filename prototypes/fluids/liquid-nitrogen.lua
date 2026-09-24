@@ -10,7 +10,7 @@ return {
     -- Rendered rather than drawn, at 64 like every other fluid here.
     -- The 32 px one it replaces was upscaled by the game everywhere
     -- an icon is shown larger than an inventory slot.
-    icon = "__LavaBlock__/graphics/icons/fluid/liquid-nitrogen.png",
+    icon = "__LavaBlock-graphics__/graphics/icons/fluid/liquid-nitrogen.png",
     icon_size = 64,
     order = "a[fluid]-z[liquid_nitrogen]",
     pressure_to_speed_ratio = 0.4,

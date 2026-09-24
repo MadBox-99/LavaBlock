@@ -1,7 +1,7 @@
 return {
     type = "item",
     name = "crystallizer",
-    icon = "__LavaBlock__/graphics/icons/items/crystallizer.png",
+    icon = "__LavaBlock-graphics__/graphics/icons/items/crystallizer.png",
     icon_size = 64,
     subgroup = "production-machine",
     order = "f[crystallizer]",

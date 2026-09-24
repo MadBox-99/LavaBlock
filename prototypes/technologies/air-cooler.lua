@@ -1,7 +1,7 @@
 local air_cooler_tech = {
     type = "technology",
     name = "air-cooler",
-    icon = "__LavaBlock__/graphics/air_cooler_tech.png",
+    icon = "__LavaBlock-graphics__/graphics/air_cooler_tech.png",
     icon_size = 64,
     effects = {
         {

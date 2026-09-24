@@ -141,11 +141,11 @@ end
 function utils.badged_icon(name)
     return {
         {
-            icon = "__LavaBlock__/graphics/icons/items/" .. name .. ".png",
+            icon = "__LavaBlock-graphics__/graphics/icons/items/" .. name .. ".png",
             icon_size = 64,
         },
         {
-            icon = "__LavaBlock__/graphics/icons/badges/" .. name .. ".png",
+            icon = "__LavaBlock-graphics__/graphics/icons/badges/" .. name .. ".png",
             icon_size = 64,
         },
     }

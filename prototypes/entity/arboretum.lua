@@ -19,7 +19,7 @@ arboretum.collision_box = { { -2.4, -2.4 }, { 2.4, 2.4 } }
 arboretum.selection_box = { { -2.5, -2.5 }, { 2.5, 2.5 } }
 
 -- Same icon as the item, so alt-mode and Factoriopedia match the new model
-arboretum.icon = "__LavaBlock__/graphics/icons/items/arboretum.png"
+arboretum.icon = "__LavaBlock-graphics__/graphics/icons/items/arboretum.png"
 arboretum.icon_size = 64
 arboretum.icons = nil
 
@@ -29,11 +29,11 @@ arboretum.icons = nil
 -- rotates with the entity, so the modelled port has to rotate with it.
 -- Dimensions and shift are read from the data files spritter writes next to
 -- each sheet, so a re-pack never needs numbers copied by hand.
-local GFX = "__LavaBlock__/graphics/entity/arboretum/"
+local GFX = "__LavaBlock-graphics__/graphics/entity/arboretum/"
 
 local function layer(kind, dir, extra)
     local name = "arboretum-" .. kind .. "-" .. dir
-    local sheet = require("__LavaBlock__/graphics/entity/arboretum/" .. name)
+    local sheet = require("__LavaBlock-graphics__/graphics/entity/arboretum/" .. name)
     local l = {
         filename = GFX .. name .. ".png",
         priority = "high",

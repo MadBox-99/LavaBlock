@@ -14,7 +14,7 @@ local air_electrostatic_adsorption = {
     results = {
         { type = "fluid", name = "air", amount = 500 }
     },
-    icon = "__LavaBlock__/graphics/recipes/electrostatic-adsorption.png",
+    icon = "__LavaBlock-graphics__/graphics/recipes/electrostatic-adsorption.png",
     icon_size = 128,
     category = "air-filtering",
     subgroup = "fluid-recipes"

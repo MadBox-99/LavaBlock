@@ -30,7 +30,7 @@ local function enriched(metal, ore, molten, icon)
         icons = {
             { icon = icon, icon_size = 64 },
             {
-                icon = "__LavaBlock__/graphics/icons/gas/oxygen.png",
+                icon = "__LavaBlock-graphics__/graphics/icons/gas/oxygen.png",
                 icon_size = 64,
                 scale = 0.25,
                 shift = { 8, -8 },
@@ -45,7 +45,7 @@ end
 
 return {
     enriched("iron", "iron-ore", "molten-iron",
-             "__LavaBlock__/graphics/icons/iron-lava-smelt.png"),
+             "__LavaBlock-graphics__/graphics/icons/iron-lava-smelt.png"),
     enriched("copper", "copper-ore", "molten-copper",
-             "__LavaBlock__/graphics/icons/copper-lava-smelt.png"),
+             "__LavaBlock-graphics__/graphics/icons/copper-lava-smelt.png"),
 }

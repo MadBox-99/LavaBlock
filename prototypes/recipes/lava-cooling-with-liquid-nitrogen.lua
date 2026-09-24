@@ -20,7 +20,7 @@ local lava_cooling_with_liquid_nitrogen = {
         { type = "item",  name = "iron-plate",   amount = 20,   probability = 0.2 },
         { type = "item",  name = "copper-plate", amount = 20,   probability = 0.2 }
     },
-    icon = "__LavaBlock__/graphics/icons/lava-cooling.png",
+    icon = "__LavaBlock-graphics__/graphics/icons/lava-cooling.png",
     icon_size = 64,
     subgroup = "fluid-recipes",
     order = "a[fluid-chemistry]-e[lava-cooling-with-liquid-nitrogen]"

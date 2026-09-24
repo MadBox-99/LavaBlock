@@ -20,7 +20,7 @@ air_cooler.tile_height = 3
 
 -- Same icon as the item, so alt-mode and Factoriopedia match the model. It
 -- used the vanilla pump's icon before, which said nothing about the machine.
-air_cooler.icon = "__LavaBlock__/graphics/icons/items/air-cooler.png"
+air_cooler.icon = "__LavaBlock-graphics__/graphics/icons/items/air-cooler.png"
 air_cooler.icon_size = 64
 air_cooler.icons = nil
 
@@ -33,11 +33,11 @@ air_cooler.icons = nil
 --
 -- The old sprite was one 256 px animation reused for all four facings, so
 -- the machine never turned. This one is rendered per facing like the rest.
-local GFX = "__LavaBlock__/graphics/entity/air-cooler/"
+local GFX = "__LavaBlock-graphics__/graphics/entity/air-cooler/"
 
 local function layer(kind, dir, extra)
     local name = "air-cooler-" .. kind .. "-" .. dir
-    local sheet = require("__LavaBlock__/graphics/entity/air-cooler/" .. name)
+    local sheet = require("__LavaBlock-graphics__/graphics/entity/air-cooler/" .. name)
     local l = {
         filename = GFX .. name .. ".png",
         priority = "high",

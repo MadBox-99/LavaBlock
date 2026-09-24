@@ -19,7 +19,7 @@ geo_thermal_turbine.fast_replaceable_group = "geo-thermal-turbine"
 -- Same icon as the item, so alt-mode and Factoriopedia match the model. It
 -- wore the vanilla steam turbine's icon until now, which said the one thing
 -- about this machine that is not true: there is no steam in it anywhere.
-geo_thermal_turbine.icon = "__LavaBlock__/graphics/icons/items/geo-thermal-turbine.png"
+geo_thermal_turbine.icon = "__LavaBlock-graphics__/graphics/icons/items/geo-thermal-turbine.png"
 geo_thermal_turbine.icon_size = 64
 geo_thermal_turbine.icons = nil
 
@@ -35,11 +35,11 @@ geo_thermal_turbine.icons = nil
 -- `vertical_animation` and `horizontal_animation` and never for a direction,
 -- so the model is rendered north for the vertical one and east for the
 -- horizontal one - half the frames a rotatable machine needs.
-local GFX = "__LavaBlock__/graphics/entity/geo-thermal-turbine/"
+local GFX = "__LavaBlock-graphics__/graphics/entity/geo-thermal-turbine/"
 
 local function layer(kind, dir, extra)
     local name = "geo-thermal-turbine-" .. kind .. "-" .. dir
-    local sheet = require("__LavaBlock__/graphics/entity/geo-thermal-turbine/" .. name)
+    local sheet = require("__LavaBlock-graphics__/graphics/entity/geo-thermal-turbine/" .. name)
     local l = {
         filename = GFX .. name .. ".png",
         priority = "high",

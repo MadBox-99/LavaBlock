@@ -1,7 +1,7 @@
 return {
     type = "item",
     name = "algae-tank",
-    icon = "__LavaBlock__/graphics/icons/items/algae-tank.png",
+    icon = "__LavaBlock-graphics__/graphics/icons/items/algae-tank.png",
     icon_size = 64,
     subgroup = "production-machine",
     order = "e[algae-tank]",

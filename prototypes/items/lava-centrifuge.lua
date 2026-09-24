@@ -1,7 +1,7 @@
 return {
     type = "item",
     name = "lava-centrifuge",
-    icon = "__LavaBlock__/graphics/icons/items/lava-centrifuge.png",
+    icon = "__LavaBlock-graphics__/graphics/icons/items/lava-centrifuge.png",
     icon_size = 64,
     subgroup = "production-machine",
     order = "g[lava-centrifuge]",

@@ -32,7 +32,7 @@ bio_garden.energy_source = {
 }
 
 -- Same icon as the item, so alt-mode and Factoriopedia match the new model
-bio_garden.icon = "__LavaBlock__/graphics/icons/items/bio-garden.png"
+bio_garden.icon = "__LavaBlock-graphics__/graphics/icons/items/bio-garden.png"
 bio_garden.icon_size = 64
 bio_garden.icons = nil
 
@@ -41,11 +41,11 @@ bio_garden.icons = nil
 -- against the arboretum's big square glasshouse, so the two read as the same
 -- family without being the same building. The culture tubes that used to
 -- stand in here moved to the algae tank along with the growing.
-local GFX = "__LavaBlock__/graphics/entity/bio-garden/"
+local GFX = "__LavaBlock-graphics__/graphics/entity/bio-garden/"
 
 local function layer(kind, dir, extra)
     local name = "bio-garden-" .. kind .. "-" .. dir
-    local sheet = require("__LavaBlock__/graphics/entity/bio-garden/" .. name)
+    local sheet = require("__LavaBlock-graphics__/graphics/entity/bio-garden/" .. name)
     local l = {
         filename = GFX .. name .. ".png",
         priority = "high",

@@ -1,7 +1,7 @@
 local geo_thermal_turbine = {
     type = "technology",
     name = "geo-thermal-turbine",
-    icon = "__LavaBlock__/graphics/icons/entity/geo-thermal-turbine.png",
+    icon = "__LavaBlock-graphics__/graphics/icons/entity/geo-thermal-turbine.png",
     icon_size = 64,
     effects =
     {

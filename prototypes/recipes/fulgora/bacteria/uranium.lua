@@ -1,7 +1,7 @@
 local uranium_bacteria_recipe = {
     type = "recipe",
     name = "uranium-bacteria",
-    icon = "__LavaBlock__/graphics/icons/items/uranium-bacteria.png",
+    icon = "__LavaBlock-graphics__/graphics/icons/items/uranium-bacteria.png",
     category = "organic-or-hand-crafting",
     surface_conditions =
     {
@@ -36,7 +36,7 @@ local uranium_bacteria_recipe = {
 local uranium_bacteria_cultivation_recipe = {
     type = "recipe",
     name = "uranium-bacteria-cultivation",
-    icon = "__LavaBlock__/graphics/icons/items/uranium-bacteria-cultivation.png",
+    icon = "__LavaBlock-graphics__/graphics/icons/items/uranium-bacteria-cultivation.png",
     category = "organic",
     surface_conditions =
     {

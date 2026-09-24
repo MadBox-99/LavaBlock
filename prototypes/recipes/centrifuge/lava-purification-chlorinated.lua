@@ -36,11 +36,11 @@ return {
     },
     icons = {
         {
-            icon = "__LavaBlock__/graphics/icons/fluid/purified-lava.png",
+            icon = "__LavaBlock-graphics__/graphics/icons/fluid/purified-lava.png",
             icon_size = 64,
         },
         {
-            icon = "__LavaBlock__/graphics/icons/gas/chlorine.png",
+            icon = "__LavaBlock-graphics__/graphics/icons/gas/chlorine.png",
             icon_size = 64,
             scale = 0.25,
             shift = { 8, -8 },

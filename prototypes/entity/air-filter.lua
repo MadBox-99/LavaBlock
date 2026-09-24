@@ -23,7 +23,7 @@ air_filter.allowed_effects = {
 air_filter.next_upgrade = nil
 
 -- Same icon as the item, so alt-mode and Factoriopedia match the model.
-air_filter.icon = "__LavaBlock__/graphics/icons/items/air-filter.png"
+air_filter.icon = "__LavaBlock-graphics__/graphics/icons/items/air-filter.png"
 air_filter.icon_size = 64
 air_filter.icons = nil
 
@@ -39,11 +39,11 @@ air_filter.icons = nil
 -- A round tower is also the one silhouette that is equally right in all
 -- four facings, and an impeller lying flat is the one moving part a
 -- rotatable machine can never turn edge-on.
-local GFX = "__LavaBlock__/graphics/entity/air-filter/"
+local GFX = "__LavaBlock-graphics__/graphics/entity/air-filter/"
 
 local function layer(kind, dir, extra)
     local name = "air-filter-" .. kind .. "-" .. dir
-    local sheet = require("__LavaBlock__/graphics/entity/air-filter/" .. name)
+    local sheet = require("__LavaBlock-graphics__/graphics/entity/air-filter/" .. name)
     local l = {
         filename = GFX .. name .. ".png",
         priority = "high",

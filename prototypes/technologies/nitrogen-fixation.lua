@@ -11,7 +11,7 @@ return {
     name = "nitrogen-fixation",
     icons = {
         {
-            icon = "__LavaBlock__/graphics/icons/fluid/liquid-nitrogen.png",
+            icon = "__LavaBlock-graphics__/graphics/icons/fluid/liquid-nitrogen.png",
             icon_size = 64,
             -- Halved with the source size, so the droplet still covers
             -- the same 128 units of the 256 technology frame.

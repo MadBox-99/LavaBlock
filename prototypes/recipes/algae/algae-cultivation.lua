@@ -36,7 +36,7 @@ local function cultivate(colour, order, medium, amount, seconds, yield, tint)
         main_product = "algae-" .. colour,
         icons = {
             {
-                icon = "__LavaBlock__/graphics/icons/items/algae-"
+                icon = "__LavaBlock-graphics__/graphics/icons/items/algae-"
                     .. colour .. ".png",
                 icon_size = 64,
             },

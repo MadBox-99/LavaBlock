@@ -1,7 +1,7 @@
 return {
     type = "item",
     name = "gas-combiner",
-    icon = "__LavaBlock__/graphics/icons/items/gas-combiner.png",
+    icon = "__LavaBlock-graphics__/graphics/icons/items/gas-combiner.png",
     icon_size = 64,
     subgroup = "production-machine",
     order = "g[gas-combiner]",

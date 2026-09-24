@@ -1,7 +1,7 @@
 local lava_science_pack_technology = {
     type = "technology",
     name = "lava-science-pack",
-    icon = "__LavaBlock__/graphics/icons/lava-science-pack.png",
+    icon = "__LavaBlock-graphics__/graphics/icons/lava-science-pack.png",
     icon_size = 64,
     effects = {
         {

@@ -36,7 +36,7 @@ return {
     always_show_products = true,
     icons = {
         {
-            icon = "__LavaBlock__/graphics/icons/gas/chlorine.png",
+            icon = "__LavaBlock-graphics__/graphics/icons/gas/chlorine.png",
             icon_size = 64,
         },
         {

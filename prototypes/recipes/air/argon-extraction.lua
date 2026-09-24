@@ -25,7 +25,7 @@ return {
     results = {
         { type = "fluid", name = "argon", amount = 20 }
     },
-    icon = "__LavaBlock__/graphics/icons/gas/argon.png",
+    icon = "__LavaBlock-graphics__/graphics/icons/gas/argon.png",
     icon_size = 64,
     allow_productivity = true,
 }

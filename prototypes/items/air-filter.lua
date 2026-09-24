@@ -1,7 +1,7 @@
 return {
     type = "item",
     name = "air-filter",
-    icon = "__LavaBlock__/graphics/icons/items/air-filter.png",
+    icon = "__LavaBlock-graphics__/graphics/icons/items/air-filter.png",
     icon_size = 64,
     subgroup = "production-machine",
     order = "b[air-filter]",

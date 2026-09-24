@@ -12,7 +12,7 @@ local iron_smelting_cooling = {
         { type = "item", name = "iron-plate", amount = 4 }
     },
     main_product = "iron-plate",
-    icon = "__LavaBlock__/graphics/icons/iron-lava-smelt.png",
+    icon = "__LavaBlock-graphics__/graphics/icons/iron-lava-smelt.png",
     icon_size = 64,
     category = "chemistry",
     subgroup = "fluid-recipes",

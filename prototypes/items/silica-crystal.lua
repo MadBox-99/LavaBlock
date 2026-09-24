@@ -4,7 +4,7 @@
 return {
     type = "item",
     name = "silica-crystal",
-    icon = "__LavaBlock__/graphics/icons/parts/silica-crystal.png",
+    icon = "__LavaBlock-graphics__/graphics/icons/parts/silica-crystal.png",
     icon_size = 64,
     subgroup = "raw-resource",
     order = "a[basalt]-c[silica-crystal]",

@@ -2,7 +2,7 @@ return {
     type = "fluid",
     name = "liquid-tungsten",
     subgroup = "fluid",
-    icon = "__LavaBlock__/graphics/icons/fluid/tungsten_liquid_scaled_sprite_sheet.png",
+    icon = "__LavaBlock-graphics__/graphics/icons/fluid/tungsten_liquid_scaled_sprite_sheet.png",
     icon_size = 64,
     default_temperature = 3400,
     max_temperature = 4000,

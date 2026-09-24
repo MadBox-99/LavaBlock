@@ -16,7 +16,7 @@ return {
     -- Argon's own pale blue-violet, pushed towards the crystals it grows.
     base_color = { r = 0.62, g = 0.52, b = 0.95 },
     flow_color = { r = 0.78, g = 0.70, b = 1.00 },
-    icon = "__LavaBlock__/graphics/icons/gas/shielding-gas.png",
+    icon = "__LavaBlock-graphics__/graphics/icons/gas/shielding-gas.png",
     icon_size = 64,
     order = "a[gas]-z[argon]-a[shielding-gas]",
     pressure_to_speed_ratio = 0.4,

@@ -17,7 +17,7 @@ gas_combiner.allowed_effects = {
 gas_combiner.next_upgrade = nil
 
 -- Same icon as the item, so alt-mode and Factoriopedia match the model.
-gas_combiner.icon = "__LavaBlock__/graphics/icons/items/gas-combiner.png"
+gas_combiner.icon = "__LavaBlock-graphics__/graphics/icons/items/gas-combiner.png"
 gas_combiner.icon_size = 64
 gas_combiner.icons = nil
 
@@ -27,11 +27,11 @@ gas_combiner.icons = nil
 -- lit sight glass in it, and a blower wheel standing up on the right facing
 -- the camera. Brass and deep blue, to stay apart from the air compressor's
 -- cold grey - the two stand next to each other in any gas build.
-local GFX = "__LavaBlock__/graphics/entity/gas-combiner/"
+local GFX = "__LavaBlock-graphics__/graphics/entity/gas-combiner/"
 
 local function layer(kind, dir, extra)
     local name = "gas-combiner-" .. kind .. "-" .. dir
-    local sheet = require("__LavaBlock__/graphics/entity/gas-combiner/" .. name)
+    local sheet = require("__LavaBlock-graphics__/graphics/entity/gas-combiner/" .. name)
     local l = {
         filename = GFX .. name .. ".png",
         priority = "high",

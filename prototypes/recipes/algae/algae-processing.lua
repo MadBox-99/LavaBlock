@@ -15,7 +15,7 @@
 -- input. The conversions used: 500 steam -> 250 water in the condenser, and
 -- 100 lava -> 70 steam in lava cooling, so one water is about 2.86 lava and
 -- one steam about 1.43. One cultivation craft is 100 water plus its medium.
-local ICON = "__LavaBlock__/graphics/icons/items/algae-%s.png"
+local ICON = "__LavaBlock-graphics__/graphics/icons/items/algae-%s.png"
 
 -- Green: 5 algae cost 100 water + 100 lava = 386 lava, so wood lands at about
 -- 97 lava each. The arboretum is 200 water for 8 wood but has to spend 2 of
@@ -74,7 +74,7 @@ local nitrogen_fixation = {
     allow_productivity = true,
     icons = {
         {
-            icon = "__LavaBlock__/graphics/icons/fluid/liquid-nitrogen.png",
+            icon = "__LavaBlock-graphics__/graphics/icons/fluid/liquid-nitrogen.png",
             icon_size = 64,
         },
         {

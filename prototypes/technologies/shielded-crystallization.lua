@@ -10,7 +10,7 @@
 return {
     type = "technology",
     name = "shielded-crystallization",
-    icon = "__LavaBlock__/graphics/technology/shielded-crystallization.png",
+    icon = "__LavaBlock-graphics__/graphics/technology/shielded-crystallization.png",
     icon_size = 256,
     effects = {
         { type = "unlock-recipe", recipe = "gas-combiner" },

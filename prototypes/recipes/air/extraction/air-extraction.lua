@@ -13,7 +13,7 @@ local air_extraction = {
     results = {
         { type = "fluid", name = "compressed-air", amount = 500 }
     },
-    icon = "__LavaBlock__/graphics/icons/gas/compressed-air.png",
+    icon = "__LavaBlock-graphics__/graphics/icons/gas/compressed-air.png",
     icon_size = 128,
     category = "gas",
     subgroup = "fluid-recipes"

@@ -3,12 +3,12 @@ local space_age_item_sounds = require("__space-age__.prototypes.item_sounds")
 local uranium_bacteria = {
     type = "item",
     name = "uranium-bacteria",
-    icon = "__LavaBlock__/graphics/icons/items/uranium-bacteria.png",
+    icon = "__LavaBlock-graphics__/graphics/icons/items/uranium-bacteria.png",
     icon_size = 64,
     pictures =
     {
-        { size = 64, filename = "__LavaBlock__/graphics/icons/items/uranium-bacteria.png",   scale = 0.5, mipmap_count = 4 },
-        { size = 64, filename = "__LavaBlock__/graphics/icons/items/uranium-bacteria-2.png", scale = 0.5, mipmap_count = 4 }
+        { size = 64, filename = "__LavaBlock-graphics__/graphics/icons/items/uranium-bacteria.png",   scale = 0.5, mipmap_count = 4 },
+        { size = 64, filename = "__LavaBlock-graphics__/graphics/icons/items/uranium-bacteria-2.png", scale = 0.5, mipmap_count = 4 }
     },
     subgroup = "agriculture-processes",
     order = "b[agriculture]-e[uranium-bacteria]",

@@ -9,7 +9,7 @@ lava_centrifuge.name = "lava-centrifuge"
 lava_centrifuge.minable.result = "lava-centrifuge"
 
 -- Same icon as the item, so alt-mode and Factoriopedia match the new model
-lava_centrifuge.icon = "__LavaBlock__/graphics/icons/items/lava-centrifuge.png"
+lava_centrifuge.icon = "__LavaBlock-graphics__/graphics/icons/items/lava-centrifuge.png"
 lava_centrifuge.icon_size = 64
 lava_centrifuge.icons = nil
 
@@ -22,7 +22,7 @@ lava_centrifuge.crafting_categories = { "lava-centrifuge" }
 -- all frames, and `shift` is the crop centre's offset from the entity origin.
 -- The rotor turns 120 deg over the 32 frames; the three arms are 120 deg apart,
 -- so the loop is seamless.
-local GFX = "__LavaBlock__/graphics/entity/lava-centrifuge/"
+local GFX = "__LavaBlock-graphics__/graphics/entity/lava-centrifuge/"
 
 -- One sheet pair per facing. The fluid connections rotate with the entity, so
 -- the modelled pipe stubs have to rotate with them; a single sheet would leave
@@ -33,7 +33,7 @@ local GFX = "__LavaBlock__/graphics/entity/lava-centrifuge/"
 -- cropped on its own, which is why they differ.
 local function layer(kind, dir, extra)
     local name = "lava-centrifuge-" .. kind .. "-" .. dir
-    local sheet = require("__LavaBlock__/graphics/entity/lava-centrifuge/" .. name)
+    local sheet = require("__LavaBlock-graphics__/graphics/entity/lava-centrifuge/" .. name)
     local l = {
         filename = GFX .. name .. ".png",
         priority = "high",

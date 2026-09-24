@@ -9,7 +9,7 @@ return {
     base_color = { r = 0.7, g = 0.8, b = 0.9 }, -- Light blue-gray
     flow_color = { r = 0.8, g = 0.9, b = 1.0 }, -- Lighter blue-white
     icon_size = 64,
-    icon = "__LavaBlock__/graphics/icons/gas/air.png",
+    icon = "__LavaBlock-graphics__/graphics/icons/gas/air.png",
     order = "a[gas]-a[compressed-air]",
     pressure_to_speed_ratio = 0.4,
     flow_to_energy_ratio = 0.59,

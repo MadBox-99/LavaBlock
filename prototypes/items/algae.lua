@@ -13,7 +13,7 @@ local function algae(colour, order)
     return {
         type = "item",
         name = "algae-" .. colour,
-        icon = "__LavaBlock__/graphics/icons/items/algae-" .. colour .. ".png",
+        icon = "__LavaBlock-graphics__/graphics/icons/items/algae-" .. colour .. ".png",
         icon_size = 64,
         subgroup = "raw-material",
         order = "a[algae]-" .. order .. "[algae-" .. colour .. "]",

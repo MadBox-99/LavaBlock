@@ -9,7 +9,7 @@ return {
     base_color = { r = 0.30, g = 0.64, b = 1.00 },
     flow_color = { r = 0.48, g = 0.78, b = 1.00 },
     icon_size = 64,
-    icon = "__LavaBlock__/graphics/icons/gas/oxygen.png",
+    icon = "__LavaBlock-graphics__/graphics/icons/gas/oxygen.png",
     order = "a[gas]-c[oxygen]",
     pressure_to_speed_ratio = 0.4,
     flow_to_energy_ratio = 0.59,

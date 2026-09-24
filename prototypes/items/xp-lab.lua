@@ -1,7 +1,7 @@
 return {
     type = "item",
     name = "xp-lab",
-    icon = "__LavaBlock__/graphics/icons/items/xp-lab.png",
+    icon = "__LavaBlock-graphics__/graphics/icons/items/xp-lab.png",
     icon_size = 64,
     subgroup = "production-machine",
     order = "g[lab]-b[xp-lab]",

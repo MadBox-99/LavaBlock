@@ -9,7 +9,7 @@ local lava_cooling = {
     results = {
         { type = "fluid", name = "steam", amount = 70, temperature = 165 }
     },
-    icon = "__LavaBlock__/graphics/icons/lava-cooling.png",
+    icon = "__LavaBlock-graphics__/graphics/icons/lava-cooling.png",
     icon_size = 64,
     category = "chemistry",
     subgroup = "fluid-recipes",

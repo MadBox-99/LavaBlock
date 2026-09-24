@@ -11,7 +11,7 @@ industrialised_chemical_plant.crafting_speed = 2.0
 
 -- Same icon as the item, so alt-mode and Factoriopedia match the model.
 industrialised_chemical_plant.icon =
-    "__LavaBlock__/graphics/icons/items/industrialised-chemical-plant.png"
+    "__LavaBlock-graphics__/graphics/icons/items/industrialised-chemical-plant.png"
 industrialised_chemical_plant.icon_size = 64
 industrialised_chemical_plant.icons = nil
 
@@ -25,12 +25,12 @@ industrialised_chemical_plant.icons = nil
 -- reactor drum across the front, a pipe rack, galleries, ladders and a big
 -- elbow. The old sprite was a dense picture, and a tidy three-vessel model
 -- read as a step backwards however correct it was.
-local GFX = "__LavaBlock__/graphics/entity/industrialised-chemical-plant/"
+local GFX = "__LavaBlock-graphics__/graphics/entity/industrialised-chemical-plant/"
 
 local function layer(kind, dir, extra)
     local name = "industrialised-chemical-plant-" .. kind .. "-" .. dir
     local sheet = require(
-        "__LavaBlock__/graphics/entity/industrialised-chemical-plant/" .. name)
+        "__LavaBlock-graphics__/graphics/entity/industrialised-chemical-plant/" .. name)
     local l = {
         filename = GFX .. name .. ".png",
         priority = "high",

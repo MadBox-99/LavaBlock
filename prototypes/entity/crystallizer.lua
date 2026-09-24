@@ -19,7 +19,7 @@ crystallizer.allowed_effects = {
 crystallizer.next_upgrade = nil
 
 -- Same icon as the item, so alt-mode and Factoriopedia match the model.
-crystallizer.icon = "__LavaBlock__/graphics/icons/items/crystallizer.png"
+crystallizer.icon = "__LavaBlock-graphics__/graphics/icons/items/crystallizer.png"
 crystallizer.icon_size = 64
 crystallizer.icons = nil
 
@@ -29,11 +29,11 @@ crystallizer.icons = nil
 -- it, and six clusters of crystal growing on the shelf around the rim. The
 -- crystals grow and are taken on staggered schedules, so the ring always has
 -- something at every stage.
-local GFX = "__LavaBlock__/graphics/entity/crystallizer/"
+local GFX = "__LavaBlock-graphics__/graphics/entity/crystallizer/"
 
 local function layer(kind, dir, extra)
     local name = "crystallizer-" .. kind .. "-" .. dir
-    local sheet = require("__LavaBlock__/graphics/entity/crystallizer/" .. name)
+    local sheet = require("__LavaBlock-graphics__/graphics/entity/crystallizer/" .. name)
     local l = {
         filename = GFX .. name .. ".png",
         priority = "high",

@@ -13,7 +13,7 @@ air_compressor.fluid_boxes_off_when_no_fluid_recipe = true
 -- rendered icon has existed since this machine got its model, but only the
 -- item was pointed at it, so the entity went on wearing assembling machine
 -- 3's picture everywhere the item icon is not what gets drawn.
-air_compressor.icon = "__LavaBlock__/graphics/icons/items/air-compressor.png"
+air_compressor.icon = "__LavaBlock-graphics__/graphics/icons/items/air-compressor.png"
 air_compressor.icon_size = 64
 air_compressor.icons = nil
 
@@ -24,11 +24,11 @@ air_compressor.icons = nil
 -- the modelled ports have to rotate with them. Dimensions and shift are read
 -- from the data files spritter writes next to each sheet, so a re-pack never
 -- needs numbers copied by hand.
-local GFX = "__LavaBlock__/graphics/entity/air-compressor/"
+local GFX = "__LavaBlock-graphics__/graphics/entity/air-compressor/"
 
 local function layer(kind, dir, extra)
     local name = "air-compressor-" .. kind .. "-" .. dir
-    local sheet = require("__LavaBlock__/graphics/entity/air-compressor/" .. name)
+    local sheet = require("__LavaBlock-graphics__/graphics/entity/air-compressor/" .. name)
     local l = {
         filename = GFX .. name .. ".png",
         priority = "high",

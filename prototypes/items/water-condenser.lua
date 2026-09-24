@@ -1,7 +1,7 @@
 return {
     type = "item",
     name = "water-condenser",
-    icon = "__LavaBlock__/graphics/icons/items/water-condenser.png",
+    icon = "__LavaBlock-graphics__/graphics/icons/items/water-condenser.png",
     icon_size = 64,
     subgroup = "production-machine",
     order = "h[water-condenser]",

@@ -16,7 +16,7 @@ water_condenser.fluid_boxes_off_when_no_fluid_recipe = true
 water_condenser.next_upgrade = nil
 
 -- Same icon as the item, so alt-mode and Factoriopedia match the new model
-water_condenser.icon = "__LavaBlock__/graphics/icons/items/water-condenser.png"
+water_condenser.icon = "__LavaBlock-graphics__/graphics/icons/items/water-condenser.png"
 water_condenser.icon_size = 64
 water_condenser.icons = nil
 
@@ -28,11 +28,11 @@ water_condenser.icons = nil
 -- the modelled ports have to rotate with them. Dimensions and shift are read
 -- from the data files spritter writes next to each sheet, so a re-pack never
 -- needs numbers copied by hand.
-local GFX = "__LavaBlock__/graphics/entity/water-condenser/"
+local GFX = "__LavaBlock-graphics__/graphics/entity/water-condenser/"
 
 local function layer(kind, dir, extra)
     local name = "water-condenser-" .. kind .. "-" .. dir
-    local sheet = require("__LavaBlock__/graphics/entity/water-condenser/" .. name)
+    local sheet = require("__LavaBlock-graphics__/graphics/entity/water-condenser/" .. name)
     local l = {
         filename = GFX .. name .. ".png",
         priority = "high",

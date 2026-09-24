@@ -27,11 +27,11 @@ return {
     },
     icons = {
         {
-            icon = "__LavaBlock__/graphics/icons/parts/silica-crystal.png",
+            icon = "__LavaBlock-graphics__/graphics/icons/parts/silica-crystal.png",
             icon_size = 64,
         },
         {
-            icon = "__LavaBlock__/graphics/icons/gas/shielding-gas.png",
+            icon = "__LavaBlock-graphics__/graphics/icons/gas/shielding-gas.png",
             icon_size = 64,
             scale = 0.25,
             shift = { 8, -8 },

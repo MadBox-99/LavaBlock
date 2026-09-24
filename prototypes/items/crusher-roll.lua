@@ -8,7 +8,7 @@
 return {
     type = "item",
     name = "crusher-roll",
-    icon = "__LavaBlock__/graphics/icons/parts/crusher-roll.png",
+    icon = "__LavaBlock-graphics__/graphics/icons/parts/crusher-roll.png",
     icon_size = 64,
     subgroup = "intermediate-product",
     order = "z[lavablock]-a[crusher-roll]",
