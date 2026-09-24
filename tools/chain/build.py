@@ -79,6 +79,10 @@ def fetch_vendor(quiet=False):
 GROUPS = {
     "rock-crushing": "Rock",
     "rock-crushing-oiled": "Rock",
+    # The kiln-free brick route belongs with the rest of the stone chain,
+    # not on its own: it competes with crushing plus smelting and should be
+    # read next to it.
+    "adobe-mixing": "Rock",
     "water-condensing": "Water",
     "arboretum": "Wood",
     "algae-tank": "Algae",
