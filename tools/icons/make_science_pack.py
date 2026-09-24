@@ -32,8 +32,15 @@ rock lit from inside", and nothing else in the row reads that way.
 GAMMA is what sets how much of the flask is crust and how much is crack.
 The vanilla painting is mostly bright, so without it almost every pixel
 lands in the glowing end of the ramp and the icon comes out MORE orange
-rather than darker. At 3.0 about two thirds of the flask sits darker than
-Factorio's inventory slot.
+rather than darker.
+
+There are two dials for brightness and they do different things. GAMMA
+moves how much of the flask glows; the first stops of STOPS set how dark
+the crust itself is, and that one carries most of the perceived change -
+gamma alone moves mean luminance by about a tenth where the two together
+move it by a quarter. At the settings here the flask averages 0.315 and
+three fifths of it still sits darker than Factorio's inventory slot,
+which is what keeps it reading as rock rather than as liquid.
 
 Watch the silhouette, not just the mean: the crust must stay above the slot
 background or the outline dissolves. The floor stop is there for that.
@@ -52,14 +59,14 @@ BASE_MODS = ("base", "space-age", "quality", "elevated-rails")
 # Cooled basalt through to the melt showing through a crack. The first stop
 # is the floor and is deliberately not black - see the silhouette note above.
 STOPS = (
-    (0.00, (0.050, 0.044, 0.046)),
-    (0.28, (0.130, 0.060, 0.048)),
-    (0.52, (0.400, 0.105, 0.030)),
-    (0.74, (0.900, 0.300, 0.040)),
-    (0.90, (1.000, 0.560, 0.090)),
-    (1.00, (1.000, 0.850, 0.430)),
+    (0.00, (0.105, 0.090, 0.090)),
+    (0.28, (0.215, 0.098, 0.072)),
+    (0.52, (0.500, 0.135, 0.040)),
+    (0.74, (0.930, 0.330, 0.045)),
+    (0.90, (1.000, 0.580, 0.100)),
+    (1.00, (1.000, 0.860, 0.450)),
 )
-GAMMA = 3.0
+GAMMA = 2.3
 # Rows of the 64 px icon that are the metal collar and stay metal. Measured
 # off the art rather than guessed: the flask's neck is 16 px wide from row
 # 12 down, and the ring above it is wider.
