@@ -87,6 +87,7 @@ GROUPS = {
     "gas": "Chemistry",
     "gas-mix": "Chemistry",
     "gas-combining": "Chemistry",
+    "air-filtering": "Chemistry",
     "lava-centrifuge": "Lava",
     "lava-crystallizing": "Glass",
     "smelting": "Smelting",
