@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.2.0
-Date: 2026-09-21
+Date: 2026-09-24
   Features:
     - Added the Air Filter. The air line's second building, and the one it has always been missing: the air compressor used to compress the air, filter it and then pull the metal back out of it, which is three jobs in one box. Filtering moves out to a machine of its own, so the compressor compresses and separates and the filter filters. It runs the cleaning step at the speed the compressor did, on well under half the power, because charging a plate is cheap next to squeezing steam
     - Chlorine can finally be obtained, and it finally does something. Like argon it has been in this world from the start as a fluid you could barrel and unbarrel and nothing else. A chemical plant now scrubs it out of the gas the lava gives off - a real volcano vents hydrogen chloride along with the steam, and this island is one enormous vent
