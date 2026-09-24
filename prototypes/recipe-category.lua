@@ -63,6 +63,14 @@ data:extend({
         name = "gas-combining"
     },
     {
+        -- Mixing and moulding, not firing. Deliberately its own category and
+        -- not shared with "chemistry": a pug mill is a tub with a paddle,
+        -- and letting a chemical plant press bricks would delete the point
+        -- of building one.
+        type = "recipe-category",
+        name = "adobe-mixing"
+    },
+    {
         -- Prefixed for the reason the others are: a bare "quenching" or
         -- "voiding" is a name any mod with a fluid sink would take, and a
         -- shared category would let its machine run these recipes.

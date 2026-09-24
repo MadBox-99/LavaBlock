@@ -102,6 +102,9 @@ local tree_cultivation = require("prototypes.recipes.wood.tree-cultivation")
 -- Water Condenser recipes
 local water_condenser = require("prototypes.recipes.water-condenser")
 local quench_pit = require("prototypes.recipes.quench-pit")
+local pug_mill = require("prototypes.recipes.pug-mill")
+local adobe_bricks = require("prototypes.recipes.adobe.adobe-bricks")
+local adobe_bricks_reinforced = require("prototypes.recipes.adobe.adobe-bricks-reinforced")
 local steam_condensing = require("prototypes.recipes.water.steam-condensing")
 
 -- Lava Centrifuge recipes
@@ -229,6 +232,9 @@ data:extend({
     -- Water Condenser recipes
     water_condenser,
     quench_pit,
+    pug_mill,
+    adobe_bricks,
+    adobe_bricks_reinforced,
     steam_condensing,
     -- Lava Centrifuge recipes
     lava_centrifuge,
