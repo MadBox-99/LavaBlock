@@ -1,4 +1,5 @@
 local util = require("util")
+local island_link_pole = require("scripts.island-link-pole")
 
 -- ============================================
 -- XP SYSTEM CONFIGURATION
@@ -176,6 +177,7 @@ script.on_init(function()
         end
         surface.set_tiles(tiles)
     end
+    island_link_pole.rescan()
 end)
 
 -- Handle mod updates on existing saves
@@ -183,6 +185,17 @@ script.on_configuration_changed(function(data)
     storage.players_needing_items = storage.players_needing_items or {}
     storage.force_xp = storage.force_xp or {}
     disable_freeplay()
+    island_link_pole.rescan()
+
+    -- A technology that gained an unlock in an update (Railway now unlocks
+    -- the condenser coil, Electric energy distribution 1 the island link
+    -- pole) does not hand it to a force that researched it before. Resetting
+    -- the effects re-applies every researched technology; the disable pass
+    -- below then switches off again whatever a "disable-recipe" effect
+    -- turned off, which the reset would otherwise have turned back on.
+    for _, force in pairs(game.forces) do
+        force.reset_technology_effects()
+    end
 
     -- Re-apply recipe disable for all researched technologies with disable-recipe effects
     for _, force in pairs(game.forces) do
@@ -286,3 +299,4 @@ script.on_event(defines.events.on_player_crafted_item, function(event)
     end
 end)
 
+island_link_pole.register()

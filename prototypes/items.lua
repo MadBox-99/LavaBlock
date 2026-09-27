@@ -38,6 +38,7 @@ data:extend({
     require("prototypes.items.fermentation-tank"),
     require("prototypes.items.distillation-column"),
     require("prototypes.items.fuel-plant"),
+    require("prototypes.items.island-link-pole"),
     require("prototypes.items.xp-lab"),
     lava_mech_armor,
     -- Bio garden harvest

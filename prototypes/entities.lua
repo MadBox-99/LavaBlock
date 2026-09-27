@@ -21,5 +21,6 @@ data:extend({
     require("prototypes.entity.fermentation-tank"),
     require("prototypes.entity.distillation-column"),
     require("prototypes.entity.fuel-plant"),
+    require("prototypes.entity.island-link-pole"),
     require("prototypes.entity.xp-lab"),
 })
