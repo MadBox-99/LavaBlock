@@ -8,7 +8,7 @@ local industrialised_chemical_plant = {
     -- the plant would only be craftable inside an industrialised chemical plant.
     -- The default "crafting" category is what this build recipe wants.
     ingredients = {
-        { type = "item", name = "biochamber",       amount = 1 },
+        { type = "item", name = "chemical-plant",   amount = 1 },
         { type = "item", name = "steel-plate",      amount = 50 },
         { type = "item", name = "advanced-circuit", amount = 20 },
         { type = "item", name = "pipe",             amount = 30 }

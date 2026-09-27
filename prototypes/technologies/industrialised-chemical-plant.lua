@@ -1,8 +1,9 @@
 -- Unlocks the Industrialised Chemical Plant. Until now nothing in the mod
 -- unlocked this recipe, so the entity was unreachable in a normal playthrough.
 --
--- `biochamber` is a prerequisite because the recipe consumes one; without it the
--- technology would be researchable long before the ingredient is obtainable.
+-- It used to need `biochamber` as well, because the recipe consumed one - which
+-- put a lava-island building behind Gleba. The recipe takes a plain chemical
+-- plant now, and that is unlocked long before this by calcite processing.
 local industrialised_chemical_plant_tech = {
     type = "technology",
     name = "industrialised-chemical-plant",
@@ -11,7 +12,7 @@ local industrialised_chemical_plant_tech = {
     effects = {
         { type = "unlock-recipe", recipe = "industrialised-chemical-plant" },
     },
-    prerequisites = { "advanced-lava-cooling", "biochamber" },
+    prerequisites = { "advanced-lava-cooling" },
     unit = {
         count = 300,
         ingredients = {
