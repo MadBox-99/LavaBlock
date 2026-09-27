@@ -1,7 +1,24 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.2.2
 Date: ????
+  Features:
+    - Added the Island Link Pole, for carrying power across the lava so every island does not need a power plant of its own. It reaches 64 tiles, the longest wire the game allows, and takes two wires only - one in, one out - so a line of them is a transmission line and not a second grid; an extra wire is cut. Its supply area is small on purpose. Unlocked with the big electric pole
+    - Solar panel output is a startup setting, in percent of vanilla. 100 by default
+  Balancing:
+    - Oil from coal gives 50 crude oil every 10 seconds instead of 200 every 5. It was four pumpjacks in one chemical plant at about 12 lava a unit; it is now half a pumpjack at about 48
+    - Removed Extract Iron from Air and Extract Copper from Air. There is no metal in air, and at about 28 lava an ore the route was seven times cheaper than lava extraction and made every other ore source pointless. The air line is for argon and blue algae now; the centrifuge's concentrated ore is the step up from lava extraction
+    - Cryogenic cooling of molten iron and copper gives 50 plates for 200 melt instead of 80. At 80 it turned one ore into four plates; 50 is 2.5 plates an ore against water cooling's 2, and far faster on one machine
+    - Solar panels take 10 steel, 15 electronic circuits, 10 copper, 5 glass and 2 silica crystal, and Solar energy needs Lava crystallization
+    - The cargo wagon takes 2 condenser coils and a pump, the fluid wagon 2 coils and 2 pumps, and the locomotive 4 coils and 2 pumps. Railway now also unlocks the condenser coil and needs Fluid handling
   Changes:
+    - The starting island has a natural, ragged coastline that differs from seed to seed, between 28 and 52 tiles from spawn. It was meant to all along, but the noise that should have shaped it never reached above sea level, so it was a perfect circle on every map
+    - The small islands out in the ocean are now real land rather than grass painted over the lava, so the tile and everything that checks for land agree. They are as many and as big as before
+    - On an existing save, technologies that were already researched now hand over what they gained in an update - the condenser coil from Railway and the Island Link Pole from Electric energy distribution 1. Recipes switched off by a technology, such as wood extraction after the Arboretum, stay off
+  Bugfixes:
+    - Fixed the cliffiness noise expression, which referred to variables that do not exist in Factorio 2.0 and failed to compile on every map load
+    - Fixed the lava tile's probability on Nauvis being ignored: the planet gave it an inline expression, which the engine drops, instead of the name of one. This is what left patches of lava inside the islands
+  Graphics:
+    - The vapour line on top of the Distillation Column is bent round in swept elbows instead of straight lengths meeting at right angles, and rises a little higher off the head to make room for the first bend
 ---------------------------------------------------------------------------------------------------
 Version: 0.2.1
 Date: 2026-09-27

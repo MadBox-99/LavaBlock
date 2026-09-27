@@ -25,14 +25,6 @@ local air_cooler_tech = {
         },
         {
             type = "unlock-recipe",
-            recipe = "extract-copper-from-air"
-        },
-        {
-            type = "unlock-recipe",
-            recipe = "extract-iron-from-air"
-        },
-        {
-            type = "unlock-recipe",
             recipe = "air-extraction"
         }
     },

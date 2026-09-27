@@ -4,6 +4,8 @@ locomotiveRecipe.ingredients = {
     { type = "item",  name = "electronic-circuit", amount = 10 },
     { type = "item",  name = "engine-unit",        amount = 20 },
     { type = "item",  name = "iron-gear-wheel",    amount = 1000 }, -- piece(s) / real-wagon: 10000
+    { type = "item",  name = "condenser-coil",     amount = 4 },    -- engine cooling
+    { type = "item",  name = "pump",               amount = 2 },    -- coolant and fuel
     { type = "fluid", name = "lava",               amount = 100000 }
 }
 locomotiveRecipe.category = "crafting-with-fluid"

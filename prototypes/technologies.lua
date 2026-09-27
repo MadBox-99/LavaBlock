@@ -39,6 +39,23 @@ data.raw.technology["uranium-mining"].effects = {
 }
 
 -- Add explosives-from-lava to explosives technology
+-- Every train now takes condenser coils and pumps. The coil is otherwise
+-- unlocked by the Water Condenser, which needs chemical science, so Railway
+-- unlocks it too rather than pushing trains back to blue science; the pump
+-- is plain Fluid handling, a red-and-green research, so it simply becomes a
+-- prerequisite.
+table.insert(data.raw.technology["railway"].effects, {
+    type = "unlock-recipe",
+    recipe = "condenser-coil",
+})
+table.insert(data.raw.technology["railway"].prerequisites, "fluid-handling")
+
+-- The island link pole comes with the big pole it is built from.
+table.insert(data.raw.technology["electric-energy-distribution-1"].effects, {
+    type = "unlock-recipe",
+    recipe = "island-link-pole",
+})
+
 table.insert(data.raw.technology["explosives"].effects, {
     type = "unlock-recipe",
     recipe = "explosives-from-lava",

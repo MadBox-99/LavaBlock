@@ -1,10 +1,10 @@
 -- Argon out of air, on the air compressor.
 --
 -- On that machine and not on the gas combiner, because pulling one gas out
--- of a mixture is separation and the combiner combines. The compressor
--- already extracts iron and copper from air, which is a far taller claim
--- than this one: argon really is about one per cent of the air, and the
--- yield here says so. Five hundred air for twenty argon is a deliberately
+-- of a mixture is separation and the combiner combines. Argon really is
+-- about one per cent of the air, and the yield here says so. (The compressor
+-- used to pull iron and copper out of air as well, which there is none of;
+-- that was removed, and argon is now what the air line is for.) Five hundred air for twenty argon is a deliberately
 -- poor trade, and it is the whole reason argon feels like something you
 -- run a dedicated line for.
 --

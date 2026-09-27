@@ -6,6 +6,8 @@ cargowagonRecipe.ingredients = {
     { type = "item",  name = "engine-unit",     amount = 4 },    -- axle bearings, bogie parts
     { type = "item",  name = "iron-gear-wheel", amount = 1000 }, -- iron gear wheel
     { type = "item",  name = "iron-chest",      amount = 10 },   -- internal stowage + fittings
+    { type = "item",  name = "condenser-coil",  amount = 2 },    -- brake air cooler
+    { type = "item",  name = "pump",            amount = 1 },    -- brake air compressor
     { type = "fluid", name = "lava",            amount = 50000 }
 }
 cargowagonRecipe.category = "crafting-with-fluid"

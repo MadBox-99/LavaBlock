@@ -7,6 +7,8 @@ fluidwagonRecipe.ingredients = {
     { type = "item",  name = "electronic-circuit", amount = 10 },
     { type = "item",  name = "solar-panel",        amount = 1 },    -- piece(s) / real-wagon: 4000-8000
     { type = "item",  name = "iron-gear-wheel",    amount = 1000 }, -- piece(s) / real-wagon: 3000-6000
+    { type = "item",  name = "condenser-coil",     amount = 2 },    -- tank jacket cooling
+    { type = "item",  name = "pump",               amount = 2 },    -- loading and unloading
     { type = "fluid", name = "lava",               amount = 50000 }
 }
 fluidwagonRecipe.category = "crafting-with-fluid"

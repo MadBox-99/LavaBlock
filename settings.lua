@@ -11,6 +11,17 @@ data:extend({
     order = "a"
   },
   {
+    -- Scales the output of every solar panel, in percent. Startup, because a
+    -- panel's output is part of its prototype.
+    type = "int-setting",
+    name = "lava-block-solar-output-percent",
+    setting_type = "startup",
+    default_value = 100,
+    minimum_value = 1,
+    maximum_value = 1000,
+    order = "b"
+  },
+  {
     type = "bool-setting",
     name = "lava-block-use-instabots",
     setting_type = "runtime-global",

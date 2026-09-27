@@ -217,3 +217,18 @@ for name, fluid in pairs(data.raw.fluid) do
 end
 data:extend(quench_recipes)
 log("[LavaBlock] Quench Pit: " .. #quench_recipes .. " void recipes generated")
+
+-- Solar output, scaled by the startup setting. Every solar panel is scaled,
+-- other mods' included, so the setting means what it says. Run here rather
+-- than in data.lua so that a panel another mod adds or retunes is caught.
+local solar_percent = settings.startup["lava-block-solar-output-percent"].value
+if solar_percent ~= 100 then
+  local units = { [""] = 1, k = 1e3, M = 1e6, G = 1e9 }
+  for _, panel in pairs(data.raw["solar-panel"]) do
+    local number, prefix = tostring(panel.production):match("^([%d%.]+)%s*([kMG]?)W$")
+    if number then
+      local watts = tonumber(number) * units[prefix] * solar_percent / 100
+      panel.production = string.format("%.3fkW", watts / 1e3)
+    end
+  end
+end

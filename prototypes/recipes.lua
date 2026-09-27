@@ -14,7 +14,6 @@ end
 local air_compressor = require("prototypes.recipes.air.air-compressor")
 local air_electrostatic_adsorption = require("prototypes.recipes.air.air-electrostatic-adsorption")
 local air_extraction = require("prototypes.recipes.air.extraction.air-extraction")
-local extraction_from_air = require("prototypes.recipes.air.extraction.extraction-from-air")
 local air_cooler = require("prototypes.recipes.air.air-cooler")
 
 -- Extraction recipes
@@ -112,6 +111,7 @@ local steam_condensing = require("prototypes.recipes.water.steam-condensing")
 local fermentation_tank = require("prototypes.recipes.fermentation-tank")
 local distillation_column = require("prototypes.recipes.distillation-column")
 local fuel_plant = require("prototypes.recipes.fuel-plant")
+local island_link_pole = require("prototypes.recipes.island-link-pole")
 local straw_fermentation = require("prototypes.recipes.ethanol.straw-fermentation")
 local wood_fermentation = require("prototypes.recipes.ethanol.wood-fermentation")
 local algae_fermentation = require("prototypes.recipes.ethanol.algae-fermentation")
@@ -151,8 +151,6 @@ data:extend({
     air_compressor,
     air_electrostatic_adsorption,
     air_extraction,
-    extraction_from_air[1],
-    extraction_from_air[2],
     air_cooler,
     -- Extraction recipes
     wood_extraction,
@@ -253,6 +251,7 @@ data:extend({
     fermentation_tank,
     distillation_column,
     fuel_plant,
+    island_link_pole,
     straw_fermentation,
     wood_fermentation,
     algae_fermentation,
@@ -280,3 +279,6 @@ if mods["space-age"] then
         tungsten_plate_from_lava,
     })
 end
+
+-- Modified base recipe: the solar panel needs the crystallizer line.
+require("prototypes.recipes.solar-panel")

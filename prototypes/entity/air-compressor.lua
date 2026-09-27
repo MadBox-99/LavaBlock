@@ -4,8 +4,9 @@ air_compressor.minable.result = "air-compressor"
 air_compressor.crafting_categories = { "gas", "gas-mix" }
 air_compressor.crafting_speed = 2.0
 -- Inherited from assembling-machine-3 this was 375 kW, which made the air route
--- cheaper in energy AND in area than the lava route. Extracting ore from air is
--- meant to trade power for lava, so state the cost explicitly.
+-- cheaper in energy AND in area than the lava route. Compressing and
+-- separating air is meant to trade power for lava, so state the cost
+-- explicitly.
 air_compressor.energy_usage = "1500kW"
 air_compressor.fluid_boxes_off_when_no_fluid_recipe = true
 
