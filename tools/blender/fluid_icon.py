@@ -32,6 +32,12 @@ FLUIDS = {
     # Cold blue, not a saturated primary one: this is the coldest thing on
     # the island, and it has to stay apart from vanilla water's teal.
     'liquid-nitrogen': ((0.062, 0.180, 0.435), 0.09),
+    # Pale gold, the same hue the fluid prototype flows in. Kept well darker
+    # than the swatch for the reason above.
+    'ethanol': ((0.330, 0.250, 0.070), 0.08),
+    # Murky tan, darker and rougher than ethanol - it is full of spent
+    # biomass, and a wash that shone like the spirit would be mistaken for it.
+    'fermented-wash': ((0.062, 0.040, 0.016), 0.42),
 }
 assert FLUID in FLUIDS, "%s is not one of %s" % (FLUID, sorted(FLUIDS))
 

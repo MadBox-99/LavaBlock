@@ -84,5 +84,23 @@ data:extend({
         -- here, because that step is a filter's work and not a pump's.
         type = "recipe-category",
         name = "air-filtering"
+    },
+    {
+        -- Biomass and water to wash. Not "fermentation", which a mod with
+        -- a brewery or a biochamber of its own would reach for first.
+        type = "recipe-category",
+        name = "biomass-fermenting"
+    },
+    {
+        -- The column's one job. Prefixed with what it distils for the same
+        -- reason: a bare "distillation" is the first name any oil mod takes.
+        type = "recipe-category",
+        name = "wash-distilling"
+    },
+    {
+        -- The Fuel Plant: ethanol from gas, and rocket fuel from ethanol.
+        -- Kept off "chemistry" so a chemical plant cannot run either.
+        type = "recipe-category",
+        name = "fuel-synthesizing"
     }
 })

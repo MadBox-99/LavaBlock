@@ -13,8 +13,20 @@ local air_extraction = {
     results = {
         { type = "fluid", name = "compressed-air", amount = 500 }
     },
-    icon = "__LavaBlock-graphics__/graphics/icons/gas/compressed-air.png",
-    icon_size = 128,
+    -- The product with its input in the corner, the way every base-game
+    -- fluid recipe is drawn.
+    icons = {
+        {
+            icon = "__LavaBlock-graphics__/graphics/icons/gas/air.png",
+            icon_size = 64,
+        },
+        {
+            icon = "__base__/graphics/icons/fluid/steam.png",
+            icon_size = 64,
+            scale = 0.25,
+            shift = { -8, -8 },
+        },
+    },
     category = "gas",
     subgroup = "fluid-recipes"
 }

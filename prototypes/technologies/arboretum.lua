@@ -7,6 +7,7 @@
 --    from a lava island, and far too late for something steam generation
 --    depends on. Same reasoning as steam-condensation under calcite
 --    processing.
+--  * grass-cultivation, the straw the reinforced adobe recipe mixes in
 --  * a handful of seeds. Without them, researching this would strand a player
 --    who happened to be out of wood: no wood means no seeds, and no seeds
 --    means no wood. Twenty seeds is eight hundred kilograms of restart.
@@ -19,6 +20,7 @@ return {
         { type = "unlock-recipe", recipe = "grow-lamp" },
         { type = "unlock-recipe", recipe = "arboretum" },
         { type = "unlock-recipe", recipe = "tree-cultivation" },
+        { type = "unlock-recipe", recipe = "grass-cultivation" },
         { type = "unlock-recipe", recipe = "wood-processing" },
         { type = "give-item",     item = "tree-seed", count = 20 },
         {

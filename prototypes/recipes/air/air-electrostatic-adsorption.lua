@@ -14,8 +14,20 @@ local air_electrostatic_adsorption = {
     results = {
         { type = "fluid", name = "air", amount = 500 }
     },
-    icon = "__LavaBlock-graphics__/graphics/recipes/electrostatic-adsorption.png",
-    icon_size = 128,
+    -- Compressed air and air share one icon, so the corner shows the filter
+    -- instead of the input: the same icon twice would say nothing happened.
+    icons = {
+        {
+            icon = "__LavaBlock-graphics__/graphics/icons/gas/air.png",
+            icon_size = 64,
+        },
+        {
+            icon = "__LavaBlock-graphics__/graphics/icons/items/air-filter.png",
+            icon_size = 64,
+            scale = 0.25,
+            shift = { -8, -8 },
+        },
+    },
     category = "air-filtering",
     subgroup = "fluid-recipes"
 }

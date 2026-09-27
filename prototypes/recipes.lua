@@ -98,6 +98,7 @@ local condenser_coil = require("prototypes.recipes.parts.condenser-coil")
 -- Arboretum recipes
 local arboretum = require("prototypes.recipes.arboretum")
 local tree_cultivation = require("prototypes.recipes.wood.tree-cultivation")
+local grass_cultivation = require("prototypes.recipes.wood.grass-cultivation")
 
 -- Water Condenser recipes
 local water_condenser = require("prototypes.recipes.water-condenser")
@@ -106,6 +107,17 @@ local pug_mill = require("prototypes.recipes.pug-mill")
 local adobe_bricks = require("prototypes.recipes.adobe.adobe-bricks")
 local adobe_bricks_reinforced = require("prototypes.recipes.adobe.adobe-bricks-reinforced")
 local steam_condensing = require("prototypes.recipes.water.steam-condensing")
+
+-- Ethanol recipes
+local fermentation_tank = require("prototypes.recipes.fermentation-tank")
+local distillation_column = require("prototypes.recipes.distillation-column")
+local fuel_plant = require("prototypes.recipes.fuel-plant")
+local straw_fermentation = require("prototypes.recipes.ethanol.straw-fermentation")
+local wood_fermentation = require("prototypes.recipes.ethanol.wood-fermentation")
+local algae_fermentation = require("prototypes.recipes.ethanol.algae-fermentation")
+local wash_distillation = require("prototypes.recipes.ethanol.wash-distillation")
+local ethanol_synthesis = require("prototypes.recipes.ethanol.ethanol-synthesis")
+local ethanol_rocket_fuel = require("prototypes.recipes.ethanol.ethanol-rocket-fuel")
 
 -- Lava Centrifuge recipes
 local lava_centrifuge = require("prototypes.recipes.lava-centrifuge")
@@ -229,6 +241,7 @@ data:extend({
     -- Arboretum recipes
     arboretum,
     tree_cultivation,
+    grass_cultivation,
     -- Water Condenser recipes
     water_condenser,
     quench_pit,
@@ -236,6 +249,16 @@ data:extend({
     adobe_bricks,
     adobe_bricks_reinforced,
     steam_condensing,
+    -- Ethanol recipes
+    fermentation_tank,
+    distillation_column,
+    fuel_plant,
+    straw_fermentation,
+    wood_fermentation,
+    algae_fermentation,
+    wash_distillation,
+    ethanol_synthesis,
+    ethanol_rocket_fuel,
     -- Lava Centrifuge recipes
     lava_centrifuge,
     lava_purification,

@@ -7,6 +7,8 @@ data:extend({
     require("prototypes.fluids.gases.chlorine"),
     require("prototypes.fluids.gases.shielding-gas"),
     require("prototypes.fluids.purified-lava"),
+    require("prototypes.fluids.fermented-wash"),
+    require("prototypes.fluids.ethanol"),
 })
 
 -- Space Age only fluids

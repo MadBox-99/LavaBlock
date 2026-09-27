@@ -210,7 +210,59 @@ def glazed_panel(m):
     return out
 
 
+def straw(m):
+    """A standing sheaf, tied at the waist - what the Arboretum cuts.
+
+    A sheaf and not a bale: a bale at this angle is a yellow box, and a box
+    is the one silhouette every item icon already has. The stalks are
+    straight rods twisted a third of a turn between foot and head, which is
+    how a real sheaf gets its waist - lines that lean round each other
+    pinch in the middle without any of them bending.
+
+    Render it with --ground 0. It stands tall and thin on a small foot, so
+    the contact shadow falls wide of it and the crop takes a grey smear
+    along with the sheaf.
+    """
+    import random
+    rnd = random.Random(7)
+    H, TWIST = 1.0, math.radians(110)
+    out = []
+
+    def rod(p1, p2, r, material):
+        d = Vector(p2) - Vector(p1)
+        mid = (Vector(p1) + Vector(p2)) / 2
+        o = cyl_at(mid.x, mid.y, mid.z, r, d.length, material, verts=5,
+                   rot=(0, math.acos(d.z / d.length), math.atan2(d.y, d.x)))
+        return o
+
+    for ring_r, count in ((0.10, 7), (0.20, 13), (0.29, 18), (0.37, 24)):
+        for k in range(count):
+            a = 2 * math.pi * (k + rnd.random() * 0.6) / count
+            rb = ring_r * (0.9 + rnd.random() * 0.2)
+            rt = ring_r * (1.0 + rnd.random() * 0.25)
+            top = H * (0.92 + rnd.random() * 0.14)
+            p1 = (rb * math.cos(a), rb * math.sin(a), 0.0)
+            p2 = (rt * math.cos(a + TWIST), rt * math.sin(a + TWIST), top)
+            out.append(rod(p1, p2, 0.016, m['straw']))
+            # An ear on most stalks. Without them the sheaf is a bundle of
+            # sticks; the heads are what say it was grass.
+            if rnd.random() < 0.7:
+                bpy.ops.mesh.primitive_uv_sphere_add(segments=8, ring_count=6,
+                                                     radius=0.035,
+                                                     location=p2)
+                o = bpy.context.object
+                o.scale = (1.0, 1.0, 2.4)
+                o.data.materials.append(m['ear'])
+                out.append(o)
+    # The waist of a twisted ring is cos(TWIST / 2) of its radius.
+    waist = 0.40 * math.cos(TWIST / 2)
+    for dz in (-0.035, 0.035):
+        out.append(fr.torus_at((0, 0, H / 2 + dz), waist, 0.022, m['twine']))
+    return out
+
+
 PARTS = {
+    'straw': straw,
     'crusher-roll': crusher_roll,
     'culture-column': culture_column,
     'grow-lamp': grow_lamp,
@@ -277,6 +329,11 @@ def build():
     _g.inputs['Transmission Weight'].default_value = 0.92
     _g.inputs['IOR'].default_value = 1.50
     m['frame'] = mat("frame", (0.300, 0.290, 0.278), 0.42, 1.0, wear=0.62)
+    # Dry gold, kept dark for the same reason as everything else here: the
+    # icon sun turns a straw-coloured swatch into white.
+    m['straw'] = mat("straw", (0.380, 0.260, 0.070), 0.70, 0.0)
+    m['ear'] = mat("ear", (0.330, 0.200, 0.050), 0.75, 0.0)
+    m['twine'] = mat("twine", (0.110, 0.055, 0.020), 0.85, 0.0)
     objs = PARTS[PART](m)
     sit_on_ground(objs)
     return objs, []

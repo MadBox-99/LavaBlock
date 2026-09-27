@@ -107,6 +107,11 @@ GROUPS = {
     "organic": "Wood",
     "organic-or-hand-crafting": "Wood",
     "organic-or-assembling": "Wood",
+    # The whole ethanol line in one group, from the tank to the rocket fuel,
+    # so the three feeds and the two routes read side by side.
+    "biomass-fermenting": "Fuel",
+    "wash-distilling": "Fuel",
+    "fuel-synthesizing": "Fuel",
 }
 
 # A few recipes belong to a line their crafting category cannot express.

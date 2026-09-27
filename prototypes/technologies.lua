@@ -97,6 +97,9 @@ local algae_cultivation_tech = require("prototypes.technologies.algae-cultivatio
 local water_condenser_tech = require("prototypes.technologies.water-condenser")
 local quench_pit_tech = require("prototypes.technologies.quench-pit")
 local adobe_bricks_tech = require("prototypes.technologies.adobe-bricks")
+local bio_ethanol_tech = require("prototypes.technologies.bio-ethanol")
+local synthetic_ethanol_tech = require("prototypes.technologies.synthetic-ethanol")
+local ethanol_rocket_fuel_tech = require("prototypes.technologies.ethanol-rocket-fuel")
 
 -- XP Lab technology
 local xp_lab = require("prototypes.technologies.xp-lab")
@@ -150,6 +153,9 @@ data:extend({
     water_condenser_tech,
     quench_pit_tech,
     adobe_bricks_tech,
+    bio_ethanol_tech,
+    synthetic_ethanol_tech,
+    ethanol_rocket_fuel_tech,
     lava_centrifuge_techs[1],
     lava_centrifuge_techs[2],
     xp_lab,

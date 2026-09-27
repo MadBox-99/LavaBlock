@@ -18,5 +18,8 @@ data:extend({
     require("prototypes.entity.water-condenser"),
     require("prototypes.entity.quench-pit"),
     require("prototypes.entity.pug-mill"),
+    require("prototypes.entity.fermentation-tank"),
+    require("prototypes.entity.distillation-column"),
+    require("prototypes.entity.fuel-plant"),
     require("prototypes.entity.xp-lab"),
 })

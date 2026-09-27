@@ -3,7 +3,7 @@
 -- furnace, so gating it on smelting research would be backwards.
 --
 -- The reinforced recipe comes with it rather than in a technology of its
--- own. It needs wood, so the Arboretum already gates it in practice, and a
+-- own. It needs straw, so the Arboretum already gates it in practice, and a
 -- second technology would be a research cost for a recipe the player cannot
 -- run yet anyway.
 return {
