@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.2.2
-Date: ????
+Date: 2026-09-27
   Features:
     - Added the Island Link Pole, for carrying power across the lava so every island does not need a power plant of its own. It reaches 64 tiles, the longest wire the game allows, and takes two wires only - one in, one out - so a line of them is a transmission line and not a second grid; an extra wire is cut. Its supply area is small on purpose. Unlocked with the big electric pole
     - Solar panel output is a startup setting, in percent of vanilla. 100 by default
