@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.2.1
-Date: ????
+Date: 2026-09-27
   Features:
     - Added the Pug Mill and a brick route with no kiln in it. Crushed rock and water are mixed and pressed into wet adobe bricks, which dry into ordinary stone bricks in two minutes wherever they are standing - on a belt, in a chest, or in the machine that made them. Three gravel give two bricks, the same as crushing and firing them does, so what the mill actually saves is the furnace and the fuel it burns; the price is the wait and somewhere to stack the bricks while they dry. A second recipe mixes in straw, the way real adobe is made, and gets three bricks from the same three gravel - the first place in the mod where the Arboretum feeds the stone line. Unlocked after Stone Crushing
     - Added a bio-ethanol fuel line. The Fermentation Tank ferments straw, wood or green algae with water into fermented wash; the Distillation Column, a tower nearly four tiles tall, boils the wash with steam from its reboiler and takes ethanol off the top and water off the bottom, three quarters of which can go straight back to the tanks. Four tanks feed one column. Unlocked by Bio-ethanol, after the Arboretum
