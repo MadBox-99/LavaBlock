@@ -66,7 +66,11 @@ nauvis_copy.map_gen_settings.property_expression_names = {
     -- The base "lava" tile autoplaces via Vulcanus-only noise ranges, which
     -- never trigger on Nauvis. Override its probability per-planet so it fills
     -- everything below sea level (negative elevation) with lava.
-    ["tile:lava:probability"] = "0 - elevation",
+    --
+    -- By name: property_expression_names takes the name of a noise
+    -- expression, not an expression. The inline "0 - elevation" that was
+    -- here is dropped by the engine with "is not defined; ignoring".
+    ["tile:lava:probability"] = "lava-block-lava-probability",
 }
 
 -- Mark this Nauvis as the LavaBlock lava-ocean world. Recipes use this instead
