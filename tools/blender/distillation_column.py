@@ -99,6 +99,60 @@ def pipe_z(x, y, z0, z1, r, material):
     return cyl_at(x, y, (z0 + z1) / 2, r, abs(z1 - z0), material, verts=14)
 
 
+VAPOUR_BEND = 0.18             # bend radius of the overhead line
+
+
+def bent_pipe(points, r, bend, material, arc_steps=10):
+    """A pipe through `points` with every corner swept round radius `bend`.
+
+    Each corner is filleted - the straight runs stop `bend * tan(a/2)` short
+    of it and a circular arc joins them - and the whole path is swept as one
+    curve with a round profile, then made a mesh so the bevel and the render
+    passes treat it like any other part. Every run must be longer than the
+    fillets cut from its two ends.
+    """
+    from mathutils import Quaternion, Vector
+    P = [Vector(p) for p in points]
+    path = [P[0]]
+    for i in range(1, len(P) - 1):
+        a, c, b = P[i - 1], P[i], P[i + 1]
+        d1, d2 = (a - c).normalized(), (b - c).normalized()
+        ang = d1.angle(d2)
+        t = bend / math.tan(ang / 2)
+        assert t < (a - c).length and t < (b - c).length, "run too short"
+        t1, t2 = c + d1 * t, c + d2 * t
+        centre = c + (d1 + d2).normalized() * (bend / math.sin(ang / 2))
+        u, w = t1 - centre, t2 - centre
+        sweep = u.angle(w)
+        axis = u.cross(w).normalized()
+        for k in range(arc_steps + 1):
+            q = u.copy()
+            q.rotate(Quaternion(axis, sweep * k / arc_steps))
+            path.append(centre + q)
+    path.append(P[-1])
+
+    cu = bpy.data.curves.new("pipe", 'CURVE')
+    cu.dimensions = '3D'
+    cu.bevel_depth = r
+    cu.bevel_resolution = 4
+    cu.use_fill_caps = True
+    sp = cu.splines.new('POLY')
+    sp.points.add(len(path) - 1)
+    for pt, v in zip(sp.points, path):
+        pt.co = (v.x, v.y, v.z, 1.0)
+    o = bpy.data.objects.new("pipe", cu)
+    bpy.context.collection.objects.link(o)
+    o.data.materials.append(material)
+    bpy.ops.object.select_all(action='DESELECT')
+    o.select_set(True)
+    bpy.context.view_layer.objects.active = o
+    bpy.ops.object.convert(target='MESH')
+    o = bpy.context.object
+    for p in o.data.polygons:
+        p.use_smooth = True
+    return o
+
+
 def port(static, m, x, sign):
     axis = (math.pi / 2, 0, 0)
     static.append(box(0.34, 0.40, 0.40, (x, sign * 1.05, STUB_Z), m=m['iron']))
@@ -242,13 +296,18 @@ def build():
     # Off the top of the head, east, and down BEHIND the cooler to its north
     # header. North of the fan it is drawn over by the fan and never across
     # it.
+    #
+    # One continuous pipe with swept bends, not straight lengths meeting at
+    # right angles: butted cylinders read as a bent coat hanger at the top of
+    # the tower, and a vapour line is always pulled round in long radii.
+    # The rise off the head is taller than it was so the first bend fits.
     vx, vy = 0.10, 0.70
-    vtop = TOP + C_R * 0.45 + 0.10
-    add(pipe_z(CX, CY, TOP + C_R * 0.40, vtop, 0.090, m['clad']))
-    add(pipe_x(CX, vx, CY, vtop, 0.090, m['clad']))
-    add(pipe_y(vx, CY, vy, vtop, 0.090, m['clad']))
-    add(pipe_z(vx, vy, BANK_Z[1] - 0.05, vtop, 0.090, m['clad']))
-    add(pipe_x(vx, BANK_X[0] + 0.1, vy, BANK_Z[1] - 0.05, 0.090, m['clad']))
+    vtop = TOP + C_R * 0.45 + 0.30
+    zb = BANK_Z[1] - 0.05
+    add(bent_pipe([(CX, CY, TOP + C_R * 0.40), (CX, CY, vtop),
+                   (vx, CY, vtop), (vx, vy, vtop), (vx, vy, zb),
+                   (BANK_X[0] + 0.2, vy, zb)],
+                  0.090, VAPOUR_BEND, m['clad']))
 
     # --- reflux drum and pump ---------------------------------------------
     add(pipe_x(0.30, 1.22, DRUM_Y, DRUM_Z, DRUM_R, m['galv']))
