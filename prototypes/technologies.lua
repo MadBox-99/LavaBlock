@@ -61,6 +61,12 @@ table.insert(data.raw.technology["explosives"].effects, {
     recipe = "explosives-from-lava",
 })
 
+-- Simple coal liquefaction runs on sulfuric acid, so it comes with the acid.
+table.insert(data.raw.technology["sulfur-processing"].effects, {
+    type = "unlock-recipe",
+    recipe = "simple-coal-liquefaction",
+})
+
 -- Custom technologies
 local smelting_with_air = require("prototypes.technologies.lava-cooling-with-liquid-nitrogen")
 local advanced_lava_cooling = require("prototypes.technologies.advanced-lava-cooling")

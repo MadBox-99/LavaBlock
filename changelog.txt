@@ -1,7 +1,12 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.2.3
 Date: ????
+  Balancing:
+    - Uranium from Lava takes 2000 purified lava and 50 sulfuric acid for 10 ore in 10 seconds, instead of 5000 and 100 in 20. It cost more acid an ore than uranium extraction from stone, and more machine time, behind a much dearer technology
+    - Explosives (Lava) takes 1 sulfur and 1 coal, as the vanilla recipe does, instead of 2 and 2. Lava in place of the water is what it is for; at double the sulfur and coal it lost to vanilla everywhere else
   Changes:
+    - Simple coal liquefaction is unlocked by Sulfur processing instead of the first Calcite Processing, which came long before there was any sulfuric acid to run it on
+    - The first Calcite Processing no longer unlocks Acid neutralisation. It is a Vulcanus-only recipe, and vanilla Calcite processing unlocks it there
 ---------------------------------------------------------------------------------------------------
 Version: 0.2.2
 Date: 2026-09-27

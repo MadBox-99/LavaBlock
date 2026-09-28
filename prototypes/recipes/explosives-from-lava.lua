@@ -4,9 +4,12 @@ return {
     category = "chemistry",
     enabled = false,
     energy_required = 4,
+    -- The vanilla recipe with lava in place of the water: the point is not
+    -- needing water on Vulcanus. It took twice the sulfur and coal before,
+    -- which made it worse than vanilla in everything but that.
     ingredients = {
-        { type = "item", name = "sulfur", amount = 2 },
-        { type = "item", name = "coal", amount = 2 },
+        { type = "item", name = "sulfur", amount = 1 },
+        { type = "item", name = "coal", amount = 1 },
         { type = "fluid", name = "lava", amount = 100 },
     },
     results = {

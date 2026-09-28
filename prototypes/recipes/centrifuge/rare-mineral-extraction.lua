@@ -9,7 +9,12 @@ return {
         category = "lava-centrifuge",
         subgroup = "lava-centrifuge-recipes",
         enabled = false,
-        energy_required = 20,
+        -- Per ore: 200 purified lava, 5 acid and 5 centrifuge-seconds counting
+        -- the purification. Uranium extraction takes 6.7 acid, 3.3 stone and
+        -- 3.3 chemical-plant seconds an ore; at the old 500 purified and 10
+        -- acid an ore, this route was the worse of the two behind a far
+        -- dearer tech.
+        energy_required = 10,
         icons = {
             {
                 icon = "__base__/graphics/icons/uranium-ore.png"
@@ -28,8 +33,8 @@ return {
             },
         },
         ingredients = {
-            { type = "fluid", name = "purified-lava", amount = 5000 },
-            { type = "fluid", name = "sulfuric-acid", amount = 100 },
+            { type = "fluid", name = "purified-lava", amount = 2000 },
+            { type = "fluid", name = "sulfuric-acid", amount = 50 },
         },
         results = {
             { type = "item", name = "uranium-ore", amount = 10 },
