@@ -45,56 +45,18 @@ end
 -- Pyroclast integration: when Pyroclast mod is installed, swap its standalone
 -- science packs with LavaBlock's custom packs for deeper integration
 if mods["Pyroclast"] then
-    -- Helper: replace a science pack ingredient in a technology's unit
-    local function replace_tech_ingredient(tech_name, old_pack, new_pack, new_count)
-        local tech = data.raw.technology[tech_name]
-        if not tech or not tech.unit or not tech.unit.ingredients then return end
-        for i, ingredient in pairs(tech.unit.ingredients) do
-            if ingredient[1] == old_pack then
-                ingredient[1] = new_pack
-                if new_count then ingredient[2] = new_count end
-                return
-            end
-        end
-        -- If old_pack not found, add new_pack
-        table.insert(tech.unit.ingredients, { new_pack, new_count or 1 })
-    end
-
-    -- Helper: add a science pack ingredient to a technology
-    local function add_tech_ingredient(tech_name, pack, count)
-        local tech = data.raw.technology[tech_name]
-        if not tech or not tech.unit or not tech.unit.ingredients then return end
-        table.insert(tech.unit.ingredients, { pack, count })
-    end
-
-    -- Helper: replace a prerequisite in a technology
-    local function replace_tech_prereq(tech_name, old_prereq, new_prereq)
-        local tech = data.raw.technology[tech_name]
-        if not tech or not tech.prerequisites then return end
-        for i, prereq in pairs(tech.prerequisites) do
-            if prereq == old_prereq then
-                tech.prerequisites[i] = new_prereq
-                return
-            end
-        end
-    end
-
-    -- Helper: add a prerequisite to a technology
-    local function add_tech_prereq(tech_name, prereq)
-        local tech = data.raw.technology[tech_name]
-        if not tech or not tech.prerequisites then return end
-        table.insert(tech.prerequisites, prereq)
-    end
+    require("helpers.functions")
 
     -- planet-discovery-pyroclast: metallurgic-science-pack(1) → lava-science-pack(3)
     replace_tech_ingredient("planet-discovery-pyroclast", "metallurgic-science-pack", "lava-science-pack", 3)
 
-    -- pyroclast-science-pack: metallurgic-science-pack(3) → lava-science-pack(5) + enchanted-science-pack(3)
-    -- prereqs: military-science-pack → military-science-pack-2, add enchanted-science-pack
+    -- pyroclast-science-pack: metallurgic-science-pack(3) → lava-science-pack(5)
+    -- prereqs: military-science-pack → military-science-pack-2, add lava-science-pack
+    -- (it took the enchanted science pack too, until that pack was removed; the
+    -- lava pack came in behind it as a prerequisite and is now asked for directly)
     replace_tech_ingredient("pyroclast-science-pack", "metallurgic-science-pack", "lava-science-pack", 5)
-    add_tech_ingredient("pyroclast-science-pack", "enchanted-science-pack", 3)
     replace_tech_prereq("pyroclast-science-pack", "military-science-pack", "military-science-pack-2")
-    add_tech_prereq("pyroclast-science-pack", "enchanted-science-pack")
+    add_tech_prereq("pyroclast-science-pack", "lava-science-pack")
 
     -- pyroclast-materials, explosives, refined: metallurgic-science-pack(1) → lava-science-pack(3)
     replace_tech_ingredient("pyroclast-materials", "metallurgic-science-pack", "lava-science-pack", 3)

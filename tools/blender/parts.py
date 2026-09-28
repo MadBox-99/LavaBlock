@@ -265,8 +265,9 @@ def straw(m):
 #
 # Six crystals come out of one recipe at random, so they share belts and
 # chests by the handful. Each gets its own colour AND its own silhouette -
-# cube, shard, roofed prism, flat column, double spindle, octahedron - so
-# that two of them are never told apart by hue alone.
+# cube, a cluster of small octahedra, roofed prism, flat column, double
+# spindle, two large octahedra - so that two of them are never told apart by
+# hue alone.
 
 
 def hull(pts, material, loc=(0, 0, 0), rot=(0, 0, 0)):
@@ -297,6 +298,10 @@ def hull(pts, material, loc=(0, 0, 0), rot=(0, 0, 0)):
 def ring(n, r, z, phase=0.0):
     return [(r * math.cos(2 * math.pi * k / n + phase),
              r * math.sin(2 * math.pi * k / n + phase), z) for k in range(n)]
+
+
+def octa(r):
+    return ring(4, r, 0.0) + [(0, 0, r), (0, 0, -r)]
 
 
 def jittered(o, rnd, amount):
@@ -338,23 +343,22 @@ def pyrite(m):
     return out
 
 
-def obsidian(m):
-    """Volcanic glass, broken into blades.
+def magnetite(m):
+    """Magnetite, the iron oxide that crystallises out of iron-rich slag.
 
-    Glossy black shards with long knife edges. Coal is black too, which is
-    why the shape does the work: coal is a matte lump, this is two blades.
+    A cluster of small black octahedra with a metal sheen. The diamond is an
+    octahedron too, which is why this one is many and small and dark: the
+    diamond is two, large and clear.
     """
-    # Standing, not lying down. Flat on the ground a blade is a black smear
-    # with a shadow; on end its faces turn to the light and catch it.
-    out = [hull([(-0.32, -0.10, 0.0), (0.30, -0.14, 0.0), (0.06, 0.16, 0.0),
-                 (-0.10, 0.00, 0.92), (0.12, -0.06, 0.66), (-0.20, 0.06, 0.40)],
-                m['obsidian'], rot=(0.10, -0.12, 0.3)),
-           hull([(-0.16, -0.06, 0.0), (0.20, -0.02, 0.0), (0.00, 0.12, 0.0),
-                 (0.06, 0.02, 0.58)],
-                m['obsidian'], loc=(0.36, 0.14, 0.0), rot=(0.0, 0.35, -0.4)),
-           hull([(-0.14, -0.04, 0.0), (0.14, -0.08, 0.0), (0.02, 0.10, 0.0),
-                 (-0.04, 0.0, 0.36)],
-                m['obsidian'], loc=(-0.34, 0.18, 0.0), rot=(0.0, -0.40, 0.8))]
+    out = []
+    for r, loc, rot in ((0.26, (0.00, 0.00, 0.26), (0.20, 0.30, 0.3)),
+                        (0.19, (0.34, 0.10, 0.19), (0.50, 0.10, 1.0)),
+                        (0.17, (-0.30, 0.16, 0.17), (0.30, 0.60, -0.5)),
+                        (0.15, (0.08, -0.32, 0.15), (0.70, 0.20, 0.2)),
+                        (0.13, (-0.14, 0.36, 0.13), (0.10, 0.40, 1.4)),
+                        (0.12, (0.24, -0.18, 0.12), (0.40, 0.70, 0.6)),
+                        (0.10, (0.04, 0.06, 0.50), (0.60, 0.30, 0.9))):
+        out.append(hull(octa(r), m['magnetite'], loc=loc, rot=rot))
     return out
 
 
@@ -399,8 +403,6 @@ def sapphire(m):
 
 def diamond(m):
     """A raw diamond: the octahedron it grows as, before anyone cuts it."""
-    def octa(r):
-        return ring(4, r, 0.0) + [(0, 0, r), (0, 0, -r)]
     # Tipped well over, so the camera sees four faces at four angles to the
     # light. Square on, an octahedron is two pale triangles and nothing else.
     return [hull(octa(0.52), m['diamond'], loc=(0, 0, 0.5),
@@ -409,34 +411,123 @@ def diamond(m):
                  rot=(0.7, 0.2, 1.1))]
 
 
-def place(objs, dx, dy, s):
-    """Shrink a finished part and set it down somewhere else on the ground."""
-    for o in objs:
-        o.location = (o.location.x * s + dx, o.location.y * s + dy,
-                      o.location.z * s)
-        o.scale = tuple(c * s for c in o.scale)
-    bpy.context.view_layer.update()
-    low = min((o.matrix_world @ Vector(c)).z
-              for o in objs if o.type == 'MESH' for c in o.bound_box)
-    for o in objs:
-        o.location.z -= low
-    return objs
-
-
 def crystal_assortment(m):
-    """All six on one slab - the icon of the recipe that grows them.
+    """The five random crystals grown out of one lump of slag - the icon of
+    the recipe that grows them and of the technology that hands it over.
+    Magnetite is not on it: it has a recipe of its own.
 
-    Packed close on a single piece of rock. Spread out, six small crystals at
-    32 px are six coloured dots; on one slab they are one thing, a haul.
+    One specimen, not five items on a tray. The first version stood each
+    crystal's own icon on a basalt slab, and it read as a shop display: five
+    loose things and a plate. Rooted in the slag they grow from and leaning
+    out of it, they are one thing that grew, and the slag says out of what.
+
+    Tall at the back and short at the front, so that none of them hides
+    another. The camera looks in from the +x, -y corner.
     """
-    out = [cyl_at(0, 0, 0.09, 0.92, 0.18, m['basalt'], verts=7)]
-    for fn, dx, dy in ((diamond, 0.02, 0.40), (ruby, -0.46, 0.22),
-                       (sapphire, 0.46, 0.22), (pyrite, -0.42, -0.30),
-                       (obsidian, 0.44, -0.28), (olivine, 0.00, -0.38)):
-        grp = place(fn(m), dx, dy, 0.55)
-        for o in grp:
-            o.location.z += 0.18
-        out += grp
+    import random
+    rnd = random.Random(23)
+    A, B, C = 0.62, 0.50, 0.24          # the lump's half-extents
+    bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=3, radius=1.0)
+    lump = jittered(bpy.context.object, rnd, 0.06)
+    lump.scale = (A, B, C)
+    lump.data.materials.append(m['slag'])
+    out = [lump]
+
+    def root(x, y, sink):
+        # The top of the lump over (x, y), less `sink`, so a crystal starts
+        # inside the slag instead of standing on it.
+        q = max(0.0, 1.0 - (x / A) ** 2 - (y / B) ** 2)
+        return (x, y, C * math.sqrt(q) - sink)
+
+    def grown(pts, material, x, y, tilt, towards, sink=0.05):
+        # Every habit below is built from z = 0 upwards, so this leans it
+        # `tilt` radians towards the compass angle `towards` about its root.
+        return hull(pts, material, loc=root(x, y, sink),
+                    rot=(0.0, tilt, math.radians(towards)))
+
+    def column(r, h):
+        return ring(6, r, 0.0) + ring(6, r, h)
+
+    def barrel(r, h):
+        # Tapering all the way up from its widest point. A straight prism
+        # with a point on it is a pencil, which is what the first try was.
+        return (ring(6, r * 0.80, 0.0) + ring(6, r, h * 0.40)
+                + ring(6, r * 0.45, h * 0.85, phase=0.05) + [(0, 0, h)])
+
+    def roofed(w, d, h, roof):
+        return [(sx * w, sy * d, z) for sx in (-1, 1) for sy in (-1, 1)
+                for z in (0.0, h)] + [(sx * w * 0.55, 0.0, h + roof)
+                                      for sx in (-1, 1)]
+
+    # The sapphire is the tallest thing and stands at the back, the ruby
+    # columns fan out to the left of it and the diamond sits to its right.
+    out.append(grown(barrel(0.19, 1.00), m['sapphire'], -0.04, 0.18,
+                     0.10, 110))
+    for x, y, r, h, tilt, towards in ((-0.28, 0.02, 0.12, 0.70, 0.45, 165),
+                                      (-0.16, 0.26, 0.10, 0.52, 0.32, 125),
+                                      (-0.42, -0.10, 0.08, 0.34, 0.80, 200)):
+        out.append(grown(column(r, h), m['ruby'], x, y, tilt, towards))
+    out.append(hull(octa(0.23), m['diamond'], loc=root(0.30, 0.16, -0.12),
+                    rot=(0.62, 0.38, 0.45)))
+    # The short ones in front: olivine nearest the camera, pyrite beside it.
+    for w, d, h, roof, x, y, tilt, towards in (
+            (0.13, 0.10, 0.22, 0.10, 0.28, -0.20, 0.45, -50),
+            (0.09, 0.07, 0.14, 0.07, 0.10, -0.32, 0.55, -95)):
+        out.append(grown(roofed(w, d, h, roof), m['olivine'], x, y,
+                         tilt, towards))
+    for s, x, y, rot in ((0.24, -0.16, -0.24, (0.30, 0.20, 0.50)),
+                         (0.15, -0.36, -0.22, (0.55, 0.10, -0.30))):
+        cx, cy, cz = root(x, y, 0.0)
+        out.append(box(s, s, s, (cx, cy, cz + s * 0.15), rot=rot,
+                       m=m['pyrite']))
+    return out
+
+
+def basalt_columns(m):
+    """Columnar basalt still standing in its lava - the picture of casting.
+
+    Lava that cools slowly cracks into six-sided columns, which makes that
+    the one shape that says "this rock was a melt". Stepped down towards the
+    camera like a causeway, so every flat top catches the light, with the
+    front of the cluster in a pool of lava that has not set yet.
+    """
+    import random
+    rnd = random.Random(17)
+    R = 0.115                           # a column's corner radius
+    d = math.sqrt(3) * R * 1.05         # centre to centre, with a joint
+    a1 = (d * math.cos(math.radians(30)), d * math.sin(math.radians(30)))
+    a2 = (0.0, d)
+    out = []
+    for q in range(-2, 3):
+        for r in range(-2, 3):
+            if max(abs(q), abs(r), abs(q + r)) > 2:
+                continue
+            x = q * a1[0] + r * a2[0]
+            y = q * a1[1] + r * a2[1]
+            h = max(0.12, 0.42 - 0.55 * x + 0.75 * y + rnd.random() * 0.10)
+            # A touch of turn and size on each, so the joints between them
+            # are uneven the way a real cooling pattern's are. A perfect
+            # honeycomb reads as something laid, not something that cracked.
+            rr, ph = R * (0.95 + rnd.random() * 0.06), rnd.random() * 0.10
+            out.append(hull(ring(6, rr, 0.0, ph) + ring(6, rr, h, ph),
+                            m['basalt'], loc=(x, y, 0.0)))
+    # The pool is lobed rather than round and carries a crust. A round
+    # orange disc read as a plate, the columns standing on cheese.
+    pool = cyl_at(0.16, -0.16, 0.015, 0.54, 0.03, m['pool'], verts=48)
+    for v in pool.data.vertices:
+        a = math.atan2(v.co.y, v.co.x)
+        f = 1.0 + 0.14 * math.sin(3 * a + 0.7) + 0.08 * math.sin(5 * a + 2.1)
+        v.co.x *= f
+        v.co.y *= f
+    out.append(pool)
+    for x, y, s in ((0.52, -0.30, 0.10), (0.30, -0.54, 0.08),
+                    (0.60, -0.02, 0.07), (0.08, -0.60, 0.06),
+                    (0.44, -0.50, 0.05)):
+        pts = [(x + s * math.cos(a) * (0.7 + rnd.random() * 0.5),
+                y + s * math.sin(a) * (0.7 + rnd.random() * 0.5), z)
+               for a in (k * 2 * math.pi / 6 for k in range(6))
+               for z in (0.025, 0.045)]
+        out.append(hull(pts, m['basalt']))
     return out
 
 
@@ -522,15 +613,72 @@ def lime_mortar(m):
     return out
 
 
+# ------------------------------------------------------------ laser line
+
+
+def quartz_lens(m):
+    """A cast lens in a steel ring, stood on edge.
+
+    On edge because a lens lying flat under this camera is a pale disc, and
+    a pale disc is the glass item's colour on a coin. Tipped up towards the
+    lens, the ring gives it an outline and the bulge catches the light.
+    """
+    up = (math.radians(62), 0.0, 0.25)
+    bpy.ops.mesh.primitive_uv_sphere_add(segments=40, ring_count=20,
+                                         radius=0.40, location=(0, 0, 0.5),
+                                         rotation=up)
+    lens = bpy.context.object
+    lens.scale = (1.0, 1.0, 0.26)
+    lens.data.materials.append(m['quartz'])
+    return [lens,
+            fr.torus_at((0, 0, 0.5), 0.41, 0.045, m['steel'], rot=up),
+            box(0.36, 0.26, 0.10, (0, 0.10, 0.05), m=m['dark'])]
+
+
+def silicon_wafer(m):
+    """A round wafer with its grid of dies, and a second one under it."""
+    out = []
+    for dx, dy, z in ((-0.12, 0.10, 0.02), (0.06, -0.05, 0.07)):
+        out.append(cyl_at(dx, dy, z, 0.46, 0.025, m['silicon'], verts=48))
+    # The dies. Set on the upper wafer only, in a grid clipped to its circle:
+    # a plain disc is a coin, and the grid is what says chip.
+    top = 0.07 + 0.0125 + 0.004
+    for i in range(-3, 4):
+        for j in range(-3, 4):
+            x, y = 0.06 + i * 0.115, -0.05 + j * 0.115
+            if (x - 0.06) ** 2 + (y + 0.05) ** 2 < 0.37 ** 2:
+                out.append(box(0.095, 0.095, 0.008, (x, y, top),
+                               m=m['die']))
+    return out
+
+
+def sapphire_substrate(m):
+    """Three blue substrate plates standing in a rack.
+
+    Standing, because three plates stacked flat would be the glass item
+    again in blue - the glass is exactly that, three sheets on a pile.
+    """
+    out = [box(0.86, 0.34, 0.10, (0, 0, 0.05), m=m['steel'])]
+    for k, x in enumerate((-0.26, 0.0, 0.26)):
+        out.append(box(0.05, 0.62, 0.62, (x, 0.0, 0.40),
+                       rot=(0, math.radians(8 * (k - 1)), 0),
+                       m=m['sapphire']))
+    return out
+
+
 PARTS = {
+    'quartz-lens': quartz_lens,
+    'silicon-wafer': silicon_wafer,
+    'sapphire-substrate': sapphire_substrate,
     'lava-slag': lava_slag,
     'pyrite': pyrite,
-    'obsidian': obsidian,
+    'magnetite': magnetite,
     'olivine': olivine,
     'ruby': ruby,
     'sapphire': sapphire,
     'diamond': diamond,
     'crystal-assortment': crystal_assortment,
+    'basalt-columns': basalt_columns,
     'crystal-circuit-board': crystal_circuit_board,
     'limestone': limestone,
     'quicklime': quicklime,
@@ -586,6 +734,10 @@ def build():
     # comes back as vanilla stone; taken all the way down it comes back
     # as coal. The tint is the same one the basalt item wears.
     m['basalt'] = mat("basalt", (0.086, 0.080, 0.098), 0.88, 0.0, wear=0.45)
+    # Lava lying open, lit much lower than the machines' lava: a whole floor
+    # of it at their strength clips to a flat yellow.
+    m['pool'] = mat("pool", (0.090, 0.030, 0.010), 0.30, 0.0,
+                    emit=(1.00, 0.22, 0.02), emit_str=1.0)
     m['culture'] = mat("culture", (0.090, 0.330, 0.105), 0.42, 0.0)
     # There is no tonemapping on this view transform, so emission above
     # about 1.5 clips to white and the one thing the icon is for - the
@@ -627,15 +779,15 @@ def build():
     m['slag'] = mat("slag", (0.130, 0.068, 0.034), 0.55, 0.15, wear=0.85)
     m['pyrite'] = mat("pyrite", (0.500, 0.370, 0.110), 0.26, 1.0, wear=0.30)
     m['gold'] = mat("gold", (0.620, 0.430, 0.110), 0.22, 1.0)
-    # Not quite black: a faint smoke in it, or the highlights are all there is.
-    m['obsidian'] = gem("obsidian", (0.030, 0.024, 0.040), 0.12, 0.0, 1.50,
-                        coat=0.0, specular=0.12)
+    # Black with a metal sheen, and rough enough that the sheen stays a sheen:
+    # polished, a metal mirrors the white floor under it and comes out steel.
+    m['magnetite'] = mat("magnetite", (0.040, 0.040, 0.045), 0.55, 0.60)
     m['olivine'] = gem("olivine", (0.130, 0.240, 0.020), 0.10, 0.55, 1.65)
     # Low specular on the dark gems. The technology pass stands its subject
     # on a shadow catcher, and a catcher is only invisible to the camera: in
     # a reflection it is a white floor in full sun. Every upright face of a
     # glossy crystal mirrors it, which turned the ruby pink, the sapphire
-    # lavender and the obsidian grey. Seen through a clear crystal the same
+    # lavender. Seen through a clear crystal the same
     # floor does it again, so these two are opaque as well.
     # And darker, with the other two channels at nothing: under the icon
     # light the main channel clips, and whatever is left in the others is
@@ -658,6 +810,17 @@ def build():
     m['lime'] = mat("lime", (0.420, 0.420, 0.400), 0.95, 0.0)
     m['paste'] = mat("paste", (0.190, 0.185, 0.175), 0.80, 0.0)
     m['wood'] = mat("wood", (0.220, 0.110, 0.045), 0.70, 0.0)
+    # Fused quartz: clear, with the faintest cold tint so it is not the
+    # glass item's green.
+    m['quartz'] = mat("quartz", (0.78, 0.84, 0.88), 0.03, 0.0)
+    _q = m['quartz'].node_tree.nodes['Principled BSDF']
+    _q.inputs['Transmission Weight'].default_value = 0.95
+    _q.inputs['IOR'].default_value = 1.46
+    # Polished silicon is a dark blue-grey mirror; the dies are a shade
+    # lighter and warmer, which is the interference colour a patterned wafer
+    # shows.
+    m['silicon'] = mat("silicon", (0.090, 0.100, 0.150), 0.22, 0.75)
+    m['die'] = mat("die", (0.240, 0.180, 0.330), 0.30, 0.60)
     objs = PARTS[PART](m)
     sit_on_ground(objs)
     return objs, []

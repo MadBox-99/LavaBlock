@@ -12,8 +12,8 @@
 --
 -- The machine technologies carry a picture of the machine they hand over,
 -- rendered from the same model by `--pass tech` (see docs/blender-renders.md).
--- The two that hand over a recipe rather than a building borrow an icon, as
--- the rest of the mod's recipe technologies do.
+-- Basalt casting, which hands over a recipe rather than a building, has a
+-- picture of its product; brick reclamation borrows the vanilla brick.
 return {
     {
         -- First, because there is no rock to crush until lava has been
@@ -21,8 +21,10 @@ return {
         -- downstream waits on it.
         type = "technology",
         name = "basalt-casting",
-        icon = "__LavaBlock-graphics__/graphics/lava-cooling-tech-icon-small.png",
-        icon_size = 128,
+        -- Columnar basalt standing in its lava: the shape lava cracks into
+        -- as it sets, which is what this recipe does to it.
+        icon = "__LavaBlock-graphics__/graphics/technology/basalt-casting.png",
+        icon_size = 256,
         effects = {
             { type = "unlock-recipe", recipe = "basalt-casting" },
         },

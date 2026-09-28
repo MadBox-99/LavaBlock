@@ -89,9 +89,6 @@ local lava_speed_module_3 = require("prototypes.technologies.modules.lava-speed-
 -- Robot technologies
 local lava_flying_robot_frame = require("prototypes.technologies.lava-flying-robot-frame")
 
--- Enchanted science pack technology
-local enchanted_science_pack = require("prototypes.technologies.enchanted-science-pack")
-
 -- Lava Centrifuge technologies
 local lava_centrifuge_techs = require("prototypes.technologies.lava-centrifuge")
 
@@ -113,7 +110,9 @@ local lava_crystallization_tech = require("prototypes.technologies.lava-crystall
 local refined_crystallization_tech = require("prototypes.technologies.refined-crystallization")
 local shielded_crystallization_tech = require("prototypes.technologies.shielded-crystallization")
 local crystal_growing_tech = require("prototypes.technologies.crystal-growing")
+local magnetite_growing_tech = require("prototypes.technologies.magnetite-growing")
 local crystal_circuit_board_tech = require("prototypes.technologies.crystal-circuit-board")
+local laser_cutting_tech = require("prototypes.technologies.laser-cutting")
 local limestone_processing_tech = require("prototypes.technologies.limestone-processing")
 local chlorinated_purification_tech = require("prototypes.technologies.chlorinated-purification")
 local arboretum_tech = require("prototypes.technologies.arboretum")
@@ -161,7 +160,6 @@ data:extend({
     lava_speed_module_2,
     lava_speed_module_3,
     lava_flying_robot_frame,
-    enchanted_science_pack,
     stone_crushing_techs[1],
     stone_crushing_techs[2],
     stone_crushing_techs[3],
@@ -171,7 +169,9 @@ data:extend({
     refined_crystallization_tech,
     shielded_crystallization_tech,
     crystal_growing_tech,
+    magnetite_growing_tech,
     crystal_circuit_board_tech,
+    laser_cutting_tech,
     limestone_processing_tech,
     chlorinated_purification_tech,
     arboretum_tech,

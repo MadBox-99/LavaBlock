@@ -12,10 +12,10 @@ of what a rotatable machine costs.
 
 The only building in the mod that is not industrial. Everything else here is
 plate, pipe and lagging; this one is cut stone with amethyst growing out of
-it, because what it reads is the enchanted science pack and not a bottle of
-chemicals. It borrowed the vanilla lab's picture until now, tinted violet,
-which made it a purple copy of the building standing next to it rather than
-a different building.
+it, because what it reads is the XP science pack - experience - and not a
+bottle of chemicals. It borrowed the vanilla lab's picture until now, tinted
+violet, which made it a purple copy of the building standing next to it
+rather than a different building.
 
 The amethyst is deliberately the same material the crystallizer grows and
 the silica crystal icon is cut from. The crystals are the only violet in the

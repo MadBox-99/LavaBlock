@@ -1,5 +1,6 @@
 -- Corundum from the alumina in the slag, reddened by chromium. One craft in
--- five grows one. The crystal circuit board is built round it.
+-- five grows one. The crystal circuit board is built round it, and the laser
+-- cutter lases through two: the first laser ever built was a ruby rod.
 return {
     type = "item",
     name = "ruby",

@@ -1,8 +1,8 @@
 local air_cooler_tech = {
     type = "technology",
     name = "air-cooler",
-    icon = "__LavaBlock-graphics__/graphics/air_cooler_tech.png",
-    icon_size = 64,
+    icon = "__LavaBlock-graphics__/graphics/technology/air-cooler.png",
+    icon_size = 256,
     effects = {
         {
             type = "unlock-recipe",

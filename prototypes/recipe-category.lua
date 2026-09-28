@@ -102,5 +102,11 @@ data:extend({
         -- Kept off "chemistry" so a chemical plant cannot run either.
         type = "recipe-category",
         name = "fuel-synthesizing"
+    },
+    {
+        -- The laser cutter's. "laser-cutting" and not "cutting", which is the
+        -- first name a sawmill or a stonecutter in another mod would take.
+        type = "recipe-category",
+        name = "laser-cutting"
     }
 })

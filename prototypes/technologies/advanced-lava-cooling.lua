@@ -1,8 +1,10 @@
 local advanced_lava_cooling = {
     type = "technology",
     name = "advanced-lava-cooling",
-    icon = "__LavaBlock-graphics__/graphics/lava-cooling-tech-icon-small.png",
-    icon_size = 128,
+    -- The air compressor, the one building this hands over; the two cryo
+    -- smelting recipes run in the air cooler, which has its own picture.
+    icon = "__LavaBlock-graphics__/graphics/technology/advanced-lava-cooling.png",
+    icon_size = 256,
     effects =
     {
         {

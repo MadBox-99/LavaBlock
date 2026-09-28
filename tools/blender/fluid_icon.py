@@ -42,6 +42,10 @@ FLUIDS = {
     # It has to stay clear of vanilla water's teal and of the pale grey the
     # air icons wear.
     'calcium-solution': ((0.300, 0.295, 0.265), 0.30),
+    # A melt, so it glows - the one droplet here that lights itself. Pale
+    # amber, hotter and yellower than lava's orange. The base is kept dark,
+    # or the lit side washes it out to cream - the calcium solution's colour.
+    'molten-quartz': ((0.100, 0.050, 0.015), 0.20, (1.00, 0.56, 0.18), 0.75),
 }
 assert FLUID in FLUIDS, "%s is not one of %s" % (FLUID, sorted(FLUIDS))
 
@@ -91,10 +95,10 @@ def highlight():
 
 def build():
     bpy.ops.wm.read_factory_settings(use_empty=True)
-    base, rough = FLUIDS[FLUID]
+    base, rough, *glow = FLUIDS[FLUID]
     # No wear texture. Grime is what makes machinery read as Factorio art and
     # what makes a liquid read as dirty.
-    m = mat(FLUID, base, rough, 0.0)
+    m = mat(FLUID, base, rough, 0.0, *glow)
     # A wet coat. A bare dielectric at this roughness reflects about four
     # percent and reads as painted plastic; the coat is what makes it liquid.
     b = m.node_tree.nodes['Principled BSDF']

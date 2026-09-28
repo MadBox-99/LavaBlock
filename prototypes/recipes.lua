@@ -48,9 +48,6 @@ local lava_science_pack = require("prototypes.recipes.lava-science-pack")
 local foundation_platform = require("prototypes.recipes.foundation-platform")
 local foundation_catalyst = require("prototypes.recipes.foundation-catalyst")
 
--- Enchanted science pack recipe
-local enchanted_science_pack = require("prototypes.recipes.enchanting.enchanted-science-pack")
-
 -- Military Science Pack 2 recipe
 local military_science_pack_2 = require("prototypes.recipes.military-science-pack-2")
 
@@ -87,13 +84,22 @@ local silica_crystallizing_shielded = require("prototypes.recipes.crystallizer.s
 -- Slag, the crystals grown from it and the crusher's way out for the surplus
 local lava_slag_skimming = require("prototypes.recipes.slag.lava-slag-skimming")
 local crystal_growing = require("prototypes.recipes.crystallizer.crystal-growing")
+local magnetite_growing = require("prototypes.recipes.crystallizer.magnetite-growing")
 local pyrite_crushing = require("prototypes.recipes.crusher.crystal-crushing.pyrite-crushing")
-local obsidian_crushing = require("prototypes.recipes.crusher.crystal-crushing.obsidian-crushing")
 local olivine_crushing = require("prototypes.recipes.crusher.crystal-crushing.olivine-crushing")
 local ruby_crushing = require("prototypes.recipes.crusher.crystal-crushing.ruby-crushing")
 local sapphire_crushing = require("prototypes.recipes.crusher.crystal-crushing.sapphire-crushing")
 local diamond_crushing = require("prototypes.recipes.crusher.crystal-crushing.diamond-crushing")
 local crystal_circuit_board = require("prototypes.recipes.parts.crystal-circuit-board")
+
+-- The laser line: quartz lenses, the cutter, and what it cuts
+local quartz_melting = require("prototypes.recipes.laser.quartz-melting")
+local quartz_lens = require("prototypes.recipes.laser.quartz-lens")
+local laser_cutter = require("prototypes.recipes.laser-cutter")
+local silicon_wafer_cutting = require("prototypes.recipes.laser.silicon-wafer-cutting")
+local sapphire_substrate_cutting = require("prototypes.recipes.laser.sapphire-substrate-cutting")
+local solar_panel_from_wafers = require("prototypes.recipes.laser.solar-panel-from-wafers")
+local sapphire_processing_unit = require("prototypes.recipes.laser.sapphire-processing-unit")
 
 -- The lime line, slag to concrete
 local lava_slag_leaching = require("prototypes.recipes.lime.lava-slag-leaching")
@@ -209,8 +215,6 @@ data:extend({
     lava_science_pack,
     foundation_platform,
     foundation_catalyst,
-    -- Enchanted science pack recipe
-    enchanted_science_pack,
     -- Military Science Pack 2 recipe
     military_science_pack_2,
     -- Circuit Science Pack recipe
@@ -250,13 +254,21 @@ data:extend({
     -- Slag and crystal recipes
     lava_slag_skimming,
     crystal_growing,
+    magnetite_growing,
     pyrite_crushing,
-    obsidian_crushing,
     olivine_crushing,
     ruby_crushing,
     sapphire_crushing,
     diamond_crushing,
     crystal_circuit_board,
+    -- Laser recipes
+    quartz_melting,
+    quartz_lens,
+    laser_cutter,
+    silicon_wafer_cutting,
+    sapphire_substrate_cutting,
+    solar_panel_from_wafers,
+    sapphire_processing_unit,
     -- Lime recipes
     lava_slag_leaching,
     coal_combustion,

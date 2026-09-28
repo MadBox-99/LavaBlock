@@ -11,6 +11,7 @@ data:extend({
     require("prototypes.fluids.ethanol"),
     require("prototypes.fluids.calcium-solution"),
     require("prototypes.fluids.gases.carbon-dioxide"),
+    require("prototypes.fluids.molten-quartz"),
 })
 
 -- Space Age only fluids

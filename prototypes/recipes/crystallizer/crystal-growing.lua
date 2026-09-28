@@ -2,12 +2,14 @@
 -- slowly. What grows is down to chance.
 --
 -- Each result rolls on its own, so a craft can give anything from nothing
--- to all six; on average it gives about two:
+-- to all five; on average it gives about one and a half:
 --
---   pyrite, obsidian, olivine   one in two  - the slag's own minerals, and
---                                             the sulfur's
---   ruby, sapphire              one in five - corundum, from the alumina
---   diamond                     one in 20   - the coal's carbon
+--   pyrite, olivine   one in two  - the sulfur's, and the slag's own mineral
+--   ruby, sapphire    one in five - corundum, from the alumina
+--   diamond           one in 20   - the coal's carbon
+--
+-- The sixth crystal, magnetite, is not rolled for here: it needs molten iron
+-- and has a recipe of its own (magnetite-growing).
 --
 -- The sulfur is what the pyrite is made of and the coal is what the
 -- diamond is made of, which is why both go in and not just the slag.
@@ -31,7 +33,6 @@ return {
     },
     results = {
         { type = "item", name = "pyrite",   amount = 1, probability = 0.5 },
-        { type = "item", name = "obsidian", amount = 1, probability = 0.5 },
         { type = "item", name = "olivine",  amount = 1, probability = 0.5 },
         { type = "item", name = "ruby",     amount = 1, probability = 0.2 },
         { type = "item", name = "sapphire", amount = 1, probability = 0.2 },

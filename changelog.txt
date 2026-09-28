@@ -1,7 +1,22 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.2.4
 Date: ????
+  Features:
+    - Added the Laser Cutter, a ruby laser over a cutting bed with its own model: the rod glows along the back and a boom swings the cutting head over the blank, which takes the colour of what is being cut. It is built from two crystal circuit boards, two rubies, a diamond, four quartz lenses and advanced circuits
+    - Molten quartz, melted from silica crystal with lava in an oil refinery, and cast into quartz lenses
+    - The Laser Cutter slices silica crystal into silicon wafers and sapphire into sapphire substrate. Wafers make a second solar panel recipe - 6 wafers, or 3 silica crystals, against 12 - and substrate a second processing unit recipe: 2 units from a crystal circuit board, 2 substrate, 10 electronic circuits and sulfuric acid, with no advanced circuits
+    - All of it is the Laser Cutting technology, on chemical science, after Crystal circuit board, Processing unit and Solar energy
+  Balancing:
+    - Steam Generation makes 1000 steam from 2000 lava, a wood and 2 coal every 10 seconds - 3 MW a chemical plant. It made 5000 steam a second from 5000 lava, a wood and 5 coal: 150 MW from one plant, which left every other source of power in the mod with no reason to exist. It is still ahead of a boiler, which needs water. A base that ran on it needs about fifty times the chemical plants after this update
+    - The Geothermal Turbine burns 4 lava a tick instead of 1: 6 MW instead of 1.5, a steam turbine's worth from lava alone
   Changes:
+    - Removed the Enchanted Science Pack, its recipe and its technology. No technology ever asked for it, so its research unlocked a pack with nothing to spend it on. Packs already made disappear when a save is loaded
+    - With Pyroclast installed, the Pyroclast science pack technology no longer takes enchanted science packs; it needs the lava science pack technology directly instead
+    - Obsidian is gone from the crystals and magnetite takes its place. Pyroclast has an obsidian of its own, found only on that planet, and LavaBlock's overwrote it - and grew it on Nauvis. Obsidian already made in a save without Pyroclast disappears on load
+    - Magnetite is not rolled for: Magnetite Growing makes 2 from 50 molten iron and 5 slag on the crystal hearth, after Crystal growing and Advanced lava smelting. Crystal growing now gives five crystals at random, about one and a half a craft
+    - Needs LavaBlock-graphics 0.2.4, which carries the magnetite and laser cutter pictures and the new technology icons
+  Graphics:
+    - New icons for Crystal growing, the Air Cooler, Advanced Lava Cooling and Basalt Casting technologies
 ---------------------------------------------------------------------------------------------------
 Version: 0.2.3
 Date: 2026-09-28

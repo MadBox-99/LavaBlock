@@ -1,5 +1,6 @@
--- Nobody will want to, but the diamond needs a way out like the rest: it has
--- no use yet, and a chest full of them would otherwise stop the hearth. See
+-- Nobody will want to, but the diamond needs a way out like the rest: a
+-- player who has built all the laser cutters they want has no other use for
+-- them, and a chest full would otherwise stop the hearth. See
 -- pyrite-crushing.
 return {
     type = "recipe",

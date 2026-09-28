@@ -1,6 +1,6 @@
 -- The green silicate most of the slag is made of, grown into stubby
--- crystals. Common, and like obsidian it waits for a use; the crusher takes
--- it in the meantime.
+-- crystals. Common, and it waits for a use; the crusher takes it in the
+-- meantime.
 return {
     type = "item",
     name = "olivine",

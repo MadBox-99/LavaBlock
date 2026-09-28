@@ -9,7 +9,10 @@ geo_thermal_turbine.max_health = 400
 geo_thermal_turbine.corpse = "big-remnants"
 geo_thermal_turbine.dying_explosion = "medium-explosion"
 geo_thermal_turbine.effectivity = 1
-geo_thermal_turbine.fluid_usage_per_tick = 1
+-- 4 lava a tick at 25 kJ is 6 MW, a steam turbine's worth from the same
+-- 3x5 footprint and with no fuel but the lava. At 1 a tick it was 1.5 MW,
+-- barely more than a steam engine, behind a 2000-unit research.
+geo_thermal_turbine.fluid_usage_per_tick = 4
 geo_thermal_turbine.maximum_temperature = 2500
 geo_thermal_turbine.burns_fluid = true
 geo_thermal_turbine.fluid_box.filter = "lava"

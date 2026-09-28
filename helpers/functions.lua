@@ -20,3 +20,44 @@ function remove_technology(technologyName)
     data.raw["technology"][technologyName] = nil
     substitute_prerequisite(technologyName, prerequisites)
 end
+
+-- Helper: replace a science pack ingredient in a technology's unit
+function replace_tech_ingredient(tech_name, old_pack, new_pack, new_count)
+    local tech = data.raw.technology[tech_name]
+    if not tech or not tech.unit or not tech.unit.ingredients then return end
+    for i, ingredient in pairs(tech.unit.ingredients) do
+        if ingredient[1] == old_pack then
+            ingredient[1] = new_pack
+            if new_count then ingredient[2] = new_count end
+            return
+        end
+    end
+    -- If old_pack not found, add new_pack
+    table.insert(tech.unit.ingredients, { new_pack, new_count or 1 })
+end
+
+-- Helper: add a science pack ingredient to a technology
+function add_tech_ingredient(tech_name, pack, count)
+    local tech = data.raw.technology[tech_name]
+    if not tech or not tech.unit or not tech.unit.ingredients then return end
+    table.insert(tech.unit.ingredients, { pack, count })
+end
+
+-- Helper: replace a prerequisite in a technology
+function replace_tech_prereq(tech_name, old_prereq, new_prereq)
+    local tech = data.raw.technology[tech_name]
+    if not tech or not tech.prerequisites then return end
+    for i, prereq in pairs(tech.prerequisites) do
+        if prereq == old_prereq then
+            tech.prerequisites[i] = new_prereq
+            return
+        end
+    end
+end
+
+-- Helper: add a prerequisite to a technology
+function add_tech_prereq(tech_name, prereq)
+    local tech = data.raw.technology[tech_name]
+    if not tech or not tech.prerequisites then return end
+    table.insert(tech.prerequisites, prereq)
+end

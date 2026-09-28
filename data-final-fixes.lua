@@ -26,8 +26,6 @@ end
 -- Add science packs to labs
 util.add_lab_input("lab", "lava-science-pack")
 util.add_lab_input("biolab", "lava-science-pack")
-util.add_lab_input("lab", "enchanted-science-pack")
-util.add_lab_input("biolab", "enchanted-science-pack")
 util.add_lab_input("lab", "military-science-pack-2")
 util.add_lab_input("biolab", "military-science-pack-2")
 util.add_lab_input("lab", "circuit-science-pack")

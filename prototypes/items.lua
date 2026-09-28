@@ -28,12 +28,17 @@ data:extend({
     -- Slag, and the two lines that start from it
     require("prototypes.items.lava-slag"),
     require("prototypes.items.crystals.pyrite"),
-    require("prototypes.items.crystals.obsidian"),
+    require("prototypes.items.crystals.magnetite"),
     require("prototypes.items.crystals.olivine"),
     require("prototypes.items.crystals.ruby"),
     require("prototypes.items.crystals.sapphire"),
     require("prototypes.items.crystals.diamond"),
     require("prototypes.items.crystal-circuit-board"),
+    -- The laser line
+    require("prototypes.items.laser-cutter"),
+    require("prototypes.items.quartz-lens"),
+    require("prototypes.items.silicon-wafer"),
+    require("prototypes.items.sapphire-substrate"),
     require("prototypes.items.lime.limestone"),
     require("prototypes.items.lime.quicklime"),
     require("prototypes.items.lime.slaked-lime"),

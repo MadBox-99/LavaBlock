@@ -25,7 +25,6 @@ local XP_RATES = {
     ["flying-robot-frame"] = 30,
     -- LavaBlock specific
     ["lava-science-pack"] = 20,
-    ["enchanted-science-pack"] = 50,
     ["foundation-platform-nauvis"] = 10,
     ["foundation-catalyst"] = 5,
 }

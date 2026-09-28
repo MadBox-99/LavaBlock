@@ -32,8 +32,8 @@ xp_lab.icons = nil
 -- tips, a reading desk on the south face, and a six-sided crystal floating
 -- and turning over the central pedestal with four smaller ones orbiting it.
 -- The only non-industrial building in the mod, because what it reads is the
--- enchanted science pack and not a bottle of chemicals. The amethyst is the
--- same material the crystallizer grows.
+-- XP science pack - experience - and not a bottle of chemicals. The amethyst
+-- is the same material the crystallizer grows.
 --
 -- One sheet, not four: a lab has no facing. Factorio asks for an
 -- `on_animation` and an `off_animation` and never for a direction.

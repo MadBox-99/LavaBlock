@@ -3,8 +3,8 @@
 --
 -- One of each corundum per board because the hearth grows them at the same
 -- rate; two pyrite because it grows more than twice as many of those. What
--- is left over - all of the obsidian, olivine and diamond, and the odd
--- pyrite - goes to the crusher until something is built that wants it.
+-- is left over - the olivine, and the odd pyrite - goes to the crusher.
+-- Diamonds are worth keeping: the laser cutter takes one each.
 return {
     type = "recipe",
     name = "crystal-circuit-board",

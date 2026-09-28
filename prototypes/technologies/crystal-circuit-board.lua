@@ -1,9 +1,9 @@
 -- The board the crystal line is building towards.
 --
--- On chemical science although the recipe needs nothing from it: nothing
--- uses the board yet, and what will is meant to be mid-game electronics.
--- Putting the board on red and green would have it sitting in chests from
--- the first hour.
+-- On chemical science although the recipe needs nothing from it: what uses
+-- the board - the laser cutter and the sapphire processing unit - is
+-- mid-game electronics. Putting the board on red and green would have it
+-- sitting in chests from the first hour.
 return {
     type = "technology",
     name = "crystal-circuit-board",
