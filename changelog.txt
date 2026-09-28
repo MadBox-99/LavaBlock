@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.2.4
-Date: ????
+Date: 2026-09-28
   Features:
     - Added the Laser Cutter, a ruby laser over a cutting bed with its own model: the rod glows along the back and a boom swings the cutting head over the blank, which takes the colour of what is being cut. It is built from two crystal circuit boards, two rubies, a diamond, four quartz lenses and advanced circuits
     - Molten quartz, melted from silica crystal with lava in an oil refinery, and cast into quartz lenses
