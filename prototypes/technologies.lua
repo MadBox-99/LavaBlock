@@ -112,6 +112,9 @@ local stone_crushing_techs = require("prototypes.technologies.stone-crushing")
 local lava_crystallization_tech = require("prototypes.technologies.lava-crystallization")
 local refined_crystallization_tech = require("prototypes.technologies.refined-crystallization")
 local shielded_crystallization_tech = require("prototypes.technologies.shielded-crystallization")
+local crystal_growing_tech = require("prototypes.technologies.crystal-growing")
+local crystal_circuit_board_tech = require("prototypes.technologies.crystal-circuit-board")
+local limestone_processing_tech = require("prototypes.technologies.limestone-processing")
 local chlorinated_purification_tech = require("prototypes.technologies.chlorinated-purification")
 local arboretum_tech = require("prototypes.technologies.arboretum")
 local algae_cultivation_tech = require("prototypes.technologies.algae-cultivation")
@@ -167,6 +170,9 @@ data:extend({
     lava_crystallization_tech,
     refined_crystallization_tech,
     shielded_crystallization_tech,
+    crystal_growing_tech,
+    crystal_circuit_board_tech,
+    limestone_processing_tech,
     chlorinated_purification_tech,
     arboretum_tech,
     algae_cultivation_tech,

@@ -84,6 +84,26 @@ local silica_crystallizing = require("prototypes.recipes.crystallizer.silica-cry
 local silica_crystallizing_purified = require("prototypes.recipes.crystallizer.silica-crystallizing-purified")
 local silica_crystallizing_shielded = require("prototypes.recipes.crystallizer.silica-crystallizing-shielded")
 
+-- Slag, the crystals grown from it and the crusher's way out for the surplus
+local lava_slag_skimming = require("prototypes.recipes.slag.lava-slag-skimming")
+local crystal_growing = require("prototypes.recipes.crystallizer.crystal-growing")
+local pyrite_crushing = require("prototypes.recipes.crusher.crystal-crushing.pyrite-crushing")
+local obsidian_crushing = require("prototypes.recipes.crusher.crystal-crushing.obsidian-crushing")
+local olivine_crushing = require("prototypes.recipes.crusher.crystal-crushing.olivine-crushing")
+local ruby_crushing = require("prototypes.recipes.crusher.crystal-crushing.ruby-crushing")
+local sapphire_crushing = require("prototypes.recipes.crusher.crystal-crushing.sapphire-crushing")
+local diamond_crushing = require("prototypes.recipes.crusher.crystal-crushing.diamond-crushing")
+local crystal_circuit_board = require("prototypes.recipes.parts.crystal-circuit-board")
+
+-- The lime line, slag to concrete
+local lava_slag_leaching = require("prototypes.recipes.lime.lava-slag-leaching")
+local coal_combustion = require("prototypes.recipes.lime.coal-combustion")
+local limestone_carbonation = require("prototypes.recipes.lime.limestone-carbonation")
+local limestone_calcination = require("prototypes.recipes.lime.limestone-calcination")
+local lime_slaking = require("prototypes.recipes.lime.lime-slaking")
+local lime_mortar = require("prototypes.recipes.lime.lime-mortar")
+local lime_concrete = require("prototypes.recipes.lime.lime-concrete")
+
 -- Gas combiner recipes
 local gas_combiner = require("prototypes.recipes.gas-combiner")
 local air_filter = require("prototypes.recipes.air-filter")
@@ -227,6 +247,24 @@ data:extend({
     silica_crystallizing,
     silica_crystallizing_purified,
     silica_crystallizing_shielded,
+    -- Slag and crystal recipes
+    lava_slag_skimming,
+    crystal_growing,
+    pyrite_crushing,
+    obsidian_crushing,
+    olivine_crushing,
+    ruby_crushing,
+    sapphire_crushing,
+    diamond_crushing,
+    crystal_circuit_board,
+    -- Lime recipes
+    lava_slag_leaching,
+    coal_combustion,
+    limestone_carbonation,
+    limestone_calcination,
+    lime_slaking,
+    lime_mortar,
+    lime_concrete,
     -- Gas combiner recipes
     gas_combiner,
     air_filter,

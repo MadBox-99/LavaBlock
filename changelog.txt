@@ -1,12 +1,18 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.2.3
 Date: ????
+  Features:
+    - Added lava slag, skimmed off standing lava in a chemical plant. Two new lines start from it
+    - Crystal growing: slag, sulfur and coal on the crystal hearth grow six crystals at random - pyrite, obsidian and olivine one craft in two, ruby and sapphire one in five, diamond one in twenty. Every crystal can be crushed to basalt gravel, so the ones not in use never stop the hearth. Researched after Lava crystallization, Stone crushing and Oil processing
+    - Added the Crystal Circuit Board, from a sapphire, a ruby, two pyrite, circuits and wire. Nothing is built from it yet; it is the part the next crystal technology will ask for. On chemical science
+    - Limestone processing: slag leached with water gives a calcium solution, carbon dioxide from burnt coal sets it into limestone, a furnace burns that to quicklime, water slakes it, and the pug mill mixes it with gravel into lime mortar. Lime concrete makes 15 concrete from mortar and gravel, against vanilla's 10 from brick and iron ore. After Adobe bricks and Concrete
   Balancing:
     - Uranium from Lava takes 2000 purified lava and 50 sulfuric acid for 10 ore in 10 seconds, instead of 5000 and 100 in 20. It cost more acid an ore than uranium extraction from stone, and more machine time, behind a much dearer technology
     - Explosives (Lava) takes 1 sulfur and 1 coal, as the vanilla recipe does, instead of 2 and 2. Lava in place of the water is what it is for; at double the sulfur and coal it lost to vanilla everywhere else
   Changes:
     - Simple coal liquefaction is unlocked by Sulfur processing instead of the first Calcite Processing, which came long before there was any sulfuric acid to run it on
     - The first Calcite Processing no longer unlocks Acid neutralisation. It is a Vulcanus-only recipe, and vanilla Calcite processing unlocks it there
+    - Needs LavaBlock-graphics 0.2.3, which carries the new icons
 ---------------------------------------------------------------------------------------------------
 Version: 0.2.2
 Date: 2026-09-27

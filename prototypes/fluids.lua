@@ -9,6 +9,8 @@ data:extend({
     require("prototypes.fluids.purified-lava"),
     require("prototypes.fluids.fermented-wash"),
     require("prototypes.fluids.ethanol"),
+    require("prototypes.fluids.calcium-solution"),
+    require("prototypes.fluids.gases.carbon-dioxide"),
 })
 
 -- Space Age only fluids

@@ -261,7 +261,281 @@ def straw(m):
     return out
 
 
+# ------------------------------------------------ slag, crystals and lime
+#
+# Six crystals come out of one recipe at random, so they share belts and
+# chests by the handful. Each gets its own colour AND its own silhouette -
+# cube, shard, roofed prism, flat column, double spindle, octahedron - so
+# that two of them are never told apart by hue alone.
+
+
+def hull(pts, material, loc=(0, 0, 0), rot=(0, 0, 0)):
+    """The convex hull of a point set, as one faceted solid.
+
+    Every crystal habit here is convex, and a hull is the one construction
+    that gives each a clean set of faces without authoring a face list by
+    hand for every shape.
+    """
+    import bmesh
+    bm = bmesh.new()
+    for p in pts:
+        bm.verts.new(p)
+    bmesh.ops.convex_hull(bm, input=list(bm.verts))
+    bmesh.ops.delete(bm, geom=[v for v in bm.verts if not v.link_faces],
+                     context='VERTS')
+    bmesh.ops.recalc_face_normals(bm, faces=list(bm.faces))
+    me = bpy.data.meshes.new("hull")
+    bm.to_mesh(me)
+    bm.free()
+    o = bpy.data.objects.new("hull", me)
+    bpy.context.collection.objects.link(o)
+    o.location, o.rotation_euler = loc, rot
+    o.data.materials.append(material)
+    return o
+
+
+def ring(n, r, z, phase=0.0):
+    return [(r * math.cos(2 * math.pi * k / n + phase),
+             r * math.sin(2 * math.pi * k / n + phase), z) for k in range(n)]
+
+
+def jittered(o, rnd, amount):
+    """Push every vertex in or out a little, so a primitive stops being one."""
+    for v in o.data.vertices:
+        v.co *= 1.0 + (rnd.random() * 2 - 1) * amount
+    return o
+
+
+def lava_slag(m):
+    """Skimmed slag, cooled in lumps.
+
+    Rounded and brown where basalt gravel is flaked and violet-black: the two
+    travel the same belts, and slag is a melt that ran and set, not a rock
+    that was broken.
+    """
+    import random
+    rnd = random.Random(11)
+    out = []
+    for x, y, r in ((-0.20, -0.10, 0.27), (0.20, -0.14, 0.22),
+                    (0.06, 0.22, 0.25), (-0.30, 0.24, 0.15),
+                    (0.34, 0.16, 0.14)):
+        bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=2, radius=r,
+                                              location=(x, y, r * 0.7))
+        o = jittered(bpy.context.object, rnd, 0.16)
+        o.scale = (1.0, 0.92, 0.72)
+        o.data.materials.append(m['slag'])
+        out.append(o)
+    return out
+
+
+def pyrite(m):
+    """Fool's gold: brassy cubes grown through one another."""
+    out = []
+    for s, loc, rot in ((0.50, (0.00, 0.00, 0.25), (0.00, 0.00, 0.30)),
+                        (0.36, (0.30, 0.18, 0.30), (0.45, 0.20, 0.90)),
+                        (0.30, (-0.26, 0.24, 0.26), (0.20, 0.55, -0.40))):
+        out.append(box(s, s, s, loc, rot=rot, m=m['pyrite']))
+    return out
+
+
+def obsidian(m):
+    """Volcanic glass, broken into blades.
+
+    Glossy black shards with long knife edges. Coal is black too, which is
+    why the shape does the work: coal is a matte lump, this is two blades.
+    """
+    # Standing, not lying down. Flat on the ground a blade is a black smear
+    # with a shadow; on end its faces turn to the light and catch it.
+    out = [hull([(-0.32, -0.10, 0.0), (0.30, -0.14, 0.0), (0.06, 0.16, 0.0),
+                 (-0.10, 0.00, 0.92), (0.12, -0.06, 0.66), (-0.20, 0.06, 0.40)],
+                m['obsidian'], rot=(0.10, -0.12, 0.3)),
+           hull([(-0.16, -0.06, 0.0), (0.20, -0.02, 0.0), (0.00, 0.12, 0.0),
+                 (0.06, 0.02, 0.58)],
+                m['obsidian'], loc=(0.36, 0.14, 0.0), rot=(0.0, 0.35, -0.4)),
+           hull([(-0.14, -0.04, 0.0), (0.14, -0.08, 0.0), (0.02, 0.10, 0.0),
+                 (-0.04, 0.0, 0.36)],
+                m['obsidian'], loc=(-0.34, 0.18, 0.0), rot=(0.0, -0.40, 0.8))]
+    return out
+
+
+def olivine(m):
+    """Stubby green crystals with a ridged roof, the olivine habit."""
+    def roofed(w, d, h, roof):
+        return [(sx * w, sy * d, z) for sx in (-1, 1) for sy in (-1, 1)
+                for z in (0.0, h)] + [(sx * w * 0.55, 0.0, h + roof)
+                                      for sx in (-1, 1)]
+    out = []
+    for w, d, h, roof, loc, rot in (
+            (0.20, 0.15, 0.36, 0.16, (0.00, 0.00, 0.0), (0.0, 0.0, 0.2)),
+            (0.15, 0.11, 0.24, 0.12, (0.30, 0.12, 0.0), (0.35, 0.0, 1.2)),
+            (0.14, 0.10, 0.20, 0.10, (-0.28, 0.16, 0.0), (-0.30, 0.1, 2.4)),
+            (0.12, 0.09, 0.16, 0.08, (0.02, -0.30, 0.0), (0.0, 0.40, 0.6))):
+        out.append(hull(roofed(w, d, h, roof), m['olivine'], loc=loc, rot=rot))
+    return out
+
+
+def ruby(m):
+    """Red corundum: flat-ended six-sided columns, not spikes.
+
+    The flat end is what keeps it apart from the silica crystal, which is
+    the same six-sided habit brought to a point.
+    """
+    return [cyl_at(0.00, 0.00, 0.26, 0.24, 0.52, m['ruby'], verts=6),
+            cyl_at(0.30, 0.18, 0.20, 0.16, 0.40, m['ruby'], verts=6,
+                   rot=(0.35, 0.25, 0.4)),
+            cyl_at(-0.28, 0.20, 0.13, 0.13, 0.26, m['ruby'], verts=6,
+                   rot=(0.0, 0.0, 0.3))]
+
+
+def sapphire(m):
+    """Blue corundum in its barrel habit: a six-sided double spindle."""
+    def spindle(r, h):
+        return ring(6, r, 0.0) + [(0, 0, h), (0, 0, -h)]
+    return [hull(spindle(0.30, 0.62), m['sapphire'], loc=(0, 0, 0.5),
+                 rot=(0.45, 0.20, 0.3)),
+            hull(spindle(0.16, 0.34), m['sapphire'], loc=(0.30, 0.20, 0.2),
+                 rot=(math.pi / 2, 0.0, -0.7))]
+
+
+def diamond(m):
+    """A raw diamond: the octahedron it grows as, before anyone cuts it."""
+    def octa(r):
+        return ring(4, r, 0.0) + [(0, 0, r), (0, 0, -r)]
+    # Tipped well over, so the camera sees four faces at four angles to the
+    # light. Square on, an octahedron is two pale triangles and nothing else.
+    return [hull(octa(0.52), m['diamond'], loc=(0, 0, 0.5),
+                 rot=(0.62, 0.38, 0.45)),
+            hull(octa(0.22), m['diamond'], loc=(0.40, 0.22, 0.2),
+                 rot=(0.7, 0.2, 1.1))]
+
+
+def place(objs, dx, dy, s):
+    """Shrink a finished part and set it down somewhere else on the ground."""
+    for o in objs:
+        o.location = (o.location.x * s + dx, o.location.y * s + dy,
+                      o.location.z * s)
+        o.scale = tuple(c * s for c in o.scale)
+    bpy.context.view_layer.update()
+    low = min((o.matrix_world @ Vector(c)).z
+              for o in objs if o.type == 'MESH' for c in o.bound_box)
+    for o in objs:
+        o.location.z -= low
+    return objs
+
+
+def crystal_assortment(m):
+    """All six on one slab - the icon of the recipe that grows them.
+
+    Packed close on a single piece of rock. Spread out, six small crystals at
+    32 px are six coloured dots; on one slab they are one thing, a haul.
+    """
+    out = [cyl_at(0, 0, 0.09, 0.92, 0.18, m['basalt'], verts=7)]
+    for fn, dx, dy in ((diamond, 0.02, 0.40), (ruby, -0.46, 0.22),
+                       (sapphire, 0.46, 0.22), (pyrite, -0.42, -0.30),
+                       (obsidian, 0.44, -0.28), (olivine, 0.00, -0.38)):
+        grp = place(fn(m), dx, dy, 0.55)
+        for o in grp:
+            o.location.z += 0.18
+        out += grp
+    return out
+
+
+def crystal_circuit_board(m):
+    """A sapphire board with gold traces and a ruby at its heart.
+
+    Deep blue and gold on purpose: vanilla's three circuits are a green, a
+    red and a blue board with black chips, and this must not read as a
+    fourth of them.
+    """
+    W, T = 0.96, 0.05
+    out = [box(W, W * 0.78, T, (0, 0, T / 2), m=m['board'])]
+    top = T + 0.006
+    for y in (-0.24, -0.08, 0.08, 0.24):
+        out.append(box(0.70, 0.028, 0.012, (0.06, y, top), m=m['gold']))
+    for x in (-0.30, 0.30):
+        out.append(box(0.028, 0.56, 0.012, (x, 0, top), m=m['gold']))
+    # Contact fingers along one edge, so it reads as a board that plugs in.
+    for k in range(7):
+        out.append(box(0.07, 0.06, 0.014,
+                       (-0.30 + 0.10 * k, -W * 0.39 + 0.03, top), m=m['gold']))
+    out.append(cyl_at(0, 0, top + 0.06, 0.13, 0.12, m['ruby'], verts=6))
+    for x, y in ((-0.30, 0.22), (0.30, 0.22)):
+        out.append(box(0.11, 0.11, 0.08, (x, y, top + 0.04), rot=(0, 0, 0.4),
+                       m=m['pyrite']))
+    return out
+
+
+def limestone(m):
+    """Precipitated limestone, pressed into cream blocks."""
+    import random
+    rnd = random.Random(5)
+    out = []
+    for s, loc, rot in ((0.52, (-0.12, 0.00, 0.20), (0, 0, 0.25)),
+                        (0.40, (0.32, 0.12, 0.16), (0.1, 0.05, -0.5)),
+                        (0.32, (0.02, 0.38, 0.13), (0, 0.1, 0.9))):
+        o = box(s, s * 0.8, s * 0.7, loc, rot=rot, m=m['limestone'])
+        out.append(jittered(o, rnd, 0.10))
+    return out
+
+
+def quicklime(m):
+    """Burnt lime straight from the kiln: a heap of white lumps."""
+    import random
+    rnd = random.Random(3)
+    out = []
+    for layer, (count, rad, z) in enumerate(((9, 0.40, 0.08), (6, 0.24, 0.20),
+                                             (3, 0.10, 0.32), (1, 0.0, 0.42))):
+        for k in range(count):
+            a = 2 * math.pi * (k + rnd.random() * 0.4) / count + layer
+            r = 0.10 + rnd.random() * 0.05
+            bpy.ops.mesh.primitive_ico_sphere_add(
+                subdivisions=1, radius=r,
+                location=(rad * math.cos(a), rad * math.sin(a), z))
+            o = jittered(bpy.context.object, rnd, 0.22)
+            o.data.materials.append(m['lime'])
+            out.append(o)
+    return out
+
+
+def slaked_lime(m):
+    """Slaked lime, a smooth heap of powder in a shallow pan.
+
+    Powder where quicklime is lumps. The two are one water apart and sit
+    next to each other in every build, so the pan and the smooth heap are
+    what tell them apart.
+    """
+    out = [cyl_at(0, 0, 0.04, 0.48, 0.08, m['steel'], verts=32),
+           fr.cone_at(0, 0, 0.07, 0.42, 0.03, 0.56, m['lime'], verts=40)]
+    return out
+
+
+def lime_mortar(m):
+    """A bucket of grey mortar with the trowel still in it."""
+    out = [fr.cone_at(0, 0, 0.0, 0.30, 0.38, 0.56, m['iron'], verts=32),
+           fr.torus_at((0, 0, 0.56), 0.38, 0.022, m['steel']),
+           cyl_at(0, 0, 0.53, 0.36, 0.04, m['paste'], verts=32)]
+    # The trowel: a steel blade driven into the mortar, a wooden handle up.
+    out.append(box(0.30, 0.02, 0.20, (0.08, 0.02, 0.62), rot=(0, 0.35, 0.5),
+                   m=m['steel']))
+    out.append(cyl_at(0.20, 0.08, 0.86, 0.035, 0.26, m['wood'], verts=10,
+                      rot=(0.0, 0.35, 0.5)))
+    return out
+
+
 PARTS = {
+    'lava-slag': lava_slag,
+    'pyrite': pyrite,
+    'obsidian': obsidian,
+    'olivine': olivine,
+    'ruby': ruby,
+    'sapphire': sapphire,
+    'diamond': diamond,
+    'crystal-assortment': crystal_assortment,
+    'crystal-circuit-board': crystal_circuit_board,
+    'limestone': limestone,
+    'quicklime': quicklime,
+    'slaked-lime': slaked_lime,
+    'lime-mortar': lime_mortar,
     'straw': straw,
     'crusher-roll': crusher_roll,
     'culture-column': culture_column,
@@ -334,6 +608,56 @@ def build():
     m['straw'] = mat("straw", (0.380, 0.260, 0.070), 0.70, 0.0)
     m['ear'] = mat("ear", (0.330, 0.200, 0.050), 0.75, 0.0)
     m['twine'] = mat("twine", (0.110, 0.055, 0.020), 0.85, 0.0)
+
+    def gem(name, base, rough, transmission, ior, emit=None, emit_str=0.0,
+            coat=0.15, specular=0.5):
+        # A light coat only. Under the icon's two hard suns a full clear coat
+        # lights every face up white, and a red or black crystal comes out
+        # pink or grey.
+        g = mat(name, base, rough, 0.0, emit=emit, emit_str=emit_str)
+        b = g.node_tree.nodes['Principled BSDF']
+        b.inputs['Transmission Weight'].default_value = transmission
+        b.inputs['IOR'].default_value = ior
+        b.inputs['Coat Weight'].default_value = coat
+        b.inputs['Coat Roughness'].default_value = 0.03
+        b.inputs['Specular IOR Level'].default_value = specular
+        return g
+
+    # Rust-brown and a little glassy: a melt that set, not a broken rock.
+    m['slag'] = mat("slag", (0.130, 0.068, 0.034), 0.55, 0.15, wear=0.85)
+    m['pyrite'] = mat("pyrite", (0.500, 0.370, 0.110), 0.26, 1.0, wear=0.30)
+    m['gold'] = mat("gold", (0.620, 0.430, 0.110), 0.22, 1.0)
+    # Not quite black: a faint smoke in it, or the highlights are all there is.
+    m['obsidian'] = gem("obsidian", (0.030, 0.024, 0.040), 0.12, 0.0, 1.50,
+                        coat=0.0, specular=0.12)
+    m['olivine'] = gem("olivine", (0.130, 0.240, 0.020), 0.10, 0.55, 1.65)
+    # Low specular on the dark gems. The technology pass stands its subject
+    # on a shadow catcher, and a catcher is only invisible to the camera: in
+    # a reflection it is a white floor in full sun. Every upright face of a
+    # glossy crystal mirrors it, which turned the ruby pink, the sapphire
+    # lavender and the obsidian grey. Seen through a clear crystal the same
+    # floor does it again, so these two are opaque as well.
+    # And darker, with the other two channels at nothing: under the icon
+    # light the main channel clips, and whatever is left in the others is
+    # what the colour turns into.
+    m['ruby'] = gem("ruby", (0.150, 0.000, 0.004), 0.10, 0.0, 1.76,
+                    emit=(0.70, 0.01, 0.04), emit_str=0.16,
+                    coat=0.0, specular=0.10)
+    m['sapphire'] = gem("sapphire", (0.000, 0.014, 0.160), 0.10, 0.0, 1.76,
+                        emit=(0.05, 0.12, 0.70), emit_str=0.10,
+                        coat=0.0, specular=0.12)
+    m['diamond'] = gem("diamond", (0.500, 0.560, 0.640), 0.02, 0.45, 2.42,
+                       emit=(0.70, 0.80, 1.00), emit_str=0.08)
+    # The board's substrate is sapphire, so it wears the sapphire's blue,
+    # taken darker so the gold on it is what catches the eye.
+    m['board'] = mat("board", (0.018, 0.030, 0.110), 0.30, 0.0)
+    # Cream, not grey. Vanilla stone is grey-brown and round; limestone has
+    # to be the pale thing on the belt beside it.
+    m['limestone'] = mat("limestone", (0.360, 0.320, 0.230), 0.90, 0.0,
+                         wear=0.40)
+    m['lime'] = mat("lime", (0.420, 0.420, 0.400), 0.95, 0.0)
+    m['paste'] = mat("paste", (0.190, 0.185, 0.175), 0.80, 0.0)
+    m['wood'] = mat("wood", (0.220, 0.110, 0.045), 0.70, 0.0)
     objs = PARTS[PART](m)
     sit_on_ground(objs)
     return objs, []

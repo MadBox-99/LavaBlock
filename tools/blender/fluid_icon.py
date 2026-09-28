@@ -38,6 +38,10 @@ FLUIDS = {
     # Murky tan, darker and rougher than ethanol - it is full of spent
     # biomass, and a wash that shone like the spirit would be mistaken for it.
     'fermented-wash': ((0.062, 0.040, 0.016), 0.42),
+    # Milky off-white, and a little rough: calcium in solution clouds water.
+    # It has to stay clear of vanilla water's teal and of the pale grey the
+    # air icons wear.
+    'calcium-solution': ((0.300, 0.295, 0.265), 0.30),
 }
 assert FLUID in FLUIDS, "%s is not one of %s" % (FLUID, sorted(FLUIDS))
 
