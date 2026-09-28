@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.2.3
-Date: ????
+Date: 2026-09-28
   Features:
     - Added lava slag, skimmed off standing lava in a chemical plant. Two new lines start from it
     - Crystal growing: slag, sulfur and coal on the crystal hearth grow six crystals at random - pyrite, obsidian and olivine one craft in two, ruby and sapphire one in five, diamond one in twenty. Every crystal can be crushed to basalt gravel, so the ones not in use never stop the hearth. Researched after Lava crystallization, Stone crushing and Oil processing
