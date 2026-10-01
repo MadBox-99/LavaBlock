@@ -1,6 +1,7 @@
 -- The green silicate most of the slag is made of, grown into stubby
--- crystals. Common, and it waits for a use; the crusher takes it in the
--- meantime.
+-- crystals. It is refractory - it takes the heat without melting - which
+-- is what the magma line uses it for: the reactor's lining and the magma
+-- cell's. The crusher takes the surplus.
 return {
     type = "item",
     name = "olivine",

@@ -113,6 +113,7 @@ local crystal_growing_tech = require("prototypes.technologies.crystal-growing")
 local magnetite_growing_tech = require("prototypes.technologies.magnetite-growing")
 local crystal_circuit_board_tech = require("prototypes.technologies.crystal-circuit-board")
 local laser_cutting_tech = require("prototypes.technologies.laser-cutting")
+local magma_power_tech = require("prototypes.technologies.magma-power")
 local limestone_processing_tech = require("prototypes.technologies.limestone-processing")
 local chlorinated_purification_tech = require("prototypes.technologies.chlorinated-purification")
 local arboretum_tech = require("prototypes.technologies.arboretum")
@@ -172,6 +173,7 @@ data:extend({
     magnetite_growing_tech,
     crystal_circuit_board_tech,
     laser_cutting_tech,
+    magma_power_tech,
     limestone_processing_tech,
     chlorinated_purification_tech,
     arboretum_tech,

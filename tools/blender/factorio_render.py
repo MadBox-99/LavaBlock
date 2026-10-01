@@ -24,6 +24,17 @@ SINGLE = arg('--single')
 SAMPLES = int(arg('--samples', 128))
 START = int(arg('--start', 0))        # resume after a GPU driver hiccup
 DEVICE = arg('--device', 'GPU')
+# Which GPU backend to ask Cycles for: OPTIX, CUDA, or AUTO to choose by the
+# card. See pick_device() for how AUTO chooses and why.
+BACKEND = arg('--backend', 'auto').upper()
+assert BACKEND in ('AUTO', 'OPTIX', 'CUDA'), BACKEND
+# What a GPU fault does to the run. 'cpu' finishes it on the CPU, which is
+# right for a one-off render at a prompt. 'exit' ends the process with
+# GPU_FAULT_EXIT so render_all.sh can relaunch it on a fresh GPU context
+# from the frame that failed - see render_to().
+ON_GPU_FAULT = arg('--on-gpu-fault', 'cpu')
+assert ON_GPU_FAULT in ('cpu', 'exit'), ON_GPU_FAULT
+GPU_FAULT_EXIT = 75
 
 # Factorio turns an entity clockwise on screen, which is negative Z in Blender.
 DIRECTIONS = {'north': 0, 'east': 90, 'south': 180, 'west': 270}
@@ -680,13 +691,21 @@ def pick_device():
     of memory - the allocation fails inside a kernel and surfaces as an
     illegal address. The free memory is therefore measured and printed,
     because the fix is to close something and no log line will ever say so.
+
+    AUTO means OptiX, then CUDA. That was measured on this card, a GTX 1660
+    Ti with no RT cores, and not assumed. On the magma turbine's three worst
+    passes, 48 frames, OptiX faulted twice. CUDA faulted eight times in the
+    first sixteen frames and ran the shadow pass at 34 s a frame against
+    OptiX's 21. The fault lives in the Cycles kernels both backends share, so
+    changing backend does not avoid it. `--backend` stays for the next card.
     """
     if DEVICE != 'GPU':
         print("device: CPU (asked for)", flush=True)
         return 'CPU'
 
     prefs = bpy.context.preferences.addons['cycles'].preferences
-    for backend in ('OPTIX', 'CUDA'):
+    order = ('OPTIX', 'CUDA') if BACKEND == 'AUTO' else (BACKEND,)
+    for backend in order:
         try:
             prefs.compute_device_type = backend
         except Exception:
@@ -742,17 +761,22 @@ def fall_back_to_cpu(sc):
 def render_to(sc, path):
     """Render one frame to `path`, surviving a GPU that dies under us.
 
-    A driver fault is not something a render script can prevent, so it takes
-    the fault instead of the loss and moves the whole run to the CPU on the
-    first failure. Not one GPU retry first: when this card goes it goes
-    several times in a row, so a retry only buys another minute of the same
-    error. Slow frames beat a sheet missing its last ten, which is what a
-    bare render call leaves behind.
+    A GPU fault is not something a render script can prevent. Once a kernel
+    has faulted, the CUDA context is dead for the rest of this process, so
+    the run can go only one of two ways from here.
 
-    The caller is expected to be re-runnable as well - see the retry loop in
-    render_all.sh. A fresh process gets a fresh CUDA context and is back on
-    the GPU, which is much faster than finishing a long sheet on the CPU, so
-    this fallback is the safety net rather than the plan.
+    With --on-gpu-fault exit, which render_all.sh passes, the process quits
+    with GPU_FAULT_EXIT. The loop there starts a fresh process at this frame,
+    and a fresh process gets a fresh context and the GPU back. That is the
+    plan, and it costs a Blender start-up. os._exit rather than sys.exit,
+    because a normal shutdown would go back into the dead context to free
+    it.
+
+    With the default, --on-gpu-fault cpu, the rest of the run moves to the
+    CPU. That is right for a single render at a prompt, and it was the only
+    behaviour until the magma turbine: the fallback always worked, so the
+    process never exited and render_all.sh's relaunch never ran. One fault
+    on the second frame then put the whole sheet on the CPU.
     """
     sc.render.filepath = path
     for attempt in (1, 2, 3):
@@ -764,6 +788,11 @@ def render_to(sc, path):
         except Exception as e:
             why = (str(e).strip().splitlines() or [repr(e)])[0]
         print("RENDER FAILED (attempt %d): %s" % (attempt, why), flush=True)
+        if not _ON_CPU and ON_GPU_FAULT == 'exit':
+            print("GPU FAULT: exiting for a relaunch on a fresh context",
+                  flush=True)
+            sys.stdout.flush()
+            os._exit(GPU_FAULT_EXIT)
         if not _ON_CPU:
             fall_back_to_cpu(sc)
             print("switching to the CPU for the rest of this run", flush=True)

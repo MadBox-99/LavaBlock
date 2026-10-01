@@ -732,6 +732,28 @@ A dark recess modelled behind each window pays for itself - it is in the
 entity sheet, so an idle machine reads as a dark porthole rather than as a
 hole in the shell.
 
+### Working lights
+
+A fusion reactor or fusion generator has no working visualisations, but it
+has a *working light*: a sheet drawn additive, as glow, only while the
+machine runs. The magma reactor and magma turbine make theirs with the same
+`tint` pass. The glowing parts go in `fr.TINT` and keep their real emissive
+colour - nothing multiplies this sheet, so there is no call for the neutral
+grey above - and the holdouts cut them out wherever the machine stands in
+front of them, exactly as for tinted contents.
+
+Model each glowing part **twice**: a dark glossy sight glass in the entity
+sheet, and the glow a hair proud of it in `fr.TINT`. The entity sheet then
+shows an idle machine with dark windows, and the working light lays the
+glow over exactly those windows. Keep the emission saturated and below the
+clip point: the additive blend lifts it again in game, and a pale pink that
+looks right in the icon comes out lavender over scorched iron.
+
+The magma reactor's graphics set takes a sprite rather than an animation,
+so it has nothing that can move; render it with one frame. And it is built
+facing north or east only, so a model that looks the same from every side
+needs one picture for both.
+
 ## The GPU
 
 Renders run on OptiX. The card here is a GTX 1660 Ti with 6 GB, and the
@@ -776,9 +798,27 @@ Stop-Process -Id $ids -Force
 The same two orphans also made every timing on that run meaningless: GPU
 frames came out five times slower than the same pass on a quiet machine.
 Check what else is on the card before concluding anything from a render
-time. So: shadow-pass faults correlate with memory pressure much more than
-this section first claimed. Survivable either way — see the fallback and the
-relaunch loop below — but look at free VRAM and at stray processes first.
+time.
+
+**The magma turbine settled it: the fault is not memory, not the shadow
+pass, and not OptiX.** Its sheets faulted in the entity, shadow and tint
+passes alike, most of them with 4.8 to 5.3 GB free and several on the first
+frame of a fresh process. The same three passes were then run back to back
+on a quiet machine, 16 frames each:
+
+| Backend | Faults | Shadow pass |
+|---|---|---|
+| OptiX | 2 in 48 frames | 21 s a frame |
+| CUDA | 8 in the first 16 | 34 s a frame |
+
+Both backends run the same Cycles integrator kernels, and those are where
+it faults (`integrator_shade_surface`, `integrator_sorted_paths_array`).
+Blender's tracker has the same report again and again from GTX 1650 and
+1660 owners - Turing without RT cores - and it has been closed every time
+because the developers cannot reproduce it on other cards. One GTX 1650
+report was cured by uninstalling Asus Armoury Crate. That is running on this
+machine too; it has not been tested. So nothing in the scene can stop the
+fault, and the answer is to make it cheap.
 
 `factorio_render.py` handles this in three places:
 
@@ -792,30 +832,42 @@ relaunch loop below — but look at free VRAM and at stray processes first.
   64 to 256 px the GPU has finished the frame before the CPU has finished its
   first tile. That was the old behaviour, and it is where most of these
   failures came from.
-- **It falls back to the CPU on the first failed frame** and stays there for
-  the rest of the run. Not a GPU retry first: when this card goes, it goes
-  several times in a row.
+- **On a failed frame it either exits or falls back to the CPU**, chosen by
+  `--on-gpu-fault`. A faulted kernel poisons the CUDA context for the rest
+  of the process, so retrying on the GPU inside the same process is never
+  an option.
 
-  Falling back means turning the *backend* off — `compute_device_type` to
-  `NONE`, every device but the CPU unticked — not just setting
-  `scene.cycles.device`. A faulted kernel poisons the CUDA context, and the
-  scene-level device only says which device to use; it does not tell the
-  add-on to let go of the context it already holds. Setting it alone gets
-  `Failed to retain CUDA context` on every frame after the first, which is
-  exactly what the first version of this did.
+  - `exit`, which `render_all.sh` always passes: the process quits with
+    code 75, and the loop starts a fresh one at the frame that failed. A
+    fresh process gets a fresh context and the GPU back, for the price of a
+    Blender start-up, about fifteen seconds.
+  - `cpu`, the default for a render run by hand: the rest of the run
+    finishes on the CPU. Falling back means turning the *backend* off
+    (`compute_device_type` to `NONE`, every device but the CPU unticked),
+    not just setting `scene.cycles.device`. The scene-level device only says
+    which device to use; it does not make the add-on let go of the dead
+    context it holds. Setting it alone gets `Failed to retain CUDA context`
+    on every frame after the first.
 
-`--device CPU` forces it from the start. Some subjects need that anyway; a
-fluid droplet is small enough that the CPU costs nothing.
+  **Until the magma turbine there was only `cpu`, and that quietly defeated
+  the relaunch loop.** The fallback always succeeded, so the process never
+  exited and the loop had nothing to relaunch. One fault on the second
+  frame put a whole 16-frame pass on the CPU, and five of that turbine's
+  twelve passes went that way.
 
-**The outer retry loop is the real answer, not the fallback.** A fresh
-process gets a fresh CUDA context and is back on the GPU, and resuming costs
-one frame. That is what carried the crystallizer's north shadow pass to
-32/32: six launches, every frame on OptiX. Finishing a long sheet on the CPU
-would have been correct and very slow, so treat the in-process fallback as
-the safety net for one frame and `render_all.sh` with `--start N` as the plan.
+- **A frame that faults three launches running** gets one launch of its own
+  (`--single N --on-gpu-fault cpu`), and the pass goes back to the GPU
+  after it. A frame the GPU will never finish costs one CPU frame, not the
+  sheet.
+
+`--device CPU` forces the CPU from the start; a fluid droplet is small enough
+that it costs nothing. `--backend OPTIX|CUDA` pins the GPU backend. The
+default tries OptiX and then CUDA, which on this card is the measured order,
+not a preference.
 
 If Blender does not merely error but dies, no Python in the script can catch
-it — that is the other thing the outer loop is for.
+it. The loop treats that the same way, because a dead process also leaves
+the frame count where it was.
 
 ## Notes
 

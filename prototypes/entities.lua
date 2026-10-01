@@ -3,6 +3,8 @@ local crushers = require("prototypes.entity.crusher")
 data:extend({
     require("prototypes.entity.air-cooler"),
     require("prototypes.entity.geo-thermal-turbine"),
+    require("prototypes.entity.magma-reactor"),
+    require("prototypes.entity.magma-turbine"),
     require("prototypes.entity.air-compressor"),
     require("prototypes.entity.industrialised-chemical-plant"),
     require("prototypes.entity.lava-centrifuge"),

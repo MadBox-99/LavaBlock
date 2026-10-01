@@ -1,6 +1,7 @@
 --require("util")
 require("prototypes.surface-properties")
 require("prototypes.recipe-category")
+require("prototypes.fuel-category")
 require("prototypes.item-groups")
 require("prototypes.fluids")
 require("prototypes.items")

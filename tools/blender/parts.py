@@ -666,7 +666,39 @@ def sapphire_substrate(m):
     return out
 
 
+# ------------------------------------------------------------ magma line
+
+
+def magma_cell(m):
+    """The magma reactor's fuel: a cartridge of melt, standing on end.
+
+    Built from what it is made of, so the icon says it: olivine-green
+    refractory caps, a black magnetite coil round the middle with copper
+    showing on it, a window with the melt glowing behind it, and a pyrite
+    igniter on top. Standing, because lying down it is a rolling pin.
+
+    A dark body and one wide coil. A bright steel body with two thin coils
+    came out as a stack of white discs at 64 px, and the window between the
+    coils was too small to find.
+    """
+    H, R = 0.86, 0.26
+    out = [cyl_at(0, 0, H / 2, R, H, m['dark'], verts=32)]
+    for z in (0.08, H - 0.08):
+        out.append(cyl_at(0, 0, z, R + 0.05, 0.16, m['olivine_brick'],
+                          verts=32))
+    out.append(cyl_at(0, 0, 0.30, R + 0.04, 0.16, m['magnetite'], verts=32))
+    for z in (0.25, 0.35):
+        out.append(fr.torus_at((0, 0, z), R + 0.045, 0.012, m['copper'],
+                               segments=32))
+    # The window, facing the camera, above the coil.
+    out.append(box(0.06, 0.24, 0.20, (R - 0.01, -0.09, 0.55),
+                   rot=(0, 0, -0.35), m=m['melt']))
+    out.append(cyl_at(0, 0, H + 0.04, 0.09, 0.08, m['pyrite'], verts=16))
+    return out
+
+
 PARTS = {
+    'magma-cell': magma_cell,
     'quartz-lens': quartz_lens,
     'silicon-wafer': silicon_wafer,
     'sapphire-substrate': sapphire_substrate,
@@ -821,6 +853,10 @@ def build():
     # shows.
     m['silicon'] = mat("silicon", (0.090, 0.100, 0.150), 0.22, 0.75)
     m['die'] = mat("die", (0.240, 0.180, 0.330), 0.30, 0.60)
+    m['olivine_brick'] = mat("olivine_brick", (0.095, 0.150, 0.035), 0.85,
+                             0.0, wear=0.45)
+    m['melt'] = mat("melt", (0.300, 0.030, 0.200), 0.30, 0.0,
+                    emit=(1.00, 0.16, 0.68), emit_str=1.20)
     objs = PARTS[PART](m)
     sit_on_ground(objs)
     return objs, []

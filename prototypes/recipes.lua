@@ -101,6 +101,13 @@ local sapphire_substrate_cutting = require("prototypes.recipes.laser.sapphire-su
 local solar_panel_from_wafers = require("prototypes.recipes.laser.solar-panel-from-wafers")
 local sapphire_processing_unit = require("prototypes.recipes.laser.sapphire-processing-unit")
 
+-- The magma power line: the fuel, the salt loop and the two machines
+local magma_cell = require("prototypes.recipes.magma.magma-cell")
+local salt_melting = require("prototypes.recipes.magma.salt-melting")
+local molten_salt_cooling = require("prototypes.recipes.magma.molten-salt-cooling")
+local magma_reactor = require("prototypes.recipes.magma.magma-reactor")
+local magma_turbine = require("prototypes.recipes.magma.magma-turbine")
+
 -- The lime line, slag to concrete
 local lava_slag_leaching = require("prototypes.recipes.lime.lava-slag-leaching")
 local coal_combustion = require("prototypes.recipes.lime.coal-combustion")
@@ -269,6 +276,12 @@ data:extend({
     sapphire_substrate_cutting,
     solar_panel_from_wafers,
     sapphire_processing_unit,
+    -- Magma power recipes
+    magma_cell,
+    salt_melting,
+    molten_salt_cooling,
+    magma_reactor,
+    magma_turbine,
     -- Lime recipes
     lava_slag_leaching,
     coal_combustion,

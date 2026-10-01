@@ -46,6 +46,13 @@ FLUIDS = {
     # amber, hotter and yellower than lava's orange. The base is kept dark,
     # or the lit side washes it out to cream - the calcium solution's colour.
     'molten-quartz': ((0.100, 0.050, 0.015), 0.20, (1.00, 0.56, 0.18), 0.75),
+    # The magma loop. Plasma glows violet-pink, the only fluid that colour.
+    # Hot salt glows too, but dimly and cherry red, a shade off lava's orange
+    # and quartz's amber. Cold salt is a clear pale straw with no glow at
+    # all, and glossier than the milky calcium solution.
+    'magma-plasma': ((0.120, 0.020, 0.090), 0.18, (1.00, 0.18, 0.70), 0.85),
+    'molten-salt-hot': ((0.090, 0.008, 0.004), 0.22, (0.90, 0.07, 0.03), 0.50),
+    'molten-salt-cold': ((0.300, 0.215, 0.040), 0.10),
 }
 assert FLUID in FLUIDS, "%s is not one of %s" % (FLUID, sorted(FLUIDS))
 

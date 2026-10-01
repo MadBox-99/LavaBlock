@@ -14,9 +14,19 @@
 # one-folder-per-sheet layout spritter's --recursive mode expects. Sheets and
 # their .lua data files land in <scratch>/sheets/.
 #
-# factorio_render.py catches a GPU that errors and moves the run to the CPU by
-# itself. This outer loop is for the case it cannot catch - Blender dying
-# outright - so each pass is retried from the last frame it managed to write.
+# How a pass survives this card. The GPU faults every so often - "Misaligned
+# address in CUDA queue", on OptiX and CUDA alike and with memory to spare
+# (see docs/blender-renders.md, "The GPU") - and a faulted CUDA context cannot
+# be brought back inside the process that holds it. So Blender runs with
+# --on-gpu-fault exit: on a fault it quits, and the loop below starts a fresh
+# process, back on the GPU, at the frame that failed. A relaunch costs about
+# fifteen seconds. The old in-process fallback finished the pass on the CPU
+# instead, and one fault early in a sheet cost half an hour.
+#
+# A frame that faults three launches running is rendered on its own with the
+# CPU fallback allowed, and the pass goes back to the GPU after it. Blender
+# dying outright is handled the same way, since it also leaves the count of
+# frames written where it was.
 set -u
 BLENDER="/c/Program Files/Blender Foundation/Blender 5.0/blender.exe"
 HERE="$(cd "$(dirname "$0")" && pwd)"
@@ -38,15 +48,24 @@ for dir in $FACINGS; do
     pass="$1"; samples="$2"
     out="$SP/frames/$pass/$ENTITY-$pass-$dir"
     mkdir -p "$out"
-    for attempt in 1 2 3 4 5 6; do
+    last=-1; stuck=0; faults=0
+    for launch in $(seq 1 30); do
       have=$(ls "$out"/*.png 2>/dev/null | wc -l)
       [ "$have" -ge "$N" ] && break
+      if [ "$have" -eq "$last" ]; then stuck=$((stuck + 1)); else stuck=0; fi
+      last=$have
+      if [ "$stuck" -ge 2 ]; then
+        frames="--single $have"; onfault=cpu
+      else
+        frames="--start $have"; onfault=exit
+      fi
       "$BLENDER" --background --factory-startup --python "$MODEL" -- \
-           --pass "$pass" --direction "$dir" --frames "$N" --start "$have" \
-           --samples "$samples" --out "$out" $EXTRA \
+           --pass "$pass" --direction "$dir" --frames "$N" $frames \
+           --on-gpu-fault $onfault --samples "$samples" --out "$out" $EXTRA \
            >> "$SP/render_${dir}_${pass}.log" 2>&1
+      [ $? -eq 75 ] && faults=$((faults + 1))
     done
-    echo "$dir/$pass: $(ls "$out"/*.png 2>/dev/null | wc -l)/$N"
+    echo "$dir/$pass: $(ls "$out"/*.png 2>/dev/null | wc -l)/$N, $faults GPU fault(s)"
   done
 done
 

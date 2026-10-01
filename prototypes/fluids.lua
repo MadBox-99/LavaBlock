@@ -12,6 +12,10 @@ data:extend({
     require("prototypes.fluids.calcium-solution"),
     require("prototypes.fluids.gases.carbon-dioxide"),
     require("prototypes.fluids.molten-quartz"),
+    -- The magma power loop
+    require("prototypes.fluids.magma-plasma"),
+    require("prototypes.fluids.molten-salt-cold"),
+    require("prototypes.fluids.molten-salt-hot"),
 })
 
 -- Space Age only fluids
