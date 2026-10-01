@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.2.5
-Date: ????
+Date: 2026-10-01
   Features:
     - Magma power, the island's answer to fusion. The Magma Reactor burns magma cells and draws 100 MW to drive cold molten salt up into magma plasma - 1000 MW of it, which runs four Magma Turbines, one on each of its plasma nozzles. The turbine is fifteen tiles long, turns the plasma into 250 MW and lets the salt back down hot, and two chemical plants a reactor cool the salt with water for the reactor to take again. Reactors built side by side run hotter, as fusion reactors do, and plasma only passes straight from a reactor into a turbine or from one turbine into the next
     - Magma cells are made from a magnetite, two olivine, a pyrite and molten iron, 40 GJ each: 90 an hour for a working reactor, which keeps one crystal hearth busy on its own. Salt melting fills the loop from limestone, slag and lava
