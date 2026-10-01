@@ -10,7 +10,7 @@
 return {
     type = "recipe",
     name = "limestone-calcination",
-    category = "smelting",
+    categories = { "smelting" },
     enabled = false,
     energy_required = 6.4,
     ingredients = {

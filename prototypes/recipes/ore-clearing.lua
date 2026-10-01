@@ -12,7 +12,7 @@ local ore_clearing = {
     },
     icon = "__base__/graphics/icons/stone.png",
     icon_size = 64,
-    category = "chemistry",
+    categories = { "chemistry" },
     subgroup = "fluid-recipes",
     allow_productivity = true,
     allow_quality = false,

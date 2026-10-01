@@ -12,7 +12,7 @@
 return {
     type = "recipe",
     name = "grass-cultivation",
-    category = "arboretum",
+    categories = { "arboretum" },
     subgroup = "raw-material",
     order = "a[wood]-c[grass-cultivation]",
     enabled = false,

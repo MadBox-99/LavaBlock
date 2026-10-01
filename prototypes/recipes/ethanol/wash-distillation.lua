@@ -15,7 +15,7 @@
 return {
     type = "recipe",
     name = "wash-distillation",
-    category = "wash-distilling",
+    categories = { "wash-distilling" },
     subgroup = "fluid-recipes",
     order = "b[ethanol]-d[wash-distillation]",
     enabled = false,

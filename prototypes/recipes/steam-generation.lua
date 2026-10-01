@@ -29,7 +29,7 @@ local steam_generation = {
     },
     icon = "__base__/graphics/icons/fluid/steam.png",
     icon_size = 64,
-    category = "chemistry",
+    categories = { "chemistry" },
     subgroup = "fluid-recipes",
 }
 return steam_generation

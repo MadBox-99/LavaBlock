@@ -4,7 +4,7 @@ local industrialised_chemical_plant = {
     enabled = false,
     energy_required = 5,
     -- Was `crafting_category = "chemical"`: not a RecipePrototype key, so it was
-    -- silently ignored. Renaming it to `category = "chemical"` would be worse --
+    -- silently ignored. Renaming it to `categories = { "chemical" }` would be worse --
     -- the plant would only be craftable inside an industrialised chemical plant.
     -- The default "crafting" category is what this build recipe wants.
     ingredients = {

@@ -7,7 +7,7 @@
 return {
     type = "recipe",
     name = "molten-salt-cooling",
-    category = "chemistry",
+    categories = { "chemistry" },
     enabled = false,
     energy_required = 5,
     ingredients = {

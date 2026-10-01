@@ -1,7 +1,7 @@
 local liquid_nitrogen_production = {
     type = "recipe",
     name = "liquid-nitrogen-production",
-    category = "cryogenic-cooling",
+    categories = { "cryogenic-cooling" },
     enabled = false,
     energy_required = 5,
     ingredients = {

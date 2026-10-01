@@ -10,7 +10,7 @@ cargowagonRecipe.ingredients = {
     { type = "item",  name = "pump",            amount = 1 },    -- brake air compressor
     { type = "fluid", name = "lava",            amount = 50000 }
 }
-cargowagonRecipe.category = "crafting-with-fluid"
+cargowagonRecipe.categories = { "crafting-with-fluid" }
 cargowagonRecipe.energy_required = 30
 cargowagonRecipe.enabled = false
 

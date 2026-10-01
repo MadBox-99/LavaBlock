@@ -18,7 +18,7 @@ local function cultivate(colour, order, medium, amount, seconds, yield, tint)
     return {
         type = "recipe",
         name = "algae-" .. colour,
-        category = "algae-tank",
+        categories = { "algae-tank" },
         subgroup = "raw-material",
         order = "a[algae]-" .. order .. "[algae-" .. colour .. "]",
         enabled = false,

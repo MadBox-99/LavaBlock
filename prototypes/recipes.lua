@@ -2,12 +2,12 @@
 data.raw.recipe['burner-mining-drill'].enabled = false
 
 -- The arboretum closes its own loop, so Space Age's seed recipe has to be
--- runnable in it. additional_categories is additive: wood-processing keeps
--- working everywhere it already worked.
-local wp = data.raw.recipe['wood-processing']
-if wp then
-    wp.additional_categories = wp.additional_categories or {}
-    table.insert(wp.additional_categories, 'arboretum')
+-- runnable in it. Adding to its categories keeps tree-seed working
+-- everywhere it already worked.
+local seed = data.raw.recipe['tree-seed']
+if seed then
+    seed.categories = seed.categories or { "crafting" }
+    table.insert(seed.categories, 'arboretum')
 end
 
 -- Air recipes

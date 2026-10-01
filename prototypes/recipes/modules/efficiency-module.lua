@@ -10,6 +10,6 @@ return {
     results = {
         { type = "item", name = "efficiency-module", amount = 2 }
     },
-    category = "crafting-with-fluid",
+    categories = { "crafting-with-fluid" },
     allow_productivity = false
 }

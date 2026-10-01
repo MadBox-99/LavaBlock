@@ -34,10 +34,10 @@ geo_thermal_turbine.icons = nil
 -- standing above the casing and an extractor lying flat on the generator
 -- can.
 --
--- A generator takes two animations, not four. Factorio asks for
--- `vertical_animation` and `horizontal_animation` and never for a direction,
--- so the model is rendered north for the vertical one and east for the
--- horizontal one - half the frames a rotatable machine needs.
+-- Two animations, not four. The steam turbine this is copied from is
+-- `two_direction_only`, so Factorio asks for `pictures.north` and
+-- `pictures.east` and never for the other two - half the frames a
+-- rotatable machine needs.
 local GFX = "__LavaBlock-graphics__/graphics/entity/geo-thermal-turbine/"
 
 local function layer(kind, dir, extra)
@@ -69,10 +69,11 @@ local function turbine_layers(dir)
     }
 end
 
--- North is the vertical sheet and east is the horizontal one, which is the
--- only mapping that exists: the model's long axis runs north-south.
-geo_thermal_turbine.vertical_animation = { layers = turbine_layers("north") }
-geo_thermal_turbine.horizontal_animation = { layers = turbine_layers("east") }
+-- Only the animations are replaced. Space Age's frozen patches stay where
+-- they are in each direction's pictures. The model's long axis runs
+-- north-south, so north is the vertical sheet and east the horizontal one.
+geo_thermal_turbine.pictures.north.animation = { layers = turbine_layers("north") }
+geo_thermal_turbine.pictures.east.animation = { layers = turbine_layers("east") }
 
 -- No pipe_picture or pipe_covers: the model carries its own ports, one at
 -- each end, the way the steam turbine it replaces does. See

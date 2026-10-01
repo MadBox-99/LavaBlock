@@ -13,7 +13,7 @@ return {
     {
         type = "recipe",
         name = "basalt-crushing",
-        category = "rock-crushing",
+        categories = { "rock-crushing" },
         enabled = false,
         energy_required = 2,
         ingredients = {
@@ -30,7 +30,7 @@ return {
     {
         type = "recipe",
         name = "gravel-grinding",
-        category = "rock-crushing",
+        categories = { "rock-crushing" },
         enabled = false,
         energy_required = 2,
         ingredients = {
@@ -52,7 +52,7 @@ return {
         -- lubricant - which is why that machine is worth the oil line.
         type = "recipe",
         name = "gravel-grinding-oiled",
-        category = "rock-crushing-oiled",
+        categories = { "rock-crushing-oiled" },
         enabled = false,
         energy_required = 2,
         ingredients = {
@@ -84,7 +84,7 @@ return {
         -- cannot be farmed.
         type = "recipe",
         name = "brick-crushing",
-        category = "rock-crushing",
+        categories = { "rock-crushing" },
         enabled = false,
         energy_required = 2,
         ingredients = {

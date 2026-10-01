@@ -8,7 +8,7 @@
 return {
     type = "recipe",
     name = "lime-concrete",
-    category = "crafting-with-fluid",
+    categories = { "crafting-with-fluid" },
     enabled = false,
     energy_required = 10,
     ingredients = {

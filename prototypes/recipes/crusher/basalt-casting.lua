@@ -9,7 +9,7 @@
 return {
     type = "recipe",
     name = "basalt-casting",
-    category = "chemistry",
+    categories = { "chemistry" },
     enabled = false,
     energy_required = 4,
     ingredients = {

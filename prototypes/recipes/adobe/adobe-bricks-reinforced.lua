@@ -11,7 +11,7 @@
 return {
     type = "recipe",
     name = "adobe-bricks-reinforced",
-    category = "adobe-mixing",
+    categories = { "adobe-mixing" },
     enabled = false,
     energy_required = 4,
     ingredients = {

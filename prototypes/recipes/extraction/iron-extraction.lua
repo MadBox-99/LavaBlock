@@ -21,7 +21,7 @@ local iron_extraction = {
         },
     },
     icon_size = 64,
-    category = "chemistry",
+    categories = { "chemistry" },
     subgroup = "fluid-recipes",
 }
 return iron_extraction

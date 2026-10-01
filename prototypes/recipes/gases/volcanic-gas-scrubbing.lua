@@ -18,7 +18,7 @@
 return {
     type = "recipe",
     name = "volcanic-gas-scrubbing",
-    category = "chemistry",
+    categories = { "chemistry" },
     subgroup = "fluid-recipes",
     order = "a[gas]-z[chlorine]",
     enabled = false,
@@ -33,7 +33,6 @@ return {
     -- quality does nothing on a fluid-only recipe.
     allow_productivity = false,
     allow_quality = false,
-    always_show_products = true,
     icons = {
         {
             icon = "__LavaBlock-graphics__/graphics/icons/gas/chlorine.png",

@@ -3,7 +3,7 @@
 return {
     type = "recipe",
     name = "lava-purification",
-    category = "lava-centrifuge",
+    categories = { "lava-centrifuge" },
     order = "a[lava]-b[extraction]",
     subgroup = "lava-centrifuge-recipes",
     enabled = false,

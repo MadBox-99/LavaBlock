@@ -13,7 +13,7 @@
 return {
     type = "recipe",
     name = "steam-condensing",
-    category = "water-condensing",
+    categories = { "water-condensing" },
     subgroup = "fluid-recipes",
     order = "a[fluid-chemistry]-c[steam-condensing]",
     enabled = false,
@@ -28,7 +28,6 @@ return {
     -- quality does nothing on a fluid-only recipe.
     allow_productivity = false,
     allow_quality = false,
-    always_show_products = true,
     icons = {
         { icon = "__base__/graphics/icons/fluid/water.png", icon_size = 64 },
         {

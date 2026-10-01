@@ -6,7 +6,7 @@
 local copper_smelting_cryo_cooling = {
     type = "recipe",
     name = "copper-smelting-cryo-cooling",
-    category = "cryogenic-cooling",
+    categories = { "cryogenic-cooling" },
     enabled = false,
     energy_required = 3,
     ingredients = {

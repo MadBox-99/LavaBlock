@@ -15,7 +15,7 @@
 return {
     type = "recipe",
     name = "silica-crystallizing",
-    category = "lava-crystallizing",
+    categories = { "lava-crystallizing" },
     subgroup = "raw-material",
     order = "b[silica-crystal]-a",
     enabled = false,

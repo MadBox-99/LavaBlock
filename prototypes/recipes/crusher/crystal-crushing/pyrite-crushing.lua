@@ -9,7 +9,7 @@
 return {
     type = "recipe",
     name = "pyrite-crushing",
-    category = "rock-crushing",
+    categories = { "rock-crushing" },
     enabled = false,
     energy_required = 1,
     ingredients = {

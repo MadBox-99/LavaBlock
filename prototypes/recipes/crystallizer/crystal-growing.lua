@@ -19,7 +19,7 @@
 return {
     type = "recipe",
     name = "crystal-growing",
-    category = "lava-crystallizing",
+    categories = { "lava-crystallizing" },
     subgroup = "lava-block-crystals",
     order = "0[growing]",
     enabled = false,
@@ -32,11 +32,11 @@ return {
         { type = "item", name = "coal",      amount = 1 },
     },
     results = {
-        { type = "item", name = "pyrite",   amount = 1, probability = 0.5 },
-        { type = "item", name = "olivine",  amount = 1, probability = 0.5 },
-        { type = "item", name = "ruby",     amount = 1, probability = 0.2 },
-        { type = "item", name = "sapphire", amount = 1, probability = 0.2 },
-        { type = "item", name = "diamond",  amount = 1, probability = 0.05 },
+        { type = "item", name = "pyrite",   amount = 1, independent_probability = 0.5 },
+        { type = "item", name = "olivine",  amount = 1, independent_probability = 0.5 },
+        { type = "item", name = "ruby",     amount = 1, independent_probability = 0.2 },
+        { type = "item", name = "sapphire", amount = 1, independent_probability = 0.2 },
+        { type = "item", name = "diamond",  amount = 1, independent_probability = 0.05 },
     },
     crafting_machine_tint = {
         primary = { r = 0.85, g = 0.12, b = 0.20, a = 1.0 },

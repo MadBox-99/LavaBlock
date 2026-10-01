@@ -9,7 +9,7 @@ local wood_extraction = {
     icon = "__base__/graphics/icons/wood.png",
     icon_size = 64,
 
-    category = "crafting",
+    categories = { "crafting" },
     subgroup = "raw-material",
 }
 return wood_extraction

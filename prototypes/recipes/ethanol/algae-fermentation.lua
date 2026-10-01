@@ -9,7 +9,7 @@
 return {
     type = "recipe",
     name = "algae-fermentation",
-    category = "biomass-fermenting",
+    categories = { "biomass-fermenting" },
     subgroup = "fluid-recipes",
     order = "b[ethanol]-c[algae-fermentation]",
     enabled = false,

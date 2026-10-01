@@ -14,7 +14,7 @@
 return {
     type = "recipe",
     name = "argon-extraction",
-    category = "gas-mix",
+    categories = { "gas-mix" },
     subgroup = "fluid-recipes",
     order = "a[gas]-z[argon]",
     enabled = false,

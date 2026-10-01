@@ -7,7 +7,7 @@
 return {
     type = "recipe",
     name = "lava-slag-leaching",
-    category = "chemistry",
+    categories = { "chemistry" },
     enabled = false,
     energy_required = 4,
     ingredients = {

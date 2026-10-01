@@ -3,7 +3,7 @@ return {
     name = "foundation-catalyst",
     energy_required = 1,
     enabled = true,
-    category = "crafting",
+    categories = { "crafting" },
     ingredients = {
         { type = "item", name = "stone", amount = 1 },
     },

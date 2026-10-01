@@ -27,7 +27,7 @@ local air_extraction = {
             shift = { -8, -8 },
         },
     },
-    category = "gas",
+    categories = { "gas" },
     subgroup = "fluid-recipes"
 }
 return air_extraction

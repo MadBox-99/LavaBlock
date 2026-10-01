@@ -14,7 +14,7 @@
 return {
     type = "recipe",
     name = "ethanol-rocket-fuel",
-    category = "fuel-synthesizing",
+    categories = { "fuel-synthesizing" },
     subgroup = "intermediate-product",
     order = "d[rocket-parts]-b[rocket-fuel]-b[ethanol]",
     enabled = false,

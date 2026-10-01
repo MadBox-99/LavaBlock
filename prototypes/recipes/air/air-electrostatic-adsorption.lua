@@ -28,7 +28,7 @@ local air_electrostatic_adsorption = {
             shift = { -8, -8 },
         },
     },
-    category = "air-filtering",
+    categories = { "air-filtering" },
     subgroup = "fluid-recipes"
 }
 return air_electrostatic_adsorption

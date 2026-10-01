@@ -11,7 +11,7 @@
 return {
     type = "recipe",
     name = "glass",
-    category = "smelting",
+    categories = { "smelting" },
     subgroup = "intermediate-product",
     order = "c[glass]",
     enabled = false,

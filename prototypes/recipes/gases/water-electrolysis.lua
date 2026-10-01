@@ -13,7 +13,7 @@
 return {
     type = "recipe",
     name = "water-electrolysis",
-    category = "chemistry",
+    categories = { "chemistry" },
     subgroup = "fluid-recipes",
     order = "a[fluid-chemistry]-f[water-electrolysis]",
     enabled = false,
@@ -28,7 +28,6 @@ return {
     -- does nothing on a fluid-only recipe.
     allow_productivity = false,
     allow_quality = false,
-    always_show_products = true,
     icons = {
         {
             icon = "__LavaBlock-graphics__/graphics/icons/gas/oxygen.png",

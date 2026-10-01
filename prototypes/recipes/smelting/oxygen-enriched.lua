@@ -36,7 +36,7 @@ local function enriched(metal, ore, molten, icon)
                 shift = { 8, -8 },
             },
         },
-        category = "oil-processing",
+        categories = { "oil-processing" },
         subgroup = "fluid-recipes",
         allow_productivity = true,
         allow_quality = false,

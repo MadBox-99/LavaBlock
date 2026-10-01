@@ -8,7 +8,7 @@
 return {
     type = "recipe",
     name = "crystal-circuit-board",
-    category = "electronics",
+    categories = { "crafting", "electromagnetics" },
     enabled = false,
     energy_required = 8,
     ingredients = {

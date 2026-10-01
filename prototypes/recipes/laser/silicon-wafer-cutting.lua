@@ -3,7 +3,7 @@
 return {
     type = "recipe",
     name = "silicon-wafer-cutting",
-    category = "laser-cutting",
+    categories = { "laser-cutting" },
     enabled = false,
     energy_required = 2,
     ingredients = {

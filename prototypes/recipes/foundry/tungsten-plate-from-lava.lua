@@ -2,7 +2,7 @@
 return {
     type = "recipe",
     name = "tungsten-plate-from-lava",
-    category = "lava-centrifuge",
+    categories = { "lava-centrifuge" },
     enabled = false,
     energy_required = 15,
     ingredients = {

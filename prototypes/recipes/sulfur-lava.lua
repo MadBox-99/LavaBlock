@@ -12,7 +12,7 @@ local sulfur_lava = {
     },
     icon = "__base__/graphics/icons/sulfur.png",
     icon_size = 64,
-    category = "chemistry",
+    categories = { "chemistry" },
     subgroup = "fluid-recipes",
     -- Only craftable on the LavaBlock lava-ocean world. The vanilla `sulfur`
     -- recipe gets the complementary condition in data-final-fixes.lua, so the

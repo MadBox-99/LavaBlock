@@ -22,7 +22,7 @@ local uranium_extraction = {
         },
     },
     icon_size = 64,
-    category = "chemistry",
+    categories = { "chemistry" },
     subgroup = "fluid-recipes",
     allow_productivity = true
 }

@@ -16,7 +16,7 @@
 return {
     type = "recipe",
     name = "tree-cultivation",
-    category = "arboretum",
+    categories = { "arboretum" },
     subgroup = "raw-material",
     order = "a[wood]-b[tree-cultivation]",
     enabled = false,

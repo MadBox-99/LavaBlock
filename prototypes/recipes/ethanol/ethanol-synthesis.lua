@@ -10,7 +10,7 @@
 return {
     type = "recipe",
     name = "ethanol-synthesis",
-    category = "fuel-synthesizing",
+    categories = { "fuel-synthesizing" },
     subgroup = "fluid-recipes",
     order = "b[ethanol]-e[ethanol-synthesis]",
     enabled = false,
@@ -24,7 +24,6 @@ return {
     },
     allow_productivity = true,
     allow_quality = false,
-    always_show_products = true,
     icons = {
         {
             icon = "__LavaBlock-graphics__/graphics/icons/fluid/ethanol.png",

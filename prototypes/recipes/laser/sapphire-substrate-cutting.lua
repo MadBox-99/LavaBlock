@@ -4,7 +4,7 @@
 return {
     type = "recipe",
     name = "sapphire-substrate-cutting",
-    category = "laser-cutting",
+    categories = { "laser-cutting" },
     enabled = false,
     energy_required = 4,
     ingredients = {

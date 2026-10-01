@@ -7,7 +7,7 @@
 return {
     type = "recipe",
     name = "shielding-gas",
-    category = "gas-combining",
+    categories = { "gas-combining" },
     subgroup = "fluid-recipes",
     order = "a[gas]-z[argon]-a[shielding-gas]",
     enabled = false,

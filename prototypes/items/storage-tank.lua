@@ -5,7 +5,7 @@ fluidTankRecipe.ingredients = {
     { type = "item",  name = "iron-plate", amount = 50 }, -- pneumatic brake system
     { type = "fluid", name = "lava",       amount = 50000 }
 }
-fluidTankRecipe.category = "crafting-with-fluid"
+fluidTankRecipe.categories = { "crafting-with-fluid" }
 fluidTankRecipe.energy_required = 30
 fluidTankRecipe.enabled = false
 

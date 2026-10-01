@@ -16,7 +16,7 @@ return {
     icon_size = 64,
     subgroup = "intermediate-product",
     order = "z[lavablock]-k[magma-cell]",
-    fuel_category = "magma",
+    fuel_categories = { "magma" },
     fuel_value = "40GJ",
     stack_size = 50,
 }

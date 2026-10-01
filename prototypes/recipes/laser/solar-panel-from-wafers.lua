@@ -7,7 +7,7 @@
 return {
     type = "recipe",
     name = "solar-panel-from-wafers",
-    category = "electronics",
+    categories = { "crafting", "electromagnetics" },
     enabled = false,
     energy_required = 10,
     ingredients = {

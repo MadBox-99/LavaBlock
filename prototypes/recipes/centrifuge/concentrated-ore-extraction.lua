@@ -3,7 +3,7 @@
 return {
     type = "recipe",
     name = "concentrated-ore-extraction",
-    category = "crafting-with-fluid",
+    categories = { "crafting-with-fluid" },
     order = "a[lava]-b[extraction]",
     subgroup = "lava-centrifuge-recipes",
     icon = "__LavaBlock-graphics__/graphics/recipes/concentrated-ore-extraction_sprite_sheet.png",

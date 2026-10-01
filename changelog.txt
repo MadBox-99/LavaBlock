@@ -1,7 +1,10 @@
 ---------------------------------------------------------------------------------------------------
-Version: 0.2.6
+Version: 0.3.0
 Date: ????
   Changes:
+    - Updated to Factorio 2.1. This version needs Factorio 2.1 and LavaBlock-graphics 0.3.0; 0.2.5 stays the version for Factorio 2.0
+    - The crystal circuit board, the wafer solar panel, the sapphire processing unit and uranium bacteria used recipe categories Space Age 2.1 removed, and now take the ones that replaced them. They are made in the same machines as before, except that uranium bacteria, like Space Age's own bacteria, can now be made in assembling machine 1 too
+    - Space Age 2.1 renamed Wood processing to Tree seed. The Arboretum technology unlocks it under its new name, and the arboretum still makes it
 ---------------------------------------------------------------------------------------------------
 Version: 0.2.5
 Date: 2026-10-01

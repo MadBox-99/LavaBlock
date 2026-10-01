@@ -6,7 +6,7 @@ return {
     {
         type = "recipe",
         name = "uranium-from-lava",
-        category = "lava-centrifuge",
+        categories = { "lava-centrifuge" },
         subgroup = "lava-centrifuge-recipes",
         enabled = false,
         -- Per ore: 200 purified lava, 5 acid and 5 centrifuge-seconds counting
@@ -49,7 +49,7 @@ return {
     {
         type = "recipe",
         name = "hot-tungsten-ore-from-lava",
-        category = "lava-centrifuge",
+        categories = { "lava-centrifuge" },
         subgroup = "lava-centrifuge-recipes",
         enabled = false,
         energy_required = 30,
@@ -71,7 +71,7 @@ return {
     {
         type = "recipe",
         name = "liquid-tungsten-from-hot-ore",
-        category = "lava-centrifuge",
+        categories = { "lava-centrifuge" },
         subgroup = "lava-centrifuge-recipes",
         enabled = false,
         energy_required = 20,

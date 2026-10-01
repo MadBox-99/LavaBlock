@@ -1,7 +1,7 @@
 local lava_cooling_with_liquid_nitrogen = {
     type = "recipe",
     name = "lava-cooling-with-liquid-nitrogen",
-    category = "cryogenic-cooling",
+    categories = { "cryogenic-cooling" },
     enabled = false,
     energy_required = 3,
     ingredients = {
@@ -15,10 +15,10 @@ local lava_cooling_with_liquid_nitrogen = {
     -- 1500 steam @ 500 C is ~145 MJ: still a strong reward, no longer free energy.
     results = {
         { type = "fluid", name = "steam",        amount = 1500, temperature = 500 },
-        { type = "item",  name = "stone-brick",  amount = 10,   probability = 0.5 },
-        { type = "item",  name = "calcite",      amount = 5,    probability = 0.1 },
-        { type = "item",  name = "iron-plate",   amount = 20,   probability = 0.2 },
-        { type = "item",  name = "copper-plate", amount = 20,   probability = 0.2 }
+        { type = "item",  name = "stone-brick",  amount = 10,   independent_probability = 0.5 },
+        { type = "item",  name = "calcite",      amount = 5,    independent_probability = 0.1 },
+        { type = "item",  name = "iron-plate",   amount = 20,   independent_probability = 0.2 },
+        { type = "item",  name = "copper-plate", amount = 20,   independent_probability = 0.2 }
     },
     icon = "__LavaBlock-graphics__/graphics/icons/lava-cooling.png",
     icon_size = 64,

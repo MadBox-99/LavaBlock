@@ -12,6 +12,6 @@ return {
     results = {
         { type = "item", name = "flying-robot-frame", amount = 1 }
     },
-    category = "crafting-with-fluid",
+    categories = { "crafting-with-fluid" },
     allow_productivity = true
 }

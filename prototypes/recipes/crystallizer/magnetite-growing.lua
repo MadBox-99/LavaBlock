@@ -11,7 +11,7 @@
 return {
     type = "recipe",
     name = "magnetite-growing",
-    category = "lava-crystallizing",
+    categories = { "lava-crystallizing" },
     enabled = false,
     energy_required = 10,
     ingredients = {

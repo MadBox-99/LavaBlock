@@ -22,7 +22,7 @@
 return {
     type = "recipe",
     name = "lava-purification-chlorinated",
-    category = "lava-centrifuge",
+    categories = { "lava-centrifuge" },
     subgroup = "lava-centrifuge-recipes",
     order = "a[lava]-b[extraction]-b",
     enabled = false,

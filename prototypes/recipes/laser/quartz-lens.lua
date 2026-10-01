@@ -3,7 +3,7 @@
 return {
     type = "recipe",
     name = "quartz-lens",
-    category = "crafting-with-fluid",
+    categories = { "crafting-with-fluid" },
     enabled = false,
     energy_required = 5,
     ingredients = {

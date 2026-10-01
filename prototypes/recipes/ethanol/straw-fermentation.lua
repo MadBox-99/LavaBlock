@@ -14,7 +14,7 @@
 return {
     type = "recipe",
     name = "straw-fermentation",
-    category = "biomass-fermenting",
+    categories = { "biomass-fermenting" },
     subgroup = "fluid-recipes",
     order = "b[ethanol]-a[straw-fermentation]",
     enabled = false,

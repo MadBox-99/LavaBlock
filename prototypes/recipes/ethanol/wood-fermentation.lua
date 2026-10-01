@@ -8,7 +8,7 @@
 return {
     type = "recipe",
     name = "wood-fermentation",
-    category = "biomass-fermenting",
+    categories = { "biomass-fermenting" },
     subgroup = "fluid-recipes",
     order = "b[ethanol]-b[wood-fermentation]",
     enabled = false,

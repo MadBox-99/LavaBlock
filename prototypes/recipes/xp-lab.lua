@@ -11,5 +11,5 @@ return {
     results = {
         { type = "item", name = "xp-lab", amount = 1 },
     },
-    category = "crafting",
+    categories = { "crafting" },
 }

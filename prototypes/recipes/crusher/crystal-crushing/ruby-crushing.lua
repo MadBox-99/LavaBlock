@@ -4,7 +4,7 @@
 return {
     type = "recipe",
     name = "ruby-crushing",
-    category = "rock-crushing",
+    categories = { "rock-crushing" },
     enabled = false,
     energy_required = 1,
     ingredients = {

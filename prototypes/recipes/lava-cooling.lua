@@ -11,7 +11,7 @@ local lava_cooling = {
     },
     icon = "__LavaBlock-graphics__/graphics/icons/lava-cooling.png",
     icon_size = 64,
-    category = "chemistry",
+    categories = { "chemistry" },
     subgroup = "fluid-recipes",
 }
 return lava_cooling

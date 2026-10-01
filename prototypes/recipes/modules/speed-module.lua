@@ -10,6 +10,6 @@ return {
     results = {
         { type = "item", name = "speed-module", amount = 2 }
     },
-    category = "crafting-with-fluid",
+    categories = { "crafting-with-fluid" },
     allow_productivity = false
 }

@@ -5,7 +5,7 @@
 return {
     type = "recipe",
     name = "diamond-crushing",
-    category = "rock-crushing",
+    categories = { "rock-crushing" },
     enabled = false,
     energy_required = 1,
     ingredients = {

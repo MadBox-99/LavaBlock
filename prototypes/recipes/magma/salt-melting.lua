@@ -8,7 +8,7 @@
 return {
     type = "recipe",
     name = "salt-melting",
-    category = "chemistry",
+    categories = { "chemistry" },
     enabled = false,
     energy_required = 10,
     ingredients = {

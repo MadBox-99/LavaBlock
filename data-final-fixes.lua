@@ -190,7 +190,7 @@ for name, fluid in pairs(data.raw.fluid) do
             localised_name = { "recipe-name.quench-fluid",
                 fluid.localised_name or { "fluid-name." .. name } },
             localised_description = { "recipe-description.quench-fluid" },
-            category = "fluid-quenching",
+            categories = { "fluid-quenching" },
             subgroup = "fluid-quenching",
             order = fluid.order or name,
             -- Enabled from the start: the technology gates the machine, and

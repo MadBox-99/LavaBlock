@@ -3,7 +3,7 @@ return {
     name = "foundation-platform-nauvis",
     energy_required = 10,
     enabled = true,
-    category = "crafting-with-fluid",
+    categories = { "crafting-with-fluid" },
     ingredients =
     {
         { type = "item",  name = "landfill",            amount = 10 },

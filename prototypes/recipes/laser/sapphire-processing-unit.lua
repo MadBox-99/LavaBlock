@@ -11,7 +11,7 @@
 return {
     type = "recipe",
     name = "sapphire-processing-unit",
-    category = "electronics-with-fluid",
+    categories = { "crafting-with-fluid", "electromagnetics" },
     enabled = false,
     energy_required = 10,
     ingredients = {

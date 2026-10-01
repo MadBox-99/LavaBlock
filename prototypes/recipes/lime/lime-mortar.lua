@@ -3,7 +3,7 @@
 return {
     type = "recipe",
     name = "lime-mortar",
-    category = "adobe-mixing",
+    categories = { "adobe-mixing" },
     enabled = false,
     energy_required = 4,
     ingredients = {

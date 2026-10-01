@@ -11,7 +11,7 @@ fluidwagonRecipe.ingredients = {
     { type = "item",  name = "pump",               amount = 2 },    -- loading and unloading
     { type = "fluid", name = "lava",               amount = 50000 }
 }
-fluidwagonRecipe.category = "crafting-with-fluid"
+fluidwagonRecipe.categories = { "crafting-with-fluid" }
 fluidwagonRecipe.energy_required = 30
 fluidwagonRecipe.enabled = false
 fluidwagon.weight = 1000 * kg

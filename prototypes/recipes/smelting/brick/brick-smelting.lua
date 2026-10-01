@@ -10,7 +10,7 @@ local brick_smelting = {
         { type = "item", name = "stone-brick", amount = 2 }
     },
     icon = "__base__/graphics/icons/stone-brick.png",
-    category = "chemistry",
+    categories = { "chemistry" },
     subgroup = "fluid-recipes",
     allow_productivity = true
 }

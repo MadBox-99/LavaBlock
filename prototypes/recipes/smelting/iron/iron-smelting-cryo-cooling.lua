@@ -6,7 +6,7 @@
 local iron_smelting_cryo_cooling = {
     type = "recipe",
     name = "iron-smelting-cryo-cooling",
-    category = "cryogenic-cooling",
+    categories = { "cryogenic-cooling" },
     enabled = false,
     energy_required = 3,
     ingredients = {

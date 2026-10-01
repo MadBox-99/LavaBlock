@@ -1,7 +1,7 @@
 return {
     type = "recipe",
     name = "explosives-from-lava",
-    category = "chemistry",
+    categories = { "chemistry" },
     enabled = false,
     energy_required = 4,
     -- The vanilla recipe with lava in place of the water: the point is not

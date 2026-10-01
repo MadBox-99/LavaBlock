@@ -2,7 +2,7 @@ return {
     type = "recipe",
     name = "circuit-science-pack",
     energy_required = 21,
-    category = "crafting",
+    categories = { "crafting" },
     enabled = false,
     ingredients = {
         { type = "item", name = "electronic-circuit", amount = 3 },

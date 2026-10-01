@@ -2,7 +2,7 @@ return {
     type = "recipe",
     name = "military-science-pack-2",
     energy_required = 10,
-    category = "crafting",
+    categories = { "crafting" },
     enabled = false,
     ingredients = {
         { type = "item", name = "railgun-ammo",         amount = 1 },

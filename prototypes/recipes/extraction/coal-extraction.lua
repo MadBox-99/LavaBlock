@@ -11,7 +11,7 @@ local coal_extraction = {
     },
     icon = "__base__/graphics/icons/coal.png",
     icon_size = 64,
-    category = "chemistry",
+    categories = { "chemistry" },
     subgroup = "fluid-recipes"
 }
 return coal_extraction

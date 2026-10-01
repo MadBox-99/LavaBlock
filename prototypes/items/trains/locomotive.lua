@@ -8,7 +8,7 @@ locomotiveRecipe.ingredients = {
     { type = "item",  name = "pump",               amount = 2 },    -- coolant and fuel
     { type = "fluid", name = "lava",               amount = 100000 }
 }
-locomotiveRecipe.category = "crafting-with-fluid"
+locomotiveRecipe.categories = { "crafting-with-fluid" }
 locomotiveRecipe.energy_required = 60
 locomotiveRecipe.results = {
     { type = "item", name = "locomotive", amount = 1 },
