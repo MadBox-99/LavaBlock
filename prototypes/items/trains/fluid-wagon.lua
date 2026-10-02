@@ -11,7 +11,11 @@ fluidwagonRecipe.ingredients = {
     { type = "item",  name = "pump",               amount = 2 },    -- loading and unloading
     { type = "fluid", name = "lava",               amount = 50000 }
 }
-fluidwagonRecipe.category = "crafting-with-fluid"
+-- Only the train factory builds rolling stock; steel blue on its track.
+fluidwagonRecipe.category = "rolling-stock-assembling"
+fluidwagonRecipe.crafting_machine_tint = {
+    primary = { r = 0.42, g = 0.52, b = 0.62, a = 1.0 },
+}
 fluidwagonRecipe.energy_required = 30
 fluidwagonRecipe.enabled = false
 fluidwagon.weight = 1000 * kg

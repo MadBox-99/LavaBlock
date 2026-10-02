@@ -697,7 +697,98 @@ def magma_cell(m):
     return out
 
 
+# ------------------------------------------------------------ chip line
+
+
+def cassiterite(m):
+    """Tin oxide: stubby square prisms capped with low pyramids, brown-black
+    and glassy.
+
+    Square where magnetite is octahedral and brown where it is black, so the
+    two dark crystals do not read as one on a belt.
+    """
+    def prism(w, h, cap):
+        return [(sx * w, sy * w, z) for sx in (-1, 1) for sy in (-1, 1)
+                for z in (0.0, h)] + [(0, 0, h + cap)]
+    out = []
+    for w, h, cap, loc, rot in (
+            (0.15, 0.44, 0.24, (0.00, 0.00, 0.0), (0.10, 0.05, 0.30)),
+            (0.11, 0.30, 0.18, (0.30, 0.10, 0.0), (0.45, 0.10, 1.00)),
+            (0.10, 0.26, 0.16, (-0.28, 0.16, 0.0), (-0.40, 0.20, 2.10)),
+            (0.09, 0.18, 0.13, (0.06, -0.30, 0.0), (0.20, 0.50, 0.60))):
+        out.append(hull(prism(w, h, cap), m['cassiterite'], loc=loc, rot=rot))
+    return out
+
+
+def tin_plate(m):
+    """Three plates of tin on a pile, the way vanilla draws its plates.
+
+    Bright and a little blue next to iron's grey: tin is the whitest metal
+    the player handles.
+    """
+    out = []
+    for k, (dx, dy, a) in enumerate(((0.0, 0.0, 0.10), (0.05, -0.04, -0.12),
+                                     (-0.04, 0.05, 0.28))):
+        out.append(box(0.78, 0.50, 0.07, (dx, dy, 0.035 + 0.075 * k),
+                       rot=(0, 0, a), m=m['tin']))
+    return out
+
+
+def laser_source(m):
+    """The lithography machine's light source, the part it burns through.
+
+    The same housing that stands beside the source vessel on the machine:
+    graphite, with the ruby glowing through a ring of slots, and the tin
+    nozzle on top. Standing, so the red ring faces the camera.
+    """
+    H, R = 0.82, 0.25
+    out = [cyl_at(0, 0, H / 2, R, H, m['graphite'], verts=32)]
+    for z in (0.06, H - 0.06):
+        out.append(cyl_at(0, 0, z, R + 0.025, 0.08, m['steel'], verts=32))
+    out.append(cyl_at(0, 0, 0.44, R + 0.006, 0.38, m['laser_ruby'],
+                      verts=32))
+    for k in range(8):
+        a = 2 * math.pi * (k + 0.5) / 8
+        out.append(box(0.06, 0.04, 0.40,
+                       ((R + 0.012) * math.cos(a), (R + 0.012) * math.sin(a),
+                        0.44), rot=(0, 0, a), m=m['steel']))
+    out.append(cyl_at(0, 0, H + 0.08, 0.08, 0.16, m['tin'], verts=20))
+    out.append(fr.cone_at(0, 0, H + 0.16, 0.08, 0.025, 0.08, m['tin'],
+                          verts=20))
+    return out
+
+
+def microchip(m):
+    """A black chip package with pins down all four sides and its die
+    showing in the middle.
+
+    Black epoxy and silver legs: vanilla's circuits are boards, green, red
+    and blue, and this has to read as the thing that sits on one. The die
+    window wears the wafer's colour, which is where the chip came from.
+    """
+    W, T = 0.62, 0.09
+    out = [box(W, W, T, (0, 0, 0.06 + T / 2), m=m['epoxy'])]
+    out.append(box(0.30, 0.30, 0.012, (0, 0, 0.06 + T + 0.004),
+                   m=m['die']))
+    n = 7
+    for k in range(n):
+        t = -W / 2 + W * (k + 0.5) / n
+        for sx, sy, rot in ((0, -1, 0), (0, 1, 0), (-1, 0, 1), (1, 0, 1)):
+            x = t if sx == 0 else sx * (W / 2 + 0.06)
+            y = t if sy == 0 else sy * (W / 2 + 0.06)
+            out.append(box(0.045, 0.14, 0.03, (x, y, 0.07),
+                           rot=(0, 0, rot * math.pi / 2), m=m['pin']))
+    # The pin-one dot, so the package has a way round.
+    out.append(cyl_at(-W / 2 + 0.09, -W / 2 + 0.09, 0.06 + T + 0.002, 0.03,
+                      0.006, m['pin'], verts=16))
+    return out
+
+
 PARTS = {
+    'cassiterite': cassiterite,
+    'tin-plate': tin_plate,
+    'laser-source': laser_source,
+    'microchip': microchip,
     'magma-cell': magma_cell,
     'quartz-lens': quartz_lens,
     'silicon-wafer': silicon_wafer,
@@ -857,6 +948,20 @@ def build():
                              0.0, wear=0.45)
     m['melt'] = mat("melt", (0.300, 0.030, 0.200), 0.30, 0.0,
                     emit=(1.00, 0.16, 0.68), emit_str=1.20)
+    # Brown-black and glassy, the adamantine lustre cassiterite is known by;
+    # opaque and low in specular for the same reason as the ruby.
+    # The first cut at twice this and specular 0.25 came back milk-chocolate:
+    # every face mirrored the white floor of the shadow catcher.
+    m['cassiterite'] = gem("cassiterite", (0.034, 0.015, 0.007), 0.20, 0.0,
+                           2.00, coat=0.0, specular=0.10)
+    # Tin, kept under white: the icon sun blows a pale metal out.
+    m['tin'] = mat("tin", (0.420, 0.430, 0.450), 0.38, 1.0)
+    m['graphite'] = mat("graphite", (0.080, 0.086, 0.098), 0.48, 0.55,
+                        wear=0.55)
+    m['laser_ruby'] = mat("laser_ruby", (0.200, 0.004, 0.010), 0.30, 0.0,
+                          emit=(1.00, 0.030, 0.050), emit_str=1.10)
+    m['epoxy'] = mat("epoxy", (0.022, 0.022, 0.025), 0.55, 0.0)
+    m['pin'] = mat("pin", (0.520, 0.520, 0.500), 0.25, 1.0)
     objs = PARTS[PART](m)
     sit_on_ground(objs)
     return objs, []

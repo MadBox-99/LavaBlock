@@ -50,6 +50,13 @@ table.insert(data.raw.technology["railway"].effects, {
 })
 table.insert(data.raw.technology["railway"].prerequisites, "fluid-handling")
 
+-- Trains are only built in the train factory, so Railway hands over the
+-- factory with the locomotive and the wagon.
+table.insert(data.raw.technology["railway"].effects, {
+    type = "unlock-recipe",
+    recipe = "train-factory",
+})
+
 -- The island link pole comes with the big pole it is built from.
 table.insert(data.raw.technology["electric-energy-distribution-1"].effects, {
     type = "unlock-recipe",
@@ -113,6 +120,8 @@ local crystal_growing_tech = require("prototypes.technologies.crystal-growing")
 local magnetite_growing_tech = require("prototypes.technologies.magnetite-growing")
 local crystal_circuit_board_tech = require("prototypes.technologies.crystal-circuit-board")
 local laser_cutting_tech = require("prototypes.technologies.laser-cutting")
+local euv_lithography_tech = require("prototypes.technologies.euv-lithography")
+local microchip_modules_tech = require("prototypes.technologies.microchip-modules")
 local magma_power_tech = require("prototypes.technologies.magma-power")
 local limestone_processing_tech = require("prototypes.technologies.limestone-processing")
 local chlorinated_purification_tech = require("prototypes.technologies.chlorinated-purification")
@@ -173,6 +182,8 @@ data:extend({
     magnetite_growing_tech,
     crystal_circuit_board_tech,
     laser_cutting_tech,
+    euv_lithography_tech,
+    microchip_modules_tech,
     magma_power_tech,
     limestone_processing_tech,
     chlorinated_purification_tech,

@@ -85,6 +85,7 @@ local silica_crystallizing_shielded = require("prototypes.recipes.crystallizer.s
 local lava_slag_skimming = require("prototypes.recipes.slag.lava-slag-skimming")
 local crystal_growing = require("prototypes.recipes.crystallizer.crystal-growing")
 local magnetite_growing = require("prototypes.recipes.crystallizer.magnetite-growing")
+local cassiterite_growing = require("prototypes.recipes.crystallizer.cassiterite-growing")
 local pyrite_crushing = require("prototypes.recipes.crusher.crystal-crushing.pyrite-crushing")
 local olivine_crushing = require("prototypes.recipes.crusher.crystal-crushing.olivine-crushing")
 local ruby_crushing = require("prototypes.recipes.crusher.crystal-crushing.ruby-crushing")
@@ -100,6 +101,13 @@ local silicon_wafer_cutting = require("prototypes.recipes.laser.silicon-wafer-cu
 local sapphire_substrate_cutting = require("prototypes.recipes.laser.sapphire-substrate-cutting")
 local solar_panel_from_wafers = require("prototypes.recipes.laser.solar-panel-from-wafers")
 local sapphire_processing_unit = require("prototypes.recipes.laser.sapphire-processing-unit")
+
+-- The chip line: tin, the lithography machine, its laser source and its chips
+local tin_plate = require("prototypes.recipes.smelting.tin-plate")
+local laser_source = require("prototypes.recipes.lithography.laser-source")
+local lithography_machine = require("prototypes.recipes.lithography.lithography-machine")
+local microchip = require("prototypes.recipes.lithography.microchip")
+local microchip_processing_unit = require("prototypes.recipes.lithography.microchip-processing-unit")
 
 -- The magma power line: the fuel, the salt loop and the two machines
 local magma_cell = require("prototypes.recipes.magma.magma-cell")
@@ -145,6 +153,7 @@ local fermentation_tank = require("prototypes.recipes.fermentation-tank")
 local distillation_column = require("prototypes.recipes.distillation-column")
 local fuel_plant = require("prototypes.recipes.fuel-plant")
 local island_link_pole = require("prototypes.recipes.island-link-pole")
+local train_factory = require("prototypes.recipes.train-factory")
 local straw_fermentation = require("prototypes.recipes.ethanol.straw-fermentation")
 local wood_fermentation = require("prototypes.recipes.ethanol.wood-fermentation")
 local algae_fermentation = require("prototypes.recipes.ethanol.algae-fermentation")
@@ -166,6 +175,9 @@ local lava_efficiency_module_3 = require("prototypes.recipes.modules.efficiency-
 local lava_speed_module = require("prototypes.recipes.modules.speed-module")
 local lava_speed_module_2 = require("prototypes.recipes.modules.speed-module-2")
 local lava_speed_module_3 = require("prototypes.recipes.modules.speed-module-3")
+local microchip_speed_module = require("prototypes.recipes.modules.microchip-speed-module")
+local microchip_efficiency_module = require("prototypes.recipes.modules.microchip-efficiency-module")
+local microchip_productivity_module = require("prototypes.recipes.modules.microchip-productivity-module")
 
 -- Robot recipes
 local lava_flying_robot_frame = require("prototypes.recipes.flying-robot-frame")
@@ -211,6 +223,9 @@ data:extend({
     lava_speed_module,
     lava_speed_module_2,
     lava_speed_module_3,
+    microchip_speed_module,
+    microchip_efficiency_module,
+    microchip_productivity_module,
     -- Robot recipes
     lava_flying_robot_frame,
     -- Other recipes
@@ -262,6 +277,7 @@ data:extend({
     lava_slag_skimming,
     crystal_growing,
     magnetite_growing,
+    cassiterite_growing,
     pyrite_crushing,
     olivine_crushing,
     ruby_crushing,
@@ -276,6 +292,12 @@ data:extend({
     sapphire_substrate_cutting,
     solar_panel_from_wafers,
     sapphire_processing_unit,
+    -- Chip recipes
+    tin_plate,
+    laser_source,
+    lithography_machine,
+    microchip,
+    microchip_processing_unit,
     -- Magma power recipes
     magma_cell,
     salt_melting,
@@ -315,6 +337,7 @@ data:extend({
     distillation_column,
     fuel_plant,
     island_link_pole,
+    train_factory,
     straw_fermentation,
     wood_fermentation,
     algae_fermentation,

@@ -1,7 +1,18 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.2.6
 Date: ????
+  Features:
+    - Added the Lithography Machine, an EUV chip printer two tiles by eight with its own model: the light source at one end - a vacuum vessel with a tin droplet generator on top and the laser source glowing red beside it - the clean-room scanner in the middle, and an open wafer stage at the other end, scanning a wafer under the exposure line. It draws 5 MW and is built from processing units, crystal circuit boards, quartz lenses, magnetite, sapphire substrate and steel
+    - It runs on laser sources, which wear out: each one goes into the microchip recipe and comes back 49 times in 50, so a source lasts about fifty crafts. A laser source is a ruby, two quartz lenses, a crystal circuit board, four tin and steel
+    - Microchips: a silicon wafer, a tin and two copper plates make four. They make a third processing unit recipe - 2 units from 4 microchips, 4 electronic circuits and sulfuric acid - and, behind the Microchip Modules technology, first-tier speed, efficiency and productivity modules with microchips in place of advanced circuits
+    - Tin, the island's newest metal. Cassiterite grows on the crystal hearth from 5 slag and 20 chlorine, two a craft, and smelts to tin plate in any furnace
+    - All of it but the modules is the EUV Lithography technology, after Laser cutting, Magnetite growing, Chlorinated purification and production science
+    - Added the Train Factory, six tiles by twelve with its own model: an erecting shop under a sawtooth roof, its foundry glowing through the door, and an open bay in front where four welding robots build the vehicle on a length of track. The vehicle takes the colour of what is being built - a red locomotive, a rust cargo wagon, a steel-blue fluid wagon, an olive artillery wagon. It draws 1 MW, takes lava through either side wall of the shop, and comes with Railway
   Changes:
+    - Locomotives, cargo wagons, fluid wagons and artillery wagons are built only in the Train Factory. Their ingredients are unchanged; an assembling machine no longer takes them
+    - Needs LavaBlock-graphics 0.2.6, which carries the lithography machine, the train factory and the new item icons
+  Bugfixes:
+    - Recycling a speed or efficiency module of any tier gave back no advanced circuits: the lava module recipes had replaced the vanilla ones as the source of the recycling recipe. They now recycle the way vanilla modules do
 ---------------------------------------------------------------------------------------------------
 Version: 0.2.5
 Date: 2026-10-01

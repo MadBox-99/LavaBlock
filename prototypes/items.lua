@@ -42,6 +42,13 @@ data:extend({
     require("prototypes.items.silicon-wafer"),
     require("prototypes.items.sapphire-substrate"),
     require("prototypes.items.magma-cell"),
+    -- The chip line: tin, the lithography machine and what it prints
+    require("prototypes.items.crystals.cassiterite"),
+    require("prototypes.items.tin-plate"),
+    require("prototypes.items.laser-source"),
+    require("prototypes.items.lithography-machine"),
+    require("prototypes.items.microchip"),
+    require("prototypes.items.train-factory"),
     require("prototypes.items.lime.limestone"),
     require("prototypes.items.lime.quicklime"),
     require("prototypes.items.lime.slaked-lime"),
@@ -79,6 +86,7 @@ end
 require("prototypes.items.trains.fluid-wagon")
 require("prototypes.items.trains.cargo-wagon")
 require("prototypes.items.trains.locomotive")
+require("prototypes.items.trains.artillery-wagon")
 require("prototypes.items.storage-tank")
 require("prototypes.items.landfill")
 require("prototypes.items.fulgora.bacteria.uranium")

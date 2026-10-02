@@ -10,7 +10,11 @@ cargowagonRecipe.ingredients = {
     { type = "item",  name = "pump",            amount = 1 },    -- brake air compressor
     { type = "fluid", name = "lava",            amount = 50000 }
 }
-cargowagonRecipe.category = "crafting-with-fluid"
+-- Only the train factory builds rolling stock; rust brown on its track.
+cargowagonRecipe.category = "rolling-stock-assembling"
+cargowagonRecipe.crafting_machine_tint = {
+    primary = { r = 0.55, g = 0.36, b = 0.22, a = 1.0 },
+}
 cargowagonRecipe.energy_required = 30
 cargowagonRecipe.enabled = false
 

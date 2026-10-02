@@ -10,10 +10,10 @@
 -- produce a single unit of it. Argon was in the same state until the air
 -- compressor learned to separate it; this is the last one.
 --
--- 100 lava for 40 chlorine is deliberately generous, because chlorine has
--- exactly one use and the interesting number is not this ratio but the one
--- it produces downstream: 50 chlorine costs 125 lava and saves 250 on a
--- purification run. Making the gas dear here would only move the whole
+-- 100 lava for 40 chlorine is deliberately generous, because the
+-- interesting number is not this ratio but the ones it produces downstream:
+-- 50 chlorine costs 125 lava and saves 250 on a purification run, and the
+-- 20 a cassiterite craft blows through its slag is small beside the slag. Making the gas dear here would only move the whole
 -- chlorinated route below break-even and there would be no point to it.
 return {
     type = "recipe",

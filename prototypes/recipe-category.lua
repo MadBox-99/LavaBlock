@@ -108,5 +108,18 @@ data:extend({
         -- first name a sawmill or a stonecutter in another mod would take.
         type = "recipe-category",
         name = "laser-cutting"
+    },
+    {
+        -- The lithography machine's. Not a bare "lithography", which a mod
+        -- with a printing press or a chip line of its own would take first.
+        type = "recipe-category",
+        name = "chip-lithography"
+    },
+    {
+        -- The train factory's, and the only place locomotives and wagons
+        -- are built. Not "train-assembly" or the like, which a railway mod
+        -- would reach for first.
+        type = "recipe-category",
+        name = "rolling-stock-assembling"
     }
 })

@@ -8,7 +8,11 @@ locomotiveRecipe.ingredients = {
     { type = "item",  name = "pump",               amount = 2 },    -- coolant and fuel
     { type = "fluid", name = "lava",               amount = 100000 }
 }
-locomotiveRecipe.category = "crafting-with-fluid"
+-- Only the train factory builds rolling stock; red on its track.
+locomotiveRecipe.category = "rolling-stock-assembling"
+locomotiveRecipe.crafting_machine_tint = {
+    primary = { r = 0.78, g = 0.18, b = 0.10, a = 1.0 },
+}
 locomotiveRecipe.energy_required = 60
 locomotiveRecipe.results = {
     { type = "item", name = "locomotive", amount = 1 },

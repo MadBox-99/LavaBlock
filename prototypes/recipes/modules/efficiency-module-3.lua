@@ -12,5 +12,9 @@ return {
         { type = "item", name = "efficiency-module-3", amount = 4 }
     },
     category = "crafting-with-fluid",
-    allow_productivity = false
+    allow_productivity = false,
+    -- Recycling keeps returning the vanilla recipe's ingredients. Without
+    -- this the recycler is built from this recipe instead, and hands back
+    -- no advanced circuits at all.
+    auto_recycle = false
 }
