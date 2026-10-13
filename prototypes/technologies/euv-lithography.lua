@@ -6,8 +6,9 @@
 -- every chip, and the chips into processing units. Laser cutting is behind
 -- it for the wafers and the lenses, Magnetite growing for the stage
 -- magnets, Chlorinated purification for the chlorine the cassiterite grows
--- from, and production science because this is a factory-of-factories
--- machine and should not arrive before the player has had to build one.
+-- from, Ferromagnetism for the ferrofluid in its vacuum seals, and
+-- production science because this is a factory-of-factories machine and
+-- should not arrive before the player has had to build one.
 return {
     type = "technology",
     name = "euv-lithography",
@@ -23,7 +24,7 @@ return {
     },
     prerequisites = {
         "laser-cutting", "magnetite-growing", "chlorinated-purification",
-        "production-science-pack",
+        "ferromagnetism", "production-science-pack",
     },
     unit = {
         count = 750,

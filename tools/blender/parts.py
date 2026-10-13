@@ -784,7 +784,97 @@ def microchip(m):
     return out
 
 
+def annulus(x, y, z, r_out, r_in, h, material, rot=(0, 0, 0), verts=40):
+    """A ring with a real bore, cut with a boolean, centred on (x, y, z)."""
+    ring_ = cyl_at(x, y, z, r_out, h, material, verts=verts, rot=rot)
+    cutter = cyl_at(x, y, z, r_in, h + 0.02, material, verts=verts, rot=rot)
+    mod = ring_.modifiers.new("bore", 'BOOLEAN')
+    mod.operation = 'DIFFERENCE'
+    mod.object = cutter
+    bpy.context.view_layer.objects.active = ring_
+    bpy.ops.object.modifier_apply(modifier=mod.name)
+    mesh = cutter.data
+    bpy.data.objects.remove(cutter, do_unlink=True)
+    bpy.data.meshes.remove(mesh)
+    return ring_
+
+
+def ferrite_magnet(m):
+    """Ferrite magnets: the dark grey ceramic kind, not the red horseshoe.
+
+    Two rings stacked flat - the loudspeaker-magnet shape most ferrite is
+    pressed into - and a block lying beside them. Matte charcoal, because a
+    sintered ceramic has no metal shine, and that is also what keeps it
+    apart from the black, glinting magnetite it is made from.
+
+    The block is beside the stack, not in front of it. A third ring stood
+    on edge in front was the first cut, and it hid the stack completely.
+    """
+    out = [annulus(-0.22, 0.12, 0.06, 0.30, 0.13, 0.12, m['ferrite']),
+           annulus(-0.18, 0.16, 0.185, 0.30, 0.13, 0.12, m['ferrite'])]
+    out.append(box(0.44, 0.22, 0.13, (0.30, -0.20, 0.065),
+                   rot=(0, 0, 0.35), m=m['ferrite']))
+    return out
+
+
+def magnetic_coil(m):
+    """Enamelled copper on a pressboard bobbin, its soft iron core showing
+    at both ends and its two leads standing up.
+
+    Lying down, so the turns run across the picture. Stood on end the
+    camera sees a flange and little else. The ribbed copper is what keeps
+    it from being the condenser coil, which is a finned tube.
+    """
+    LEN, R = 0.66, 0.29
+    lie = (0, math.pi / 2, 0)
+    out = [cyl_at(0, 0, 0, R - 0.01, LEN, m['copper'], verts=32, rot=lie)]
+    n = 12
+    for i in range(n):
+        x = -LEN / 2 + LEN * (i + 0.5) / n
+        out.append(fr.torus_at((x, 0, 0), R - 0.01, 0.024, m['copper'],
+                               rot=lie, segments=32))
+    for sx in (-1, 1):
+        out.append(box(0.05, 0.80, 0.80, (sx * (LEN / 2 + 0.025), 0, 0),
+                       m=m['pressboard']))
+    out.append(box(LEN + 0.34, 0.22, 0.22, (0, 0, 0), m=m['core']))
+    for dy in (-0.10, 0.10):
+        out.append(cyl_at(LEN / 2 - 0.06, dy, R + 0.12, 0.018, 0.26,
+                          m['copper'], verts=10))
+    return out
+
+
+def transformer(m):
+    """An oil-filled transformer, the way a substation's stands: a grey tank
+    with cooling fins down its long sides and three bushings on the lid,
+    brown porcelain sheds stacked up each one.
+
+    The coils are inside, in oil. The tank and the bushings are what say
+    "transformer" across a yard, and at 32 px across an inventory.
+    """
+    W, D, H = 0.72, 0.44, 0.52
+    out = [box(W, D, H, (0, 0, H / 2), m=m['tank']),
+           box(W + 0.05, D + 0.05, 0.04, (0, 0, H + 0.02), m=m['tank'])]
+    fins = 7
+    for sy in (-1, 1):
+        for i in range(fins):
+            x = -W / 2 + W * (i + 0.5) / fins
+            out.append(box(0.026, 0.15, H - 0.12,
+                           (x, sy * (D / 2 + 0.075), H / 2), m=m['tank']))
+    for x in (-0.23, 0.0, 0.23):
+        out.append(cyl_at(x, 0, H + 0.16, 0.032, 0.26, m['porcelain'],
+                          verts=12))
+        for k in range(4):
+            out.append(cyl_at(x, 0, H + 0.08 + 0.05 * k, 0.075 - 0.008 * k,
+                              0.022, m['porcelain'], verts=20))
+        out.append(cyl_at(x, 0, H + 0.31, 0.034, 0.05, m['copper'],
+                          verts=12))
+    return out
+
+
 PARTS = {
+    'ferrite-magnet': ferrite_magnet,
+    'magnetic-coil': magnetic_coil,
+    'transformer': transformer,
     'cassiterite': cassiterite,
     'tin-plate': tin_plate,
     'laser-source': laser_source,
@@ -962,6 +1052,15 @@ def build():
                           emit=(1.00, 0.030, 0.050), emit_str=1.10)
     m['epoxy'] = mat("epoxy", (0.022, 0.022, 0.025), 0.55, 0.0)
     m['pin'] = mat("pin", (0.520, 0.520, 0.500), 0.25, 1.0)
+    # Sintered ferrite: charcoal and matte, a ceramic and not a metal. As
+    # dark as the chip's epoxy; at 0.07 the icon sun turned it pale grey.
+    m['ferrite'] = mat("ferrite", (0.022, 0.021, 0.020), 0.62, 0.0)
+    # The brown card coils are wound on, the same as on the coil winder.
+    m['pressboard'] = mat("pressboard", (0.400, 0.290, 0.150), 0.85, 0.0)
+    m['core'] = mat("core", (0.160, 0.160, 0.170), 0.45, 1.0, wear=0.50)
+    # Transformer grey. At 0.24 the icon sun blew it out to white.
+    m['tank'] = mat("tank", (0.100, 0.110, 0.110), 0.45, 0.50)
+    m['porcelain'] = mat("porcelain", (0.230, 0.085, 0.035), 0.15, 0.0)
     objs = PARTS[PART](m)
     sit_on_ground(objs)
     return objs, []

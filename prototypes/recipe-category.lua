@@ -121,5 +121,11 @@ data:extend({
         -- would reach for first.
         type = "recipe-category",
         name = "rolling-stock-assembling"
+    },
+    {
+        -- The coil winder's. Not a bare "winding", which a textile mod or a
+        -- cable mod would take first.
+        type = "recipe-category",
+        name = "coil-winding"
     }
 })

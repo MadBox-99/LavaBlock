@@ -109,6 +109,14 @@ local lithography_machine = require("prototypes.recipes.lithography.lithography-
 local microchip = require("prototypes.recipes.lithography.microchip")
 local microchip_processing_unit = require("prototypes.recipes.lithography.microchip-processing-unit")
 
+-- The magnetics line: the coil winder, coils, magnets, ferrofluid and the
+-- transformer
+local coil_winder = require("prototypes.recipes.coil-winder")
+local magnetic_coil = require("prototypes.recipes.magnetics.magnetic-coil")
+local ferrite_magnet = require("prototypes.recipes.magnetics.ferrite-magnet")
+local ferrofluid = require("prototypes.recipes.magnetics.ferrofluid")
+local transformer = require("prototypes.recipes.magnetics.transformer")
+
 -- The magma power line: the fuel, the salt loop and the two machines
 local magma_cell = require("prototypes.recipes.magma.magma-cell")
 local salt_melting = require("prototypes.recipes.magma.salt-melting")
@@ -298,6 +306,12 @@ data:extend({
     lithography_machine,
     microchip,
     microchip_processing_unit,
+    -- Magnetics recipes
+    coil_winder,
+    magnetic_coil,
+    ferrite_magnet,
+    ferrofluid,
+    transformer,
     -- Magma power recipes
     magma_cell,
     salt_melting,
@@ -368,3 +382,9 @@ end
 
 -- Modified base recipe: the solar panel needs the crystallizer line.
 require("prototypes.recipes.solar-panel")
+
+-- Modified base recipes: motors, substations and generators are built from
+-- magnets, coils and transformers.
+require("prototypes.recipes.electric-engine-unit")
+require("prototypes.recipes.substation")
+require("prototypes.recipes.steam-turbine")

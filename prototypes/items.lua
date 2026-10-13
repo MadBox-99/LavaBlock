@@ -49,6 +49,12 @@ data:extend({
     require("prototypes.items.lithography-machine"),
     require("prototypes.items.microchip"),
     require("prototypes.items.train-factory"),
+    -- The magnetics line: the coil winder and what magnetite and copper
+    -- become
+    require("prototypes.items.coil-winder"),
+    require("prototypes.items.magnetics.ferrite-magnet"),
+    require("prototypes.items.magnetics.magnetic-coil"),
+    require("prototypes.items.magnetics.transformer"),
     require("prototypes.items.lime.limestone"),
     require("prototypes.items.lime.quicklime"),
     require("prototypes.items.lime.slaked-lime"),

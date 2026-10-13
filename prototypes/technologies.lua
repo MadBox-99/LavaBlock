@@ -125,6 +125,7 @@ local laser_cutting_tech = require("prototypes.technologies.laser-cutting")
 local euv_lithography_tech = require("prototypes.technologies.euv-lithography")
 local microchip_modules_tech = require("prototypes.technologies.microchip-modules")
 local magma_power_tech = require("prototypes.technologies.magma-power")
+local ferromagnetism_tech = require("prototypes.technologies.ferromagnetism")
 local limestone_processing_tech = require("prototypes.technologies.limestone-processing")
 local chlorinated_purification_tech = require("prototypes.technologies.chlorinated-purification")
 local arboretum_tech = require("prototypes.technologies.arboretum")
@@ -187,6 +188,7 @@ data:extend({
     euv_lithography_tech,
     microchip_modules_tech,
     magma_power_tech,
+    ferromagnetism_tech,
     limestone_processing_tech,
     chlorinated_purification_tech,
     arboretum_tech,

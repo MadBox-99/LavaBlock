@@ -16,6 +16,8 @@ data:extend({
     require("prototypes.fluids.magma-plasma"),
     require("prototypes.fluids.molten-salt-cold"),
     require("prototypes.fluids.molten-salt-hot"),
+    -- The magnetics line
+    require("prototypes.fluids.ferrofluid"),
 })
 
 -- Space Age only fluids

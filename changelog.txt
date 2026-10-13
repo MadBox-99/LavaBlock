@@ -8,9 +8,17 @@ Date: ????
     - Tin, the island's newest metal. Cassiterite grows on the crystal hearth from 5 slag and 20 chlorine, two a craft, and smelts to tin plate in any furnace
     - All of it but the modules is the EUV Lithography technology, after Laser cutting, Magnetite growing, Chlorinated purification and production science
     - Added the Train Factory, six tiles by twelve with its own model: an erecting shop under a sawtooth roof, its foundry glowing through the door, and an open bay in front where four welding robots build the vehicle on a length of track. The vehicle takes the colour of what is being built - a red locomotive, a rust cargo wagon, a steel-blue fluid wagon, an olive artillery wagon. It draws 1 MW, takes lava through either side wall of the shop, and comes with Railway
+    - Added the Coil Winder, a vertical winding machine three tiles square with its own model: a copper coil turning on a turntable, a guide carriage riding up and down the column beside it to lay the wire on, and a payoff spool feeding it. It draws 200 kW and is the only machine that makes magnetic coils, from an iron plate and eight copper cables
+    - Ferrite magnets are pressed from two magnetite and a limestone, two at a time, in an assembling machine. Ferrofluid is magnetite stirred into lubricant in a chemical plant, 50 from one magnetite and 50 lubricant. A transformer is two magnetic coils and five steel plates in 50 lubricant
+    - All of it is the Ferromagnetism technology, on chemical science, after Magnetite growing and Lubricant
   Changes:
     - Locomotives, cargo wagons, fluid wagons and artillery wagons are built only in the Train Factory. Their ingredients are unchanged; an assembling machine no longer takes them
-    - Needs LavaBlock-graphics 0.2.6, which carries the lithography machine, the train factory and the new item icons
+    - Electric engine units are built from a ferrite magnet, two magnetic coils, a steel plate and two electronic circuits, in place of an engine unit and lubricant, and no longer need a fluid input. Electric engine comes after Ferromagnetism
+    - The substation takes a transformer in place of its six copper cables. Electric energy distribution 2 comes after Ferromagnetism
+    - The steam turbine takes ten magnetic coils and five ferrite magnets in place of its 50 copper plates. Nuclear power and Heating tower come after Ferromagnetism
+    - The Lithography Machine takes 100 ferrofluid and the Lava Centrifuge 50, for the seals on their shafts, so both are built in an assembling machine with a fluid input. EUV Lithography and Lava Centrifuge come after Ferromagnetism
+    - A save that has already researched any of these needs Ferromagnetism before it can build them again
+    - Needs LavaBlock-graphics 0.2.6, which carries the lithography machine, the train factory, the coil winder and the new item icons
   Bugfixes:
     - Recycling a speed or efficiency module of any tier gave back no advanced circuits: the lava module recipes had replaced the vanilla ones as the source of the recycling recipe. They now recycle the way vanilla modules do
 ---------------------------------------------------------------------------------------------------

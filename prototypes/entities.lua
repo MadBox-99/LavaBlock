@@ -18,6 +18,7 @@ data:extend({
     require("prototypes.entity.laser-cutter"),
     require("prototypes.entity.lithography-machine"),
     require("prototypes.entity.train-factory"),
+    require("prototypes.entity.coil-winder"),
     require("prototypes.entity.gas-combiner"),
     require("prototypes.entity.air-filter"),
     require("prototypes.entity.water-condenser"),
