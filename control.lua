@@ -1,4 +1,3 @@
-local util = require("util")
 local island_link_pole = require("scripts.island-link-pole")
 
 -- ============================================
@@ -146,6 +145,16 @@ local function disable_recipe_for_force(force, recipe_name)
     end
 end
 
+-- Mark a technology researched for every force that has it
+local function research_for_all_forces(tech_name)
+    for _, force in pairs(game.forces) do
+        local tech = force.technologies[tech_name]
+        if tech then
+            tech.researched = true
+        end
+    end
+end
+
 -- Get technology effects (handles both LuaTechnology and LuaTechnologyPrototype)
 local function get_tech_effects(technology)
     if technology.object_name == "LuaTechnology" then
@@ -163,7 +172,7 @@ script.on_init(function()
     disable_freeplay()
 
     -- Research steam power for all forces
-    util.research_technology_for_all_forces("steam-power")
+    research_for_all_forces("steam-power")
 
     -- Create 25x25 landfill area at spawn
     local surface = game.get_surface("nauvis")

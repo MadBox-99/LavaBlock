@@ -13,16 +13,21 @@ require("prototypes.technologies.xp-quests.smelting-mastery")
 require("prototypes.technologies.xp-quests.handcrafting-mastery")
 require("prototypes.technologies.xp-quests.mining-mastery")
 
--- Base game technology modifications
+local utils = require("lib.utils")
+
+-- Base game technology modifications. Effects are edited one unlock at a
+-- time, never reassigned, so unlocks other mods added survive.
+
+-- Oil processing: the chemical plant comes earlier, from Calcite
+-- processing on lava block, and sulfur comes from lava here.
 data.raw.technology["oil-processing"].research_trigger = { type = "craft-fluid", fluid = "crude-oil", amount = 1 }
-data.raw.technology["oil-processing"].effects = {
-    { type = "unlock-recipe", recipe = "basic-oil-processing" },
-    { type = "unlock-recipe", recipe = "solid-fuel-from-petroleum-gas" },
-    { type = "unlock-recipe", recipe = "oil-refinery" },
-    { type = "unlock-recipe", recipe = "sulfur-lava" }
-}
+utils.remove_recipe_unlock("oil-processing", "chemical-plant")
+table.insert(data.raw.technology["oil-processing"].effects, { type = "unlock-recipe", recipe = "sulfur-lava" })
 data.raw.technology["uranium-processing"].research_trigger = { type = "craft-item", item = "uranium-ore" }
-data.raw.technology["oil-gathering"].effects = { { type = "unlock-recipe", recipe = "oil-extraction" } }
+-- Oil gathering: no oil patches on the island, so crude oil is extracted
+-- from lava instead of pumped.
+utils.remove_recipe_unlock("oil-gathering", "pumpjack")
+table.insert(data.raw.technology["oil-gathering"].effects, { type = "unlock-recipe", recipe = "oil-extraction" })
 data.raw.technology["oil-gathering"].prerequisites = { "lava-science-pack" }
 data.raw.technology["oil-gathering"].unit = {
     count = 100,
@@ -33,10 +38,7 @@ data.raw.technology["oil-gathering"].unit = {
     },
     time = 30
 }
-data.raw.technology["uranium-mining"].effects = {
-    { type = "mining-with-fluid", modifier = true },
-    { type = "unlock-recipe",     recipe = "uranium-extraction" }
-}
+table.insert(data.raw.technology["uranium-mining"].effects, { type = "unlock-recipe", recipe = "uranium-extraction" })
 
 -- Add explosives-from-lava to explosives technology
 -- Every train now takes condenser coils and pumps. The coil is otherwise

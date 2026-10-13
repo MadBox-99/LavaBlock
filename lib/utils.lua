@@ -35,7 +35,7 @@ end
 --   tint: optional tint color
 -- Assumes sprite sheet layout: [north frames][east frames][south frames][west frames]
 function utils.make_rotated_graphics_set(options)
-    require("util")
+    local util = require("util")
 
     local base = {
         filename = options.filename,
@@ -130,6 +130,100 @@ function utils.stack_smoke(stack)
         table.insert(out, v)
     end
     return out
+end
+
+-- Technology and lab helpers. Every one of them does nothing when the
+-- prototype it is pointed at is missing, so they are safe to call on
+-- another mod's technologies whether or not that mod is loaded.
+
+-- Remove a technology and hand its prerequisites to everything that
+-- depended on it, so the tree stays connected.
+-- @param tech_name string
+function utils.remove_technology(tech_name)
+    local removed = data.raw.technology[tech_name]
+    if not removed then return end
+    local inherited = removed.prerequisites or {}
+    data.raw.technology[tech_name] = nil
+    for _, tech in pairs(data.raw.technology) do
+        local prerequisites = tech.prerequisites or {}
+        for index, name in ipairs(prerequisites) do
+            if name == tech_name then
+                table.remove(prerequisites, index)
+                for offset, prerequisite in ipairs(inherited) do
+                    table.insert(prerequisites, index + offset - 1, prerequisite)
+                end
+                break
+            end
+        end
+    end
+end
+
+-- Swap one science pack for another in a technology's cost. If the old pack
+-- is not there, the new one is added instead.
+-- @param tech_name string
+-- @param old_pack string
+-- @param new_pack string
+-- @param new_count number|nil - keeps the old count when nil
+function utils.replace_tech_ingredient(tech_name, old_pack, new_pack, new_count)
+    local tech = data.raw.technology[tech_name]
+    if not tech or not tech.unit or not tech.unit.ingredients then return end
+    for _, ingredient in pairs(tech.unit.ingredients) do
+        if ingredient[1] == old_pack then
+            ingredient[1] = new_pack
+            if new_count then ingredient[2] = new_count end
+            return
+        end
+    end
+    table.insert(tech.unit.ingredients, { new_pack, new_count or 1 })
+end
+
+-- @param tech_name string
+-- @param old_prereq string
+-- @param new_prereq string
+function utils.replace_tech_prereq(tech_name, old_prereq, new_prereq)
+    local tech = data.raw.technology[tech_name]
+    if not tech or not tech.prerequisites then return end
+    for index, prereq in pairs(tech.prerequisites) do
+        if prereq == old_prereq then
+            tech.prerequisites[index] = new_prereq
+            return
+        end
+    end
+end
+
+-- @param tech_name string
+-- @param prereq string
+function utils.add_tech_prereq(tech_name, prereq)
+    local tech = data.raw.technology[tech_name]
+    if not tech or not tech.prerequisites then return end
+    table.insert(tech.prerequisites, prereq)
+end
+
+-- Take one recipe unlock out of a technology, leaving the rest of its
+-- effects - including any another mod added - in place.
+-- @param tech_name string
+-- @param recipe_name string
+function utils.remove_recipe_unlock(tech_name, recipe_name)
+    local tech = data.raw.technology[tech_name]
+    if not tech or not tech.effects then return end
+    for index, effect in ipairs(tech.effects) do
+        if effect.type == "unlock-recipe" and effect.recipe == recipe_name then
+            table.remove(tech.effects, index)
+            return
+        end
+    end
+end
+
+-- Add a science pack to a lab's inputs, once.
+-- @param lab_name string
+-- @param input_name string
+function utils.add_lab_input(lab_name, input_name)
+    local lab = data.raw.lab[lab_name]
+    if not lab or not lab.inputs then return end
+    for _, input in pairs(lab.inputs) do
+        if input == input_name then return end
+    end
+    table.insert(lab.inputs, input_name)
 end
 
 --- A machine icon with its tier badge laid over it.

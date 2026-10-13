@@ -10,7 +10,7 @@ data:extend({
     require("prototypes.items.generators.magma-reactor"),
     require("prototypes.items.generators.magma-turbine"),
     require("prototypes.items.air-compressor"),
-    require("prototypes.items.industrialised-chemical-plan"),
+    require("prototypes.items.industrialised-chemical-plant"),
     require("prototypes.items.lava-centrifuge"),
     require("prototypes.items.arboretum"),
     require("prototypes.items.bio-garden"),
