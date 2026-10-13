@@ -2,6 +2,8 @@ Please add a new changelog entry with context about our latest work. Be sure to 
 
 $ARGUMENTS
 
+Follow the project conventions in `.claude/rules/changelog.md` (date stays `????` until fmtk publish fills it in).
+
 The changelog should only contain details that are relevant to players and users of the mod; it should not contain details specific to the development process or repo management.
 
 Factorio's Change Log Specification:
@@ -9,7 +11,7 @@ Factorio's Change Log Specification:
 ```
 ---------------------------------------------------------------------------------------------------
 Version: X.Y.Z
-Date: DD. MM. YYYY
+Date: ????
   Changes:
     - Change description here
     - Another change description

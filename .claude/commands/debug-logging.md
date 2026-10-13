@@ -15,7 +15,6 @@ A good pattern to use:
 For example, if it's a failing entity, only once we get to a failure will we output that entities full state; we wouldn't output entities to the log that are fine.
 
 **Important**
-- Do not worry about ./validate.sh flagging errors related to line length of cyclomatic complexity, as we can temporarily take on extra complexity to identify issues.
 - Do not add excessive logging of unimportant state and entities, we're dealing with millions of entities and it makes debugging more difficult
 - Avoid changing existing code patterns when adding logs
 
