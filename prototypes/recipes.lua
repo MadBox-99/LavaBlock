@@ -161,6 +161,10 @@ local float_glass = require("prototypes.recipes.glass.float-glass")
 local steel_converting = require("prototypes.recipes.steel.steel-converting")
 local steel_casting = require("prototypes.recipes.steel.steel-casting")
 
+-- Silicon refining: wafers pulled from the melt
+local silica_reduction = require("prototypes.recipes.silicon.silica-reduction")
+local silicon_wafer_pulling = require("prototypes.recipes.silicon.silicon-wafer-pulling")
+
 -- Gas combiner recipes
 local gas_combiner = require("prototypes.recipes.gas-combiner")
 local air_filter = require("prototypes.recipes.air-filter")
@@ -378,6 +382,9 @@ data:extend({
     -- Steel recipes
     steel_converting,
     steel_casting,
+    -- Silicon recipes
+    silica_reduction,
+    silicon_wafer_pulling,
     -- Gas combiner recipes
     gas_combiner,
     air_filter,

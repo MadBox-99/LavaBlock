@@ -34,6 +34,8 @@ data:extend({
     require("prototypes.fluids.molten-tin"),
     -- Oxygen steelmaking
     require("prototypes.fluids.molten-steel"),
+    -- Silicon refining
+    require("prototypes.fluids.molten-silicon"),
 })
 
 -- Space Age only fluids
