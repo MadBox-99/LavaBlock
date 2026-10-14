@@ -157,6 +157,10 @@ local cassiterite_melting = require("prototypes.recipes.glass.cassiterite-meltin
 local tin_casting = require("prototypes.recipes.glass.tin-casting")
 local float_glass = require("prototypes.recipes.glass.float-glass")
 
+-- Oxygen steelmaking: steel from the melt, with no furnace
+local steel_converting = require("prototypes.recipes.steel.steel-converting")
+local steel_casting = require("prototypes.recipes.steel.steel-casting")
+
 -- Gas combiner recipes
 local gas_combiner = require("prototypes.recipes.gas-combiner")
 local air_filter = require("prototypes.recipes.air-filter")
@@ -371,6 +375,9 @@ data:extend({
     cassiterite_melting,
     tin_casting,
     float_glass,
+    -- Steel recipes
+    steel_converting,
+    steel_casting,
     -- Gas combiner recipes
     gas_combiner,
     air_filter,

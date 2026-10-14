@@ -32,6 +32,8 @@ data:extend({
     -- The glass line
     require("prototypes.fluids.molten-glass"),
     require("prototypes.fluids.molten-tin"),
+    -- Oxygen steelmaking
+    require("prototypes.fluids.molten-steel"),
 })
 
 -- Space Age only fluids
