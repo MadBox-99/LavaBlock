@@ -46,6 +46,9 @@ data:extend({
     require("prototypes.fluids.gases.ethylene"),
     -- Gas lasers
     require("prototypes.fluids.gases.neon"),
+    -- Uranium hexafluoride
+    require("prototypes.fluids.hydrofluoric-acid"),
+    require("prototypes.fluids.gases.uranium-hexafluoride"),
 })
 
 -- Space Age only fluids

@@ -100,6 +100,7 @@ local lava_flying_robot_frame = require("prototypes.technologies.lava-flying-rob
 
 -- Lava Centrifuge technologies
 local lava_centrifuge_techs = require("prototypes.technologies.lava-centrifuge")
+local uranium_hexafluoride_tech = require("prototypes.technologies.uranium-hexafluoride")
 
 -- Bio Garden technology
 local bio_garden_tech = require("prototypes.technologies.bio-garden")
@@ -228,6 +229,7 @@ data:extend({
     bio_plastics_tech,
     lava_centrifuge_techs[1],
     lava_centrifuge_techs[2],
+    uranium_hexafluoride_tech,
     xp_lab,
     military_science_pack_2,
     circuit_science_pack_tech,

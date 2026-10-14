@@ -228,6 +228,12 @@ local lava_purification_chlorinated = require("prototypes.recipes.centrifuge.lav
 local rare_mineral_extraction = require("prototypes.recipes.centrifuge.rare-mineral-extraction")
 local concentrated_ore_extraction = require("prototypes.recipes.centrifuge.concentrated-ore-extraction")
 
+-- Uranium hexafluoride: fluoride from volcanic gas, and uranium enriched
+-- as a gas
+local fluoride_scrubbing = require("prototypes.recipes.uranium-hexafluoride.fluoride-scrubbing")
+local uranium_fluorination = require("prototypes.recipes.uranium-hexafluoride.uranium-fluorination")
+local uranium_hexafluoride_centrifuging = require("prototypes.recipes.uranium-hexafluoride.uranium-hexafluoride-centrifuging")
+
 -- Module recipes
 local lava_efficiency_module = require("prototypes.recipes.modules.efficiency-module")
 local lava_efficiency_module_2 = require("prototypes.recipes.modules.efficiency-module-2")
@@ -458,6 +464,10 @@ data:extend({
     lava_purification_chlorinated,
     rare_mineral_extraction[1],
     concentrated_ore_extraction,
+    -- Uranium hexafluoride recipes
+    fluoride_scrubbing,
+    uranium_fluorination,
+    uranium_hexafluoride_centrifuging,
     -- Modified base recipes (Nauvis only)
     sulfur_lava,
     -- Vulcanus-specific recipes
