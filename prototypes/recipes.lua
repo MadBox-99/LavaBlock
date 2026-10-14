@@ -149,6 +149,11 @@ local ferric_chloride = require("prototypes.recipes.chlor-alkali.ferric-chloride
 local advanced_circuit_etched = require("prototypes.recipes.chlor-alkali.advanced-circuit-etched")
 local magnetite_precipitation = require("prototypes.recipes.chlor-alkali.magnetite-precipitation")
 
+-- The glass line: soda-lime glass, melted and poured
+local glass_melting = require("prototypes.recipes.glass.glass-melting")
+local glass_casting = require("prototypes.recipes.glass.glass-casting")
+local glazed_panel_from_molten_glass = require("prototypes.recipes.glass.glazed-panel-from-molten-glass")
+
 -- Gas combiner recipes
 local gas_combiner = require("prototypes.recipes.gas-combiner")
 local air_filter = require("prototypes.recipes.air-filter")
@@ -356,6 +361,10 @@ data:extend({
     ferric_chloride,
     advanced_circuit_etched,
     magnetite_precipitation,
+    -- Glass recipes
+    glass_melting,
+    glass_casting,
+    glazed_panel_from_molten_glass,
     -- Gas combiner recipes
     gas_combiner,
     air_filter,

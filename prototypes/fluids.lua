@@ -29,6 +29,8 @@ data:extend({
     require("prototypes.fluids.sodium-hydroxide"),
     require("prototypes.fluids.hydrochloric-acid"),
     require("prototypes.fluids.ferric-chloride"),
+    -- The glass line
+    require("prototypes.fluids.molten-glass"),
 })
 
 -- Space Age only fluids
