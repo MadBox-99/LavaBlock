@@ -201,6 +201,12 @@ local wash_distillation = require("prototypes.recipes.ethanol.wash-distillation"
 local ethanol_synthesis = require("prototypes.recipes.ethanol.ethanol-synthesis")
 local ethanol_rocket_fuel = require("prototypes.recipes.ethanol.ethanol-rocket-fuel")
 
+-- Biogas: methane from biomass, reformed, and built back up into light oil
+local straw_digesting = require("prototypes.recipes.biogas.straw-digesting")
+local algae_digesting = require("prototypes.recipes.biogas.algae-digesting")
+local methane_reforming = require("prototypes.recipes.biogas.methane-reforming")
+local light_oil_synthesis = require("prototypes.recipes.biogas.light-oil-synthesis")
+
 -- Lava Centrifuge recipes
 local lava_centrifuge = require("prototypes.recipes.lava-centrifuge")
 local lava_purification = require("prototypes.recipes.centrifuge.lava-purification")
@@ -417,6 +423,11 @@ data:extend({
     wash_distillation,
     ethanol_synthesis,
     ethanol_rocket_fuel,
+    -- Biogas recipes
+    straw_digesting,
+    algae_digesting,
+    methane_reforming,
+    light_oil_synthesis,
     -- Lava Centrifuge recipes
     lava_centrifuge,
     lava_purification,

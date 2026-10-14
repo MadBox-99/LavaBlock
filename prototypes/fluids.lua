@@ -36,6 +36,9 @@ data:extend({
     require("prototypes.fluids.molten-steel"),
     -- Silicon refining
     require("prototypes.fluids.molten-silicon"),
+    -- Biogas
+    require("prototypes.fluids.gases.methane"),
+    require("prototypes.fluids.gases.carbon-monoxide"),
 })
 
 -- Space Age only fluids
