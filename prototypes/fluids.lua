@@ -31,6 +31,7 @@ data:extend({
     require("prototypes.fluids.ferric-chloride"),
     -- The glass line
     require("prototypes.fluids.molten-glass"),
+    require("prototypes.fluids.molten-tin"),
 })
 
 -- Space Age only fluids

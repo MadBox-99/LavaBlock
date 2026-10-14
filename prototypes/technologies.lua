@@ -111,6 +111,7 @@ local oxygen_processing_tech = require("prototypes.technologies.oxygen-processin
 local volcanic_gas_processing_tech = require("prototypes.technologies.volcanic-gas-processing")
 local chlor_alkali_process_tech = require("prototypes.technologies.chlor-alkali-process")
 local glass_melting_tech = require("prototypes.technologies.glass-melting")
+local float_glass_tech = require("prototypes.technologies.float-glass")
 
 -- Blue algae: needs the air chain, so it follows the compressor line
 local nitrogen_fixation_tech = require("prototypes.technologies.nitrogen-fixation")
@@ -203,6 +204,7 @@ data:extend({
     volcanic_gas_processing_tech,
     chlor_alkali_process_tech,
     glass_melting_tech,
+    float_glass_tech,
     nitrogen_fixation_tech,
     water_condenser_tech,
     quench_pit_tech,

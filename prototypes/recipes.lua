@@ -153,6 +153,9 @@ local magnetite_precipitation = require("prototypes.recipes.chlor-alkali.magneti
 local glass_melting = require("prototypes.recipes.glass.glass-melting")
 local glass_casting = require("prototypes.recipes.glass.glass-casting")
 local glazed_panel_from_molten_glass = require("prototypes.recipes.glass.glazed-panel-from-molten-glass")
+local cassiterite_melting = require("prototypes.recipes.glass.cassiterite-melting")
+local tin_casting = require("prototypes.recipes.glass.tin-casting")
+local float_glass = require("prototypes.recipes.glass.float-glass")
 
 -- Gas combiner recipes
 local gas_combiner = require("prototypes.recipes.gas-combiner")
@@ -365,6 +368,9 @@ data:extend({
     glass_melting,
     glass_casting,
     glazed_panel_from_molten_glass,
+    cassiterite_melting,
+    tin_casting,
+    float_glass,
     -- Gas combiner recipes
     gas_combiner,
     air_filter,
