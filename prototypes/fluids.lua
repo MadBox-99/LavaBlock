@@ -39,6 +39,9 @@ data:extend({
     -- Biogas
     require("prototypes.fluids.gases.methane"),
     require("prototypes.fluids.gases.carbon-monoxide"),
+    -- Nitric acid
+    require("prototypes.fluids.gases.nitrogen"),
+    require("prototypes.fluids.nitric-acid"),
 })
 
 -- Space Age only fluids

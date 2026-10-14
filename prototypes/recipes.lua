@@ -166,6 +166,11 @@ local steel_casting = require("prototypes.recipes.steel.steel-casting")
 local silica_reduction = require("prototypes.recipes.silicon.silica-reduction")
 local silicon_wafer_pulling = require("prototypes.recipes.silicon.silicon-wafer-pulling")
 
+-- Nitric acid: nitrogen out of air, burnt in an arc, and what it nitrates
+local nitrogen_adsorption = require("prototypes.recipes.nitric-acid.nitrogen-adsorption")
+local nitric_acid = require("prototypes.recipes.nitric-acid.nitric-acid")
+local explosives_nitrated = require("prototypes.recipes.nitric-acid.explosives-nitrated")
+
 -- Gas combiner recipes
 local gas_combiner = require("prototypes.recipes.gas-combiner")
 local air_filter = require("prototypes.recipes.air-filter")
@@ -393,6 +398,10 @@ data:extend({
     -- Silicon recipes
     silica_reduction,
     silicon_wafer_pulling,
+    -- Nitric acid recipes
+    nitrogen_adsorption,
+    nitric_acid,
+    explosives_nitrated,
     -- Gas combiner recipes
     gas_combiner,
     air_filter,
