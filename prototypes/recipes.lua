@@ -110,6 +110,10 @@ local lithography_machine = require("prototypes.recipes.lithography.lithography-
 local microchip = require("prototypes.recipes.lithography.microchip")
 local microchip_processing_unit = require("prototypes.recipes.lithography.microchip-processing-unit")
 
+-- Gas lasers: neon out of air, and a laser source that lases in it
+local neon_extraction = require("prototypes.recipes.gas-lasers.neon-extraction")
+local laser_source_neon = require("prototypes.recipes.gas-lasers.laser-source-neon")
+
 -- The magnetics line: the coil winder, coils, magnets, ferrofluid and the
 -- transformer
 local coil_winder = require("prototypes.recipes.coil-winder")
@@ -355,6 +359,8 @@ data:extend({
     lithography_machine,
     microchip,
     microchip_processing_unit,
+    neon_extraction,
+    laser_source_neon,
     -- Magnetics recipes
     coil_winder,
     magnetic_coil,

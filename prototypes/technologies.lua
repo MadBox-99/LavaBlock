@@ -132,6 +132,7 @@ local magnetite_growing_tech = require("prototypes.technologies.magnetite-growin
 local crystal_circuit_board_tech = require("prototypes.technologies.crystal-circuit-board")
 local laser_cutting_tech = require("prototypes.technologies.laser-cutting")
 local euv_lithography_tech = require("prototypes.technologies.euv-lithography")
+local gas_lasers_tech = require("prototypes.technologies.gas-lasers")
 local microchip_modules_tech = require("prototypes.technologies.microchip-modules")
 local magma_power_tech = require("prototypes.technologies.magma-power")
 local ferromagnetism_tech = require("prototypes.technologies.ferromagnetism")
@@ -198,6 +199,7 @@ data:extend({
     crystal_circuit_board_tech,
     laser_cutting_tech,
     euv_lithography_tech,
+    gas_lasers_tech,
     microchip_modules_tech,
     magma_power_tech,
     ferromagnetism_tech,
