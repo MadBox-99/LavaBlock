@@ -149,6 +149,7 @@ local synthetic_ethanol_tech = require("prototypes.technologies.synthetic-ethano
 local ethanol_rocket_fuel_tech = require("prototypes.technologies.ethanol-rocket-fuel")
 local biogas_tech = require("prototypes.technologies.biogas")
 local diamond_synthesis_tech = require("prototypes.technologies.diamond-synthesis")
+local bio_plastics_tech = require("prototypes.technologies.bio-plastics")
 
 -- XP Lab technology
 local xp_lab = require("prototypes.technologies.xp-lab")
@@ -222,6 +223,7 @@ data:extend({
     ethanol_rocket_fuel_tech,
     biogas_tech,
     diamond_synthesis_tech,
+    bio_plastics_tech,
     lava_centrifuge_techs[1],
     lava_centrifuge_techs[2],
     xp_lab,

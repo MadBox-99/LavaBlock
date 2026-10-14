@@ -42,6 +42,8 @@ data:extend({
     -- Nitric acid
     require("prototypes.fluids.gases.nitrogen"),
     require("prototypes.fluids.nitric-acid"),
+    -- Bio-plastics
+    require("prototypes.fluids.gases.ethylene"),
 })
 
 -- Space Age only fluids
