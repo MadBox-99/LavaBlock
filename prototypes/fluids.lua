@@ -18,6 +18,11 @@ data:extend({
     require("prototypes.fluids.molten-salt-hot"),
     -- The magnetics line
     require("prototypes.fluids.ferrofluid"),
+    -- The volcanic gas line
+    require("prototypes.fluids.gases.volcanic-gas"),
+    require("prototypes.fluids.gases.sulfur-dioxide"),
+    require("prototypes.fluids.gases.hydrogen-sulfide"),
+    require("prototypes.fluids.molten-sulfur"),
 })
 
 -- Space Age only fluids

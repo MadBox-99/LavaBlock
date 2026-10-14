@@ -107,6 +107,9 @@ local bio_garden_tech = require("prototypes.technologies.bio-garden")
 -- Oxygen technology
 local oxygen_processing_tech = require("prototypes.technologies.oxygen-processing")
 
+-- The fluid lines: volcanic gas
+local volcanic_gas_processing_tech = require("prototypes.technologies.volcanic-gas-processing")
+
 -- Blue algae: needs the air chain, so it follows the compressor line
 local nitrogen_fixation_tech = require("prototypes.technologies.nitrogen-fixation")
 
@@ -195,6 +198,7 @@ data:extend({
     algae_cultivation_tech,
     bio_garden_tech,
     oxygen_processing_tech,
+    volcanic_gas_processing_tech,
     nitrogen_fixation_tech,
     water_condenser_tech,
     quench_pit_tech,

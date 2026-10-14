@@ -133,6 +133,14 @@ local lime_slaking = require("prototypes.recipes.lime.lime-slaking")
 local lime_mortar = require("prototypes.recipes.lime.lime-mortar")
 local lime_concrete = require("prototypes.recipes.lime.lime-concrete")
 
+-- The volcanic gas line: sulfur and sulfuric acid without oil
+local lava_degassing = require("prototypes.recipes.volcanic-gas.lava-degassing")
+local volcanic_gas_fractionation = require("prototypes.recipes.volcanic-gas.volcanic-gas-fractionation")
+local sulfur_recovering = require("prototypes.recipes.volcanic-gas.sulfur-recovering")
+local sulfur_prilling = require("prototypes.recipes.volcanic-gas.sulfur-prilling")
+local sulfuric_acid_from_sulfur_dioxide = require("prototypes.recipes.volcanic-gas.sulfuric-acid-from-sulfur-dioxide")
+local sulfur_concrete = require("prototypes.recipes.volcanic-gas.sulfur-concrete")
+
 -- Gas combiner recipes
 local gas_combiner = require("prototypes.recipes.gas-combiner")
 local air_filter = require("prototypes.recipes.air-filter")
@@ -326,6 +334,13 @@ data:extend({
     lime_slaking,
     lime_mortar,
     lime_concrete,
+    -- Volcanic gas recipes
+    lava_degassing,
+    volcanic_gas_fractionation,
+    sulfur_recovering,
+    sulfur_prilling,
+    sulfuric_acid_from_sulfur_dioxide,
+    sulfur_concrete,
     -- Gas combiner recipes
     gas_combiner,
     air_filter,

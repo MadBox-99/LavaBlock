@@ -11,6 +11,9 @@ Date: ????
     - Added the Coil Winder, a vertical winding machine three tiles square with its own model: a copper coil turning on a turntable, a guide carriage riding up and down the column beside it to lay the wire on, and a payoff spool feeding it. It draws 200 kW and is the only machine that makes magnetic coils, from an iron plate and eight copper cables
     - Ferrite magnets are pressed from two magnetite and a limestone, two at a time, in an assembling machine. Ferrofluid is magnetite stirred into lubricant in a chemical plant, 50 from one magnetite and 50 lubricant. A transformer is two magnetic coils and five steel plates in 50 lubricant
     - All of it is the Ferromagnetism technology, on chemical science, after Magnetite growing and Lubricant
+    - Volcanic gas, drawn off standing lava in a chemical plant - 50 from 500 lava every 5 seconds. The oil refinery splits 100 of it into 15 sulfur dioxide, 15 hydrogen sulfide and 70 steam at 165 degrees, so two degassing plants feed one refinery
+    - The Claus process burns 20 hydrogen sulfide against 10 sulfur dioxide into 30 molten sulfur and 20 water. Ten molten sulfur prill into a sulfur in an assembling machine, and 20 bind 5 basalt gravel into 10 concrete with no water. The sulfur dioxide the Claus process cannot take - half of it - oxidises with oxygen into sulfuric acid, ten for ten
+    - All of it is the Volcanic Gas Processing technology, on chemical science, after Oxygen processing, Concrete and Stone crushing: sulfur and sulfuric acid with no oil behind them, at about seven building-seconds a sulfur against sixteen for sulfur from lava and petroleum gas
   Changes:
     - Locomotives, cargo wagons, fluid wagons and artillery wagons are built only in the Train Factory. Their ingredients are unchanged; an assembling machine no longer takes them
     - Electric engine units are built from a ferrite magnet, two magnetic coils, a steel plate and two electronic circuits, in place of an engine unit and lubricant, and no longer need a fluid input. Electric engine comes after Ferromagnetism
@@ -18,7 +21,7 @@ Date: ????
     - The steam turbine takes ten magnetic coils and five ferrite magnets in place of its 50 copper plates. Nuclear power and Heating tower come after Ferromagnetism
     - The Lithography Machine takes 100 ferrofluid and the Lava Centrifuge 50, for the seals on their shafts, so both are built in an assembling machine with a fluid input. EUV Lithography and Lava Centrifuge come after Ferromagnetism
     - A save that has already researched any of these needs Ferromagnetism before it can build them again
-    - Needs LavaBlock-graphics 0.2.6, which carries the lithography machine, the train factory, the coil winder and the new item icons
+    - Needs LavaBlock-graphics 0.2.6, which carries the lithography machine, the train factory, the coil winder, the new item icons and the new fluid icons
   Bugfixes:
     - Recycling a speed or efficiency module of any tier gave back no advanced circuits: the lava module recipes had replaced the vanilla ones as the source of the recycling recipe. They now recycle the way vanilla modules do
 ---------------------------------------------------------------------------------------------------
