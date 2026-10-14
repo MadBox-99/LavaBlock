@@ -23,6 +23,12 @@ data:extend({
     require("prototypes.fluids.gases.sulfur-dioxide"),
     require("prototypes.fluids.gases.hydrogen-sulfide"),
     require("prototypes.fluids.molten-sulfur"),
+    -- The chlor-alkali line
+    require("prototypes.fluids.brine"),
+    require("prototypes.fluids.gases.hydrogen"),
+    require("prototypes.fluids.sodium-hydroxide"),
+    require("prototypes.fluids.hydrochloric-acid"),
+    require("prototypes.fluids.ferric-chloride"),
 })
 
 -- Space Age only fluids

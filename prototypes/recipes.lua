@@ -141,6 +141,14 @@ local sulfur_prilling = require("prototypes.recipes.volcanic-gas.sulfur-prilling
 local sulfuric_acid_from_sulfur_dioxide = require("prototypes.recipes.volcanic-gas.sulfuric-acid-from-sulfur-dioxide")
 local sulfur_concrete = require("prototypes.recipes.volcanic-gas.sulfur-concrete")
 
+-- The chlor-alkali line: brine, the cell, and the chlorides
+local brine_leaching = require("prototypes.recipes.chlor-alkali.brine-leaching")
+local brine_electrolysis = require("prototypes.recipes.chlor-alkali.brine-electrolysis")
+local hydrochloric_acid = require("prototypes.recipes.chlor-alkali.hydrochloric-acid")
+local ferric_chloride = require("prototypes.recipes.chlor-alkali.ferric-chloride")
+local advanced_circuit_etched = require("prototypes.recipes.chlor-alkali.advanced-circuit-etched")
+local magnetite_precipitation = require("prototypes.recipes.chlor-alkali.magnetite-precipitation")
+
 -- Gas combiner recipes
 local gas_combiner = require("prototypes.recipes.gas-combiner")
 local air_filter = require("prototypes.recipes.air-filter")
@@ -341,6 +349,13 @@ data:extend({
     sulfur_prilling,
     sulfuric_acid_from_sulfur_dioxide,
     sulfur_concrete,
+    -- Chlor-alkali recipes
+    brine_leaching,
+    brine_electrolysis,
+    hydrochloric_acid,
+    ferric_chloride,
+    advanced_circuit_etched,
+    magnetite_precipitation,
     -- Gas combiner recipes
     gas_combiner,
     air_filter,
