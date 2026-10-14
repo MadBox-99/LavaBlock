@@ -86,6 +86,7 @@ local lava_slag_skimming = require("prototypes.recipes.slag.lava-slag-skimming")
 local crystal_growing = require("prototypes.recipes.crystallizer.crystal-growing")
 local magnetite_growing = require("prototypes.recipes.crystallizer.magnetite-growing")
 local cassiterite_growing = require("prototypes.recipes.crystallizer.cassiterite-growing")
+local diamond_depositing = require("prototypes.recipes.crystallizer.diamond-depositing")
 local pyrite_crushing = require("prototypes.recipes.crusher.crystal-crushing.pyrite-crushing")
 local olivine_crushing = require("prototypes.recipes.crusher.crystal-crushing.olivine-crushing")
 local ruby_crushing = require("prototypes.recipes.crusher.crystal-crushing.ruby-crushing")
@@ -324,6 +325,7 @@ data:extend({
     crystal_growing,
     magnetite_growing,
     cassiterite_growing,
+    diamond_depositing,
     pyrite_crushing,
     olivine_crushing,
     ruby_crushing,
