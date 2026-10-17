@@ -533,6 +533,10 @@ data:extend({
     require("prototypes.recipes.rare-earths.monazite-cracking"),
     require("prototypes.recipes.alloy-steels.nickel-casting"),
     require("prototypes.recipes.rare-earths.neodymium-magnet"),
+    -- Superalloys: cobalt out of pentlandite, and the nickel superalloy
+    require("prototypes.recipes.superalloys.pentlandite-leaching"),
+    require("prototypes.recipes.superalloys.molten-superalloy"),
+    require("prototypes.recipes.superalloys.superalloy-casting"),
 })
 
 -- Space Age only: Tungsten processing recipes
@@ -566,3 +570,4 @@ require("prototypes.recipes.express-transport-belt")
 require("prototypes.recipes.low-density-structure")
 require("prototypes.recipes.exoskeleton-equipment")
 require("prototypes.recipes.power-armor-mk2")
+require("prototypes.recipes.thruster")

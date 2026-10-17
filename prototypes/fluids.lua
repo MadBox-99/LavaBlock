@@ -70,6 +70,7 @@ data:extend({
     require("prototypes.fluids.molten-titanium"),
     require("prototypes.fluids.molten-vanadium"),
     require("prototypes.fluids.molten-titanium-alloy"),
+    require("prototypes.fluids.molten-superalloy"),
 })
 
 -- Space Age only fluids
