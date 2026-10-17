@@ -921,13 +921,17 @@ def plate_pile(m, metal, text, stamp='stamp'):
 
 
 def galena(m):
-    """Lead sulfide: grey metal cubes with their corners cut off.
+    """Lead sulfide: grey metal cubes grown into one another in steps.
 
-    Galena grows as cubes, like pyrite - so it is given the corners its
-    other habit puts on them, which is what keeps the two cube crystals
-    apart in silhouette as well as in colour.
+    Galena grows as cubes, like pyrite, and the two are kept apart by how
+    the cubes lie. Pyrite's are tumbled every way; galena's all share one
+    orientation, as a galena specimen's do, so they stack into a staircase.
+    The first cut gave every cube a third of its edge in corner facets, and
+    at 64 px that rounded each cube into a grey lump.
     """
-    def cubocta(s, cut):
+    def cube(s, cut):
+        # A cube whose corners are barely cut: enough facet to catch a glint
+        # on each corner, too little to round it.
         pts = []
         for sx in (-1, 1):
             for sy in (-1, 1):
@@ -936,35 +940,51 @@ def galena(m):
                             (sx * s, sy * (s - cut), sz * s),
                             (sx * (s - cut), sy * s, sz * s)]
         return pts
+    a = 0.40                                  # the one orientation they share
     out = []
-    for s, loc, rot in ((0.25, (0.00, 0.00, 0.25), (0.10, 0.05, 0.35)),
-                        (0.18, (0.32, 0.16, 0.18), (0.30, 0.20, 0.90)),
-                        (0.15, (-0.30, 0.20, 0.15), (0.20, 0.45, -0.30)),
-                        (0.11, (0.10, -0.30, 0.11), (0.50, 0.10, 0.20))):
-        out.append(hull(cubocta(s, s * 0.32), m['galena'], loc=loc, rot=rot))
+    for s, x, y, z in ((0.26, 0.00, 0.00, 0.26),
+                       (0.19, 0.30, -0.14, 0.19),
+                       (0.17, -0.12, 0.32, 0.17),
+                       (0.12, 0.10, 0.12, 0.56),
+                       (0.10, -0.34, -0.14, 0.10),
+                       (0.08, 0.36, 0.06, 0.44)):
+        loc = (x * math.cos(a) - y * math.sin(a),
+               x * math.sin(a) + y * math.cos(a), z)
+        out.append(hull(cube(s, s * 0.07), m['galena'], loc=loc,
+                        rot=(0, 0, a)))
     return out
 
 
 def sphalerite(m):
-    """Zinc sulfide in its tetrahedral habit, resin-brown and glassy - the
-    colour miners called blackjack. The only three-cornered crystal in the
-    mod."""
-    def tetra(r, cut=0.30):
-        # Corners cut back, as sphalerite's are: a sharp tetrahedron at this
-        # size is a caltrop, and three of them a pile of spikes.
-        c = [(r, r, r), (r, -r, -r), (-r, r, -r), (-r, -r, r)]
-        pts = []
-        for i, a in enumerate(c):
-            for j, b in enumerate(c):
-                if i != j:
-                    pts.append(tuple(a[k] + (b[k] - a[k]) * cut
-                                     for k in range(3)))
-        return pts
+    """Zinc sulfide in its tetrahedral habit, red-brown and glassy - the
+    colour miners called ruby jack. The only three-cornered crystal in the
+    mod.
+
+    Each tetrahedron stands on a face with a corner up, so that it reads as
+    three-cornered. The first cut tumbled them at random and cut their
+    corners back by three tenths, and that shape read as a brown lump.
+    """
+    # Turns a tetrahedron's (1, 1, 1) corner straight up, which puts the
+    # face opposite it flat on the ground.
+    up = Vector((1, 1, 1)).rotation_difference(Vector((0, 0, 1)))
+
+    def tetra(r, cut=0.15):
+        # Corners cut back a little, as sphalerite's are: a sharp
+        # tetrahedron at this size is a caltrop.
+        c = [Vector((r, r, r)), Vector((r, -r, -r)), Vector((-r, r, -r)),
+             Vector((-r, -r, r))]
+        return [tuple(up @ (a + (b - a) * cut))
+                for i, a in enumerate(c) for j, b in enumerate(c) if i != j]
     out = []
-    for r, loc, rot in ((0.30, (0.00, 0.00, 0.22), (0.62, 0.20, 0.30)),
-                        (0.21, (0.36, 0.14, 0.15), (0.55, 0.15, 1.10)),
-                        (0.17, (-0.32, 0.20, 0.12), (0.70, 0.40, -0.40))):
-        out.append(hull(tetra(r), m['sphalerite'], loc=loc, rot=rot))
+    # Each one is lifted by its own inradius, r / sqrt(3), so its base face
+    # is on the ground. Without that sit_on_ground() drops the largest onto
+    # the ground and leaves the small ones hanging in the air.
+    for r, x, y, rot in ((0.30, 0.00, 0.00, (0.10, -0.06, 0.20)),
+                         (0.21, 0.40, 0.10, (0.30, -0.14, 1.10)),
+                         (0.18, -0.30, 0.26, (-0.24, 0.26, 2.00)),
+                         (0.12, 0.18, -0.36, (0.32, 0.22, 0.60))):
+        out.append(hull(tetra(r), m['sphalerite'],
+                        loc=(x, y, r / math.sqrt(3) - 0.02), rot=rot))
     return out
 
 
@@ -977,13 +997,16 @@ def zinc_plate(m):
 
 
 def sulfide_ores(m):
-    """The technology: galena and sphalerite grown together, as they are
-    found together."""
-    out = galena(m)
-    for o in sphalerite(m):
-        o.location.x += 0.80
-        o.location.y -= 0.10
-        out.append(o)
+    """The technology: galena and sphalerite at the back, and in front the
+    lead and zinc the arc furnace makes of them, as the light metals' and
+    precious metals' icons show their metals."""
+    out = []
+    for fn, dx, dy in ((galena, -0.48, 0.42), (sphalerite, 0.52, 0.40),
+                       (lead_plate, -0.46, -0.42), (zinc_plate, 0.52, -0.46)):
+        for o in fn(m):
+            o.location.x += dx
+            o.location.y += dy
+            out.append(o)
     return out
 
 
@@ -1506,14 +1529,17 @@ def build():
     m['lead'] = mat("lead", (0.062, 0.066, 0.080), 0.50, 1.0)
     # Zinc: lighter and colder than tin, with a blue cast.
     m['zinc'] = mat("zinc", (0.190, 0.215, 0.250), 0.30, 1.0)
-    # Galena: lead-grey and brightly metallic on fresh faces.
-    m['galena'] = mat("galena", (0.120, 0.128, 0.150), 0.24, 1.0)
-    # Sphalerite: dark resin-brown, glassy. Low specular and opaque for the
+    # Galena: lead-grey and brightly metallic on fresh faces, but a little
+    # short of a mirror, so a face turned from the sun stays grey and does
+    # not read as a hole in the cube.
+    m['galena'] = mat("galena", (0.140, 0.148, 0.170), 0.28, 1.0)
+    # Sphalerite: red-brown, glassy. Opaque and low in specular for the
     # ruby's reason: a clear brown crystal mirrors the white floor and comes
-    # back pale.
-    m['sphalerite'] = gem("sphalerite", (0.060, 0.018, 0.003), 0.30, 0.0,
-                          2.37, emit=(0.60, 0.16, 0.02), emit_str=0.05,
-                          coat=0.0, specular=0.06)
+    # back pale. A honey-yellow sphalerite was tried too; it sat too close
+    # to pyrite's brass and monazite's ochre.
+    m['sphalerite'] = gem("sphalerite", (0.070, 0.015, 0.002), 0.10, 0.0,
+                          2.37, emit=(0.80, 0.14, 0.01), emit_str=0.08,
+                          coat=0.0, specular=0.08)
     # Pentlandite: bronze-yellow, duller and browner than pyrite's brass.
     m['pentlandite'] = mat("pentlandite", (0.190, 0.130, 0.055), 0.45, 1.0,
                            wear=0.40)
