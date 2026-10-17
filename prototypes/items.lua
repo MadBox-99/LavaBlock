@@ -86,6 +86,9 @@ data:extend({
     require("prototypes.items.alloys.stainless-steel-plate"),
     require("prototypes.items.alloys.manganese-steel-plate"),
     require("prototypes.items.alloys.nichrome-wire"),
+    require("prototypes.items.alloys.brass-plate"),
+    require("prototypes.items.alloys.bronze-plate"),
+    require("prototypes.items.alloys.solder"),
     lava_mech_armor,
     -- Bio garden harvest
     algae[1],

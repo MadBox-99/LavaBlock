@@ -501,6 +501,13 @@ data:extend({
     require("prototypes.recipes.alloy-steels.manganese-steel-casting"),
     require("prototypes.recipes.alloy-steels.molten-nichrome"),
     require("prototypes.recipes.alloy-steels.nichrome-wire"),
+    -- Copper alloys: brass, bronze, and solder of tin and lead
+    require("prototypes.recipes.copper-alloys.molten-brass"),
+    require("prototypes.recipes.copper-alloys.brass-casting"),
+    require("prototypes.recipes.copper-alloys.molten-bronze"),
+    require("prototypes.recipes.copper-alloys.bronze-casting"),
+    require("prototypes.recipes.copper-alloys.molten-solder"),
+    require("prototypes.recipes.copper-alloys.solder"),
 })
 
 -- Space Age only: Tungsten processing recipes
@@ -528,3 +535,6 @@ require("prototypes.recipes.heat-exchanger")
 require("prototypes.recipes.nuclear-reactor")
 require("prototypes.recipes.electric-furnace")
 require("prototypes.recipes.tank")
+require("prototypes.recipes.processing-unit")
+require("prototypes.recipes.cannon-shell")
+require("prototypes.recipes.express-transport-belt")

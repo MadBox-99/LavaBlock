@@ -59,6 +59,9 @@ data:extend({
     require("prototypes.fluids.molten-stainless-steel"),
     require("prototypes.fluids.molten-manganese-steel"),
     require("prototypes.fluids.molten-nichrome"),
+    require("prototypes.fluids.molten-brass"),
+    require("prototypes.fluids.molten-bronze"),
+    require("prototypes.fluids.molten-solder"),
 })
 
 -- Space Age only fluids

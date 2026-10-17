@@ -35,6 +35,7 @@ Date: ????
     - Lead and zinc. The crystal hearth grows 3 galena from 5 slag and 2 sulfur, and 3 sphalerite from 5 slag, a sulfur and 50 steam, every 10 seconds. The arc furnace smelts 4 of either with a coal into 40 molten lead or molten zinc. All of it is the Sulfide Ores technology, on red and green science, after Crystal growing and Electric arc smelting
     - Nickel, chromium and manganese. The crystal hearth grows 3 pentlandite from 5 slag, a sulfur and 50 molten iron, and 3 chromite from 5 slag and 20 oxygen. The arc furnace smelts 6 pentlandite with 40 oxygen into 30 molten nickel and 30 sulfur dioxide, 4 chromite with a coal into 20 molten chromium and an iron plate, and 5 slag with a coal into 10 molten manganese
     - Stainless steel: 7 steel plates, 20 molten chromium and 10 molten nickel make 100 molten stainless steel, ten plates. Manganese steel: 9 steel and a manganese plate make 100, ten plates. Nichrome: 40 molten nickel and 10 molten chromium make 50, five coils of wire. All of it is the Alloy Steels technology, on chemical science, after Electric arc smelting, Crystal growing, Advanced lava smelting and Oxygen processing
+    - Brass: 70 molten copper and 3 zinc plates make 100 molten brass. Bronze: 90 molten copper and a tin plate make 100. Solder: 20 molten lead and 3 tin plates make 50, five bars. All of it is the Brass, Bronze and Solder technology, on chemical science, after Electric arc smelting, Sulfide ores, the Chlor-alkali process and Advanced lava smelting, and it unlocks cassiterite and tin as well, so tin no longer waits for EUV lithography
   Changes:
     - Locomotives, cargo wagons, fluid wagons and artillery wagons are built only in the Train Factory. Their ingredients are unchanged; an assembling machine no longer takes them
     - Electric engine units are built from a ferrite magnet, two magnetic coils, a steel plate and two electronic circuits, in place of an engine unit and lubricant, and no longer need a fluid input. Electric engine comes after Ferromagnetism
@@ -45,6 +46,9 @@ Date: ????
     - The battery is a lead-acid battery: a lead plate in place of the copper plate, with the iron plate and 20 sulfuric acid as before. Battery comes after Sulfide ores
     - The heat exchanger takes 10 stainless steel plates in place of its 10 steel plates, and the nuclear reactor 500 in place of its 500. Nuclear power and Heating tower come after Alloy steels
     - The electric furnace takes 10 nichrome wire for its heating elements as well, and the tank 50 manganese steel plates in place of its 50 steel plates. Advanced material processing 2 and Tank come after Alloy steels
+    - The processing unit takes a bar of solder, and the two alternative processing unit recipes one for each pair they make. Processing unit comes after Brass, bronze and solder
+    - Cannon shells and explosive cannon shells are cased in 2 brass plates in place of 2 plastic bars. Tank comes after Brass, bronze and solder
+    - Express belts, undergrounds and splitters take half a bronze plate for every iron gear they took: 5 for a belt, 40 for a pair of undergrounds, 5 for a splitter. Logistics 3 comes after Brass, bronze and solder
     - A save that has already researched any of these needs the new technology before it can build them again
     - Needs LavaBlock-graphics 0.2.6, which carries the lithography machine, the train factory, the coil winder, the arc furnace, the new item icons and the new fluid icons
   Bugfixes:
