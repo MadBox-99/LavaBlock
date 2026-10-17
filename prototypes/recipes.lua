@@ -488,6 +488,19 @@ data:extend({
     require("prototypes.recipes.sulfide-ores.sphalerite-smelting"),
     require("prototypes.recipes.sulfide-ores.lead-casting"),
     require("prototypes.recipes.sulfide-ores.zinc-casting"),
+    -- Alloy steels: nickel, chromium and manganese, and the steels made with them
+    require("prototypes.recipes.alloy-steels.pentlandite-growing"),
+    require("prototypes.recipes.alloy-steels.pentlandite-smelting"),
+    require("prototypes.recipes.alloy-steels.chromite-growing"),
+    require("prototypes.recipes.alloy-steels.chromite-smelting"),
+    require("prototypes.recipes.alloy-steels.manganese-smelting"),
+    require("prototypes.recipes.alloy-steels.manganese-casting"),
+    require("prototypes.recipes.alloy-steels.molten-stainless-steel"),
+    require("prototypes.recipes.alloy-steels.stainless-steel-casting"),
+    require("prototypes.recipes.alloy-steels.molten-manganese-steel"),
+    require("prototypes.recipes.alloy-steels.manganese-steel-casting"),
+    require("prototypes.recipes.alloy-steels.molten-nichrome"),
+    require("prototypes.recipes.alloy-steels.nichrome-wire"),
 })
 
 -- Space Age only: Tungsten processing recipes
@@ -511,3 +524,7 @@ require("prototypes.recipes.steam-turbine")
 
 -- Modified base recipes: metals and alloys from the arc furnace lines.
 require("prototypes.recipes.battery")
+require("prototypes.recipes.heat-exchanger")
+require("prototypes.recipes.nuclear-reactor")
+require("prototypes.recipes.electric-furnace")
+require("prototypes.recipes.tank")

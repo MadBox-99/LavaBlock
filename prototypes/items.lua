@@ -80,6 +80,12 @@ data:extend({
     require("prototypes.items.crystals.sphalerite"),
     require("prototypes.items.metals.lead-plate"),
     require("prototypes.items.metals.zinc-plate"),
+    require("prototypes.items.crystals.pentlandite"),
+    require("prototypes.items.crystals.chromite"),
+    require("prototypes.items.metals.manganese-plate"),
+    require("prototypes.items.alloys.stainless-steel-plate"),
+    require("prototypes.items.alloys.manganese-steel-plate"),
+    require("prototypes.items.alloys.nichrome-wire"),
     lava_mech_armor,
     -- Bio garden harvest
     algae[1],

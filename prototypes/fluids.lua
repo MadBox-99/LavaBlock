@@ -53,6 +53,12 @@ data:extend({
     -- alloys made of them
     require("prototypes.fluids.molten-lead"),
     require("prototypes.fluids.molten-zinc"),
+    require("prototypes.fluids.molten-nickel"),
+    require("prototypes.fluids.molten-chromium"),
+    require("prototypes.fluids.molten-manganese"),
+    require("prototypes.fluids.molten-stainless-steel"),
+    require("prototypes.fluids.molten-manganese-steel"),
+    require("prototypes.fluids.molten-nichrome"),
 })
 
 -- Space Age only fluids
