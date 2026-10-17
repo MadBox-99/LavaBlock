@@ -34,8 +34,10 @@ fermentation_tank.allowed_effects = {
 -- No pipe_picture or pipe_covers: the model carries its own ports. See
 -- docs/blender-renders.md for why the two cannot be mixed.
 --
--- Water in on the north face, wash out on the south, both filtered so a
--- misplumbed pipe shows its icon on the connection before it is built.
+-- Water in on the north face, filtered so a misplumbed pipe shows its icon
+-- on the connection before it is built. The output on the south is not:
+-- the tank makes wash by fermenting and methane by digesting, and a box
+-- filtered to one refuses a recipe that makes the other.
 fermentation_tank.fluid_boxes = {
     {
         production_type = "input",
@@ -48,7 +50,6 @@ fermentation_tank.fluid_boxes = {
     },
     {
         production_type = "output",
-        filter = "fermented-wash",
         volume = 1000,
         pipe_connections = {
             { flow_direction = "output", direction = defines.direction.south,

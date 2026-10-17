@@ -474,6 +474,102 @@ data:extend({
     explosives_from_lava,
 })
 
+-- The arc furnace lines. Required inline rather than through locals: a Lua
+-- chunk holds at most 200 locals, and this file had reached it.
+data:extend({
+    -- The arc furnace, and steel melted in it
+    require("prototypes.recipes.arc-furnace"),
+    require("prototypes.recipes.arc-smelting.steel-arc-smelting"),
+    -- Sulfide ores: lead and zinc grown on the crystal hearth, smelted to melt
+    -- and cast
+    require("prototypes.recipes.sulfide-ores.galena-growing"),
+    require("prototypes.recipes.sulfide-ores.sphalerite-growing"),
+    require("prototypes.recipes.sulfide-ores.galena-smelting"),
+    require("prototypes.recipes.sulfide-ores.sphalerite-smelting"),
+    require("prototypes.recipes.sulfide-ores.lead-casting"),
+    require("prototypes.recipes.sulfide-ores.zinc-casting"),
+    -- Alloy steels: nickel, chromium and manganese, and the steels made with them
+    require("prototypes.recipes.alloy-steels.pentlandite-growing"),
+    require("prototypes.recipes.alloy-steels.pentlandite-smelting"),
+    require("prototypes.recipes.alloy-steels.chromite-growing"),
+    require("prototypes.recipes.alloy-steels.chromite-smelting"),
+    require("prototypes.recipes.alloy-steels.manganese-smelting"),
+    require("prototypes.recipes.alloy-steels.manganese-casting"),
+    require("prototypes.recipes.alloy-steels.molten-stainless-steel"),
+    require("prototypes.recipes.alloy-steels.stainless-steel-casting"),
+    require("prototypes.recipes.alloy-steels.molten-manganese-steel"),
+    require("prototypes.recipes.alloy-steels.manganese-steel-casting"),
+    require("prototypes.recipes.alloy-steels.molten-nichrome"),
+    require("prototypes.recipes.alloy-steels.nichrome-wire"),
+    -- Copper alloys: brass, bronze, and solder of tin and lead
+    require("prototypes.recipes.copper-alloys.molten-brass"),
+    require("prototypes.recipes.copper-alloys.brass-casting"),
+    require("prototypes.recipes.copper-alloys.molten-bronze"),
+    require("prototypes.recipes.copper-alloys.bronze-casting"),
+    require("prototypes.recipes.copper-alloys.molten-solder"),
+    require("prototypes.recipes.copper-alloys.solder"),
+    -- Light metals: aluminium and magnesium won by electricity, and duralumin
+    require("prototypes.recipes.light-metals.alumina-leaching"),
+    require("prototypes.recipes.light-metals.aluminium-smelting"),
+    require("prototypes.recipes.light-metals.magnesium-electrolysis"),
+    require("prototypes.recipes.light-metals.magnesium-casting"),
+    require("prototypes.recipes.light-metals.molten-duralumin"),
+    require("prototypes.recipes.light-metals.duralumin-casting"),
+    -- Boron: borax out of brine, and boron out of borax with magnesium
+    require("prototypes.recipes.boron.borax-crystallizing"),
+    require("prototypes.recipes.boron.boron-reduction"),
+    -- Titanium: ilmenite chlorinated, reduced with sodium, and alloyed
+    require("prototypes.recipes.titanium.ilmenite-growing"),
+    require("prototypes.recipes.titanium.ilmenite-chlorination"),
+    require("prototypes.recipes.titanium.sodium-electrolysis"),
+    require("prototypes.recipes.titanium.titanium-reduction"),
+    require("prototypes.recipes.titanium.aluminium-casting"),
+    require("prototypes.recipes.titanium.vanadium-smelting"),
+    require("prototypes.recipes.titanium.vanadium-casting"),
+    require("prototypes.recipes.titanium.molten-titanium-alloy"),
+    require("prototypes.recipes.titanium.titanium-alloy-casting"),
+    -- Rare earths: monazite out of purified lava, cracked in acid, and magnets
+    require("prototypes.recipes.rare-earths.monazite-separating"),
+    require("prototypes.recipes.rare-earths.monazite-cracking"),
+    require("prototypes.recipes.alloy-steels.nickel-casting"),
+    require("prototypes.recipes.rare-earths.neodymium-magnet"),
+    -- Superalloys: cobalt out of pentlandite, and the nickel superalloy
+    require("prototypes.recipes.superalloys.pentlandite-leaching"),
+    require("prototypes.recipes.superalloys.molten-superalloy"),
+    require("prototypes.recipes.superalloys.superalloy-casting"),
+    -- Precious metals: copper refined, and its slime parted with acids
+    require("prototypes.recipes.precious-metals.copper-electrorefining"),
+    require("prototypes.recipes.precious-metals.anode-slime-refining"),
+    -- Ammonia: Haber-Bosch, Ostwald, and nitrous oxide
+    require("prototypes.recipes.ammonia.ammonia-synthesis"),
+    require("prototypes.recipes.ammonia.nitric-acid-from-ammonia"),
+    require("prototypes.recipes.ammonia.nitrous-oxide"),
+    -- Fertiliser: potash out of brine, NPK, and what it grows
+    require("prototypes.recipes.fertilizer.potash-crystallizing"),
+    require("prototypes.recipes.fertilizer.fertilizer"),
+    require("prototypes.recipes.fertilizer.tree-cultivation-fertilized"),
+    require("prototypes.recipes.fertilizer.algae-green-fertilized"),
+    -- Noble gases: krypton and xenon out of liquid air
+    require("prototypes.recipes.noble-gases.rare-gas-fractionation"),
+    -- Gas lasers: radon off uranium ore, helium out of the radon, and the laser's fill
+    require("prototypes.recipes.gas-lasers.radon-emanation"),
+    require("prototypes.recipes.gas-lasers.radon-decaying"),
+    require("prototypes.recipes.gas-lasers.helium-neon"),
+    -- Excimer lasers: fluorine out of hydrofluoric acid, and krypton fluoride
+    require("prototypes.recipes.excimer-lasers.fluorine-electrolysis"),
+    require("prototypes.recipes.excimer-lasers.excimer-gas"),
+    require("prototypes.recipes.excimer-lasers.laser-source-excimer"),
+    -- Ozone: oxygen through a silent discharge
+    require("prototypes.recipes.ozone.oxygen-ozonizing"),
+    -- Gas fractionation: propane and ethane out of petroleum gas, and ethane cracked
+    require("prototypes.recipes.gas-fractionation.petroleum-gas-fractionation"),
+    require("prototypes.recipes.gas-fractionation.ethane-cracking"),
+    -- Calcium carbide: fused in the arc furnace, acetylene from it, and PVC
+    require("prototypes.recipes.calcium-carbide.calcium-carbide"),
+    require("prototypes.recipes.calcium-carbide.acetylene-generation"),
+    require("prototypes.recipes.calcium-carbide.plastic-bar-from-acetylene"),
+})
+
 -- Space Age only: Tungsten processing recipes
 if mods["space-age"] then
     local tungsten_plate_from_lava = require("prototypes.recipes.foundry.tungsten-plate-from-lava")
@@ -492,3 +588,19 @@ require("prototypes.recipes.solar-panel")
 require("prototypes.recipes.electric-engine-unit")
 require("prototypes.recipes.substation")
 require("prototypes.recipes.steam-turbine")
+
+-- Modified base recipes: metals and alloys from the arc furnace lines.
+require("prototypes.recipes.battery")
+require("prototypes.recipes.heat-exchanger")
+require("prototypes.recipes.nuclear-reactor")
+require("prototypes.recipes.electric-furnace")
+require("prototypes.recipes.tank")
+require("prototypes.recipes.processing-unit")
+require("prototypes.recipes.cannon-shell")
+require("prototypes.recipes.express-transport-belt")
+require("prototypes.recipes.low-density-structure")
+require("prototypes.recipes.exoskeleton-equipment")
+require("prototypes.recipes.power-armor-mk2")
+require("prototypes.recipes.thruster")
+require("prototypes.recipes.rocket-fuel")
+require("prototypes.recipes.lubricant")

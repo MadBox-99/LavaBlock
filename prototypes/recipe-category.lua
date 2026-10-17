@@ -127,5 +127,14 @@ data:extend({
         -- cable mod would take first.
         type = "recipe-category",
         name = "coil-winding"
+    },
+    {
+        -- The arc furnace's. Not a bare "smelting" (vanilla's furnaces) and
+        -- not "arc-furnace", which names a building rather than what it
+        -- does: everything here is smelted by electricity - alloys under the
+        -- arcs, and the metals won in molten-salt cells the industry also
+        -- calls smelters.
+        type = "recipe-category",
+        name = "arc-smelting"
     }
 })

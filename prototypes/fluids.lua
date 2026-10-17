@@ -49,6 +49,40 @@ data:extend({
     -- Uranium hexafluoride
     require("prototypes.fluids.hydrofluoric-acid"),
     require("prototypes.fluids.gases.uranium-hexafluoride"),
+    -- The arc furnace's melts: metals as they come off the tap, and the
+    -- alloys made of them
+    require("prototypes.fluids.molten-lead"),
+    require("prototypes.fluids.molten-zinc"),
+    require("prototypes.fluids.molten-nickel"),
+    require("prototypes.fluids.molten-chromium"),
+    require("prototypes.fluids.molten-manganese"),
+    require("prototypes.fluids.molten-stainless-steel"),
+    require("prototypes.fluids.molten-manganese-steel"),
+    require("prototypes.fluids.molten-nichrome"),
+    require("prototypes.fluids.molten-brass"),
+    require("prototypes.fluids.molten-bronze"),
+    require("prototypes.fluids.molten-solder"),
+    require("prototypes.fluids.molten-aluminium"),
+    require("prototypes.fluids.molten-magnesium"),
+    require("prototypes.fluids.molten-duralumin"),
+    require("prototypes.fluids.titanium-tetrachloride"),
+    require("prototypes.fluids.molten-sodium"),
+    require("prototypes.fluids.molten-titanium"),
+    require("prototypes.fluids.molten-vanadium"),
+    require("prototypes.fluids.molten-titanium-alloy"),
+    require("prototypes.fluids.molten-superalloy"),
+    -- The gases of the arc furnace era
+    require("prototypes.fluids.gases.nitrous-oxide"),
+    require("prototypes.fluids.gases.krypton"),
+    require("prototypes.fluids.gases.xenon"),
+    require("prototypes.fluids.gases.radon"),
+    require("prototypes.fluids.gases.helium"),
+    require("prototypes.fluids.gases.helium-neon"),
+    require("prototypes.fluids.gases.excimer-gas"),
+    require("prototypes.fluids.gases.ozone"),
+    require("prototypes.fluids.gases.propane"),
+    require("prototypes.fluids.gases.ethane"),
+    require("prototypes.fluids.gases.acetylene"),
 })
 
 -- Space Age only fluids

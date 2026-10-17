@@ -24,7 +24,8 @@ return {
     },
     prerequisites = {
         "laser-cutting", "magnetite-growing", "chlorinated-purification",
-        "ferromagnetism", "production-science-pack",
+        "ferromagnetism", "production-science-pack", "precious-metals",
+        "noble-gases",
     },
     unit = {
         count = 750,

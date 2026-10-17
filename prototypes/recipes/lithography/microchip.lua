@@ -1,5 +1,6 @@
 -- A wafer printed into chips. The tin is fired into the laser's path and
 -- spent as plasma, the copper is the wiring laid down between the layers,
+-- the gold is drawn into the bond wires that join each chip to its pins,
 -- and the laser source goes in and, nearly always, comes back out.
 --
 -- 98% back: one craft in fifty burns it up, so a source lasts about fifty
@@ -16,6 +17,7 @@ return {
         { type = "item", name = "silicon-wafer", amount = 1 },
         { type = "item", name = "tin-plate",     amount = 1 },
         { type = "item", name = "copper-plate",  amount = 2 },
+        { type = "item", name = "gold-plate",    amount = 1 },
         { type = "item", name = "laser-source",  amount = 1 },
     },
     results = {

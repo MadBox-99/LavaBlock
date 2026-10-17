@@ -4,6 +4,9 @@
 -- glass at two each, and two loose. This one costs three, cut into six
 -- wafers, plus less steel, copper and circuit. That is the payoff for the
 -- laser line, and it is deliberately a large one.
+--
+-- A silver plate for the paste the fine lines across every cell are
+-- printed in: real panels are the largest single use of silver there is.
 return {
     type = "recipe",
     name = "solar-panel-from-wafers",
@@ -15,6 +18,7 @@ return {
         { type = "item", name = "steel-plate",        amount = 5 },
         { type = "item", name = "electronic-circuit", amount = 10 },
         { type = "item", name = "copper-plate",       amount = 5 },
+        { type = "item", name = "silver-plate",       amount = 1 },
     },
     results = {
         { type = "item", name = "solar-panel", amount = 1 },

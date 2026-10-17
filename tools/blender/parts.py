@@ -871,6 +871,399 @@ def transformer(m):
     return out
 
 
+# ------------------------------------------------ metals and their ores
+#
+# The arc furnace lines add a score of metals, and most metals are grey.
+# Colour alone cannot carry them, so every pure metal is a pile of plates
+# like tin's with its chemical symbol stamped into the top one. The alloys
+# are not modelled here: they are the base game's steel girder recoloured,
+# by tools/icons/make_alloy_icon.py, so the shape says element or alloy and
+# the stamp says which element.
+
+
+def symbol(text, loc, rot_z, m, size=0.34):
+    """A chemical symbol stamped on a plate: flat dark lettering lying on the
+    top face, turned with the plate. Converted to a mesh, because the
+    renderer only bevels, parents and checks meshes."""
+    bpy.ops.object.text_add(location=loc, rotation=(0, 0, rot_z))
+    t = bpy.context.object
+    t.data.body = text
+    t.data.size = size
+    t.data.extrude = 0.006
+    # Thickened: Blender's own font is a hairline at icon size, and the
+    # stamp has to survive being 64 px.
+    t.data.offset = 0.012
+    t.data.align_x = 'CENTER'
+    t.data.align_y = 'CENTER'
+    bpy.ops.object.convert(target='MESH')
+    o = bpy.context.object
+    o.data.materials.append(m)
+    return o
+
+
+def plate_pile(m, metal, text, stamp='stamp'):
+    """Three plates on a pile, the way vanilla draws its plates and tin's
+    icon does, with the element's symbol stamped into the top one. A dark
+    metal takes a light stamp: dark on dark does not read."""
+    out = []
+    for k, (dx, dy, a) in enumerate(((0.0, 0.0, 0.10), (0.05, -0.04, -0.12),
+                                     (-0.04, 0.05, 0.28))):
+        out.append(box(0.78, 0.50, 0.07, (dx, dy, 0.035 + 0.075 * k),
+                       rot=(0, 0, a), m=m[metal]))
+    out.append(symbol(text, (-0.04, 0.05, 0.035 + 0.075 * 2 + 0.036), 0.28,
+                      m[stamp]))
+    return out
+
+
+def galena(m):
+    """Lead sulfide: grey metal cubes with their corners cut off.
+
+    Galena grows as cubes, like pyrite - so it is given the corners its
+    other habit puts on them, which is what keeps the two cube crystals
+    apart in silhouette as well as in colour.
+    """
+    def cubocta(s, cut):
+        pts = []
+        for sx in (-1, 1):
+            for sy in (-1, 1):
+                for sz in (-1, 1):
+                    pts += [(sx * s, sy * s, sz * (s - cut)),
+                            (sx * s, sy * (s - cut), sz * s),
+                            (sx * (s - cut), sy * s, sz * s)]
+        return pts
+    out = []
+    for s, loc, rot in ((0.25, (0.00, 0.00, 0.25), (0.10, 0.05, 0.35)),
+                        (0.18, (0.32, 0.16, 0.18), (0.30, 0.20, 0.90)),
+                        (0.15, (-0.30, 0.20, 0.15), (0.20, 0.45, -0.30)),
+                        (0.11, (0.10, -0.30, 0.11), (0.50, 0.10, 0.20))):
+        out.append(hull(cubocta(s, s * 0.32), m['galena'], loc=loc, rot=rot))
+    return out
+
+
+def sphalerite(m):
+    """Zinc sulfide in its tetrahedral habit, resin-brown and glassy - the
+    colour miners called blackjack. The only three-cornered crystal in the
+    mod."""
+    def tetra(r, cut=0.30):
+        # Corners cut back, as sphalerite's are: a sharp tetrahedron at this
+        # size is a caltrop, and three of them a pile of spikes.
+        c = [(r, r, r), (r, -r, -r), (-r, r, -r), (-r, -r, r)]
+        pts = []
+        for i, a in enumerate(c):
+            for j, b in enumerate(c):
+                if i != j:
+                    pts.append(tuple(a[k] + (b[k] - a[k]) * cut
+                                     for k in range(3)))
+        return pts
+    out = []
+    for r, loc, rot in ((0.30, (0.00, 0.00, 0.22), (0.62, 0.20, 0.30)),
+                        (0.21, (0.36, 0.14, 0.15), (0.55, 0.15, 1.10)),
+                        (0.17, (-0.32, 0.20, 0.12), (0.70, 0.40, -0.40))):
+        out.append(hull(tetra(r), m['sphalerite'], loc=loc, rot=rot))
+    return out
+
+
+def lead_plate(m):
+    return plate_pile(m, 'lead', "Pb", stamp='stamp_light')
+
+
+def zinc_plate(m):
+    return plate_pile(m, 'zinc', "Zn", stamp='stamp_light')
+
+
+def sulfide_ores(m):
+    """The technology: galena and sphalerite grown together, as they are
+    found together."""
+    out = galena(m)
+    for o in sphalerite(m):
+        o.location.x += 0.80
+        o.location.y -= 0.10
+        out.append(o)
+    return out
+
+
+def pentlandite(m):
+    """Massive bronze-yellow ore, in rounded lumps rather than crystals:
+    pentlandite grows as grains in a sulfide mass and is mined as lumps.
+    Bronze and rounded where pyrite is brass and cubic."""
+    import random
+    rnd = random.Random(23)
+    out = []
+    for x, y, r in ((-0.16, -0.08, 0.26), (0.20, -0.10, 0.22),
+                    (0.04, 0.22, 0.23), (0.32, 0.20, 0.14)):
+        bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=1, radius=r,
+                                              location=(x, y, r * 0.75))
+        o = jittered(bpy.context.object, rnd, 0.22)
+        o.scale = (1.0, 0.9, 0.80)
+        o.data.materials.append(m['pentlandite'])
+        out.append(o)
+    return out
+
+
+def chromite(m):
+    """Black chromite grains in a green rock, the way chromite is found:
+    seams of it through serpentinite. The green is what keeps it apart
+    from magnetite, which is the other black octahedron."""
+    import random
+    rnd = random.Random(31)
+    bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=2, radius=0.40,
+                                          location=(0, 0, 0.26))
+    rock = jittered(bpy.context.object, rnd, 0.14)
+    rock.scale = (1.10, 0.90, 0.62)
+    rock.data.materials.append(m['serpentine'])
+    out = [rock]
+    for r, loc, rot in ((0.15, (0.05, -0.10, 0.48), (0.3, 0.4, 0.2)),
+                        (0.12, (-0.24, 0.02, 0.42), (0.6, 0.1, 0.9)),
+                        (0.11, (0.30, 0.10, 0.38), (0.2, 0.7, 0.4)),
+                        (0.09, (-0.06, 0.22, 0.44), (0.5, 0.3, 1.3)),
+                        (0.08, (0.22, -0.24, 0.30), (0.1, 0.5, 0.6))):
+        out.append(hull(octa(r), m['chromite'], loc=loc, rot=rot))
+    return out
+
+
+def nickel_plate(m):
+    return plate_pile(m, 'nickel', "Ni")
+
+
+def cobalt_plate(m):
+    return plate_pile(m, 'cobalt', "Co", stamp='stamp_light')
+
+
+def platinum_plate(m):
+    return plate_pile(m, 'platinum', "Pt")
+
+
+def chromium_plate(m):
+    return plate_pile(m, 'chromium', "Cr")
+
+
+def manganese_plate(m):
+    return plate_pile(m, 'manganese', "Mn", stamp='stamp_light')
+
+
+def powder_heap(m, material, seed=5):
+    """A heap of powder: a low cone with a scatter of grains over it, so it
+    reads as loose stuff and not as a solid cone. Powders and salts - the
+    things that are neither a metal nor a crystal - all take this shape."""
+    import random
+    rnd = random.Random(seed)
+    bpy.ops.mesh.primitive_cone_add(vertices=40, radius1=0.48, radius2=0.04,
+                                    depth=0.34, location=(0, 0, 0.17))
+    cone = jittered(bpy.context.object, rnd, 0.05)
+    cone.data.materials.append(m[material])
+    out = [cone]
+    for _ in range(22):
+        a = rnd.random() * 2 * math.pi
+        r = 0.08 + rnd.random() * 0.42
+        z = max(0.02, 0.34 * (1 - r / 0.48))
+        bpy.ops.mesh.primitive_ico_sphere_add(
+            subdivisions=1, radius=0.025 + rnd.random() * 0.03,
+            location=(r * math.cos(a), r * math.sin(a), z))
+        g = bpy.context.object
+        g.data.materials.append(m[material])
+        out.append(g)
+    return out
+
+
+def alumina(m):
+    return powder_heap(m, 'alumina', seed=7)
+
+
+def aluminium_plate(m):
+    return plate_pile(m, 'aluminium', "Al")
+
+
+def magnesium_plate(m):
+    return plate_pile(m, 'magnesium', "Mg")
+
+
+def light_metals(m):
+    """The technology: aluminium plates beside a heap of alumina."""
+    out = aluminium_plate(m)
+    for o in alumina(m):
+        o.location.x += 0.80
+        o.location.y += 0.25
+        out.append(o)
+    return out
+
+
+def borax(m):
+    """Borax: stubby milky prisms with sloping ends, the habit it takes when
+    it crystallises out of a brine. The only white crystal in the mod."""
+    def prism(w, d, h, slope):
+        return [(sx * w, sy * d, 0.0) for sx in (-1, 1) for sy in (-1, 1)] + \
+               [(sx * w, sy * d, h + sx * slope) for sx in (-1, 1)
+                for sy in (-1, 1)]
+    out = []
+    for w, d, h, slope, loc, rot in (
+            (0.16, 0.13, 0.46, 0.10, (0.00, 0.00, 0.0), (0.10, 0.10, 0.3)),
+            (0.12, 0.10, 0.32, 0.08, (0.30, 0.14, 0.0), (0.40, 0.05, 1.1)),
+            (0.11, 0.09, 0.26, 0.06, (-0.28, 0.18, 0.0), (-0.35, 0.10, 2.2)),
+            (0.09, 0.08, 0.18, 0.05, (0.04, -0.30, 0.0), (0.10, 0.45, 0.7))):
+        out.append(hull(prism(w, d, h, slope), m['borax'], loc=loc, rot=rot))
+    return out
+
+
+def boron(m):
+    return powder_heap(m, 'boron', seed=13)
+
+
+def boron_processing(m):
+    """The technology: borax beside the boron reduced out of it."""
+    out = borax(m)
+    for o in boron(m):
+        o.location.x += 0.80
+        o.location.y += 0.20
+        out.append(o)
+    return out
+
+
+def ilmenite(m):
+    """Ilmenite in its tabular habit: thick black six-sided plates grown
+    through one another, the "iron rose". Flat where magnetite and chromite
+    are octahedra, so the three black crystals do not read as one."""
+    out = []
+    for r, h, loc, rot in ((0.30, 0.10, (-0.18, 0.06, 0.22), (1.05, 0.0, 0.3)),
+                           (0.26, 0.09, (0.22, 0.10, 0.20), (0.95, 0.0, -0.5)),
+                           (0.20, 0.08, (0.02, -0.26, 0.12), (0.30, 0.0, 0.2))):
+        out.append(cyl_at(loc[0], loc[1], loc[2], r, h, m['ilmenite'],
+                          verts=6, rot=rot))
+    return out
+
+
+def vanadium_plate(m):
+    return plate_pile(m, 'vanadium', "V", stamp='stamp_light')
+
+
+def monazite(m):
+    """Monazite: honey-brown wedges, the flattened monoclinic prisms it grows
+    as, glassy and translucent at the thin edges."""
+    def wedge(w, d, h, lean):
+        return [(sx * w, sy * d, 0.0) for sx in (-1, 1) for sy in (-1, 1)] + \
+               [(sx * w * 0.7 + lean, sy * d * 0.35, h) for sx in (-1, 1)
+                for sy in (-1, 1)]
+    out = []
+    for w, d, h, lean, loc, rot in (
+            (0.22, 0.14, 0.34, 0.06, (0.00, 0.00, 0.0), (0.05, 0.10, 0.4)),
+            (0.16, 0.10, 0.26, -0.04, (0.32, 0.16, 0.0), (0.30, 0.05, 1.3)),
+            (0.14, 0.09, 0.20, 0.05, (-0.30, 0.16, 0.0), (-0.25, 0.10, 2.4))):
+        out.append(hull(wedge(w, d, h, lean), m['monazite'], loc=loc, rot=rot))
+    return out
+
+
+def cerium(m):
+    return powder_heap(m, 'ceria', seed=17)
+
+
+def neodymium(m):
+    return powder_heap(m, 'nd_oxide', seed=19)
+
+
+def yttrium(m):
+    return powder_heap(m, 'yttria', seed=23)
+
+
+def phosphorus(m):
+    return powder_heap(m, 'red_phosphorus', seed=29)
+
+
+def neodymium_magnet(m):
+    """The ferrite magnet's shapes, nickel-plated: a neodymium magnet is
+    pressed into the same rings and blocks, and the bright plating is what
+    tells it from the charcoal ferrite at a glance."""
+    plated = dict(m)
+    plated['ferrite'] = m['nd_plating']
+    return ferrite_magnet(plated)
+
+
+def silver_plate(m):
+    return plate_pile(m, 'silver', "Ag")
+
+
+def gold_plate(m):
+    return plate_pile(m, 'gold_metal', "Au")
+
+
+def anode_slime(m):
+    """Anode slime: wet black mud in lumps, with the glint of the metal in
+    it. The slag's lumps, gone black and glossy."""
+    objs = lava_slag(m)
+    for o in objs:
+        o.data.materials[0] = m['slime']
+    return objs
+
+
+def potash(m):
+    """Potash: salmon-pink cubes, the colour mined sylvite takes from a trace
+    of iron."""
+    out = []
+    for sz, loc, rot in ((0.34, (0.00, 0.00, 0.17), (0.0, 0.0, 0.35)),
+                         (0.24, (0.32, 0.14, 0.12), (0.2, 0.1, 0.9)),
+                         (0.22, (-0.30, 0.18, 0.11), (0.1, 0.25, -0.4)),
+                         (0.16, (0.06, -0.30, 0.08), (0.3, 0.1, 0.2))):
+        out.append(box(sz, sz, sz, loc, rot=rot, m=m['potash']))
+    return out
+
+
+def fertilizer(m):
+    """Fertiliser granules in a heap: round prills, bigger than a powder's
+    grains, in the blue-grey of a compound NPK."""
+    import random
+    rnd = random.Random(37)
+    out = []
+    for layer, (n, rad, z) in enumerate(((14, 0.40, 0.06), (9, 0.28, 0.16),
+                                         (5, 0.16, 0.26), (1, 0.0, 0.34))):
+        for k in range(n):
+            a = 2 * math.pi * k / n + rnd.random() * 0.4
+            bpy.ops.mesh.primitive_ico_sphere_add(
+                subdivisions=2, radius=0.065 + rnd.random() * 0.015,
+                location=(rad * math.cos(a), rad * math.sin(a), z))
+            g = bpy.context.object
+            g.data.materials.append(m['npk'])
+            out.append(g)
+    return out
+
+
+def calcium_carbide(m):
+    """Calcium carbide: grey-black lumps with a dull blue-grey sheen, broken
+    from the cooled melt."""
+    objs = lava_slag(m)
+    for o in objs:
+        o.data.materials[0] = m['carbide']
+    return objs
+
+
+def rare_earth_processing(m):
+    """The technology: monazite with the three oxides it is cracked into."""
+    out = monazite(m)
+    for dx, dy, fn in ((0.85, 0.30, cerium), (0.95, -0.40, neodymium)):
+        for o in fn(m):
+            o.location.x += dx
+            o.location.y += dy
+            out.append(o)
+    return out
+
+
+def precious_metals(m):
+    """The technology: silver and gold plates side by side."""
+    out = silver_plate(m)
+    for o in gold_plate(m):
+        o.location.x += 0.90
+        o.location.y -= 0.10
+        out.append(o)
+    return out
+
+
+def fertilizer_tech(m):
+    """The technology: fertiliser granules beside potash."""
+    out = fertilizer(m)
+    for o in potash(m):
+        o.location.x += 0.90
+        o.location.y += 0.10
+        out.append(o)
+    return out
+
+
 PARTS = {
     'ferrite-magnet': ferrite_magnet,
     'magnetic-coil': magnetic_coil,
@@ -906,6 +1299,42 @@ PARTS = {
     'silica-crystal': silica_crystal,
     'glass': glass,
     'glazed-panel': glazed_panel,
+    'galena': galena,
+    'sphalerite': sphalerite,
+    'lead-plate': lead_plate,
+    'zinc-plate': zinc_plate,
+    'sulfide-ores': sulfide_ores,
+    'pentlandite': pentlandite,
+    'chromite': chromite,
+    'nickel-plate': nickel_plate,
+    'cobalt-plate': cobalt_plate,
+    'platinum-plate': platinum_plate,
+    'chromium-plate': chromium_plate,
+    'manganese-plate': manganese_plate,
+    'alumina': alumina,
+    'aluminium-plate': aluminium_plate,
+    'magnesium-plate': magnesium_plate,
+    'light-metals': light_metals,
+    'borax': borax,
+    'boron': boron,
+    'boron-processing': boron_processing,
+    'ilmenite': ilmenite,
+    'vanadium-plate': vanadium_plate,
+    'monazite': monazite,
+    'cerium': cerium,
+    'neodymium': neodymium,
+    'yttrium': yttrium,
+    'phosphorus': phosphorus,
+    'neodymium-magnet': neodymium_magnet,
+    'silver-plate': silver_plate,
+    'gold-plate': gold_plate,
+    'anode-slime': anode_slime,
+    'potash': potash,
+    'fertilizer': fertilizer,
+    'calcium-carbide': calcium_carbide,
+    'rare-earth-processing': rare_earth_processing,
+    'precious-metals': precious_metals,
+    'fertilizer-tech': fertilizer_tech,
 }
 assert PART in PARTS, "%s is not one of %s" % (PART, sorted(PARTS))
 
@@ -1061,6 +1490,78 @@ def build():
     # Transformer grey. At 0.24 the icon sun blew it out to white.
     m['tank'] = mat("tank", (0.100, 0.110, 0.110), 0.45, 0.50)
     m['porcelain'] = mat("porcelain", (0.230, 0.085, 0.035), 0.15, 0.0)
+    # --- the arc furnace lines' metals and ores ---------------------------
+    # The stamp on a pure metal's top plate: dark enough to read on the
+    # palest metal, matte so it does not catch the sun the plate does.
+    m['stamp'] = mat("stamp", (0.004, 0.004, 0.005), 0.95, 0.0)
+    m['stamp'].node_tree.nodes['Principled BSDF'].inputs[
+        'Specular IOR Level'].default_value = 0.0
+    m['stamp_light'] = mat("stamp_light", (0.330, 0.330, 0.340), 0.60, 0.0)
+    # Lead: the darkest metal, blue-grey and dull - it tarnishes as it lies.
+    m['lead'] = mat("lead", (0.062, 0.066, 0.080), 0.50, 1.0)
+    # Zinc: lighter and colder than tin, with a blue cast.
+    m['zinc'] = mat("zinc", (0.190, 0.215, 0.250), 0.30, 1.0)
+    # Galena: lead-grey and brightly metallic on fresh faces.
+    m['galena'] = mat("galena", (0.120, 0.128, 0.150), 0.24, 1.0)
+    # Sphalerite: dark resin-brown, glassy. Low specular and opaque for the
+    # ruby's reason: a clear brown crystal mirrors the white floor and comes
+    # back pale.
+    m['sphalerite'] = gem("sphalerite", (0.060, 0.018, 0.003), 0.30, 0.0,
+                          2.37, emit=(0.60, 0.16, 0.02), emit_str=0.05,
+                          coat=0.0, specular=0.06)
+    # Pentlandite: bronze-yellow, duller and browner than pyrite's brass.
+    m['pentlandite'] = mat("pentlandite", (0.190, 0.130, 0.055), 0.45, 1.0,
+                           wear=0.40)
+    m['serpentine'] = mat("serpentine", (0.060, 0.120, 0.060), 0.80, 0.0,
+                          wear=0.40)
+    # Chromite: brown-black and only half metallic, against magnetite's
+    # blacker sheen.
+    m['chromite'] = mat("chromite", (0.035, 0.025, 0.020), 0.45, 0.40)
+    # The grey metals, told apart by the tint each really has and by value:
+    # nickel warm, platinum the palest, chromium a cold mirror, cobalt blue,
+    # manganese dull and faintly pink.
+    m['nickel'] = mat("nickel", (0.300, 0.280, 0.230), 0.30, 1.0)
+    m['platinum'] = mat("platinum", (0.400, 0.400, 0.410), 0.22, 1.0)
+    m['chromium'] = mat("chromium", (0.340, 0.380, 0.440), 0.20, 1.0)
+    m['cobalt'] = mat("cobalt", (0.120, 0.150, 0.220), 0.30, 1.0)
+    m['manganese'] = mat("manganese", (0.150, 0.120, 0.125), 0.50, 1.0)
+    # Alumina: white, and so kept at a mid grey - a white swatch under the
+    # icon sun is a hole in the picture.
+    m['alumina'] = mat("alumina", (0.150, 0.150, 0.145), 0.90, 0.0)
+    # Aluminium: the dull white of a cast surface, kept a shade under white
+    # because the icon sun blows a pale metal out. Magnesium: greyer and
+    # warmer.
+    m['aluminium'] = mat("aluminium", (0.200, 0.204, 0.208), 0.45, 1.0)
+    m['magnesium'] = mat("magnesium", (0.115, 0.110, 0.100), 0.55, 1.0)
+    # Borax: milky white, translucent at the edges; kept grey so the icon
+    # sun leaves it some shading.
+    m['borax'] = gem("borax", (0.180, 0.185, 0.180), 0.35, 0.30, 1.47,
+                     coat=0.0, specular=0.15)
+    # Boron: a brown-black powder, dull.
+    m['boron'] = mat("boron", (0.016, 0.011, 0.008), 0.85, 0.0)
+    # Ilmenite: black with a brown-violet cast and a dull metal lustre.
+    m['ilmenite'] = mat("ilmenite", (0.030, 0.026, 0.032), 0.65, 0.35)
+    # Vanadium: steel grey with the blue-green cast its oxide film gives it.
+    m['vanadium'] = mat("vanadium", (0.100, 0.130, 0.135), 0.35, 1.0)
+    # Monazite: honey-brown and glassy; opaque and low in specular for the
+    # ruby's reason.
+    m['monazite'] = gem("monazite", (0.110, 0.050, 0.012), 0.25, 0.0, 1.80,
+                        emit=(0.60, 0.30, 0.05), emit_str=0.05, coat=0.0,
+                        specular=0.10)
+    # The rare earths as their oxides: ceria pale yellow, neodymia lavender,
+    # yttria white - all kept dark in the swatch for the icon sun.
+    m['ceria'] = mat("ceria", (0.170, 0.150, 0.070), 0.90, 0.0)
+    m['nd_oxide'] = mat("nd_oxide", (0.100, 0.090, 0.170), 0.90, 0.0)
+    m['yttria'] = mat("yttria", (0.160, 0.160, 0.158), 0.90, 0.0)
+    m['red_phosphorus'] = mat("red_phosphorus", (0.090, 0.012, 0.010),
+                              0.85, 0.0)
+    m['nd_plating'] = mat("nd_plating", (0.300, 0.300, 0.300), 0.20, 1.0)
+    m['silver'] = mat("silver", (0.380, 0.380, 0.390), 0.18, 1.0)
+    m['gold_metal'] = mat("gold_metal", (0.520, 0.330, 0.060), 0.20, 1.0)
+    m['slime'] = mat("slime", (0.030, 0.020, 0.010), 0.12, 0.20)
+    m['potash'] = mat("potash", (0.300, 0.150, 0.130), 0.45, 0.0)
+    m['npk'] = mat("npk", (0.120, 0.150, 0.190), 0.55, 0.0)
+    m['carbide'] = mat("carbide", (0.060, 0.064, 0.072), 0.55, 0.40)
     objs = PARTS[PART](m)
     sit_on_ground(objs)
     return objs, []

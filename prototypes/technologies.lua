@@ -153,6 +153,25 @@ local biogas_tech = require("prototypes.technologies.biogas")
 local diamond_synthesis_tech = require("prototypes.technologies.diamond-synthesis")
 local bio_plastics_tech = require("prototypes.technologies.bio-plastics")
 
+-- The arc furnace, and the metals and alloys it smelts
+local arc_smelting_tech = require("prototypes.technologies.arc-smelting")
+local sulfide_ores_tech = require("prototypes.technologies.sulfide-ores")
+local alloy_steels_tech = require("prototypes.technologies.alloy-steels")
+local copper_alloys_tech = require("prototypes.technologies.copper-alloys")
+local light_metals_tech = require("prototypes.technologies.light-metals")
+local boron_processing_tech = require("prototypes.technologies.boron-processing")
+local titanium_processing_tech = require("prototypes.technologies.titanium-processing")
+local rare_earth_processing_tech = require("prototypes.technologies.rare-earth-processing")
+local superalloys_tech = require("prototypes.technologies.superalloys")
+local precious_metals_tech = require("prototypes.technologies.precious-metals")
+local ammonia_synthesis_tech = require("prototypes.technologies.ammonia-synthesis")
+local fertilizer_tech = require("prototypes.technologies.fertilizer")
+local noble_gases_tech = require("prototypes.technologies.noble-gases")
+local excimer_lasers_tech = require("prototypes.technologies.excimer-lasers")
+local ozone_generation_tech = require("prototypes.technologies.ozone-generation")
+local gas_fractionation_tech = require("prototypes.technologies.gas-fractionation")
+local calcium_carbide_tech = require("prototypes.technologies.calcium-carbide")
+
 -- XP Lab technology
 local xp_lab = require("prototypes.technologies.xp-lab")
 
@@ -227,6 +246,23 @@ data:extend({
     biogas_tech,
     diamond_synthesis_tech,
     bio_plastics_tech,
+    arc_smelting_tech,
+    sulfide_ores_tech,
+    alloy_steels_tech,
+    copper_alloys_tech,
+    light_metals_tech,
+    boron_processing_tech,
+    titanium_processing_tech,
+    rare_earth_processing_tech,
+    superalloys_tech,
+    precious_metals_tech,
+    ammonia_synthesis_tech,
+    fertilizer_tech,
+    noble_gases_tech,
+    excimer_lasers_tech,
+    ozone_generation_tech,
+    gas_fractionation_tech,
+    calcium_carbide_tech,
     lava_centrifuge_techs[1],
     lava_centrifuge_techs[2],
     uranium_hexafluoride_tech,
