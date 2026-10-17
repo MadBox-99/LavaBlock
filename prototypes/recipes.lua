@@ -515,6 +515,9 @@ data:extend({
     require("prototypes.recipes.light-metals.magnesium-casting"),
     require("prototypes.recipes.light-metals.molten-duralumin"),
     require("prototypes.recipes.light-metals.duralumin-casting"),
+    -- Boron: borax out of brine, and boron out of borax with magnesium
+    require("prototypes.recipes.boron.borax-crystallizing"),
+    require("prototypes.recipes.boron.boron-reduction"),
 })
 
 -- Space Age only: Tungsten processing recipes

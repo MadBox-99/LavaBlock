@@ -37,6 +37,7 @@ Date: ????
     - Stainless steel: 7 steel plates, 20 molten chromium and 10 molten nickel make 100 molten stainless steel, ten plates. Manganese steel: 9 steel and a manganese plate make 100, ten plates. Nichrome: 40 molten nickel and 10 molten chromium make 50, five coils of wire. All of it is the Alloy Steels technology, on chemical science, after Electric arc smelting, Crystal growing, Advanced lava smelting and Oxygen processing
     - Brass: 70 molten copper and 3 zinc plates make 100 molten brass. Bronze: 90 molten copper and a tin plate make 100. Solder: 20 molten lead and 3 tin plates make 50, five bars. All of it is the Brass, Bronze and Solder technology, on chemical science, after Electric arc smelting, Sulfide ores, the Chlor-alkali process and Advanced lava smelting, and it unlocks cassiterite and tin as well, so tin no longer waits for EUV lithography
     - Aluminium and magnesium. A chemical plant leaches 4 alumina out of 10 basalt gravel with 50 sodium hydroxide, and 40 of the sodium hydroxide comes back. The arc furnace smelts 4 alumina with a coal into 20 molten aluminium and 20 carbon dioxide, and 100 brine with a slaked lime into 10 molten magnesium and 20 chlorine. Duralumin: 80 molten aluminium, a copper plate and a magnesium plate make 100, ten plates. All of it is the Light Metals technology, on chemical science, after Electric arc smelting, the Chlor-alkali process and Limestone processing
+    - Boron. The crystal hearth crystallises 2 borax out of 100 brine, and the arc furnace reduces 2 borax with a magnesium plate to 2 boron. All of it is the Boron Processing technology, on chemical science, after Light metals
   Changes:
     - Locomotives, cargo wagons, fluid wagons and artillery wagons are built only in the Train Factory. Their ingredients are unchanged; an assembling machine no longer takes them
     - Electric engine units are built from a ferrite magnet, two magnetic coils, a steel plate and two electronic circuits, in place of an engine unit and lubricant, and no longer need a fluid input. Electric engine comes after Ferromagnetism
@@ -51,6 +52,7 @@ Date: ????
     - Cannon shells and explosive cannon shells are cased in 2 brass plates in place of 2 plastic bars. Tank comes after Brass, bronze and solder
     - Express belts, undergrounds and splitters take half a bronze plate for every iron gear they took: 5 for a belt, 40 for a pair of undergrounds, 5 for a splitter. Logistics 3 comes after Brass, bronze and solder
     - The low density structure takes 10 duralumin plates in place of its 20 copper plates; Space Age's foundry recipe is unchanged. Low density structure comes after Light metals
+    - The nuclear reactor also takes 100 boron for its control rods. Nuclear power comes after Boron processing
     - A save that has already researched any of these needs the new technology before it can build them again
     - Needs LavaBlock-graphics 0.2.6, which carries the lithography machine, the train factory, the coil winder, the arc furnace, the new item icons and the new fluid icons
   Bugfixes:
