@@ -528,6 +528,11 @@ data:extend({
     require("prototypes.recipes.titanium.vanadium-casting"),
     require("prototypes.recipes.titanium.molten-titanium-alloy"),
     require("prototypes.recipes.titanium.titanium-alloy-casting"),
+    -- Rare earths: monazite out of purified lava, cracked in acid, and magnets
+    require("prototypes.recipes.rare-earths.monazite-separating"),
+    require("prototypes.recipes.rare-earths.monazite-cracking"),
+    require("prototypes.recipes.alloy-steels.nickel-casting"),
+    require("prototypes.recipes.rare-earths.neodymium-magnet"),
 })
 
 -- Space Age only: Tungsten processing recipes

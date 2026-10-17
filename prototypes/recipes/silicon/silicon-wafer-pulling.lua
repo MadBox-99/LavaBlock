@@ -7,6 +7,9 @@
 -- 50 molten silicon and 10 argon for 15 wafers, ten seconds. Ten argon is
 -- 250 air on the compressor. The arithmetic against the laser cutter is on
 -- silica reduction.
+--
+-- A phosphorus goes into the melt as the dopant: a few atoms in a million
+-- give the silicon the spare electrons a chip is printed into.
 return {
     type = "recipe",
     name = "silicon-wafer-pulling",
@@ -14,6 +17,7 @@ return {
     enabled = false,
     energy_required = 10,
     ingredients = {
+        { type = "item",  name = "phosphorus",     amount = 1 },
         { type = "fluid", name = "molten-silicon", amount = 50 },
         { type = "fluid", name = "argon",          amount = 10 },
     },

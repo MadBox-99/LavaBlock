@@ -3,8 +3,9 @@
 --
 -- After Laser cutting, because that is where wafers start and where they
 -- are first used, and after Shielded crystallization, because the puller
--- grows under argon and that technology is where argon comes from. The
--- lava pack comes with it.
+-- grows under argon and that technology is where argon comes from. Rare
+-- earth processing hands over the phosphorus the wafers are doped with.
+-- The lava pack comes with it.
 return {
     type = "technology",
     name = "silicon-refining",
@@ -24,7 +25,7 @@ return {
         { type = "unlock-recipe", recipe = "silica-reduction" },
         { type = "unlock-recipe", recipe = "silicon-wafer-pulling" },
     },
-    prerequisites = { "laser-cutting", "shielded-crystallization" },
+    prerequisites = { "laser-cutting", "shielded-crystallization", "rare-earth-processing" },
     unit = {
         count = 300,
         ingredients = {

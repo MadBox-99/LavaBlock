@@ -5,7 +5,8 @@
 -- goes into lenses, the lenses into the cutter, the wafers into solar panels
 -- and the substrate into processing units. Processing unit and Solar energy
 -- are prerequisites for that reason - a second recipe for a thing the player
--- cannot make yet would be one more recipe doing nothing in the menu.
+-- cannot make yet would be one more recipe doing nothing in the menu. Rare
+-- earth processing is one because the lenses are polished with cerium.
 return {
     type = "technology",
     name = "laser-cutting",
@@ -20,7 +21,10 @@ return {
         { type = "unlock-recipe", recipe = "solar-panel-from-wafers" },
         { type = "unlock-recipe", recipe = "sapphire-processing-unit" },
     },
-    prerequisites = { "crystal-circuit-board", "processing-unit", "solar-energy" },
+    prerequisites = {
+        "crystal-circuit-board", "processing-unit", "solar-energy",
+        "rare-earth-processing",
+    },
     unit = {
         count = 300,
         ingredients = {
