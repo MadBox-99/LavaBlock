@@ -559,6 +559,8 @@ data:extend({
     require("prototypes.recipes.excimer-lasers.fluorine-electrolysis"),
     require("prototypes.recipes.excimer-lasers.excimer-gas"),
     require("prototypes.recipes.excimer-lasers.laser-source-excimer"),
+    -- Ozone: oxygen through a silent discharge
+    require("prototypes.recipes.ozone.oxygen-ozonizing"),
 })
 
 -- Space Age only: Tungsten processing recipes

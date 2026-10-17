@@ -20,3 +20,18 @@ end
 
 -- Solder comes from Brass, bronze and solder.
 utils.add_tech_prereq("processing-unit", "copper-alloys")
+
+-- The vanilla unit's boards are washed in ozone where vanilla washes them
+-- in sulfuric acid: ozone in water strips the last organic film off a
+-- wafer and leaves nothing behind but oxygen, which is how chip fabs have
+-- cleaned since the 1990s. Five ozone for the five acid. The two
+-- alternative recipes keep their acid - the microchip and the sapphire
+-- substrate are cleaned before they reach the assembler.
+for _, ingredient in pairs(data.raw.recipe["processing-unit"].ingredients) do
+    if ingredient.name == "sulfuric-acid" then
+        ingredient.name = "ozone"
+    end
+end
+
+-- Ozone comes from Ozone generation.
+utils.add_tech_prereq("processing-unit", "ozone-generation")
