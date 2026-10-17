@@ -474,6 +474,14 @@ data:extend({
     explosives_from_lava,
 })
 
+-- The arc furnace lines. Required inline rather than through locals: a Lua
+-- chunk holds at most 200 locals, and this file had reached it.
+data:extend({
+    -- The arc furnace, and steel melted in it
+    require("prototypes.recipes.arc-furnace"),
+    require("prototypes.recipes.arc-smelting.steel-arc-smelting"),
+})
+
 -- Space Age only: Tungsten processing recipes
 if mods["space-age"] then
     local tungsten_plate_from_lava = require("prototypes.recipes.foundry.tungsten-plate-from-lava")

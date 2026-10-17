@@ -74,6 +74,8 @@ data:extend({
     require("prototypes.items.fuel-plant"),
     require("prototypes.items.island-link-pole"),
     require("prototypes.items.xp-lab"),
+    -- The arc furnace, and the metals and alloys it smelts
+    require("prototypes.items.arc-furnace"),
     lava_mech_armor,
     -- Bio garden harvest
     algae[1],
