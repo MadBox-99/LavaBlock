@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.2.6
-Date: ????
+Date: 2026-10-17
   Features:
     - Added the Lithography Machine, an EUV chip printer two tiles by eight with its own model: the light source at one end - a vacuum vessel with a tin droplet generator on top and the laser source glowing red beside it - the clean-room scanner in the middle, and an open wafer stage at the other end, scanning a wafer under the exposure line. It draws 5 MW and is built from processing units, crystal circuit boards, quartz lenses, magnetite, sapphire substrate and steel
     - It runs on laser sources, which wear out: each one goes into the microchip recipe and comes back 49 times in 50, so a source lasts about fifty crafts. A laser source is a ruby, two quartz lenses, a crystal circuit board, four tin, steel and 20 xenon for the flash tube that pumps the ruby, so it is built in an assembling machine with a fluid input
