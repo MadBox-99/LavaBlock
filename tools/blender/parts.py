@@ -26,6 +26,7 @@ from factorio_render import (build_materials, cyl_at, box,    # noqa: E402
                              MATS, mat)
 
 PART = fr.arg('--part', 'crusher-roll')
+STAMP_FONT = "C:/Windows/Fonts/arialbd.ttf"
 
 # Each part is modelled about a unit across. The wear shader reads object
 # coordinates at a fixed scale, so a part built ten times too small comes out
@@ -888,11 +889,15 @@ def symbol(text, loc, rot_z, m, size=0.34):
     bpy.ops.object.text_add(location=loc, rotation=(0, 0, rot_z))
     t = bpy.context.object
     t.data.body = text
+    # A bold sans from the system if there is one: Blender's own font draws
+    # its M with diagonals that meet the baseline, and at 64 px "Mg" reads as
+    # "Kg" however it is thickened.
+    if os.path.exists(STAMP_FONT):
+        t.data.font = bpy.data.fonts.load(STAMP_FONT, check_existing=True)
     t.data.size = size
     t.data.extrude = 0.006
-    # Thickened: Blender's own font is a hairline at icon size, and the
-    # stamp has to survive being 64 px.
-    t.data.offset = 0.012
+    # Thickened a little: even a bold face is thin at icon size.
+    t.data.offset = 0.004
     t.data.align_x = 'CENTER'
     t.data.align_y = 'CENTER'
     bpy.ops.object.convert(target='MESH')
