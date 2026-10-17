@@ -75,6 +75,9 @@ data:extend({
     require("prototypes.fluids.gases.nitrous-oxide"),
     require("prototypes.fluids.gases.krypton"),
     require("prototypes.fluids.gases.xenon"),
+    require("prototypes.fluids.gases.radon"),
+    require("prototypes.fluids.gases.helium"),
+    require("prototypes.fluids.gases.helium-neon"),
 })
 
 -- Space Age only fluids

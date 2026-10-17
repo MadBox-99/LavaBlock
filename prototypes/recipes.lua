@@ -551,6 +551,10 @@ data:extend({
     require("prototypes.recipes.fertilizer.algae-green-fertilized"),
     -- Noble gases: krypton and xenon out of liquid air
     require("prototypes.recipes.noble-gases.rare-gas-fractionation"),
+    -- Gas lasers: radon off uranium ore, helium out of the radon, and the laser's fill
+    require("prototypes.recipes.gas-lasers.radon-emanation"),
+    require("prototypes.recipes.gas-lasers.radon-decaying"),
+    require("prototypes.recipes.gas-lasers.helium-neon"),
 })
 
 -- Space Age only: Tungsten processing recipes
