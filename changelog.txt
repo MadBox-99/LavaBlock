@@ -45,6 +45,7 @@ Date: ????
     - Precious metals. A chemical plant refines 10 copper plates in 10 sulfuric acid into 9 plates and an anode slime, and parts 10 slime with 20 nitric and 20 hydrochloric acid into 4 silver, 2 gold and a platinum one craft in two. All of it is the Precious Metals technology, on chemical science, after Nitric acid and the Chlor-alkali process
     - Ammonia: a chemical plant presses 20 nitrogen and 60 hydrogen into 40 ammonia - Space Age's ammonia, made on Nauvis. 20 ammonia and 40 oxygen burn over a platinum plate into 40 nitric acid and 20 water in 2 seconds, and the platinum comes back 49 times in 50. 20 ammonia and 20 nitric acid make 20 nitrous oxide and 40 water. All of it is the Ammonia Synthesis technology, on chemical science, after Nitric acid, the Chlor-alkali process and Precious metals
     - Fertiliser. The crystal hearth crystallises 2 potash out of 100 brine, and a chemical plant takes 20 ammonia, a phosphorus and a potash into 4 fertiliser. An arboretum grows 12 wood from a seed and a fertiliser where it grows 8 without, and an algae tank 8 green algae where it grows 5. All of it is the Fertiliser technology, after Ammonia synthesis, Rare earth processing and Algae cultivation
+    - Krypton and xenon. The oil refinery distils 1000 compressed air with 50 liquid nitrogen into 10 krypton, 2 xenon and 500 nitrogen. All of it is the Noble Gases technology, after Advanced lava cooling and Oil processing
   Changes:
     - Locomotives, cargo wagons, fluid wagons and artillery wagons are built only in the Train Factory. Their ingredients are unchanged; an assembling machine no longer takes them
     - Electric engine units are built from a ferrite magnet, two magnetic coils, a steel plate and two electronic circuits, in place of an engine unit and lubricant, and no longer need a fluid input. Electric engine comes after Ferromagnetism
@@ -66,6 +67,7 @@ Date: ????
     - The thruster takes 10 superalloy plates in place of its 10 steel plates. Space platform thruster comes after Superalloys
     - The wafer solar panel takes a silver plate, and the microchip a gold plate a print. Laser cutting and EUV lithography come after Precious metals
     - Rocket fuel takes 20 nitrous oxide in place of its 10 light oil, as the oxidiser of a hybrid motor. Rocket fuel comes after Ammonia synthesis
+    - The ruby laser source takes 20 xenon for its flash tube, so it is built in an assembling machine with a fluid input. EUV lithography comes after Noble gases
     - A save that has already researched any of these needs the new technology before it can build them again
     - Needs LavaBlock-graphics 0.2.6, which carries the lithography machine, the train factory, the coil winder, the arc furnace, the new item icons and the new fluid icons
   Bugfixes:

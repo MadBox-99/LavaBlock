@@ -73,6 +73,8 @@ data:extend({
     require("prototypes.fluids.molten-superalloy"),
     -- The gases of the arc furnace era
     require("prototypes.fluids.gases.nitrous-oxide"),
+    require("prototypes.fluids.gases.krypton"),
+    require("prototypes.fluids.gases.xenon"),
 })
 
 -- Space Age only fluids

@@ -549,6 +549,8 @@ data:extend({
     require("prototypes.recipes.fertilizer.fertilizer"),
     require("prototypes.recipes.fertilizer.tree-cultivation-fertilized"),
     require("prototypes.recipes.fertilizer.algae-green-fertilized"),
+    -- Noble gases: krypton and xenon out of liquid air
+    require("prototypes.recipes.noble-gases.rare-gas-fractionation"),
 })
 
 -- Space Age only: Tungsten processing recipes
