@@ -540,6 +540,10 @@ data:extend({
     -- Precious metals: copper refined, and its slime parted with acids
     require("prototypes.recipes.precious-metals.copper-electrorefining"),
     require("prototypes.recipes.precious-metals.anode-slime-refining"),
+    -- Ammonia: Haber-Bosch, Ostwald, and nitrous oxide
+    require("prototypes.recipes.ammonia.ammonia-synthesis"),
+    require("prototypes.recipes.ammonia.nitric-acid-from-ammonia"),
+    require("prototypes.recipes.ammonia.nitrous-oxide"),
 })
 
 -- Space Age only: Tungsten processing recipes
@@ -574,3 +578,4 @@ require("prototypes.recipes.low-density-structure")
 require("prototypes.recipes.exoskeleton-equipment")
 require("prototypes.recipes.power-armor-mk2")
 require("prototypes.recipes.thruster")
+require("prototypes.recipes.rocket-fuel")

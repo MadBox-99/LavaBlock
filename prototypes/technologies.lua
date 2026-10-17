@@ -164,6 +164,7 @@ local titanium_processing_tech = require("prototypes.technologies.titanium-proce
 local rare_earth_processing_tech = require("prototypes.technologies.rare-earth-processing")
 local superalloys_tech = require("prototypes.technologies.superalloys")
 local precious_metals_tech = require("prototypes.technologies.precious-metals")
+local ammonia_synthesis_tech = require("prototypes.technologies.ammonia-synthesis")
 
 -- XP Lab technology
 local xp_lab = require("prototypes.technologies.xp-lab")
@@ -249,6 +250,7 @@ data:extend({
     rare_earth_processing_tech,
     superalloys_tech,
     precious_metals_tech,
+    ammonia_synthesis_tech,
     lava_centrifuge_techs[1],
     lava_centrifuge_techs[2],
     uranium_hexafluoride_tech,
