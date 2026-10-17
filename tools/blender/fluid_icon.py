@@ -53,6 +53,11 @@ FLUIDS = {
     'magma-plasma': ((0.120, 0.020, 0.090), 0.18, (1.00, 0.18, 0.70), 0.85),
     'molten-salt-hot': ((0.090, 0.008, 0.004), 0.22, (0.90, 0.07, 0.03), 0.50),
     'molten-salt-cold': ((0.300, 0.215, 0.040), 0.10),
+    # Black and mirror-glossy, which is what ferrofluid is - and with a cold
+    # blue-steel cast, so it is not vanilla crude oil's brown-black.
+    # Taken nearly to nothing: the wet coat reflects the sky, and at 0.02
+    # the droplet came back a matte blue-grey.
+    'ferrofluid': ((0.003, 0.0035, 0.006), 0.05),
 }
 assert FLUID in FLUIDS, "%s is not one of %s" % (FLUID, sorted(FLUIDS))
 

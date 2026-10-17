@@ -52,9 +52,10 @@ The connection to Pyroclast runs from Vulcanus.
 ## Starting kit
 
 - 1 chemical plant
-- 1 solar panel
-- 1 small electric pole
-- Some iron gear wheels and pipes
+- 6 solar panels and 3 accumulators, enough to run the chemical plant and a pump through the night
+- 4 small electric poles
+- 2 iron gear wheels and 3 pipes: exactly one offshore pump, so the first move is to craft it and place it on the lava
+- Lava Mech Armor, unless turned off in the mod settings
 
 Steam power research is unlocked at the start so you can get power running without needing coal first.
 
@@ -73,4 +74,4 @@ Copyright (c) 2025 Zach Kolansky
 
 ---
 
-*Version 0.0.34 — Factorio 2.0 + Space Age*
+*Factorio 2.0 + Space Age*

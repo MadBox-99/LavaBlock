@@ -13,16 +13,21 @@ require("prototypes.technologies.xp-quests.smelting-mastery")
 require("prototypes.technologies.xp-quests.handcrafting-mastery")
 require("prototypes.technologies.xp-quests.mining-mastery")
 
--- Base game technology modifications
+local utils = require("lib.utils")
+
+-- Base game technology modifications. Effects are edited one unlock at a
+-- time, never reassigned, so unlocks other mods added survive.
+
+-- Oil processing: the chemical plant comes earlier, from Calcite
+-- processing on lava block, and sulfur comes from lava here.
 data.raw.technology["oil-processing"].research_trigger = { type = "craft-fluid", fluid = "crude-oil", amount = 1 }
-data.raw.technology["oil-processing"].effects = {
-    { type = "unlock-recipe", recipe = "basic-oil-processing" },
-    { type = "unlock-recipe", recipe = "solid-fuel-from-petroleum-gas" },
-    { type = "unlock-recipe", recipe = "oil-refinery" },
-    { type = "unlock-recipe", recipe = "sulfur-lava" }
-}
+utils.remove_recipe_unlock("oil-processing", "chemical-plant")
+table.insert(data.raw.technology["oil-processing"].effects, { type = "unlock-recipe", recipe = "sulfur-lava" })
 data.raw.technology["uranium-processing"].research_trigger = { type = "craft-item", item = "uranium-ore" }
-data.raw.technology["oil-gathering"].effects = { { type = "unlock-recipe", recipe = "oil-extraction" } }
+-- Oil gathering: no oil patches on the island, so crude oil is extracted
+-- from lava instead of pumped.
+utils.remove_recipe_unlock("oil-gathering", "pumpjack")
+table.insert(data.raw.technology["oil-gathering"].effects, { type = "unlock-recipe", recipe = "oil-extraction" })
 data.raw.technology["oil-gathering"].prerequisites = { "lava-science-pack" }
 data.raw.technology["oil-gathering"].unit = {
     count = 100,
@@ -33,10 +38,7 @@ data.raw.technology["oil-gathering"].unit = {
     },
     time = 30
 }
-data.raw.technology["uranium-mining"].effects = {
-    { type = "mining-with-fluid", modifier = true },
-    { type = "unlock-recipe",     recipe = "uranium-extraction" }
-}
+table.insert(data.raw.technology["uranium-mining"].effects, { type = "unlock-recipe", recipe = "uranium-extraction" })
 
 -- Add explosives-from-lava to explosives technology
 -- Every train now takes condenser coils and pumps. The coil is otherwise
@@ -49,6 +51,13 @@ table.insert(data.raw.technology["railway"].effects, {
     recipe = "condenser-coil",
 })
 table.insert(data.raw.technology["railway"].prerequisites, "fluid-handling")
+
+-- Trains are only built in the train factory, so Railway hands over the
+-- factory with the locomotive and the wagon.
+table.insert(data.raw.technology["railway"].effects, {
+    type = "unlock-recipe",
+    recipe = "train-factory",
+})
 
 -- The island link pole comes with the big pole it is built from.
 table.insert(data.raw.technology["electric-energy-distribution-1"].effects, {
@@ -91,12 +100,22 @@ local lava_flying_robot_frame = require("prototypes.technologies.lava-flying-rob
 
 -- Lava Centrifuge technologies
 local lava_centrifuge_techs = require("prototypes.technologies.lava-centrifuge")
+local uranium_hexafluoride_tech = require("prototypes.technologies.uranium-hexafluoride")
 
 -- Bio Garden technology
 local bio_garden_tech = require("prototypes.technologies.bio-garden")
 
 -- Oxygen technology
 local oxygen_processing_tech = require("prototypes.technologies.oxygen-processing")
+
+-- The fluid lines: volcanic gas
+local volcanic_gas_processing_tech = require("prototypes.technologies.volcanic-gas-processing")
+local chlor_alkali_process_tech = require("prototypes.technologies.chlor-alkali-process")
+local glass_melting_tech = require("prototypes.technologies.glass-melting")
+local float_glass_tech = require("prototypes.technologies.float-glass")
+local oxygen_steelmaking_tech = require("prototypes.technologies.oxygen-steelmaking")
+local silicon_refining_tech = require("prototypes.technologies.silicon-refining")
+local nitric_acid_tech = require("prototypes.technologies.nitric-acid")
 
 -- Blue algae: needs the air chain, so it follows the compressor line
 local nitrogen_fixation_tech = require("prototypes.technologies.nitrogen-fixation")
@@ -113,7 +132,11 @@ local crystal_growing_tech = require("prototypes.technologies.crystal-growing")
 local magnetite_growing_tech = require("prototypes.technologies.magnetite-growing")
 local crystal_circuit_board_tech = require("prototypes.technologies.crystal-circuit-board")
 local laser_cutting_tech = require("prototypes.technologies.laser-cutting")
+local euv_lithography_tech = require("prototypes.technologies.euv-lithography")
+local gas_lasers_tech = require("prototypes.technologies.gas-lasers")
+local microchip_modules_tech = require("prototypes.technologies.microchip-modules")
 local magma_power_tech = require("prototypes.technologies.magma-power")
+local ferromagnetism_tech = require("prototypes.technologies.ferromagnetism")
 local limestone_processing_tech = require("prototypes.technologies.limestone-processing")
 local chlorinated_purification_tech = require("prototypes.technologies.chlorinated-purification")
 local arboretum_tech = require("prototypes.technologies.arboretum")
@@ -126,6 +149,9 @@ local adobe_bricks_tech = require("prototypes.technologies.adobe-bricks")
 local bio_ethanol_tech = require("prototypes.technologies.bio-ethanol")
 local synthetic_ethanol_tech = require("prototypes.technologies.synthetic-ethanol")
 local ethanol_rocket_fuel_tech = require("prototypes.technologies.ethanol-rocket-fuel")
+local biogas_tech = require("prototypes.technologies.biogas")
+local diamond_synthesis_tech = require("prototypes.technologies.diamond-synthesis")
+local bio_plastics_tech = require("prototypes.technologies.bio-plastics")
 
 -- XP Lab technology
 local xp_lab = require("prototypes.technologies.xp-lab")
@@ -173,13 +199,24 @@ data:extend({
     magnetite_growing_tech,
     crystal_circuit_board_tech,
     laser_cutting_tech,
+    euv_lithography_tech,
+    gas_lasers_tech,
+    microchip_modules_tech,
     magma_power_tech,
+    ferromagnetism_tech,
     limestone_processing_tech,
     chlorinated_purification_tech,
     arboretum_tech,
     algae_cultivation_tech,
     bio_garden_tech,
     oxygen_processing_tech,
+    volcanic_gas_processing_tech,
+    chlor_alkali_process_tech,
+    glass_melting_tech,
+    float_glass_tech,
+    oxygen_steelmaking_tech,
+    silicon_refining_tech,
+    nitric_acid_tech,
     nitrogen_fixation_tech,
     water_condenser_tech,
     quench_pit_tech,
@@ -187,8 +224,12 @@ data:extend({
     bio_ethanol_tech,
     synthetic_ethanol_tech,
     ethanol_rocket_fuel_tech,
+    biogas_tech,
+    diamond_synthesis_tech,
+    bio_plastics_tech,
     lava_centrifuge_techs[1],
     lava_centrifuge_techs[2],
+    uranium_hexafluoride_tech,
     xp_lab,
     military_science_pack_2,
     circuit_science_pack_tech,

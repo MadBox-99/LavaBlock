@@ -1,5 +1,4 @@
 require("prototypes.noise-expressions.lava-block-generator")
-local util = require("util")
 
 -- Map generation preset for Lava Block Island
 local lava_block_island_preset = {

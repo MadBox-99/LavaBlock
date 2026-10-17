@@ -10,7 +10,8 @@ return {
             { type = "unlock-recipe", recipe = "lava-purification" },
             { type = "unlock-recipe", recipe = "concentrated-ore-extraction" },
         },
-        prerequisites = { "lava-science-pack", "advanced-circuit" },
+        -- Ferromagnetism for the ferrofluid that seals the rotor shaft.
+        prerequisites = { "lava-science-pack", "advanced-circuit", "ferromagnetism" },
         unit = {
             count = 500,
             ingredients = {

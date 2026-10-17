@@ -1,35 +1,35 @@
-local util = require("util")
+local utils = require("lib.utils")
 
 -- Register lava-mech-armor to use mech-armor animations
 if data.raw["armor"]["lava-mech-armor"] and data.raw.character.character then
-  -- Find the mech-armor animation entry and add lava-mech-armor to it
-  for _, anim in pairs(data.raw.character.character.animations) do
-    if anim.armors then
-      for _, armor_name in pairs(anim.armors) do
-        if armor_name == "mech-armor" then
-          table.insert(anim.armors, "lava-mech-armor")
-          break
+    -- Find the mech-armor animation entry and add lava-mech-armor to it
+    for _, anim in pairs(data.raw.character.character.animations) do
+        if anim.armors then
+            for _, armor_name in pairs(anim.armors) do
+                if armor_name == "mech-armor" then
+                    table.insert(anim.armors, "lava-mech-armor")
+                    break
+                end
+            end
         end
-      end
     end
-  end
 
-  -- Also add to corpse picture mapping
-  if data.raw['character-corpse'] and data.raw['character-corpse']['character-corpse'] then
-    local corpse = data.raw['character-corpse']['character-corpse']
-    if corpse.armor_picture_mapping and corpse.armor_picture_mapping["mech-armor"] then
-      corpse.armor_picture_mapping["lava-mech-armor"] = corpse.armor_picture_mapping["mech-armor"]
+    -- Also add to corpse picture mapping
+    if data.raw['character-corpse'] and data.raw['character-corpse']['character-corpse'] then
+        local corpse = data.raw['character-corpse']['character-corpse']
+        if corpse.armor_picture_mapping and corpse.armor_picture_mapping["mech-armor"] then
+            corpse.armor_picture_mapping["lava-mech-armor"] = corpse.armor_picture_mapping["mech-armor"]
+        end
     end
-  end
 end
 
 -- Add science packs to labs
-util.add_lab_input("lab", "lava-science-pack")
-util.add_lab_input("biolab", "lava-science-pack")
-util.add_lab_input("lab", "military-science-pack-2")
-util.add_lab_input("biolab", "military-science-pack-2")
-util.add_lab_input("lab", "circuit-science-pack")
-util.add_lab_input("biolab", "circuit-science-pack")
+utils.add_lab_input("lab", "lava-science-pack")
+utils.add_lab_input("biolab", "lava-science-pack")
+utils.add_lab_input("lab", "military-science-pack-2")
+utils.add_lab_input("biolab", "military-science-pack-2")
+utils.add_lab_input("lab", "circuit-science-pack")
+utils.add_lab_input("biolab", "circuit-science-pack")
 
 -- Sulfur: on the LavaBlock world it comes from lava (sulfur-lava), everywhere
 -- else the vanilla recipe stays exactly as it is.
@@ -42,10 +42,10 @@ util.add_lab_input("biolab", "circuit-science-pack")
 -- mods that reference it, and leaves the sulfur-processing technology's effects
 -- untouched.
 if data.raw.recipe["sulfur"] then
-  local sulfur = data.raw.recipe["sulfur"]
-  sulfur.surface_conditions = sulfur.surface_conditions or {}
-  table.insert(sulfur.surface_conditions,
-    { property = "lava-block-lava-ocean", min = 0, max = 0 })
+    local sulfur = data.raw.recipe["sulfur"]
+    sulfur.surface_conditions = sulfur.surface_conditions or {}
+    table.insert(sulfur.surface_conditions,
+        { property = "lava-block-lava-ocean", min = 0, max = 0 })
 end
 
 -- Override volcanic tile autoplaces to use the standard `aux` channel.
@@ -90,49 +90,49 @@ end
 
 -- Demolisher noise expressions for Nauvis
 if mods["space-age"] then
-  data:extend({
-    {
-      type = "noise-expression",
-      name = "nauvis_demolisher_territory_radius",
-      expression = "384" -- Terület mérete tile-okban
-    },
-    {
-      type = "noise-expression",
-      name = "nauvis_demolisher_territory_expression",
-      expression = [[voronoi_cell_id{
-        x = x + 1000 * 384,
-        y = y + 1000 * 384,
-        seed0 = map_seed,
-        seed1 = 1,
-        grid_size = 384,
-        distance_type = 'manhattan',
-        jitter = 1
-      } - nauvis_demolisher_starting_area]]
-    },
-    {
-      type = "noise-expression",
-      name = "nauvis_demolisher_starting_area",
-      -- Spawn körüli védett zóna (kb. 200 tile sugár)
-      expression = "distance < 200"
-    },
-    {
-      type = "noise-expression",
-      name = "nauvis_demolisher_variation_expression",
-      -- 0 = small, 1 = medium, 2 = big (távolság alapján növekszik)
-      expression = "floor(clamp(distance / (18 * 32) - 0.25, 0, 2)) + (-99 * no_enemies_mode)"
-    }
-  })
+    data:extend({
+        {
+            type = "noise-expression",
+            name = "nauvis_demolisher_territory_radius",
+            expression = "384" -- territory size in tiles
+        },
+        {
+            type = "noise-expression",
+            name = "nauvis_demolisher_territory_expression",
+            expression = [[voronoi_cell_id{
+                x = x + 1000 * 384,
+                y = y + 1000 * 384,
+                seed0 = map_seed,
+                seed1 = 1,
+                grid_size = 384,
+                distance_type = 'manhattan',
+                jitter = 1
+            } - nauvis_demolisher_starting_area]]
+        },
+        {
+            type = "noise-expression",
+            name = "nauvis_demolisher_starting_area",
+            -- A protected zone round the spawn, about 200 tiles in radius
+            expression = "distance < 200"
+        },
+        {
+            type = "noise-expression",
+            name = "nauvis_demolisher_variation_expression",
+            -- 0 = small, 1 = medium, 2 = big, growing with distance from spawn
+            expression = "floor(clamp(distance / (18 * 32) - 0.25, 0, 2)) + (-99 * no_enemies_mode)"
+        }
+    })
 
-  -- Add territory_settings to Nauvis
-  local nauvis = data.raw["planet"]["nauvis"]
-  if nauvis and nauvis.map_gen_settings then
-    nauvis.map_gen_settings.territory_settings = {
-      units = { "small-demolisher", "medium-demolisher", "big-demolisher" },
-      territory_index_expression = "nauvis_demolisher_territory_expression",
-      territory_variation_expression = "nauvis_demolisher_variation_expression",
-      minimum_territory_size = 10
-    }
-  end
+    -- Add territory_settings to Nauvis
+    local nauvis = data.raw["planet"]["nauvis"]
+    if nauvis and nauvis.map_gen_settings then
+        nauvis.map_gen_settings.territory_settings = {
+            units = { "small-demolisher", "medium-demolisher", "big-demolisher" },
+            territory_index_expression = "nauvis_demolisher_territory_expression",
+            territory_variation_expression = "nauvis_demolisher_variation_expression",
+            minimum_territory_size = 10
+        }
+    end
 end
 
 -- ---------------------------------------------------------------------------
@@ -221,12 +221,12 @@ log("[LavaBlock] Quench Pit: " .. #quench_recipes .. " void recipes generated")
 -- than in data.lua so that a panel another mod adds or retunes is caught.
 local solar_percent = settings.startup["lava-block-solar-output-percent"].value
 if solar_percent ~= 100 then
-  local units = { [""] = 1, k = 1e3, M = 1e6, G = 1e9 }
-  for _, panel in pairs(data.raw["solar-panel"]) do
-    local number, prefix = tostring(panel.production):match("^([%d%.]+)%s*([kMG]?)W$")
-    if number then
-      local watts = tonumber(number) * units[prefix] * solar_percent / 100
-      panel.production = string.format("%.3fkW", watts / 1e3)
+    local units = { [""] = 1, k = 1e3, M = 1e6, G = 1e9 }
+    for _, panel in pairs(data.raw["solar-panel"]) do
+        local number, prefix = tostring(panel.production):match("^([%d%.]+)%s*([kMG]?)W$")
+        if number then
+            local watts = tonumber(number) * units[prefix] * solar_percent / 100
+            panel.production = string.format("%.3fkW", watts / 1e3)
+        end
     end
-  end
 end

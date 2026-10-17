@@ -1,5 +1,10 @@
 # Claude Code Guidelines for Factorio Modding
 
+**LavaBlock's own conventions are in `.claude/rules/`** (project layout,
+Lua style, prototypes, entities and graphics, runtime, locale, changelog).
+This file is generic Factorio 2.0 reference; where the two disagree, the
+rules win.
+
 ## Factorio 2.0 API Notes
 
 ### Runtime vs Prototype Objects
@@ -426,15 +431,17 @@ __1__, __2__              -- positional parameters
 
 ## Recipe Category Names
 
-Custom recipe categories should use mod prefix to avoid warnings:
-- Good: `my-mod-enchanting`
-- Warning: `enchanting` (non-standard category name)
+LavaBlock names its categories `<object>-<gerund>`, never a bare verb that
+another mod would also reach for:
+- Good: `rock-crushing`, `chip-lithography`, `wash-distilling`
+- Bad: `crushing` (Space Age's own), `distillation`, `lithography`
 
 ```lua
 data:extend({
     {
+        -- Not "crushing": that is Space Age's asteroid crusher's.
         type = "recipe-category",
-        name = "my-mod-custom-crafting"  -- use mod prefix
+        name = "rock-crushing"
     }
 })
 ```

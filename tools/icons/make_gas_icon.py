@@ -11,6 +11,13 @@ pixel, relative to the brightest one, scales the target colour.
     python tools/icons/make_gas_icon.py \
         ../LavaBlock-graphics/graphics/icons/gas/air.png \
         ../LavaBlock-graphics/graphics/icons/gas/carbon-dioxide.png 96 84 74
+
+Liquids work the same way from the droplet. Calcium solution's is almost
+white, so it takes any colour without dragging its own along:
+
+    python tools/icons/make_gas_icon.py \
+        ../LavaBlock-graphics/graphics/icons/fluid/calcium-solution.png \
+        ../LavaBlock-graphics/graphics/icons/fluid/brine.png 150 196 214
 """
 import sys
 from PIL import Image

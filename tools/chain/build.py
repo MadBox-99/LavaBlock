@@ -112,6 +112,7 @@ GROUPS = {
     "biomass-fermenting": "Fuel",
     "wash-distilling": "Fuel",
     "fuel-synthesizing": "Fuel",
+    "coil-winding": "Magnetics",
 }
 
 # A few recipes belong to a line their crafting category cannot express.
@@ -123,6 +124,11 @@ GROUPS = {
 RECIPE_GROUPS = {
     "glass": "Glass",
     "glazed-panel": "Glass",
+    # Pressed in an assembler, stirred in a chemical plant and tanked in an
+    # assembler, but all three are the coil winder's line.
+    "ferrite-magnet": "Magnetics",
+    "ferrofluid": "Magnetics",
+    "transformer": "Magnetics",
 }
 
 VANILLA_NAMES = {

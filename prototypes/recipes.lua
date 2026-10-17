@@ -85,6 +85,8 @@ local silica_crystallizing_shielded = require("prototypes.recipes.crystallizer.s
 local lava_slag_skimming = require("prototypes.recipes.slag.lava-slag-skimming")
 local crystal_growing = require("prototypes.recipes.crystallizer.crystal-growing")
 local magnetite_growing = require("prototypes.recipes.crystallizer.magnetite-growing")
+local cassiterite_growing = require("prototypes.recipes.crystallizer.cassiterite-growing")
+local diamond_depositing = require("prototypes.recipes.crystallizer.diamond-depositing")
 local pyrite_crushing = require("prototypes.recipes.crusher.crystal-crushing.pyrite-crushing")
 local olivine_crushing = require("prototypes.recipes.crusher.crystal-crushing.olivine-crushing")
 local ruby_crushing = require("prototypes.recipes.crusher.crystal-crushing.ruby-crushing")
@@ -101,6 +103,25 @@ local sapphire_substrate_cutting = require("prototypes.recipes.laser.sapphire-su
 local solar_panel_from_wafers = require("prototypes.recipes.laser.solar-panel-from-wafers")
 local sapphire_processing_unit = require("prototypes.recipes.laser.sapphire-processing-unit")
 
+-- The chip line: tin, the lithography machine, its laser source and its chips
+local tin_plate = require("prototypes.recipes.smelting.tin-plate")
+local laser_source = require("prototypes.recipes.lithography.laser-source")
+local lithography_machine = require("prototypes.recipes.lithography.lithography-machine")
+local microchip = require("prototypes.recipes.lithography.microchip")
+local microchip_processing_unit = require("prototypes.recipes.lithography.microchip-processing-unit")
+
+-- Gas lasers: neon out of air, and a laser source that lases in it
+local neon_extraction = require("prototypes.recipes.gas-lasers.neon-extraction")
+local laser_source_neon = require("prototypes.recipes.gas-lasers.laser-source-neon")
+
+-- The magnetics line: the coil winder, coils, magnets, ferrofluid and the
+-- transformer
+local coil_winder = require("prototypes.recipes.coil-winder")
+local magnetic_coil = require("prototypes.recipes.magnetics.magnetic-coil")
+local ferrite_magnet = require("prototypes.recipes.magnetics.ferrite-magnet")
+local ferrofluid = require("prototypes.recipes.magnetics.ferrofluid")
+local transformer = require("prototypes.recipes.magnetics.transformer")
+
 -- The magma power line: the fuel, the salt loop and the two machines
 local magma_cell = require("prototypes.recipes.magma.magma-cell")
 local salt_melting = require("prototypes.recipes.magma.salt-melting")
@@ -116,6 +137,43 @@ local limestone_calcination = require("prototypes.recipes.lime.limestone-calcina
 local lime_slaking = require("prototypes.recipes.lime.lime-slaking")
 local lime_mortar = require("prototypes.recipes.lime.lime-mortar")
 local lime_concrete = require("prototypes.recipes.lime.lime-concrete")
+
+-- The volcanic gas line: sulfur and sulfuric acid without oil
+local lava_degassing = require("prototypes.recipes.volcanic-gas.lava-degassing")
+local volcanic_gas_fractionation = require("prototypes.recipes.volcanic-gas.volcanic-gas-fractionation")
+local sulfur_recovering = require("prototypes.recipes.volcanic-gas.sulfur-recovering")
+local sulfur_prilling = require("prototypes.recipes.volcanic-gas.sulfur-prilling")
+local sulfuric_acid_from_sulfur_dioxide = require("prototypes.recipes.volcanic-gas.sulfuric-acid-from-sulfur-dioxide")
+local sulfur_concrete = require("prototypes.recipes.volcanic-gas.sulfur-concrete")
+
+-- The chlor-alkali line: brine, the cell, and the chlorides
+local brine_leaching = require("prototypes.recipes.chlor-alkali.brine-leaching")
+local brine_electrolysis = require("prototypes.recipes.chlor-alkali.brine-electrolysis")
+local hydrochloric_acid = require("prototypes.recipes.chlor-alkali.hydrochloric-acid")
+local ferric_chloride = require("prototypes.recipes.chlor-alkali.ferric-chloride")
+local advanced_circuit_etched = require("prototypes.recipes.chlor-alkali.advanced-circuit-etched")
+local magnetite_precipitation = require("prototypes.recipes.chlor-alkali.magnetite-precipitation")
+
+-- The glass line: soda-lime glass, melted and poured
+local glass_melting = require("prototypes.recipes.glass.glass-melting")
+local glass_casting = require("prototypes.recipes.glass.glass-casting")
+local glazed_panel_from_molten_glass = require("prototypes.recipes.glass.glazed-panel-from-molten-glass")
+local cassiterite_melting = require("prototypes.recipes.glass.cassiterite-melting")
+local tin_casting = require("prototypes.recipes.glass.tin-casting")
+local float_glass = require("prototypes.recipes.glass.float-glass")
+
+-- Oxygen steelmaking: steel from the melt, with no furnace
+local steel_converting = require("prototypes.recipes.steel.steel-converting")
+local steel_casting = require("prototypes.recipes.steel.steel-casting")
+
+-- Silicon refining: wafers pulled from the melt
+local silica_reduction = require("prototypes.recipes.silicon.silica-reduction")
+local silicon_wafer_pulling = require("prototypes.recipes.silicon.silicon-wafer-pulling")
+
+-- Nitric acid: nitrogen out of air, burnt in an arc, and what it nitrates
+local nitrogen_adsorption = require("prototypes.recipes.nitric-acid.nitrogen-adsorption")
+local nitric_acid = require("prototypes.recipes.nitric-acid.nitric-acid")
+local explosives_nitrated = require("prototypes.recipes.nitric-acid.explosives-nitrated")
 
 -- Gas combiner recipes
 local gas_combiner = require("prototypes.recipes.gas-combiner")
@@ -145,12 +203,23 @@ local fermentation_tank = require("prototypes.recipes.fermentation-tank")
 local distillation_column = require("prototypes.recipes.distillation-column")
 local fuel_plant = require("prototypes.recipes.fuel-plant")
 local island_link_pole = require("prototypes.recipes.island-link-pole")
+local train_factory = require("prototypes.recipes.train-factory")
 local straw_fermentation = require("prototypes.recipes.ethanol.straw-fermentation")
 local wood_fermentation = require("prototypes.recipes.ethanol.wood-fermentation")
 local algae_fermentation = require("prototypes.recipes.ethanol.algae-fermentation")
 local wash_distillation = require("prototypes.recipes.ethanol.wash-distillation")
 local ethanol_synthesis = require("prototypes.recipes.ethanol.ethanol-synthesis")
 local ethanol_rocket_fuel = require("prototypes.recipes.ethanol.ethanol-rocket-fuel")
+
+-- Biogas: methane from biomass, reformed, and built back up into light oil
+local straw_digesting = require("prototypes.recipes.biogas.straw-digesting")
+local algae_digesting = require("prototypes.recipes.biogas.algae-digesting")
+local methane_reforming = require("prototypes.recipes.biogas.methane-reforming")
+local light_oil_synthesis = require("prototypes.recipes.biogas.light-oil-synthesis")
+
+-- Bio-plastics: ethanol to ethylene, and ethylene to PVC
+local ethanol_dehydration = require("prototypes.recipes.bio-plastics.ethanol-dehydration")
+local plastic_bar_from_ethylene = require("prototypes.recipes.bio-plastics.plastic-bar-from-ethylene")
 
 -- Lava Centrifuge recipes
 local lava_centrifuge = require("prototypes.recipes.lava-centrifuge")
@@ -159,6 +228,12 @@ local lava_purification_chlorinated = require("prototypes.recipes.centrifuge.lav
 local rare_mineral_extraction = require("prototypes.recipes.centrifuge.rare-mineral-extraction")
 local concentrated_ore_extraction = require("prototypes.recipes.centrifuge.concentrated-ore-extraction")
 
+-- Uranium hexafluoride: fluoride from volcanic gas, and uranium enriched
+-- as a gas
+local fluoride_scrubbing = require("prototypes.recipes.uranium-hexafluoride.fluoride-scrubbing")
+local uranium_fluorination = require("prototypes.recipes.uranium-hexafluoride.uranium-fluorination")
+local uranium_hexafluoride_centrifuging = require("prototypes.recipes.uranium-hexafluoride.uranium-hexafluoride-centrifuging")
+
 -- Module recipes
 local lava_efficiency_module = require("prototypes.recipes.modules.efficiency-module")
 local lava_efficiency_module_2 = require("prototypes.recipes.modules.efficiency-module-2")
@@ -166,6 +241,9 @@ local lava_efficiency_module_3 = require("prototypes.recipes.modules.efficiency-
 local lava_speed_module = require("prototypes.recipes.modules.speed-module")
 local lava_speed_module_2 = require("prototypes.recipes.modules.speed-module-2")
 local lava_speed_module_3 = require("prototypes.recipes.modules.speed-module-3")
+local microchip_speed_module = require("prototypes.recipes.modules.microchip-speed-module")
+local microchip_efficiency_module = require("prototypes.recipes.modules.microchip-efficiency-module")
+local microchip_productivity_module = require("prototypes.recipes.modules.microchip-productivity-module")
 
 -- Robot recipes
 local lava_flying_robot_frame = require("prototypes.recipes.flying-robot-frame")
@@ -211,6 +289,9 @@ data:extend({
     lava_speed_module,
     lava_speed_module_2,
     lava_speed_module_3,
+    microchip_speed_module,
+    microchip_efficiency_module,
+    microchip_productivity_module,
     -- Robot recipes
     lava_flying_robot_frame,
     -- Other recipes
@@ -262,6 +343,8 @@ data:extend({
     lava_slag_skimming,
     crystal_growing,
     magnetite_growing,
+    cassiterite_growing,
+    diamond_depositing,
     pyrite_crushing,
     olivine_crushing,
     ruby_crushing,
@@ -276,6 +359,20 @@ data:extend({
     sapphire_substrate_cutting,
     solar_panel_from_wafers,
     sapphire_processing_unit,
+    -- Chip recipes
+    tin_plate,
+    laser_source,
+    lithography_machine,
+    microchip,
+    microchip_processing_unit,
+    neon_extraction,
+    laser_source_neon,
+    -- Magnetics recipes
+    coil_winder,
+    magnetic_coil,
+    ferrite_magnet,
+    ferrofluid,
+    transformer,
     -- Magma power recipes
     magma_cell,
     salt_melting,
@@ -290,6 +387,37 @@ data:extend({
     lime_slaking,
     lime_mortar,
     lime_concrete,
+    -- Volcanic gas recipes
+    lava_degassing,
+    volcanic_gas_fractionation,
+    sulfur_recovering,
+    sulfur_prilling,
+    sulfuric_acid_from_sulfur_dioxide,
+    sulfur_concrete,
+    -- Chlor-alkali recipes
+    brine_leaching,
+    brine_electrolysis,
+    hydrochloric_acid,
+    ferric_chloride,
+    advanced_circuit_etched,
+    magnetite_precipitation,
+    -- Glass recipes
+    glass_melting,
+    glass_casting,
+    glazed_panel_from_molten_glass,
+    cassiterite_melting,
+    tin_casting,
+    float_glass,
+    -- Steel recipes
+    steel_converting,
+    steel_casting,
+    -- Silicon recipes
+    silica_reduction,
+    silicon_wafer_pulling,
+    -- Nitric acid recipes
+    nitrogen_adsorption,
+    nitric_acid,
+    explosives_nitrated,
     -- Gas combiner recipes
     gas_combiner,
     air_filter,
@@ -315,18 +443,31 @@ data:extend({
     distillation_column,
     fuel_plant,
     island_link_pole,
+    train_factory,
     straw_fermentation,
     wood_fermentation,
     algae_fermentation,
     wash_distillation,
     ethanol_synthesis,
     ethanol_rocket_fuel,
+    -- Biogas recipes
+    straw_digesting,
+    algae_digesting,
+    methane_reforming,
+    light_oil_synthesis,
+    -- Bio-plastic recipes
+    ethanol_dehydration,
+    plastic_bar_from_ethylene,
     -- Lava Centrifuge recipes
     lava_centrifuge,
     lava_purification,
     lava_purification_chlorinated,
     rare_mineral_extraction[1],
     concentrated_ore_extraction,
+    -- Uranium hexafluoride recipes
+    fluoride_scrubbing,
+    uranium_fluorination,
+    uranium_hexafluoride_centrifuging,
     -- Modified base recipes (Nauvis only)
     sulfur_lava,
     -- Vulcanus-specific recipes
@@ -345,3 +486,9 @@ end
 
 -- Modified base recipe: the solar panel needs the crystallizer line.
 require("prototypes.recipes.solar-panel")
+
+-- Modified base recipes: motors, substations and generators are built from
+-- magnets, coils and transformers.
+require("prototypes.recipes.electric-engine-unit")
+require("prototypes.recipes.substation")
+require("prototypes.recipes.steam-turbine")
