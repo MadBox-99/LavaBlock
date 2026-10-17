@@ -80,6 +80,8 @@ data:extend({
     require("prototypes.fluids.gases.helium-neon"),
     require("prototypes.fluids.gases.excimer-gas"),
     require("prototypes.fluids.gases.ozone"),
+    require("prototypes.fluids.gases.propane"),
+    require("prototypes.fluids.gases.ethane"),
 })
 
 -- Space Age only fluids

@@ -561,6 +561,9 @@ data:extend({
     require("prototypes.recipes.excimer-lasers.laser-source-excimer"),
     -- Ozone: oxygen through a silent discharge
     require("prototypes.recipes.ozone.oxygen-ozonizing"),
+    -- Gas fractionation: propane and ethane out of petroleum gas, and ethane cracked
+    require("prototypes.recipes.gas-fractionation.petroleum-gas-fractionation"),
+    require("prototypes.recipes.gas-fractionation.ethane-cracking"),
 })
 
 -- Space Age only: Tungsten processing recipes
@@ -596,3 +599,4 @@ require("prototypes.recipes.exoskeleton-equipment")
 require("prototypes.recipes.power-armor-mk2")
 require("prototypes.recipes.thruster")
 require("prototypes.recipes.rocket-fuel")
+require("prototypes.recipes.lubricant")
