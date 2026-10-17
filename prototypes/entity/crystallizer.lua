@@ -82,9 +82,10 @@ crystallizer.graphics_set = {
 -- and purified lava once the centrifuge is running, and a filter would pin
 -- it to whichever of the two was named here and break the other recipe.
 --
--- The gas box is filtered, because there is only ever one gas it can take,
--- and the filter is what stops a stray oxygen line stalling the machine
--- with a fluid no recipe here will ever consume.
+-- The gas box is unfiltered too. It was filtered to shielding gas while
+-- that was the only gas the hearth took, but diamonds grow from methane and
+-- hydrogen and wafers are pulled under argon, and a box filtered to one gas
+-- refuses a recipe that needs another.
 crystallizer.fluid_boxes = {
     {
         production_type = "input",
@@ -99,7 +100,6 @@ crystallizer.fluid_boxes = {
     },
     {
         production_type = "input",
-        filter = "shielding-gas",
         pipe_connections = {
             {
                 direction = defines.direction.east,
