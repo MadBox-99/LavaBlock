@@ -564,6 +564,10 @@ data:extend({
     -- Gas fractionation: propane and ethane out of petroleum gas, and ethane cracked
     require("prototypes.recipes.gas-fractionation.petroleum-gas-fractionation"),
     require("prototypes.recipes.gas-fractionation.ethane-cracking"),
+    -- Calcium carbide: fused in the arc furnace, acetylene from it, and PVC
+    require("prototypes.recipes.calcium-carbide.calcium-carbide"),
+    require("prototypes.recipes.calcium-carbide.acetylene-generation"),
+    require("prototypes.recipes.calcium-carbide.plastic-bar-from-acetylene"),
 })
 
 -- Space Age only: Tungsten processing recipes

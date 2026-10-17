@@ -82,6 +82,7 @@ data:extend({
     require("prototypes.fluids.gases.ozone"),
     require("prototypes.fluids.gases.propane"),
     require("prototypes.fluids.gases.ethane"),
+    require("prototypes.fluids.gases.acetylene"),
 })
 
 -- Space Age only fluids
