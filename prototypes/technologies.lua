@@ -167,6 +167,7 @@ local precious_metals_tech = require("prototypes.technologies.precious-metals")
 local ammonia_synthesis_tech = require("prototypes.technologies.ammonia-synthesis")
 local fertilizer_tech = require("prototypes.technologies.fertilizer")
 local noble_gases_tech = require("prototypes.technologies.noble-gases")
+local excimer_lasers_tech = require("prototypes.technologies.excimer-lasers")
 
 -- XP Lab technology
 local xp_lab = require("prototypes.technologies.xp-lab")
@@ -255,6 +256,7 @@ data:extend({
     ammonia_synthesis_tech,
     fertilizer_tech,
     noble_gases_tech,
+    excimer_lasers_tech,
     lava_centrifuge_techs[1],
     lava_centrifuge_techs[2],
     uranium_hexafluoride_tech,

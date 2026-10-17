@@ -555,6 +555,10 @@ data:extend({
     require("prototypes.recipes.gas-lasers.radon-emanation"),
     require("prototypes.recipes.gas-lasers.radon-decaying"),
     require("prototypes.recipes.gas-lasers.helium-neon"),
+    -- Excimer lasers: fluorine out of hydrofluoric acid, and krypton fluoride
+    require("prototypes.recipes.excimer-lasers.fluorine-electrolysis"),
+    require("prototypes.recipes.excimer-lasers.excimer-gas"),
+    require("prototypes.recipes.excimer-lasers.laser-source-excimer"),
 })
 
 -- Space Age only: Tungsten processing recipes
