@@ -94,6 +94,10 @@ data:extend({
     require("prototypes.items.alloys.duralumin-plate"),
     require("prototypes.items.crystals.borax"),
     require("prototypes.items.elements.boron"),
+    require("prototypes.items.crystals.ilmenite"),
+    require("prototypes.items.metals.aluminium-plate"),
+    require("prototypes.items.metals.vanadium-plate"),
+    require("prototypes.items.alloys.titanium-alloy-plate"),
     lava_mech_armor,
     -- Bio garden harvest
     algae[1],

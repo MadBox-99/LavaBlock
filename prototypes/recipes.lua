@@ -518,6 +518,16 @@ data:extend({
     -- Boron: borax out of brine, and boron out of borax with magnesium
     require("prototypes.recipes.boron.borax-crystallizing"),
     require("prototypes.recipes.boron.boron-reduction"),
+    -- Titanium: ilmenite chlorinated, reduced with sodium, and alloyed
+    require("prototypes.recipes.titanium.ilmenite-growing"),
+    require("prototypes.recipes.titanium.ilmenite-chlorination"),
+    require("prototypes.recipes.titanium.sodium-electrolysis"),
+    require("prototypes.recipes.titanium.titanium-reduction"),
+    require("prototypes.recipes.titanium.aluminium-casting"),
+    require("prototypes.recipes.titanium.vanadium-smelting"),
+    require("prototypes.recipes.titanium.vanadium-casting"),
+    require("prototypes.recipes.titanium.molten-titanium-alloy"),
+    require("prototypes.recipes.titanium.titanium-alloy-casting"),
 })
 
 -- Space Age only: Tungsten processing recipes
@@ -549,3 +559,5 @@ require("prototypes.recipes.processing-unit")
 require("prototypes.recipes.cannon-shell")
 require("prototypes.recipes.express-transport-belt")
 require("prototypes.recipes.low-density-structure")
+require("prototypes.recipes.exoskeleton-equipment")
+require("prototypes.recipes.power-armor-mk2")
