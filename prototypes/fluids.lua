@@ -49,6 +49,10 @@ data:extend({
     -- Uranium hexafluoride
     require("prototypes.fluids.hydrofluoric-acid"),
     require("prototypes.fluids.gases.uranium-hexafluoride"),
+    -- The arc furnace's melts: metals as they come off the tap, and the
+    -- alloys made of them
+    require("prototypes.fluids.molten-lead"),
+    require("prototypes.fluids.molten-zinc"),
 })
 
 -- Space Age only fluids

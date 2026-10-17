@@ -76,6 +76,10 @@ data:extend({
     require("prototypes.items.xp-lab"),
     -- The arc furnace, and the metals and alloys it smelts
     require("prototypes.items.arc-furnace"),
+    require("prototypes.items.crystals.galena"),
+    require("prototypes.items.crystals.sphalerite"),
+    require("prototypes.items.metals.lead-plate"),
+    require("prototypes.items.metals.zinc-plate"),
     lava_mech_armor,
     -- Bio garden harvest
     algae[1],

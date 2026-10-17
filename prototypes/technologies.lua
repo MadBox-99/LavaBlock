@@ -155,6 +155,7 @@ local bio_plastics_tech = require("prototypes.technologies.bio-plastics")
 
 -- The arc furnace, and the metals and alloys it smelts
 local arc_smelting_tech = require("prototypes.technologies.arc-smelting")
+local sulfide_ores_tech = require("prototypes.technologies.sulfide-ores")
 
 -- XP Lab technology
 local xp_lab = require("prototypes.technologies.xp-lab")
@@ -231,6 +232,7 @@ data:extend({
     diamond_synthesis_tech,
     bio_plastics_tech,
     arc_smelting_tech,
+    sulfide_ores_tech,
     lava_centrifuge_techs[1],
     lava_centrifuge_techs[2],
     uranium_hexafluoride_tech,

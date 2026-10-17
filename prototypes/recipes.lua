@@ -480,6 +480,14 @@ data:extend({
     -- The arc furnace, and steel melted in it
     require("prototypes.recipes.arc-furnace"),
     require("prototypes.recipes.arc-smelting.steel-arc-smelting"),
+    -- Sulfide ores: lead and zinc grown on the crystal hearth, smelted to melt
+    -- and cast
+    require("prototypes.recipes.sulfide-ores.galena-growing"),
+    require("prototypes.recipes.sulfide-ores.sphalerite-growing"),
+    require("prototypes.recipes.sulfide-ores.galena-smelting"),
+    require("prototypes.recipes.sulfide-ores.sphalerite-smelting"),
+    require("prototypes.recipes.sulfide-ores.lead-casting"),
+    require("prototypes.recipes.sulfide-ores.zinc-casting"),
 })
 
 -- Space Age only: Tungsten processing recipes
@@ -500,3 +508,6 @@ require("prototypes.recipes.solar-panel")
 require("prototypes.recipes.electric-engine-unit")
 require("prototypes.recipes.substation")
 require("prototypes.recipes.steam-turbine")
+
+-- Modified base recipes: metals and alloys from the arc furnace lines.
+require("prototypes.recipes.battery")
