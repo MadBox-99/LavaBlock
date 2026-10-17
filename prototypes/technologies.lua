@@ -158,6 +158,7 @@ local arc_smelting_tech = require("prototypes.technologies.arc-smelting")
 local sulfide_ores_tech = require("prototypes.technologies.sulfide-ores")
 local alloy_steels_tech = require("prototypes.technologies.alloy-steels")
 local copper_alloys_tech = require("prototypes.technologies.copper-alloys")
+local light_metals_tech = require("prototypes.technologies.light-metals")
 
 -- XP Lab technology
 local xp_lab = require("prototypes.technologies.xp-lab")
@@ -237,6 +238,7 @@ data:extend({
     sulfide_ores_tech,
     alloy_steels_tech,
     copper_alloys_tech,
+    light_metals_tech,
     lava_centrifuge_techs[1],
     lava_centrifuge_techs[2],
     uranium_hexafluoride_tech,

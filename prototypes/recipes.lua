@@ -508,6 +508,13 @@ data:extend({
     require("prototypes.recipes.copper-alloys.bronze-casting"),
     require("prototypes.recipes.copper-alloys.molten-solder"),
     require("prototypes.recipes.copper-alloys.solder"),
+    -- Light metals: aluminium and magnesium won by electricity, and duralumin
+    require("prototypes.recipes.light-metals.alumina-leaching"),
+    require("prototypes.recipes.light-metals.aluminium-smelting"),
+    require("prototypes.recipes.light-metals.magnesium-electrolysis"),
+    require("prototypes.recipes.light-metals.magnesium-casting"),
+    require("prototypes.recipes.light-metals.molten-duralumin"),
+    require("prototypes.recipes.light-metals.duralumin-casting"),
 })
 
 -- Space Age only: Tungsten processing recipes
@@ -538,3 +545,4 @@ require("prototypes.recipes.tank")
 require("prototypes.recipes.processing-unit")
 require("prototypes.recipes.cannon-shell")
 require("prototypes.recipes.express-transport-belt")
+require("prototypes.recipes.low-density-structure")
