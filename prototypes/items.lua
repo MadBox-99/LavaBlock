@@ -111,6 +111,8 @@ data:extend({
     require("prototypes.items.metals.silver-plate"),
     require("prototypes.items.metals.gold-plate"),
     require("prototypes.items.metals.platinum-plate"),
+    require("prototypes.items.crystals.potash"),
+    require("prototypes.items.fertilizer"),
     lava_mech_armor,
     -- Bio garden harvest
     algae[1],

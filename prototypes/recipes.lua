@@ -544,6 +544,11 @@ data:extend({
     require("prototypes.recipes.ammonia.ammonia-synthesis"),
     require("prototypes.recipes.ammonia.nitric-acid-from-ammonia"),
     require("prototypes.recipes.ammonia.nitrous-oxide"),
+    -- Fertiliser: potash out of brine, NPK, and what it grows
+    require("prototypes.recipes.fertilizer.potash-crystallizing"),
+    require("prototypes.recipes.fertilizer.fertilizer"),
+    require("prototypes.recipes.fertilizer.tree-cultivation-fertilized"),
+    require("prototypes.recipes.fertilizer.algae-green-fertilized"),
 })
 
 -- Space Age only: Tungsten processing recipes
