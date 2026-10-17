@@ -107,6 +107,10 @@ data:extend({
     require("prototypes.items.neodymium-magnet"),
     require("prototypes.items.metals.cobalt-plate"),
     require("prototypes.items.alloys.superalloy-plate"),
+    require("prototypes.items.anode-slime"),
+    require("prototypes.items.metals.silver-plate"),
+    require("prototypes.items.metals.gold-plate"),
+    require("prototypes.items.metals.platinum-plate"),
     lava_mech_armor,
     -- Bio garden harvest
     algae[1],

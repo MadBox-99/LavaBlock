@@ -537,6 +537,9 @@ data:extend({
     require("prototypes.recipes.superalloys.pentlandite-leaching"),
     require("prototypes.recipes.superalloys.molten-superalloy"),
     require("prototypes.recipes.superalloys.superalloy-casting"),
+    -- Precious metals: copper refined, and its slime parted with acids
+    require("prototypes.recipes.precious-metals.copper-electrorefining"),
+    require("prototypes.recipes.precious-metals.anode-slime-refining"),
 })
 
 -- Space Age only: Tungsten processing recipes

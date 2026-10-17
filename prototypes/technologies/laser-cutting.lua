@@ -6,7 +6,8 @@
 -- and the substrate into processing units. Processing unit and Solar energy
 -- are prerequisites for that reason - a second recipe for a thing the player
 -- cannot make yet would be one more recipe doing nothing in the menu. Rare
--- earth processing is one because the lenses are polished with cerium.
+-- earth processing is one because the lenses are polished with cerium, and
+-- Precious metals because the wafer panel's cells are lined in silver.
 return {
     type = "technology",
     name = "laser-cutting",
@@ -23,7 +24,7 @@ return {
     },
     prerequisites = {
         "crystal-circuit-board", "processing-unit", "solar-energy",
-        "rare-earth-processing",
+        "rare-earth-processing", "precious-metals",
     },
     unit = {
         count = 300,
