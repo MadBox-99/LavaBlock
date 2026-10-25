@@ -21,9 +21,13 @@ Date: ????
   Balancing:
     - The big mining drill takes 20 cemented carbide in place of 20 tungsten carbide, because a drill bit is carbide bound in cobalt. The big drill, and tungsten steel and metallurgic science behind it, now come after Hot Isostatic Pressing
     - The personal battery MK3 takes 10 lithium-ion cells as well as its MK2 batteries and supercapacitors, and now comes after Lithium-ion Cells
+    - Every speed, efficiency, productivity and quality module takes a part from the island's chip lines on top of its vanilla ingredients: tier 1 two silica crystals, tier 2 a crystal circuit board, tier 3 two microchips. A speed module 3 costs 16 silica crystals, 4 crystal circuit boards and 2 microchips more than before, because modules were the one late-game part still at its vanilla cost
+    - The tier 1 module technologies now come after Lava crystallization, tier 2 after Crystal circuit board and tier 3 after EUV lithography, so tier 3 modules need production science
   Changes:
     - Needs LavaBlock-graphics 0.3.1, which carries the four planet machines - the isostatic press, the eddy current separator, the bioleaching reactor and the cell assembly line - and their items' and technologies' icons
     - The island's fluid recipes moved out of the single fluid row of the intermediate products tab into the Chemistry tab, one row per production line: lava extraction, lava smelting and cooling, air and its gases, volcanic gas, acids and solutions, ethanol and hydrocarbons, noble and laser gases, glass and other melts, metal melts and alloy melts
+    - Removed the lava module recipes and their seven technologies, Lava Modules and Lava Speed and Efficiency Module 1 to 3. They made modules out of circuits and lava with no advanced circuit, and their efficiency module 3 needed no spoilage. Modules already made stay, and a machine set to one of these recipes is left without a recipe
+    - Removed the microchip module recipes and the Microchip Modules technology, which were a second way to the same tier 1 modules. Microchips go into every tier 3 module instead. Modules already made stay, and a machine set to one of these recipes is left without a recipe
   Bugfixes:
     - Fourteen casting recipes - lead, zinc, nickel, manganese, stainless steel, manganese steel, brass, bronze, aluminium, magnesium, duralumin, vanadium, titanium alloy and superalloy plate - and Uranium Bacteria Cultivation showed a missing-key placeholder for a name in Factorio 2.1, as did the Tungsten from Lava technology. They are named again
     - Air, compressed air, argon, oxygen, chlorine, carbon dioxide and shielding gas sat in the Unsorted tab in Factorio 2.1. They are in the Fluids tab with the other fluids

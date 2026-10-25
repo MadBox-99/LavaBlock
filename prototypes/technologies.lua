@@ -86,15 +86,6 @@ local advanced_lava_smelting = require("prototypes.technologies.advanced-lava-sm
 local air_cooler = require("prototypes.technologies.air-cooler")
 local lava_science_pack = require("prototypes.technologies.lava-science-pack")
 
--- Module technologies
-local lava_modules = require("prototypes.technologies.modules.lava-modules")
-local lava_efficiency_module = require("prototypes.technologies.modules.lava-efficiency-module")
-local lava_efficiency_module_2 = require("prototypes.technologies.modules.lava-efficiency-module-2")
-local lava_efficiency_module_3 = require("prototypes.technologies.modules.lava-efficiency-module-3")
-local lava_speed_module = require("prototypes.technologies.modules.lava-speed-module")
-local lava_speed_module_2 = require("prototypes.technologies.modules.lava-speed-module-2")
-local lava_speed_module_3 = require("prototypes.technologies.modules.lava-speed-module-3")
-
 -- Robot technologies
 local lava_flying_robot_frame = require("prototypes.technologies.lava-flying-robot-frame")
 
@@ -134,7 +125,6 @@ local crystal_circuit_board_tech = require("prototypes.technologies.crystal-circ
 local laser_cutting_tech = require("prototypes.technologies.laser-cutting")
 local euv_lithography_tech = require("prototypes.technologies.euv-lithography")
 local gas_lasers_tech = require("prototypes.technologies.gas-lasers")
-local microchip_modules_tech = require("prototypes.technologies.microchip-modules")
 local magma_power_tech = require("prototypes.technologies.magma-power")
 local ferromagnetism_tech = require("prototypes.technologies.ferromagnetism")
 local limestone_processing_tech = require("prototypes.technologies.limestone-processing")
@@ -198,13 +188,6 @@ data:extend({
     advanced_lava_smelting,
     air_cooler,
     lava_science_pack,
-    lava_modules,
-    lava_efficiency_module,
-    lava_efficiency_module_2,
-    lava_efficiency_module_3,
-    lava_speed_module,
-    lava_speed_module_2,
-    lava_speed_module_3,
     lava_flying_robot_frame,
     stone_crushing_techs[1],
     stone_crushing_techs[2],
@@ -220,7 +203,6 @@ data:extend({
     laser_cutting_tech,
     euv_lithography_tech,
     gas_lasers_tech,
-    microchip_modules_tech,
     magma_power_tech,
     ferromagnetism_tech,
     limestone_processing_tech,

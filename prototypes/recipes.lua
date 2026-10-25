@@ -234,17 +234,6 @@ local fluoride_scrubbing = require("prototypes.recipes.uranium-hexafluoride.fluo
 local uranium_fluorination = require("prototypes.recipes.uranium-hexafluoride.uranium-fluorination")
 local uranium_hexafluoride_centrifuging = require("prototypes.recipes.uranium-hexafluoride.uranium-hexafluoride-centrifuging")
 
--- Module recipes
-local lava_efficiency_module = require("prototypes.recipes.modules.efficiency-module")
-local lava_efficiency_module_2 = require("prototypes.recipes.modules.efficiency-module-2")
-local lava_efficiency_module_3 = require("prototypes.recipes.modules.efficiency-module-3")
-local lava_speed_module = require("prototypes.recipes.modules.speed-module")
-local lava_speed_module_2 = require("prototypes.recipes.modules.speed-module-2")
-local lava_speed_module_3 = require("prototypes.recipes.modules.speed-module-3")
-local microchip_speed_module = require("prototypes.recipes.modules.microchip-speed-module")
-local microchip_efficiency_module = require("prototypes.recipes.modules.microchip-efficiency-module")
-local microchip_productivity_module = require("prototypes.recipes.modules.microchip-productivity-module")
-
 -- Robot recipes
 local lava_flying_robot_frame = require("prototypes.recipes.flying-robot-frame")
 
@@ -282,16 +271,6 @@ data:extend({
     lava_cooling,
     lava_cooling_with_liquid_nitrogen,
     liquid_nitrogen_production,
-    -- Module recipes
-    lava_efficiency_module,
-    lava_efficiency_module_2,
-    lava_efficiency_module_3,
-    lava_speed_module,
-    lava_speed_module_2,
-    lava_speed_module_3,
-    microchip_speed_module,
-    microchip_efficiency_module,
-    microchip_productivity_module,
     -- Robot recipes
     lava_flying_robot_frame,
     -- Other recipes
@@ -626,6 +605,9 @@ require("prototypes.recipes.nuclear-reactor")
 require("prototypes.recipes.electric-furnace")
 require("prototypes.recipes.tank")
 require("prototypes.recipes.processing-unit")
+-- Modified base recipes: every module tier is built on the island's next
+-- chip technology.
+require("prototypes.recipes.modules")
 require("prototypes.recipes.cannon-shell")
 require("prototypes.recipes.express-transport-belt")
 require("prototypes.recipes.low-density-structure")
