@@ -1,3 +1,6 @@
+-- One landfill, fifty stone: the same stone the ten landfills were when a
+-- landfill took five. Landfill is back at vanilla's price so that it is not
+-- ten times cheaper off the island.
 return {
     type = "recipe",
     name = "foundation-platform-nauvis",
@@ -6,7 +9,7 @@ return {
     categories = { "crafting-with-fluid" },
     ingredients =
     {
-        { type = "item",  name = "landfill",            amount = 10 },
+        { type = "item",  name = "landfill",            amount = 1 },
         { type = "item",  name = "calcite",             amount = 100 },
         { type = "item",  name = "iron-plate",          amount = 100 },
         { type = "item",  name = "copper-plate",        amount = 100 },

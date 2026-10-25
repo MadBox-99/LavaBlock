@@ -53,6 +53,7 @@ Date: ????
     - Sulfur prilling makes 2 sulfur from 10 molten sulfur instead of 1. It was twice as dear as sulfur from lava after space
     - Lubricated gravel grinding takes 5 lubricant instead of 10. Before space it made dearer stone than the dry grind
     - Calcite precipitation makes 4 calcite instead of 3. It was a fifth dearer than calcite synthesis
+    - Landfill takes 50 stone again, as in vanilla, instead of 5. It was ten times cheaper than vanilla everywhere, filling Gleba's wetlands too. The island's foundation takes 1 landfill instead of 10, so a foundation costs the same 50 stone as before. Landfill already made in a save keeps its count, so a stockpile covers ten times as many foundations as before
     - Iron and copper smelting with cryo cooling only run on the lava island, as the water-cooled smelting already did. Elsewhere they turned the foundry's molten metal into 2.5 times the plates casting gives
   Changes:
     - Needs LavaBlock-graphics 0.3.1, which carries the four planet machines - the isostatic press, the eddy current separator, the bioleaching reactor and the cell assembly line - and their items' and technologies' icons
