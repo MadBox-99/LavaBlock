@@ -112,15 +112,19 @@ local function give_starting_items(player)
     -- the offshore-pump recipe at tick 0, so the opening move is:
     -- craft pump -> place on lava -> feed the chemical plant.
     --
+    -- Two chemical plants, because lava extraction takes eight seconds a run:
+    -- one plant alone has to take turns at ore, coal and steam at 0.63 a
+    -- second until Steel processing unlocks the chemical plant.
+    --
     -- Power budget for that first setup:
-    --   chemical-plant 210 kW + offshore-pump 60 kW = 270 kW
+    --   2 chemical-plant 420 kW + offshore-pump 60 kW = 480 kW
     --   solar-panel 60 kW each (Nauvis solar-power = 100)
-    -- 2 panels (120 kW) could not even run the plant, and without a buffer the
-    -- whole factory stopped every night. 6 panels cover the 270 kW draw in
-    -- daylight; 3 accumulators (5 MJ each) carry it through dusk and dawn.
-    player.insert({ name = "chemical-plant", count = 1 })
-    player.insert({ name = "solar-panel", count = 6 })
-    player.insert({ name = "accumulator", count = 3 })
+    -- Without a buffer the whole factory stops every night. 10 panels cover
+    -- the 480 kW draw in daylight; 5 accumulators (5 MJ each) carry it
+    -- through dusk and dawn, as 3 did for a single plant.
+    player.insert({ name = "chemical-plant", count = 2 })
+    player.insert({ name = "solar-panel", count = 10 })
+    player.insert({ name = "accumulator", count = 5 })
     player.insert({ name = "small-electric-pole", count = 4 })
     player.insert({ name = "iron-gear-wheel", count = 2 })
     player.insert({ name = "pipe", count = 3 })

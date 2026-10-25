@@ -17,13 +17,19 @@ local lava_cooling_with_liquid_nitrogen = {
     -- nuclear reactor, and the magma reactor was worth building only for its
     -- footprint. 750 steam @ 500 C is ~73 MJ, the heat that went in: 24 MW a
     -- cooler, four turbines, 24 kJ a unit of lava as the geo-thermal turbine
-    -- gets. The plates are the reward, not the power.
+    -- gets. The brick and the plates are the reward, not the power.
+    --
+    -- A plate of each a run on average, not four. At four an air cooler
+    -- poured out more plates than a row of furnaces, beside its steam and
+    -- brick, and from blue science on the island's plates cost a twentieth
+    -- of vanilla's. At one they are still the cheapest plates going, but
+    -- the smelting lines have work to do.
     results = {
         { type = "fluid", name = "steam",        amount = 750,  temperature = 500 },
         { type = "item",  name = "stone-brick",  amount = 10,   independent_probability = 0.5 },
         { type = "item",  name = "calcite",      amount = 5,    independent_probability = 0.1 },
-        { type = "item",  name = "iron-plate",   amount = 20,   independent_probability = 0.2 },
-        { type = "item",  name = "copper-plate", amount = 20,   independent_probability = 0.2 }
+        { type = "item",  name = "iron-plate",   amount = 5,    independent_probability = 0.2 },
+        { type = "item",  name = "copper-plate", amount = 5,    independent_probability = 0.2 }
     },
     icon = "__LavaBlock-graphics__/graphics/icons/lava-cooling.png",
     icon_size = 64,
