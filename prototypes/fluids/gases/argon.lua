@@ -1,7 +1,7 @@
 return {
     type = "fluid",
     name = "argon",
-    group = "chemistry",
+    subgroup = "fluid",
     max_temperature = 2000,
     default_temperature = -189,
     gas_temperature = 20,

@@ -14,7 +14,7 @@ return {
     type = "recipe",
     name = "water-electrolysis",
     categories = { "chemistry" },
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-air",
     order = "a[fluid-chemistry]-f[water-electrolysis]",
     enabled = false,
     energy_required = 2,

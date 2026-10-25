@@ -1,7 +1,7 @@
 return {
     type = "fluid",
     name = "oxygen",
-    group = "chemistry",
+    subgroup = "fluid",
     max_temperature = 154.6,                     -- Critical temperature in K
     default_temperature = 15,
     gas_temperature = -182.96,                   -- Boiling point in C

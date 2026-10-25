@@ -20,6 +20,6 @@ return {
         { type = "fluid", name = "molten-quartz", amount = 100 },
     },
     allow_productivity = true,
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-melts",
     order = "z[molten-quartz]",
 }

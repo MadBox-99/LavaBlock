@@ -30,6 +30,6 @@ local steam_generation = {
     icon = "__base__/graphics/icons/fluid/steam.png",
     icon_size = 64,
     categories = { "chemistry" },
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-lava-smelting",
 }
 return steam_generation

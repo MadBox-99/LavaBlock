@@ -17,6 +17,8 @@ return {
     results = {
         { type = "fluid", name = "molten-salt-cold", amount = 100, temperature = 290 },
     },
+    subgroup = "lava-block-melts",
+    order = "h[molten-salt]-b[molten-salt-cooling]",
     crafting_machine_tint = {
         primary = { r = 0.90, g = 0.84, b = 0.56, a = 1.0 },
         secondary = { r = 0.95, g = 0.30, b = 0.16, a = 1.0 },

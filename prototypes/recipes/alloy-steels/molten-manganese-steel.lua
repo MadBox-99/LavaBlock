@@ -16,6 +16,6 @@ return {
         { type = "fluid", name = "molten-manganese-steel", amount = 100, fluidbox_index = 1 },
     },
     allow_productivity = true,
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-alloy-melts",
     order = "n[alloy]-b[molten-manganese-steel]",
 }

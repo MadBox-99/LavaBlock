@@ -19,6 +19,6 @@ return {
         { type = "fluid", name = "molten-superalloy", amount = 100, fluidbox_index = 1 },
     },
     allow_productivity = true,
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-alloy-melts",
     order = "n[alloy]-i[molten-superalloy]",
 }

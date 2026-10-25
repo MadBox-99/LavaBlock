@@ -23,7 +23,7 @@ return {
     -- Magnetite precipitation turns this back into brine, which the cell
     -- turns back into chlorine; productivity here would feed that loop.
     allow_productivity = false,
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-solutions",
     order = "d[chlor-alkali]-d[ferric-chloride]",
     crafting_machine_tint = {
         primary = { r = 0.43, g = 0.16, b = 0.08, a = 1.0 },

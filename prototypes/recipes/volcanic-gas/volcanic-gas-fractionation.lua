@@ -50,6 +50,6 @@ return {
             shift = { 9, 8 },
         },
     },
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-volcanic-gas",
     order = "c[volcanic-gas]-b[volcanic-gas-fractionation]",
 }

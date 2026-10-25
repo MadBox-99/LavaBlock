@@ -8,7 +8,7 @@
 return {
     type = "fluid",
     name = "shielding-gas",
-    group = "chemistry",
+    subgroup = "fluid",
     max_temperature = 2000,
     default_temperature = 15,
     gas_temperature = 20,

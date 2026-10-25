@@ -22,6 +22,6 @@ return {
     main_product = "molten-sodium",
     -- Fluid from fluid: productivity would make brine out of nothing.
     allow_productivity = false,
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-metal-melts",
     order = "m[melt]-i[molten-sodium]",
 }

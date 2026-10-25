@@ -15,7 +15,7 @@ return {
     type = "recipe",
     name = "argon-extraction",
     categories = { "gas-mix" },
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-air",
     order = "a[gas]-z[argon]",
     enabled = false,
     energy_required = 6,

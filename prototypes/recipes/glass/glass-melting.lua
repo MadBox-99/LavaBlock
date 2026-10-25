@@ -27,6 +27,6 @@ return {
     -- in the refinery (+30%) and the caster (+40%), six crystals make 7.3
     -- glass, which recycle to 3.6 crystals: no loop.
     allow_productivity = true,
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-melts",
     order = "e[glass]-a[glass-melting]",
 }

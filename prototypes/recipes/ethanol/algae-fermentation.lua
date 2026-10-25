@@ -10,7 +10,7 @@ return {
     type = "recipe",
     name = "algae-fermentation",
     categories = { "biomass-fermenting" },
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-organics",
     order = "b[ethanol]-c[algae-fermentation]",
     enabled = false,
     energy_required = 15,

@@ -1,7 +1,7 @@
 return {
     type = "fluid",
     name = "chlorine",
-    group = "chemistry",
+    subgroup = "fluid",
     max_temperature = 416.9,                    -- Critical temperature in K
     default_temperature = -101.5,               -- Melting point in °C
     gas_temperature = -34.04,                   -- Boiling point in °C

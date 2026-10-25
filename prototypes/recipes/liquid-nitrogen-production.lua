@@ -13,7 +13,7 @@ local liquid_nitrogen_production = {
     },
     icon = "__LavaBlock-graphics__/graphics/icons/fluid/liquid-nitrogen.png",
     icon_size = 64,
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-air",
     order = "a[fluid-chemistry]-d[liquid-nitrogen]"
 }
 

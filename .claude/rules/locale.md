@@ -8,9 +8,15 @@ paths:
 - One file, English only. Add each key to its existing `[section]`, next to
   the related entries. Never open a second copy of a section.
 - Every new item, entity, fluid and technology gets a **name and a
-  description**. A recipe gets a name only when it differs from its product's
-  name. It gets a description only when it adds something the item does not
+  description**. A recipe gets a name whenever its prototype name differs from
+  its product's: `aluminium-casting` needs `recipe-name.aluminium-casting`,
+  `solder` does not. Factorio 2.1 no longer falls back to the product's name,
+  and fourteen casting recipes shipped in 0.3.0 showing their raw key. A
+  recipe gets a description only when it adds something the item does not
   say, for example a catalyst return rate.
+- Check with `factorio --dump-prototype-locale`: a prototype missing from
+  `script-output/<type>-locale.json` has no name. Run it with a separate
+  `--config` write-data dir when the game is already open.
 - Technologies with numbered levels (`lava-smelting-productivity-1..4`) take
   one key without the number.
 - Runtime messages go in `[lava-block]`. `technology-effect.*` keys are

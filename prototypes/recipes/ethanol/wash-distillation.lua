@@ -16,7 +16,7 @@ return {
     type = "recipe",
     name = "wash-distillation",
     categories = { "wash-distilling" },
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-organics",
     order = "b[ethanol]-d[wash-distillation]",
     enabled = false,
     energy_required = 5,

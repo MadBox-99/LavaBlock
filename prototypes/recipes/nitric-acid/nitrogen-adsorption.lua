@@ -34,6 +34,6 @@ return {
             shift = { -8, -8 },
         },
     },
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-air",
     order = "a[gas]-b[nitrogen]-a[nitrogen-adsorption]",
 }

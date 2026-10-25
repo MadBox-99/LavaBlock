@@ -82,6 +82,10 @@ All paths are prefixed with `__LavaBlock-graphics__/`. Item icons are 64 px with
 
 ## Recipes
 
+- A recipe that makes a fluid, or turns lava into anything, goes in its
+  line's `lava-block-*` row of the Chemistry tab
+  (`prototypes/item-groups/chemistry.lua`), not in vanilla's
+  `fluid-recipes`. Other item recipes sit with their item.
 - Write ingredients and results in full:
   `{ type = "item", name = "...", amount = N }`. No shorthand tuples.
 - Use `enabled = false` unless the recipe is part of the starting kit's opening

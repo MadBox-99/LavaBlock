@@ -29,6 +29,6 @@ return {
         primary = { r = 0.86, g = 0.84, b = 0.62, a = 1.0 },
         secondary = { r = 0.80, g = 1.00, b = 0.50, a = 1.0 },
     },
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-metal-melts",
     order = "m[melt]-h[titanium-tetrachloride]",
 }

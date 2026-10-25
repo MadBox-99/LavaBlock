@@ -41,6 +41,6 @@ return {
             shift = { -8, -8 },
         },
     },
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-solutions",
     order = "o[ammonia]-b[nitric-acid-from-ammonia]",
 }

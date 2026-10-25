@@ -45,7 +45,7 @@ return {
             shift = { -8, -8 },
         },
     },
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-melts",
     order = "f[steel]-a[steel-converting]",
     crafting_machine_tint = {
         primary = { r = 1.00, g = 0.88, b = 0.16, a = 1.0 },

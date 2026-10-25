@@ -9,7 +9,7 @@ return {
     type = "recipe",
     name = "wood-fermentation",
     categories = { "biomass-fermenting" },
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-organics",
     order = "b[ethanol]-b[wood-fermentation]",
     enabled = false,
     energy_required = 20,

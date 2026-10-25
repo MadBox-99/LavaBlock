@@ -35,7 +35,7 @@ return {
     -- Fluids into fluids; productivity here would make sulfur out of nothing.
     allow_productivity = false,
     allow_quality = false,
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-volcanic-gas",
     order = "c[volcanic-gas]-c[sulfur-recovering]",
     crafting_machine_tint = {
         primary = { r = 0.94, g = 0.63, b = 0.00, a = 1.0 },

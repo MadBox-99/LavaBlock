@@ -25,6 +25,6 @@ return {
         primary = { r = 0.38, g = 0.50, b = 0.80, a = 1.0 },
         secondary = { r = 0.70, g = 0.80, b = 0.95, a = 1.0 },
     },
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-solutions",
     order = "o[ammonia]-a[ammonia-synthesis]",
 }

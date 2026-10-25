@@ -30,6 +30,6 @@ return {
             shift = { -8, -8 },
         },
     },
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-metal-melts",
     order = "m[melt]-c[molten-nickel]",
 }

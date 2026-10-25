@@ -14,7 +14,7 @@ return {
     type = "recipe",
     name = "steam-condensing",
     categories = { "water-condensing" },
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-air",
     order = "a[fluid-chemistry]-c[steam-condensing]",
     enabled = false,
     energy_required = 1,

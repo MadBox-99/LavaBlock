@@ -32,6 +32,6 @@ return {
             shift = { -8, -8 },
         },
     },
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-noble-gases",
     order = "a[gas]-z[argon]-b[neon-extraction]",
 }

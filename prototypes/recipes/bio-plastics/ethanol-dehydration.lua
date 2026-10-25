@@ -23,7 +23,7 @@ return {
     -- productivity, and one bonus on the line is enough.
     allow_productivity = false,
     allow_quality = false,
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-organics",
     order = "b[ethanol]-j[ethanol-dehydration]",
     crafting_machine_tint = {
         primary = { r = 0.94, g = 0.51, b = 0.75, a = 1.0 },

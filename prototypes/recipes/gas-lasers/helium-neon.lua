@@ -16,6 +16,6 @@ return {
         { type = "fluid", name = "helium-neon", amount = 100 },
     },
     allow_productivity = false,
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-noble-gases",
     order = "a[gas]-z[argon]-f[helium-neon]",
 }

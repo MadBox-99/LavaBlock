@@ -23,6 +23,6 @@ return {
     },
     main_product = "molten-magnesium",
     allow_productivity = true,
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-metal-melts",
     order = "m[melt]-g[molten-magnesium]",
 }

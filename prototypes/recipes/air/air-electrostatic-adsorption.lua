@@ -29,6 +29,6 @@ local air_electrostatic_adsorption = {
         },
     },
     categories = { "air-filtering" },
-    subgroup = "fluid-recipes"
+    subgroup = "lava-block-air"
 }
 return air_electrostatic_adsorption

@@ -28,6 +28,6 @@ local air_extraction = {
         },
     },
     categories = { "gas" },
-    subgroup = "fluid-recipes"
+    subgroup = "lava-block-air"
 }
 return air_extraction

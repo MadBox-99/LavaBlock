@@ -34,7 +34,7 @@ return {
             shift = { -8, -8 },
         },
     },
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-solutions",
     order = "d[chlor-alkali]-a[brine-leaching]",
     crafting_machine_tint = {
         primary = { r = 0.37, g = 0.55, b = 0.59, a = 1.0 },

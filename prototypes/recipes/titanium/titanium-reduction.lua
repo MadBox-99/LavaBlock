@@ -19,6 +19,6 @@ return {
         { type = "fluid", name = "molten-titanium", amount = 10, fluidbox_index = 1 },
     },
     allow_productivity = true,
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-metal-melts",
     order = "m[melt]-j[molten-titanium]",
 }

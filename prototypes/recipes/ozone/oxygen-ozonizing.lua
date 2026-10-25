@@ -21,6 +21,6 @@ return {
         primary = { r = 0.55, g = 0.70, b = 0.95, a = 1.0 },
         secondary = { r = 0.80, g = 0.88, b = 1.00, a = 1.0 },
     },
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-air",
     order = "a[gas]-y[ozone]",
 }

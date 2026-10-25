@@ -50,6 +50,6 @@ return {
             shift = { 9, 8 },
         },
     },
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-solutions",
     order = "d[chlor-alkali]-b[brine-electrolysis]",
 }

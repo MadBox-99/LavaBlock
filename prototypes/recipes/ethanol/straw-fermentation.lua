@@ -15,7 +15,7 @@ return {
     type = "recipe",
     name = "straw-fermentation",
     categories = { "biomass-fermenting" },
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-organics",
     order = "b[ethanol]-a[straw-fermentation]",
     enabled = false,
     energy_required = 20,

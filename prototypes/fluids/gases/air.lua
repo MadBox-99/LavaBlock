@@ -1,7 +1,7 @@
 return {
     type = "fluid",
     name = "air",
-    group = "chemistry",
+    subgroup = "fluid",
     max_temperature = 132.5,                     -- Critical temperature in K (average for air)
     default_temperature = 15,                    -- Standard temperature in °C
     gas_temperature = -194.35,                   -- Boiling point in °C (average for air)

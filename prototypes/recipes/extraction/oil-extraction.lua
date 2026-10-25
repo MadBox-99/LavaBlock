@@ -19,7 +19,7 @@ local oil_extraction = {
     icon = "__base__/graphics/icons/fluid/basic-oil-processing.png",
     icon_size = 64,
     categories = { "chemistry" },
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-lava-extraction",
     order = "a[oil-processing]-a[basic-oil-processing]",
     allow_productivity = true
 }

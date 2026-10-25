@@ -24,6 +24,6 @@ return {
     -- Allowed, as on quartz melting: nothing turns tin back into
     -- cassiterite.
     allow_productivity = true,
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-melts",
     order = "e[glass]-b[cassiterite-melting]",
 }

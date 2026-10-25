@@ -14,6 +14,6 @@ return {
         { type = "fluid", name = "excimer-gas", amount = 50 },
     },
     allow_productivity = false,
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-noble-gases",
     order = "a[gas]-z[argon]-h[excimer-gas]",
 }

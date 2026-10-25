@@ -24,7 +24,7 @@ return {
     },
     allow_productivity = false,
     allow_quality = false,
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-solutions",
     order = "a[gas]-b[nitrogen]-b[nitric-acid]",
     crafting_machine_tint = {
         primary = { r = 0.98, g = 0.47, b = 0.35, a = 1.0 },

@@ -18,6 +18,8 @@ return {
         { type = "fluid", name = "ferrofluid", amount = 50 },
     },
     allow_productivity = true,
+    subgroup = "lava-block-solutions",
+    order = "p[ferrofluid]",
     crafting_machine_tint = {
         primary = { r = 0.05, g = 0.055, b = 0.07, a = 1.0 },
         secondary = { r = 0.30, g = 0.32, b = 0.38, a = 1.0 },

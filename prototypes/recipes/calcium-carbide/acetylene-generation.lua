@@ -25,6 +25,6 @@ return {
         primary = { r = 0.94, g = 0.94, b = 0.70, a = 1.0 },
         secondary = { r = 0.90, g = 0.90, b = 0.88, a = 1.0 },
     },
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-organics",
     order = "b[fluid-chemistry]-z[acetylene-generation]",
 }

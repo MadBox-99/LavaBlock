@@ -26,6 +26,6 @@ return {
             shift = { -8, -8 },
         },
     },
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-organics",
     order = "b[fluid-chemistry]-z[petroleum-gas-fractionation]",
 }

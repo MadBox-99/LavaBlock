@@ -21,7 +21,7 @@ return {
     },
     allow_productivity = false,
     allow_quality = false,
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-solutions",
     order = "d[chlor-alkali]-c[hydrochloric-acid]",
     crafting_machine_tint = {
         primary = { r = 0.71, g = 0.92, b = 0.35, a = 1.0 },

@@ -15,7 +15,7 @@ local copper_smelting = {
     icon = "__LavaBlock-graphics__/graphics/icons/copper-lava-smelt.png",
     icon_size = 64,
     categories = { "oil-processing" },
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-lava-smelting",
     allow_productivity = true,
     allow_quality = false,
 }

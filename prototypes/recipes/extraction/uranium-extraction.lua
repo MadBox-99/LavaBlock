@@ -23,7 +23,7 @@ local uranium_extraction = {
     },
     icon_size = 64,
     categories = { "chemistry" },
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-lava-extraction",
     allow_productivity = true
 }
 return uranium_extraction

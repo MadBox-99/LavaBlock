@@ -11,7 +11,7 @@ local brick_smelting = {
     },
     icon = "__base__/graphics/icons/stone-brick.png",
     categories = { "chemistry" },
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-lava-smelting",
     allow_productivity = true
 }
 return brick_smelting

@@ -21,6 +21,6 @@ return {
         { type = "fluid", name = "molten-stainless-steel", amount = 100, fluidbox_index = 1 },
     },
     allow_productivity = true,
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-alloy-melts",
     order = "n[alloy]-a[molten-stainless-steel]",
 }

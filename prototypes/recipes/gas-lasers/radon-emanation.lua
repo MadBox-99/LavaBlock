@@ -26,6 +26,6 @@ return {
         primary = { r = 0.86, g = 0.47, b = 0.47, a = 1.0 },
         secondary = { r = 0.30, g = 0.90, b = 0.30, a = 1.0 },
     },
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-noble-gases",
     order = "a[gas]-z[argon]-d[radon]",
 }

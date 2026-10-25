@@ -8,7 +8,7 @@ return {
     type = "recipe",
     name = "shielding-gas",
     categories = { "gas-combining" },
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-air",
     order = "a[gas]-z[argon]-a[shielding-gas]",
     enabled = false,
     energy_required = 4,

@@ -13,7 +13,7 @@ local ore_clearing = {
     icon = "__base__/graphics/icons/stone.png",
     icon_size = 64,
     categories = { "chemistry" },
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-lava-extraction",
     allow_productivity = true,
     allow_quality = false,
 }

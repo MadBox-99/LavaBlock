@@ -22,6 +22,6 @@ local iron_extraction = {
     },
     icon_size = 64,
     categories = { "chemistry" },
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-lava-extraction",
 }
 return iron_extraction

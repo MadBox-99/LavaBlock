@@ -18,6 +18,6 @@ return {
         { type = "fluid", name = "molten-solder", amount = 50, fluidbox_index = 1 },
     },
     allow_productivity = true,
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-alloy-melts",
     order = "n[alloy]-f[molten-solder]",
 }

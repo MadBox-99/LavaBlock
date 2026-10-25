@@ -20,6 +20,70 @@ data:extend({
         group = "chemistry",
         order = "a"
     },
+    -- The island's fluid recipes, one row per production line, in the order
+    -- the factory is built. They sat in vanilla's single fluid-recipes row in
+    -- the intermediate tab, where ninety recipes from a dozen chains read as
+    -- one undivided wall.
+    {
+        type = "item-subgroup",
+        name = "lava-block-lava-extraction",
+        group = "chemistry",
+        order = "b-a"
+    },
+    {
+        type = "item-subgroup",
+        name = "lava-block-lava-smelting",
+        group = "chemistry",
+        order = "b-b"
+    },
+    {
+        type = "item-subgroup",
+        name = "lava-block-air",
+        group = "chemistry",
+        order = "b-c"
+    },
+    {
+        type = "item-subgroup",
+        name = "lava-block-volcanic-gas",
+        group = "chemistry",
+        order = "b-d"
+    },
+    {
+        type = "item-subgroup",
+        name = "lava-block-solutions",
+        group = "chemistry",
+        order = "b-e"
+    },
+    {
+        type = "item-subgroup",
+        name = "lava-block-organics",
+        group = "chemistry",
+        order = "b-f"
+    },
+    {
+        type = "item-subgroup",
+        name = "lava-block-noble-gases",
+        group = "chemistry",
+        order = "b-g"
+    },
+    {
+        type = "item-subgroup",
+        name = "lava-block-melts",
+        group = "chemistry",
+        order = "b-h"
+    },
+    {
+        type = "item-subgroup",
+        name = "lava-block-metal-melts",
+        group = "chemistry",
+        order = "b-i"
+    },
+    {
+        type = "item-subgroup",
+        name = "lava-block-alloy-melts",
+        group = "chemistry",
+        order = "b-j"
+    },
     {
         type = "item-subgroup",
         name = "gas-separation",

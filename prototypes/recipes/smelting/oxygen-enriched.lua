@@ -37,7 +37,7 @@ local function enriched(metal, ore, molten, icon)
             },
         },
         categories = { "oil-processing" },
-        subgroup = "fluid-recipes",
+        subgroup = "lava-block-lava-smelting",
         allow_productivity = true,
         allow_quality = false,
     }

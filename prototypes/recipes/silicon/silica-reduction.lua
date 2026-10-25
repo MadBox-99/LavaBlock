@@ -26,6 +26,6 @@ return {
     -- in the refinery, +20% in the puller) make 23 wafers that recycle to
     -- under three crystals.
     allow_productivity = true,
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-melts",
     order = "g[silicon]-a[silica-reduction]",
 }

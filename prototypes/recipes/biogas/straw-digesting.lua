@@ -33,7 +33,7 @@ return {
             shift = { -8, -8 },
         },
     },
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-organics",
     order = "b[ethanol]-f[straw-digesting]",
     crafting_machine_tint = {
         primary = { r = 0.80, g = 0.66, b = 0.30, a = 1.0 },

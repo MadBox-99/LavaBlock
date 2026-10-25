@@ -11,7 +11,7 @@ return {
     type = "recipe",
     name = "ethanol-synthesis",
     categories = { "fuel-synthesizing" },
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-organics",
     order = "b[ethanol]-e[ethanol-synthesis]",
     enabled = false,
     energy_required = 3,

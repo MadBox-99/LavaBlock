@@ -21,6 +21,13 @@ unknown key without an error, so a 2.0 name is a silent no-op:
 | science packs as `type = "tool"` | plain `type = "item"`; labs take any item |
 | global `assembler2pipepictures()` | `require("__base__.prototypes.entity.assembler-pictures").assembler2pipepictures`, a table |
 
+Two 2.1 changes that raise no error either:
+
+- A recipe is no longer named after its product. Unless the recipe and
+  the product share a name, it needs its own `recipe-name` key.
+- Fluids moved to their own Fluids tab, and a fluid without
+  `subgroup = "fluid"` lands in Unsorted. `group` is not a fluid key.
+
 Recipe categories `electronics`, `basic-crafting`, `pressing`,
 `organic-or-hand-crafting` and the other combined categories are gone:
 list both machines' categories instead. Space Age renamed `wood-processing`

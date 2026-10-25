@@ -22,7 +22,7 @@ local lava_cooling_with_liquid_nitrogen = {
     },
     icon = "__LavaBlock-graphics__/graphics/icons/lava-cooling.png",
     icon_size = 64,
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-lava-smelting",
     order = "a[fluid-chemistry]-e[lava-cooling-with-liquid-nitrogen]"
 
 }

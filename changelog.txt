@@ -2,6 +2,10 @@
 Version: 0.3.1
 Date: ????
   Changes:
+    - The island's fluid recipes moved out of the single fluid row of the intermediate products tab into the Chemistry tab, one row per production line: lava extraction, lava smelting and cooling, air and its gases, volcanic gas, acids and solutions, ethanol and hydrocarbons, noble and laser gases, glass and other melts, metal melts and alloy melts
+  Bugfixes:
+    - Fourteen casting recipes - lead, zinc, nickel, manganese, stainless steel, manganese steel, brass, bronze, aluminium, magnesium, duralumin, vanadium, titanium alloy and superalloy plate - and Uranium Bacteria Cultivation showed a missing-key placeholder for a name in Factorio 2.1, as did the Tungsten from Lava technology. They are named again
+    - Air, compressed air, argon, oxygen, chlorine, carbon dioxide and shielding gas sat in the Unsorted tab in Factorio 2.1. They are in the Fluids tab with the other fluids
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.0
 Date: 2026-10-25

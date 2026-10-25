@@ -19,7 +19,7 @@ return {
     type = "recipe",
     name = "volcanic-gas-scrubbing",
     categories = { "chemistry" },
-    subgroup = "fluid-recipes",
+    subgroup = "lava-block-volcanic-gas",
     order = "a[gas]-z[chlorine]",
     enabled = false,
     energy_required = 3,

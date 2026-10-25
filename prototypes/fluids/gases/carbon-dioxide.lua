@@ -4,7 +4,7 @@
 return {
     type = "fluid",
     name = "carbon-dioxide",
-    group = "chemistry",
+    subgroup = "fluid",
     default_temperature = 15,
     max_temperature = 31,                        -- Critical temperature in C
     gas_temperature = -78.5,                     -- Sublimation point in C
