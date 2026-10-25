@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.0
-Date: ????
+Date: 2026-10-25
   Changes:
     - Updated to Factorio 2.1. This version needs Factorio 2.1; the 0.2 versions stay the ones for Factorio 2.0
     - The crystal circuit board, the wafer solar panel, the sapphire processing unit and uranium bacteria used recipe categories Space Age 2.1 removed, and now take the ones that replaced them. They are made in the same machines as before, except that uranium bacteria, like Space Age's own bacteria, can now be made in assembling machine 1 too
