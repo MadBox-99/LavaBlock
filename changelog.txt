@@ -65,7 +65,7 @@ Date: ????
     - Removed the lava module recipes and their seven technologies, Lava Modules and Lava Speed and Efficiency Module 1 to 3. They made modules out of circuits and lava with no advanced circuit, and their efficiency module 3 needed no spoilage. Modules already made stay, and a machine set to one of these recipes is left without a recipe
     - Removed the microchip module recipes and the Microchip Modules technology, which were a second way to the same tier 1 modules. Microchips go into every tier 3 module instead. Modules already made stay, and a machine set to one of these recipes is left without a recipe
     - Removed the lava flying robot frame recipe and its technology. It made frames with no steel, in half the time, out of free lava. Frames already made stay, and a machine set to the recipe is left without a recipe
-    - The chemical plant unlocks with Steel processing, since it is built of steel, instead of with Calcite Processing before there was any steel. The player still starts with one
+    - The chemical plant unlocks with Steel processing, since it is built of steel, instead of with Calcite Processing before there was any steel. A new game still starts with two
     - Algae fermentation unlocks with Algae Cultivation, which now comes after Bio-ethanol, instead of with Bio-ethanol before there were any algae to ferment
   Bugfixes:
     - Fourteen casting recipes - lead, zinc, nickel, manganese, stainless steel, manganese steel, brass, bronze, aluminium, magnesium, duralumin, vanadium, titanium alloy and superalloy plate - and Uranium Bacteria Cultivation showed a missing-key placeholder for a name in Factorio 2.1, as did the Tungsten from Lava technology. They are named again

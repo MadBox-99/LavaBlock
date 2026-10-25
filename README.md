@@ -1,6 +1,6 @@
 # LavaBlock
 
-You start on a 25x25 tile landfill island surrounded entirely by lava. There are no ore patches, no trees, no water — just your starting equipment and a chemical plant. Everything has to come from the lava.
+You start on a 25x25 tile landfill island surrounded entirely by lava. There are no ore patches, no trees, no water — just your starting equipment and two chemical plants. Everything has to come from the lava.
 
 **Requires Space Age.**
 
@@ -51,8 +51,8 @@ The connection to Pyroclast runs from Vulcanus.
 
 ## Starting kit
 
-- 1 chemical plant
-- 6 solar panels and 3 accumulators, enough to run the chemical plant and a pump through the night
+- 2 chemical plants
+- 10 solar panels and 5 accumulators, enough to run both chemical plants and a pump through the night
 - 4 small electric poles
 - 2 iron gear wheels and 3 pipes: exactly one offshore pump, so the first move is to craft it and place it on the lava
 - Lava Mech Armor, unless turned off in the mod settings
@@ -74,4 +74,4 @@ Copyright (c) 2025 Zach Kolansky
 
 ---
 
-*Factorio 2.0 + Space Age*
+*Factorio 2.1 + Space Age*
