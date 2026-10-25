@@ -282,5 +282,6 @@ if mods["space-age"] then
         -- The planet machines: one for each Space Age planet, built there.
         require("prototypes.technologies.hot-isostatic-pressing"),
         require("prototypes.technologies.eddy-current-separation"),
+        require("prototypes.technologies.bioleaching"),
     })
 end

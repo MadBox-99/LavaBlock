@@ -152,5 +152,12 @@ data:extend({
         -- metals a magnet does not hold.
         type = "recipe-category",
         name = "scrap-separating"
+    },
+    {
+        -- The bioleaching reactor's. Not a bare "bioleaching" or
+        -- "leaching": the chemical plant here already leaches with acid,
+        -- and a mod with a heap leach pad would take the plain word.
+        type = "recipe-category",
+        name = "ore-bioleaching"
     }
 })

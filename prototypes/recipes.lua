@@ -592,6 +592,15 @@ data:extend({
     require("prototypes.recipes.eddy-current-separator"),
     require("prototypes.recipes.fulgora.scrap-separating"),
     require("prototypes.recipes.fulgora.e-waste-smelting"),
+    -- Gleba: the bioleaching reactor, the bacteria it runs on and what
+    -- they leach
+    require("prototypes.recipes.bioleaching-reactor"),
+    require("prototypes.recipes.gleba.leaching-bacteria"),
+    require("prototypes.recipes.gleba.leaching-bacteria-cultivation"),
+    require("prototypes.recipes.gleba.pentlandite-bioleaching"),
+    require("prototypes.recipes.gleba.sphalerite-bioleaching"),
+    require("prototypes.recipes.gleba.pyrite-biooxidizing"),
+    require("prototypes.recipes.gleba.slag-bioleaching"),
 })
 
 -- Modified base recipe: the solar panel needs the crystallizer line.

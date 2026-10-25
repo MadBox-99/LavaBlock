@@ -136,6 +136,9 @@ data:extend({
     -- Fulgora: the eddy current separator and the e-waste it leaves
     require("prototypes.items.eddy-current-separator"),
     require("prototypes.items.fulgora.e-waste"),
+    -- Gleba: the bioleaching reactor and the bacteria it runs on
+    require("prototypes.items.bioleaching-reactor"),
+    require("prototypes.items.gleba.leaching-bacteria"),
 })
 
 -- Items that modify data.raw directly

@@ -217,6 +217,15 @@ radius, so the pair read as one lump with a rake stuck in it. Pushing the
 tub 0.26 north gave the bench its own ground and the silhouette became a
 circle and a rectangle, which is what tells the two halves apart at 64 px.
 
+**And the wall has to be thicker than the bevel.** `finish()` bevels every
+edge by 0.012 with two segments, from both sides of a wall at once, so a
+wall under about 0.03 thick has its two bevels meet in the middle and the
+mesh folds over. The bioleaching reactor's tank lining was 0.02 thick, and
+it closed into a flat grey lid across the whole tank: the liquor showed
+only through a crescent where the fold happened to leave a gap, and
+nothing in the mesh before the modifiers explained it. Ray-casting the
+evaluated scene along the camera found it in one line.
+
 ## The item icon
 
 `--pass icon` reuses the same model, camera and Y stretch, so the icon and the
@@ -597,6 +606,19 @@ always one nearly full and one nearly empty, and they never all drain at once.
 Note that staggered phases and a turntable do not combine - a rotation that
 moves each pod one slot along forces every pod to the same phase, so pick one
 or the other.
+
+`Travel` carries a group one way along an axis by `distance` over the sheet -
+lumps on a belt, cells on a conveyor - and closes only if the group is a
+pattern that repeats every `distance`. Lay the pattern on one pitch past the
+end of the run and give `limit`: each object carried beyond it is taken out
+of the render on that frame, so a lump vanishes as it reaches the drum
+instead of the whole last pitch emptying at the seam. The start of the run
+still pops, so put it under a chute.
+
+`Flipbook` is for things that each follow their own curve - scrap thrown
+off a drum, a drop falling. Build the objects as they stand on every frame;
+it shows one frame's set and hides the rest. It costs a set of objects per
+frame, and it must be built for `fr.FRAMES`, which it asserts.
 
 One turning part on a large machine reads as a still picture with a detail
 stuck to it. Give a big machine two or three, at different rates - and if

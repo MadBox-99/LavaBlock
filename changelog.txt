@@ -10,10 +10,14 @@ Date: ????
     - Scrap separating: 10 scrap make 2 aluminium plates, a zinc plate, a brass plate, a lead plate and an e-waste in 4 seconds - the island's metals out of Fulgora's scrap, where the recycler makes vanilla parts
     - E-waste, shredded circuit boards, smelts in the arc furnace: 10 make 5 copper plates and 2 anode slime in 8 seconds, twenty times the anode slime refining copper gets
     - All of it is the Eddy Current Separation technology, on electromagnetic science, after Rare earth processing, Alloy steels, Electric arc smelting and Precious metals
+    - Added the Bioleaching Reactor, Gleba's machine, five tiles square with its own model: two open stirred tanks side by side, their liquor turning and coloured by what is being leached, an inoculation vessel with a green sight glass between them and an aeration blower in front. It draws 300 kW, takes water in on one flank and gives acid out on the other, and is built on Gleba from a biochamber, 30 stainless steel plates, 4 electric engine units and 20 pipes
+    - Leaching bacteria: on Gleba, 3 jelly and a sulfur keep a culture one craft in ten, and a culture and a bioflux grow four. They spoil in 20 minutes, long enough to ship off Gleba but not to store
+    - Bioleaching takes a culture and 100 water a run, 20 seconds: 6 pentlandite make 3 nickel and a cobalt, 4 sphalerite make 5 zinc, 10 pyrite make a gold plate and 50 sulfuric acid, and 10 lava slag make 2 copper and, every other run, a nickel and a zinc
+    - All of it is the Bioleaching technology, on agricultural science, after Bacteria cultivation, Superalloys, Sulfide ores and EUV lithography
   Balancing:
     - The big mining drill takes 20 cemented carbide in place of 20 tungsten carbide, because a drill bit is carbide bound in cobalt. The big drill, and tungsten steel and metallurgic science behind it, now come after Hot Isostatic Pressing
   Changes:
-    - Needs LavaBlock-graphics 0.3.1, which carries the isostatic press, the eddy current separator and their items' and technologies' icons
+    - Needs LavaBlock-graphics 0.3.1, which carries the isostatic press, the eddy current separator, the bioleaching reactor and their items' and technologies' icons
     - The island's fluid recipes moved out of the single fluid row of the intermediate products tab into the Chemistry tab, one row per production line: lava extraction, lava smelting and cooling, air and its gases, volcanic gas, acids and solutions, ethanol and hydrocarbons, noble and laser gases, glass and other melts, metal melts and alloy melts
   Bugfixes:
     - Fourteen casting recipes - lead, zinc, nickel, manganese, stainless steel, manganese steel, brass, bronze, aluminium, magnesium, duralumin, vanadium, titanium alloy and superalloy plate - and Uranium Bacteria Cultivation showed a missing-key placeholder for a name in Factorio 2.1, as did the Tungsten from Lava technology. They are named again
