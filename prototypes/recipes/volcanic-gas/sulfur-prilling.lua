@@ -2,9 +2,13 @@
 -- An assembler with a fluid input stands in for the tower, as it does for
 -- every other pour on the island.
 --
--- Ten units a sulfur, the unit the Claus process counts in. One assembling
--- machine 2 prills 0.75 sulfur a second, and a refinery of volcanic gas
--- makes 0.45, so one machine serves a refinery with room to spare.
+-- Five units a sulfur. One assembling machine 2 prills 1.5 sulfur a second,
+-- and a refinery of volcanic gas makes 0.9, so one machine serves a
+-- refinery with room to spare.
+--
+-- Not ten. The whole volcanic gas line behind the melt made a prilled
+-- sulfur as dear as one from lava and petroleum gas before space, and
+-- nearly twice as dear after; at five it is the cheaper sulfur.
 return {
     type = "recipe",
     name = "sulfur-prilling",
@@ -15,7 +19,7 @@ return {
         { type = "fluid", name = "molten-sulfur", amount = 10 },
     },
     results = {
-        { type = "item", name = "sulfur", amount = 1 },
+        { type = "item", name = "sulfur", amount = 2 },
     },
     -- Nothing turns sulfur back into molten sulfur, so there is no loop to
     -- farm.

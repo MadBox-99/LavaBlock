@@ -3,11 +3,14 @@
 -- plant has three stages; a chemical plant has two inlets, and the air
 -- the oxychlorination takes is drawn in as it is.
 --
--- 20 ethylene and 10 acid for two plastic bars, the same two vanilla
--- makes from 20 petroleum gas and a coal. Twenty ethylene is eight straw;
+-- 20 ethylene and 10 acid for three plastic bars, where vanilla makes two
+-- from 20 petroleum gas and a coal. Twenty ethylene is eight straw;
 -- twenty petroleum gas is about eleven coal through oil extraction and a
 -- refinery, and the recipe's own coal on top. So this trades the oil line
 -- for the fermentation line and a share of the chlor-alkali cell.
+--
+-- Not two. Bar for bar, the fermentation line behind the ethylene cost a
+-- quarter more than vanilla plastic; three makes it a fifth cheaper.
 return {
     type = "recipe",
     name = "plastic-bar-from-ethylene",
@@ -19,7 +22,7 @@ return {
         { type = "fluid", name = "hydrochloric-acid", amount = 10 },
     },
     results = {
-        { type = "item", name = "plastic-bar", amount = 2 },
+        { type = "item", name = "plastic-bar", amount = 3 },
     },
     allow_productivity = true,
     -- Plastic keeps recycling the way it did.

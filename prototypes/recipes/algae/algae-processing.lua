@@ -53,9 +53,14 @@ local fibre_pressing = {
 }
 
 -- Blue: 5 algae cost 100 water + 400 air = 400 lava, and the craft adds 50
--- water, so 100 liquid nitrogen costs about 543 lava - against 386 lava for
--- 50 by the lava route. Around 1.4x cheaper, which unsticks cryogenic cooling
--- without making it free.
+-- water, so 125 liquid nitrogen costs about 543 lava - against 386 lava for
+-- 50 by the lava route. Around 1.8x cheaper in lava, which unsticks
+-- cryogenic cooling without making it free.
+--
+-- Not 100. In lava it was already cheaper, but the algae tank and the
+-- garden behind it cost more machine time than the lava saved, and the
+-- nitrogen came out an eighth dearer than the air cooler's. 125 makes it
+-- cheaper both ways.
 local nitrogen_fixation = {
     type = "recipe",
     name = "nitrogen-fixation",
@@ -69,7 +74,7 @@ local nitrogen_fixation = {
         { type = "fluid", name = "water",      amount = 50 },
     },
     results = {
-        { type = "fluid", name = "liquid-nitrogen", amount = 100 },
+        { type = "fluid", name = "liquid-nitrogen", amount = 125 },
     },
     allow_productivity = true,
     icons = {
@@ -90,10 +95,14 @@ local nitrogen_fixation = {
     },
 }
 
--- Red: 5 algae cost 100 water + 200 steam = 572 lava for 3 calcite, about 191
+-- Red: 5 algae cost 100 water + 200 steam = 572 lava for 4 calcite, about 143
 -- lava each. Calcite synthesis is 5000 lava plus coal and brick for 10, so
--- 500 lava each before the solids - roughly two and a half times dearer. The
--- old recipe stays for anyone who has lava to burn and no gardens built.
+-- 500 lava each before the solids. The old recipe stays for anyone who has
+-- lava to burn and no gardens built.
+--
+-- Not 3. Counted in machine time, the garden and the tank behind it made
+-- calcite a fifth dearer than synthesis once lava cooling makes brick
+-- cheap; four makes it a fifth cheaper.
 local calcite_precipitation = {
     type = "recipe",
     name = "calcite-precipitation",
@@ -106,9 +115,11 @@ local calcite_precipitation = {
         { type = "item", name = "algae-red", amount = 5 },
     },
     results = {
-        { type = "item", name = "calcite", amount = 3 },
+        { type = "item", name = "calcite", amount = 4 },
     },
     allow_productivity = true,
+    -- Calcite recycles into calcite, as it does without the island.
+    auto_recycle = false,
     icons = {
         { icon = "__space-age__/graphics/icons/calcite.png", icon_size = 64 },
         {

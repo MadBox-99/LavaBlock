@@ -1,10 +1,15 @@
 -- Where the lime line ends: concrete, bound with lime instead of cement.
 --
 -- It makes the vanilla concrete, so it needs nothing new downstream -
--- everything that already takes concrete takes this. It gives 15 for the
+-- everything that already takes concrete takes this. It gives 16 for the
 -- vanilla recipe's 10 and needs no iron ore and no brick, which is what a
 -- seven-step chain has to offer against a one-step recipe to be worth
 -- building at all.
+--
+-- One mortar to three gravel, as a real lime concrete is mostly aggregate.
+-- With three mortar a craft the binder alone cost more than the vanilla
+-- concrete it replaced, and each concrete came out half again dearer; at
+-- one it is about a tenth cheaper.
 return {
     type = "recipe",
     name = "lime-concrete",
@@ -12,12 +17,12 @@ return {
     enabled = false,
     energy_required = 10,
     ingredients = {
-        { type = "item",  name = "lime-mortar",   amount = 3 },
+        { type = "item",  name = "lime-mortar",   amount = 1 },
         { type = "item",  name = "basalt-gravel", amount = 3 },
         { type = "fluid", name = "water",         amount = 50 },
     },
     results = {
-        { type = "item", name = "concrete", amount = 15 },
+        { type = "item", name = "concrete", amount = 16 },
     },
     allow_productivity = true,
     -- Concrete keeps recycling into brick and iron ore. Without this the

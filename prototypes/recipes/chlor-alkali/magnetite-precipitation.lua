@@ -4,11 +4,15 @@
 -- grinding gives - and the salt water is brine, so it goes back to the
 -- cell.
 --
--- 60 ferric chloride (three iron plates) and 80 caustic soda for one
+-- 60 ferric chloride (three iron plates) and 80 caustic soda for three
 -- magnetite and 60 brine, five seconds. Magnetite growing gets two from 50
 -- molten iron, ten plates' worth, so five plates each and a crystal hearth;
--- this is three plates and a chemical plant, with a whole chlor-alkali line
+-- this is a plate each and a chemical plant, with a whole chlor-alkali line
 -- behind it.
+--
+-- Not one. The acid, the chlorine and the caustic soda made a precipitated
+-- magnetite three times dearer than a grown one; at three it is cheaper
+-- than growing before space and about level after.
 --
 -- The loop does not pay for itself. 60 brine back makes 36 caustic soda in
 -- the cell, less than half the 80 this takes, so the brine still has to be
@@ -24,7 +28,7 @@ return {
         { type = "fluid", name = "sodium-hydroxide", amount = 80 },
     },
     results = {
-        { type = "item",  name = "magnetite", amount = 1 },
+        { type = "item",  name = "magnetite", amount = 3 },
         -- Productivity multiplies the magnetite only: more brine would be
         -- more chlorine out of nothing.
         { type = "fluid", name = "brine",     amount = 60, ignored_by_productivity = 60 },

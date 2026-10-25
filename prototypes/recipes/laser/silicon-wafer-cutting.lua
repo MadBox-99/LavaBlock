@@ -17,4 +17,9 @@ return {
         primary = { r = 0.42, g = 0.44, b = 0.52, a = 1.0 },
     },
     allow_productivity = true,
+    -- Wafers recycle into wafers. Recycled into an eighth of a crystal, the
+    -- puller's 25 wafers from five crystals came back as more than five
+    -- once legendary productivity modules were in the refinery and the
+    -- puller.
+    auto_recycle = false,
 }

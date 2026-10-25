@@ -3,10 +3,14 @@
 -- process takes an arc furnace and two carbons for every silicon, and the
 -- two coal here are that.
 --
--- Five crystals and two coal for 50 molten silicon. The puller makes 15
--- wafers from that, three to a crystal, where the laser cutter slices a
--- crystal into two. The coal, the refinery, the argon and the slow puller
--- are what the extra wafer costs.
+-- Five crystals and two coal for 50 molten silicon. The puller makes 25
+-- wafers from that, five to a crystal, where the laser cutter slices a
+-- crystal into two. The coal, the refinery, the argon, the phosphorus and
+-- the slow puller are what the extra wafers cost.
+--
+-- Not 15 wafers. At three to a crystal the phosphorus alone outweighed the
+-- crystal saved, and a pulled wafer came out two fifths dearer than a cut
+-- one; at five it is about an eighth cheaper.
 return {
     type = "recipe",
     name = "silica-reduction",
@@ -21,10 +25,9 @@ return {
     results = {
         { type = "fluid", name = "molten-silicon", amount = 50 },
     },
-    -- Allowed, as on quartz melting. A wafer recycles to an eighth of a
-    -- crystal, so five crystals through both steps at full modules (+30%
-    -- in the refinery, +20% in the puller) make 23 wafers that recycle to
-    -- under three crystals.
+    -- Allowed, as on quartz melting. There is no loop through the
+    -- recycler: wafers recycle into wafers (see the laser cutter's
+    -- recipe).
     allow_productivity = true,
     subgroup = "lava-block-melts",
     order = "g[silicon]-a[silica-reduction]",

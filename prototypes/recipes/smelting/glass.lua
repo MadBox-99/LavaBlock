@@ -23,4 +23,10 @@ return {
         { type = "item", name = "glass", amount = 1 }
     },
     allow_productivity = true,
+    -- Glass recycles into glass, as a plate does. Recycled back into a
+    -- quarter of the two crystals it took, glass from the melt - a crystal
+    -- each, and less again on the tin bath - made more crystal than went
+    -- in once legendary productivity modules were in the refinery and the
+    -- caster.
+    auto_recycle = false,
 }

@@ -50,6 +50,10 @@ return {
         -- The industrial machine's own category, so only it can run this.
         -- Half again as much stone out of the same gravel, paid for in
         -- lubricant - which is why that machine is worth the oil line.
+        --
+        -- Five lubricant, not ten. Ten cost more than the two extra stone
+        -- were worth, and before space the oiled grind made dearer stone
+        -- than the dry one.
         type = "recipe",
         name = "gravel-grinding-oiled",
         categories = { "rock-crushing-oiled" },
@@ -57,7 +61,7 @@ return {
         energy_required = 2,
         ingredients = {
             { type = "item",  name = "basalt-gravel", amount = 3 },
-            { type = "fluid", name = "lubricant",     amount = 10 },
+            { type = "fluid", name = "lubricant",     amount = 5 },
         },
         results = {
             { type = "item", name = "stone", amount = 6 }

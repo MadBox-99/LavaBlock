@@ -2,11 +2,15 @@
 -- rockets actually flew on: the V-2 and the Redstone burned alcohol against
 -- liquid oxygen.
 --
--- 200 ethanol is 100 MJ at the fluid's own fuel value, and one rocket fuel
--- is 100 MJ, so the recipe loses nothing and gains nothing; the oxygen is
--- what makes it rocket fuel rather than a tank of spirit. Against the
--- vanilla recipe (ten solid fuel, 120 MJ, plus light oil) it is the cheaper
--- one in energy, and it needs no refinery at all.
+-- 50 ethanol and 100 oxygen for a rocket fuel. The oxygen is what makes it
+-- rocket fuel rather than a tank of spirit, and it needs no refinery at
+-- all.
+--
+-- Not 200. That was 100 MJ of ethanol for a 100 MJ rocket fuel, which kept
+-- the energy even, but ethanol is a dear fuel: the rocket fuel cost two and
+-- a half times the island's own before space. Fifty is 25 MJ in for 100
+-- out, the same bargain Gleba's jelly rocket fuel strikes, and comes out a
+-- sixth cheaper before space.
 --
 -- It runs in the Fuel Plant and not in a chemical plant: charging a rocket
 -- with liquid oxygen is a job for a cryogenic tank and a filling line, not
@@ -20,13 +24,15 @@ return {
     enabled = false,
     energy_required = 10,
     ingredients = {
-        { type = "fluid", name = "ethanol", amount = 200 },
+        { type = "fluid", name = "ethanol", amount = 50 },
         { type = "fluid", name = "oxygen",  amount = 100 },
     },
     results = {
         { type = "item", name = "rocket-fuel", amount = 1 },
     },
     allow_productivity = true,
+    -- Rocket fuel keeps recycling the way it did.
+    auto_recycle = false,
     icons = {
         {
             icon = "__base__/graphics/icons/rocket-fuel.png",

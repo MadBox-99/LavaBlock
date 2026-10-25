@@ -11,7 +11,7 @@ Date: ????
     - All of it is the Eddy Current Separation technology, on electromagnetic science, after Rare earth processing, Alloy steels, Electric arc smelting and Precious metals
     - Added the Bioleaching Reactor, Gleba's machine, five tiles square with its own model: two open stirred tanks side by side, their liquor turning and coloured by what is being leached, an inoculation vessel with a green sight glass between them and an aeration blower in front. It draws 300 kW, takes water in on one flank and gives acid out on the other, and is built on Gleba from a biochamber, 30 stainless steel plates, 4 electric engine units and 20 pipes
     - Leaching bacteria: on Gleba, 3 jelly and a sulfur keep a culture one craft in ten, and a culture and a bioflux grow four. They spoil in 20 minutes, long enough to ship off Gleba but not to store
-    - Bioleaching takes a culture and 100 water a run, 20 seconds: 6 pentlandite make 3 nickel and a cobalt, 4 sphalerite make 5 zinc, 10 pyrite make a gold plate and 50 sulfuric acid, and 10 lava slag make 2 copper and, every other run, a nickel and a zinc
+    - Bioleaching takes a culture and 100 water a run, 6 seconds: 6 pentlandite make 3 nickel and a cobalt - the cheapest cobalt there is - 4 sphalerite make 6 zinc, 5 pyrite make a gold plate and 50 sulfuric acid, and 10 lava slag make 2 copper, a nickel and a zinc
     - All of it is the Bioleaching technology, on agricultural science, after Bacteria cultivation, Superalloys, Sulfide ores and EUV lithography
     - Added the Cell Assembly Line, Aquilo's machine, three tiles by six with its own model: copper and aluminium foil reels at one end, a winding head turning in the middle, a conveyor of finished cells, and a formation rack whose charge lights glow while the line runs. It draws 2 MW, takes electrolyte through a port on its side, and is built on Aquilo from 20 lithium plates, 20 stainless steel plates, 10 electric engine units and 20 processing units
     - Lithium electrolyte: a lithium, a phosphorus and 30 fluorine make 50 in the cryogenic plant
@@ -26,10 +26,25 @@ Date: ????
     - Lava cooling with liquid nitrogen gives 750 steam instead of 1500. At 1500 one air cooler fed eight steam turbines - 48 MW for 210 kW, more than a nuclear reactor - out of twice the heat that went in. Now it gives back the heat that goes in, 24 MW a cooler, as much from a unit of lava as the geo-thermal turbine gets. Its plates, bricks and calcite are unchanged
     - Brick crushing makes 2 stone out of 2 stone bricks instead of 3. With productivity modules in an assembling machine 3, stone smelted into brick and crushed back came out ahead, by half again with legendary modules
     - The industrialised chemical plant draws 500 kW instead of 210 kW. At twice the chemical plant's speed it spent half the power on each craft
+    - Fertilised green algae: 12 algae a fertiliser instead of 8. The fertiliser cost more than the three extra algae were worth
+    - Lime concrete takes 1 lime mortar instead of 3 and makes 16 concrete instead of 15; it was half again dearer than vanilla concrete
+    - Sulfur concrete takes 10 molten sulfur instead of 20 and makes 16 concrete instead of 10; it was three quarters dearer than vanilla concrete
+    - Glass melting makes 150 molten glass instead of 100, a crystal of silica a glass instead of a crystal and a half. Cast glass and glazed panels from the melt were a fifth dearer than the furnace's glass
+    - Light oil synthesis makes 60 light oil instead of 15. It was three and a half times dearer than cracking
+    - Nitrogen fixation makes 125 liquid nitrogen instead of 100. It was an eighth dearer than the air cooler's
+    - Magnetite precipitation makes 3 magnetite instead of 1. It was three times dearer than growing it
+    - Plastic from ethylene makes 3 bars instead of 2. It was a quarter dearer than vanilla plastic
+    - Ethanol rocket fuel takes 50 ethanol instead of 200. It was two and a half times dearer than the island's rocket fuel
+    - Shielded silica crystallizing takes 10 shielding gas instead of 50. It made the dearest silica crystal on the island
+    - Silicon wafer pulling makes 25 wafers instead of 15. A pulled wafer was two fifths dearer than a cut one
+    - Sulfur prilling makes 2 sulfur from 10 molten sulfur instead of 1. It was twice as dear as sulfur from lava after space
+    - Lubricated gravel grinding takes 5 lubricant instead of 10. Before space it made dearer stone than the dry grind
+    - Calcite precipitation makes 4 calcite instead of 3. It was a fifth dearer than calcite synthesis
     - Iron and copper smelting with cryo cooling only run on the lava island, as the water-cooled smelting already did. Elsewhere they turned the foundry's molten metal into 2.5 times the plates casting gives
   Changes:
     - Needs LavaBlock-graphics 0.3.1, which carries the four planet machines - the isostatic press, the eddy current separator, the bioleaching reactor and the cell assembly line - and their items' and technologies' icons
     - The island's fluid recipes moved out of the single fluid row of the intermediate products tab into the Chemistry tab, one row per production line: lava extraction, lava smelting and cooling, air and its gases, volcanic gas, acids and solutions, ethanol and hydrocarbons, noble and laser gases, glass and other melts, metal melts and alloy melts
+    - Glass, silicon wafers and calcite recycle into themselves. Recycled back into silica crystal, glass and wafers from the melts made more crystal than went in once legendary productivity modules were in the refinery, and calcite recycled into red algae
     - Removed the lava module recipes and their seven technologies, Lava Modules and Lava Speed and Efficiency Module 1 to 3. They made modules out of circuits and lava with no advanced circuit, and their efficiency module 3 needed no spoilage. Modules already made stay, and a machine set to one of these recipes is left without a recipe
     - Removed the microchip module recipes and the Microchip Modules technology, which were a second way to the same tier 1 modules. Microchips go into every tier 3 module instead. Modules already made stay, and a machine set to one of these recipes is left without a recipe
     - Removed the lava flying robot frame recipe and its technology. It made frames with no steel, in half the time, out of free lava. Frames already made stay, and a machine set to the recipe is left without a recipe

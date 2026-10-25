@@ -4,7 +4,7 @@
 -- as one of these boules. The crystal hearth is the island's machine for
 -- growing crystal out of a melt, and it has the two inlets this takes.
 --
--- 50 molten silicon and 10 argon for 15 wafers, ten seconds. Ten argon is
+-- 50 molten silicon and 10 argon for 25 wafers, ten seconds. Ten argon is
 -- 250 air on the compressor. The arithmetic against the laser cutter is on
 -- silica reduction.
 --
@@ -22,7 +22,7 @@ return {
         { type = "fluid", name = "argon",          amount = 10 },
     },
     results = {
-        { type = "item", name = "silicon-wafer", amount = 15 },
+        { type = "item", name = "silicon-wafer", amount = 25 },
     },
     allow_productivity = true,
     -- Wafers keep recycling into silica crystal.

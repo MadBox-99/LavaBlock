@@ -1,7 +1,12 @@
--- Green algae grown in water dosed with fertiliser: eight a craft where the
--- plain recipe gets five, for a fertiliser. The same trade as the
+-- Green algae grown in water dosed with fertiliser: twelve a craft where
+-- the plain recipe gets five, for a fertiliser. The same trade as the
 -- fertilised tree: more out of each tank, for nitrogen, phosphorus and
 -- potash from elsewhere.
+--
+-- Not eight. Plain algae are water, lava and five seconds of a tank, and a
+-- fertiliser - a quarter of a phosphorus behind it - cost more than the
+-- three extra algae were worth, so the fertilised tank made dearer algae
+-- than the plain one. Twelve makes each alga about a tenth cheaper.
 return {
     type = "recipe",
     name = "algae-green-fertilized",
@@ -14,7 +19,7 @@ return {
         { type = "fluid", name = "lava",       amount = 100 },
     },
     results = {
-        { type = "item", name = "algae-green", amount = 8 },
+        { type = "item", name = "algae-green", amount = 12 },
     },
     allow_productivity = true,
     auto_recycle = false,

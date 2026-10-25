@@ -3,11 +3,14 @@
 -- build with where water is short - it needs none, and it cures in hours
 -- instead of weeks.
 --
--- Twenty molten sulfur and five gravel make ten concrete, against vanilla's
--- five brick, iron ore and 100 water for the same ten, and lime concrete's
--- 15 from a seven-step chain. Twenty units is two sulfur's worth, so it
--- spends the line's product on a bulk material; that is its price, and the
--- reason it does not simply replace the other two.
+-- Ten molten sulfur and five gravel make 16 concrete, against vanilla's
+-- five brick, iron ore and 100 water for ten, and lime concrete's 16 from a
+-- seven-step chain. Ten units is two sulfur's worth, so it spends the
+-- line's product on a bulk material; that is its price.
+--
+-- Real sulfur concrete is a fifth sulfur and the rest aggregate. Twenty
+-- units for ten concrete was nearly all binder, and made concrete three
+-- quarters dearer than the vanilla recipe; this is about a tenth cheaper.
 return {
     type = "recipe",
     name = "sulfur-concrete",
@@ -16,10 +19,10 @@ return {
     energy_required = 10,
     ingredients = {
         { type = "item",  name = "basalt-gravel", amount = 5 },
-        { type = "fluid", name = "molten-sulfur", amount = 20 },
+        { type = "fluid", name = "molten-sulfur", amount = 10 },
     },
     results = {
-        { type = "item", name = "concrete", amount = 10 },
+        { type = "item", name = "concrete", amount = 16 },
     },
     allow_productivity = true,
     -- Concrete keeps recycling into brick and iron ore.

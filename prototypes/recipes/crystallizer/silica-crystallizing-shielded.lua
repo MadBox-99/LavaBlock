@@ -7,9 +7,12 @@
 --
 -- Seven against the purified pass's five, for a whole gas line - argon out
 -- of air on the compressor, blended with oxygen on the combiner, piped to
--- the second inlet. Forty per cent more crystal is a fair price for that
--- and not a replacement for the recipe below it: a base running well on
--- purified lava has no obligation to build any of this.
+-- the second inlet. Ten gas a pass: the gas is a blanket over the pan, not
+-- something the crystal is made of.
+--
+-- Not 50. Fifty units were 45 argon, 1100 air, and cost far more than the
+-- two extra crystals were worth - the best pass made the dearest crystal on
+-- the island. At ten it is about a tenth cheaper than the purified pass.
 return {
     type = "recipe",
     name = "silica-crystallizing-shielded",
@@ -20,7 +23,7 @@ return {
     energy_required = 8,
     ingredients = {
         { type = "fluid", name = "purified-lava",  amount = 200 },
-        { type = "fluid", name = "shielding-gas",  amount = 50 },
+        { type = "fluid", name = "shielding-gas",  amount = 10 },
     },
     results = {
         { type = "item", name = "silica-crystal", amount = 7 }
