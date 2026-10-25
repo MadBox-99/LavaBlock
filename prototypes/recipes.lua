@@ -332,7 +332,6 @@ data:extend({
     stone_crushing[2],
     stone_crushing[3],
     stone_crushing[4],
-    stone_crushing[5],
     crusher_roll,
     culture_column,
     -- Crystallizer recipes

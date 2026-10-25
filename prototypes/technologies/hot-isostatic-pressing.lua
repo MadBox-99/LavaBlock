@@ -1,5 +1,5 @@
--- The isostatic press, the cemented carbide it sinters, and the studded
--- crusher rolls the carbide is set in. Vulcanus's machine.
+-- The isostatic press and the cemented carbide it sinters. Vulcanus's
+-- machine; the carbide goes into the big mining drill's bits.
 --
 -- A research trigger, as the foundry is: fifty tungsten carbide made, which
 -- is a player on Vulcanus with the carbide line running. It has to be a
@@ -8,10 +8,14 @@
 -- metallurgic science would close the loop.
 --
 -- After Tungsten carbide for the carbide, Superalloys for the cobalt and
--- for the furnace inside the vessel, Shielded crystallization for the argon
--- and Lubricated rock crushing for the industrial crusher the studded rolls
--- go into. All three of those are the island's, researched before the
--- player ever leaves it.
+-- for the furnace inside the vessel, and Shielded crystallization for the
+-- argon. Both of those are the island's, researched before the player
+-- ever leaves it.
+--
+-- Not studded crusher rolls as well. Carbide studs in the industrial
+-- crusher's rolls would grind 8 stone out of 3 gravel instead of 6, but
+-- that is carbide shipped back from Vulcanus and looped through a crusher
+-- for two stone, the cheapest thing on the island.
 return {
     type = "technology",
     name = "hot-isostatic-pressing",
@@ -20,11 +24,9 @@ return {
     effects = {
         { type = "unlock-recipe", recipe = "isostatic-press" },
         { type = "unlock-recipe", recipe = "cemented-carbide" },
-        { type = "unlock-recipe", recipe = "gravel-grinding-studded" },
     },
     prerequisites = {
         "tungsten-carbide", "superalloys", "shielded-crystallization",
-        "lubricated-rock-crushing",
     },
     research_trigger = {
         type = "craft-item",
