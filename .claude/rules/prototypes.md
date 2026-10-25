@@ -62,7 +62,7 @@ paths:
 Keep this order so that files diff cleanly:
 
 - **item:** `type, name, icon, icon_size, subgroup, order, place_result, stack_size`
-- **recipe:** `type, name, category, enabled, energy_required, ingredients, results, main_product, allow_productivity, auto_recycle`, then `icon, subgroup, order`
+- **recipe:** `type, name, categories, enabled, energy_required, ingredients, results, main_product, allow_productivity, auto_recycle`, then `icon, subgroup, order`
 - **technology:** `type, name, icon, icon_size, effects, prerequisites, unit | research_trigger, order`
 - **fluid:** `type, name, subgroup, default_temperature, heat_capacity, base_color, flow_color, icon, icon_size, order, auto_barrel`
 

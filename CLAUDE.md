@@ -5,6 +5,29 @@ Lua style, prototypes, entities and graphics, runtime, locale, changelog).
 This file is generic Factorio 2.0 reference; where the two disagree, the
 rules win.
 
+## Factorio 2.1
+
+`main` targets Factorio 2.1 from LavaBlock 0.3.0. The tables further down
+are 2.0's and still name some fields 2.1 renamed. Factorio ignores an
+unknown key without an error, so a 2.0 name is a silent no-op:
+
+| 2.0 | 2.1 |
+|---|---|
+| recipe `category` (+ `additional_categories`) | `categories = { ... }` |
+| product `probability` | `independent_probability` |
+| item `fuel_category` | `fuel_categories = { ... }` |
+| generator `vertical_animation` / `horizontal_animation` | `pictures.<dir>.animation` |
+| `fluid_box.minimum_temperature` / `maximum_temperature` | `minimum_input_temperature` / `maximum_input_temperature` on the entity, never below the fluid's default temperature |
+| science packs as `type = "tool"` | plain `type = "item"`; labs take any item |
+| global `assembler2pipepictures()` | `require("__base__.prototypes.entity.assembler-pictures").assembler2pipepictures`, a table |
+
+Recipe categories `electronics`, `basic-crafting`, `pressing`,
+`organic-or-hand-crafting` and the other combined categories are gone:
+list both machines' categories instead. Space Age renamed `wood-processing`
+to `tree-seed`, `molten-iron` to `iron-ore-melting` and `molten-copper` to
+`copper-ore-melting`. The 2.1 API docs ship with the game, in
+`Factorio/doc-html/` (`prototype-api.json`, `runtime-api.json`).
+
 ## Factorio 2.0 API Notes
 
 ### Runtime vs Prototype Objects
@@ -473,7 +496,7 @@ fluid_boxes = {
         pipe_connections = {
             { flow_direction = "input", direction = defines.direction.north, position = { 0, -1 } }
         },
-        pipe_picture = assembler2pipepictures(),
+        pipe_picture = assembler_pictures.assembler2pipepictures,
         pipe_covers = pipecoverspictures(),
         volume = 1000,
     },
@@ -482,7 +505,7 @@ fluid_boxes = {
         pipe_connections = {
             { flow_direction = "output", direction = defines.direction.south, position = { 0, 1 } }
         },
-        pipe_picture = assembler2pipepictures(),
+        pipe_picture = assembler_pictures.assembler2pipepictures,
         pipe_covers = pipecoverspictures(),
         volume = 1000,
     },
@@ -492,7 +515,7 @@ fluid_boxes = {
 **Required imports:**
 ```lua
 require("__base__.prototypes.entity.pipecovers")
-require("__base__.prototypes.entity.assemblerpipes")
+local assembler_pictures = require("__base__.prototypes.entity.assembler-pictures")
 ```
 
 ## Research Triggers

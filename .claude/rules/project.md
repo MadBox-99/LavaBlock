@@ -49,9 +49,10 @@ dev-only top-level file or folder must be added there.
 
 ## Branches
 
-- `main` is Factorio 2.0. `factorio-2.1` carries the 2.1 port (0.3.x).
-- New work on `main` also has to be merged into `factorio-2.1` and ported.
-  The 2.1 renames are listed in the `factorio-2-1-branch` memory.
+- `main` is Factorio 2.1, from 0.3.0. The 2.1 renames are listed at the
+  top of CLAUDE.md.
+- Factorio 2.0 ended at 0.2.6; the `0.2.6` tag is its last release. A 2.0
+  fix would branch from that tag.
 - Do not create bare version tags (`0.2.7`). `fmtk publish` creates them and
   stops if one exists.
 
