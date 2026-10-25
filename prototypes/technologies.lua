@@ -281,5 +281,6 @@ if mods["space-age"] then
         industrialised_chemical_plant_tech,
         -- The planet machines: one for each Space Age planet, built there.
         require("prototypes.technologies.hot-isostatic-pressing"),
+        require("prototypes.technologies.eddy-current-separation"),
     })
 end

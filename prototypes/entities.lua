@@ -32,4 +32,5 @@ data:extend({
     require("prototypes.entity.arc-furnace"),
     -- The planet machines: one for each Space Age planet, built there.
     require("prototypes.entity.isostatic-press"),
+    require("prototypes.entity.eddy-current-separator"),
 })

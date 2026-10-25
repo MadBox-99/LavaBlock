@@ -587,6 +587,11 @@ data:extend({
     -- Vulcanus: the isostatic press and the cemented carbide it sinters
     require("prototypes.recipes.isostatic-press"),
     require("prototypes.recipes.vulcanus.cemented-carbide"),
+    -- Fulgora: the eddy current separator, the scrap it sorts and the
+    -- e-waste smelted in the arc furnace
+    require("prototypes.recipes.eddy-current-separator"),
+    require("prototypes.recipes.fulgora.scrap-separating"),
+    require("prototypes.recipes.fulgora.e-waste-smelting"),
 })
 
 -- Modified base recipe: the solar panel needs the crystallizer line.

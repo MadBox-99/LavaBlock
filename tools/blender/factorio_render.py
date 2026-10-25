@@ -452,6 +452,72 @@ class Grow:
         empty.scale = sc
 
 
+class Travel:
+    """One assembly carried along a line, one way, at a steady speed - what
+    rides a conveyor belt.
+
+    Slide goes there and back; a belt only goes one way. Travel moves its
+    group `distance` along `axis` over the sheet, and the loop closes only if
+    the group is a pattern that repeats every `distance`: lumps laid on a
+    belt at a fixed pitch, moved by exactly one pitch, are back where the
+    next lump was. On the last frame everything jumps back by one pitch, so
+    the first lump appears from nothing at the start of the run. Hide that
+    end under something - a feed chute - or the pop shows.
+
+    The far end is handled by `limit`: lay the pattern on one pitch past the
+    end of the run, and any object carried beyond `limit` along the axis is
+    taken out of the render on that frame. Each lump then vanishes at the
+    end of the belt as it reaches it, and the sheet is the same on frame 0
+    as one pitch on, because the lump that was just past the end then is
+    just past it now. Without it the last pitch of the run is full on the
+    last frame and empty on the first, and the whole stretch pops.
+    """
+
+    def __init__(self, objs, axis='Y', distance=0.4, limit=None):
+        assert axis in AXES, axis
+        self.objs = list(objs)
+        self.pivot = (0, 0, 0)        # children keep their authored positions
+        self.axis = axis
+        self.distance = distance
+        self.limit = limit
+        self.start = [o.location[AXES[axis]] for o in self.objs]
+
+    def pose(self, empty, f, frames):
+        loc = [0.0, 0.0, 0.0]
+        offset = self.distance * f / frames
+        loc[AXES[self.axis]] = offset
+        empty.location = loc
+        if self.limit is not None:
+            for o, s in zip(self.objs, self.start):
+                o.hide_render = s + offset > self.limit
+
+
+class Flipbook:
+    """A different set of objects on every frame of the sheet.
+
+    For motion no rigid group can make: things in flight, each on its own
+    curve. Build the scene as it stands on each frame - `by_frame[f]` is the
+    list of objects shown on frame f - and every other frame's objects are
+    taken out of the render. The loop closes if the last frame's objects
+    lead on to the first frame's, which is the caller's arithmetic.
+
+    Costs one set of objects per frame, so keep each set to a handful.
+    """
+
+    def __init__(self, by_frame):
+        self.by_frame = [list(objs) for objs in by_frame]
+        self.objs = [o for objs in self.by_frame for o in objs]
+        self.pivot = (0, 0, 0)        # children keep their authored positions
+
+    def pose(self, empty, f, frames):
+        assert len(self.by_frame) == frames, \
+            "a Flipbook built for %d frames rendered as %d" % (
+                len(self.by_frame), frames)
+        for k, objs in enumerate(self.by_frame):
+            for o in objs:
+                o.hide_render = k != f
+
+
 def slider_crank(centre, radius, length, f, frames, sign=1, phase=0.0,
                  bore=(0.0, 1.0)):
     """Where the two ends of a connecting rod are on frame f.
@@ -560,7 +626,7 @@ def _as_groups(spin, pivot, default_degrees):
     """Accept either a flat list of objects (one group, the common case) or a
     list of Spin/Slide groups."""
     if spin and isinstance(spin[0], (Spin, Slide, Swing, Grow, Rod,
-                                     Piston)):
+                                     Piston, Travel, Flipbook)):
         groups = spin
     else:
         groups = [Spin(spin, pivot=pivot)]

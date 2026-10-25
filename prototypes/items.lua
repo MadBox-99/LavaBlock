@@ -133,6 +133,9 @@ data:extend({
     -- Vulcanus: the isostatic press and the cemented carbide it sinters
     require("prototypes.items.isostatic-press"),
     require("prototypes.items.vulcanus.cemented-carbide"),
+    -- Fulgora: the eddy current separator and the e-waste it leaves
+    require("prototypes.items.eddy-current-separator"),
+    require("prototypes.items.fulgora.e-waste"),
 })
 
 -- Items that modify data.raw directly

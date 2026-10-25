@@ -143,5 +143,14 @@ data:extend({
         -- 2.0 used for one of its own combined categories.
         type = "recipe-category",
         name = "isostatic-pressing"
+    },
+    {
+        -- The eddy current separator's. Named for what it does to what:
+        -- not a bare "separating" or "sorting", and not "magnetic-
+        -- separation", which a mod with a magnetic ore separator would take
+        -- and which would be wrong besides - the separator throws out the
+        -- metals a magnet does not hold.
+        type = "recipe-category",
+        name = "scrap-separating"
     }
 })

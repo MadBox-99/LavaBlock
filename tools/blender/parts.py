@@ -21,7 +21,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import math                                                   # noqa: E402
 import bpy                                                    # noqa: E402
 import factorio_render as fr                                  # noqa: E402
-from mathutils import Vector                               # noqa: E402
+from mathutils import Vector, Matrix, Euler                # noqa: E402
 from factorio_render import (build_materials, cyl_at, box,    # noqa: E402
                              MATS, mat)
 
@@ -1302,6 +1302,45 @@ def cemented_carbide(m):
             carbide_insert(0.30, -0.18, 0.04, 0.90, m['tin_coat'])]
 
 
+def e_waste(m):
+    """Shredded circuit boards: a heap of green board fragments, each with
+    copper tracks, a gold edge contact or a black chip still on it.
+
+    Green and broken, because a circuit board is green and a whole one is a
+    vanilla item. The bits of gold and copper are what say "this is worth
+    smelting" rather than "this is rubbish".
+    """
+    import random
+    rnd = random.Random(7)
+    out = []
+    for k in range(9):
+        a = 2 * math.pi * k / 9 + rnd.uniform(-0.3, 0.3)
+        r = 0.08 + 0.26 * rnd.random()
+        x, y = r * math.cos(a), r * math.sin(a)
+        z = 0.03 + 0.10 * (1 - r / 0.34) + 0.03 * rnd.random()
+        w, d = rnd.uniform(0.20, 0.32), rnd.uniform(0.14, 0.24)
+        rot = (rnd.uniform(-0.35, 0.35), rnd.uniform(-0.35, 0.35),
+               rnd.uniform(0, math.pi))
+        board = box(w, d, 0.025, (x, y, z), rot=rot, m=m['pcb_board'])
+        out.append(board)
+        # Something on each fragment, placed in the board's own frame so it
+        # lies flat on it. Worked out here rather than by parenting: box()
+        # scales the board, and a child would be scaled down with it.
+        frame = (Matrix.Translation((x, y, z))
+                 @ Euler(rot).to_matrix().to_4x4())
+        kind = k % 3
+        if kind == 0:
+            size, local, mm = (0.09, 0.09, 0.025), (0, 0, 0.022), m['epoxy']
+        elif kind == 1:
+            size, local = (w * 0.9, 0.035, 0.008), (0, d / 2 - 0.03, 0.016)
+            mm = m['gold']
+        else:
+            size, local = (w * 0.7, 0.012, 0.006), (0, 0.02, 0.016)
+            mm = m['copper']
+        out.append(box(*size, tuple(frame @ Vector(local)), rot=rot, m=mm))
+    return out
+
+
 def rare_earth_processing(m):
     """The technology: monazite with the three oxides it is cracked into."""
     out = monazite(m)
@@ -1402,6 +1441,7 @@ PARTS = {
     'fertilizer': fertilizer,
     'calcium-carbide': calcium_carbide,
     'cemented-carbide': cemented_carbide,
+    'e-waste': e_waste,
     'rare-earth-processing': rare_earth_processing,
     'precious-metals': precious_metals,
     'fertilizer-tech': fertilizer_tech,
@@ -1639,6 +1679,10 @@ def build():
     # shine, and a titanium nitride coat the gold of a drill bit.
     m['hardmetal'] = mat("hardmetal", (0.070, 0.069, 0.072), 0.40, 0.70)
     m['tin_coat'] = mat("tin_coat", (0.520, 0.360, 0.090), 0.28, 1.0)
+    # Circuit board green, kept dark for the icon sun.
+    m['pcb_board'] = mat("pcb_board", (0.006, 0.060, 0.018), 0.60, 0.0)
+    m['pcb_board'].node_tree.nodes['Principled BSDF'].inputs[
+        'Specular IOR Level'].default_value = 0.15
     objs = PARTS[PART](m)
     sit_on_ground(objs)
     return objs, []
