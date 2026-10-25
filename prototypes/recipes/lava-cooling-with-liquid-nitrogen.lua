@@ -12,9 +12,14 @@ local lava_cooling_with_liquid_nitrogen = {
     -- The old 2000 steam @ 1000 C was 394 MJ raw / 194 MJ through a steam turbine
     -- (which caps at 500 C and threw the rest away anyway) -- a 2.6x energy
     -- multiplier out of nothing, which also made geo-thermal-turbine pointless.
-    -- 1500 steam @ 500 C is ~145 MJ: still a strong reward, no longer free energy.
+    -- 1500 steam @ 500 C (~145 MJ) still put out twice the heat that went in:
+    -- one air cooler at 210 kW fed eight steam turbines, 48 MW, more than a
+    -- nuclear reactor, and the magma reactor was worth building only for its
+    -- footprint. 750 steam @ 500 C is ~73 MJ, the heat that went in: 24 MW a
+    -- cooler, four turbines, 24 kJ a unit of lava as the geo-thermal turbine
+    -- gets. The plates are the reward, not the power.
     results = {
-        { type = "fluid", name = "steam",        amount = 1500, temperature = 500 },
+        { type = "fluid", name = "steam",        amount = 750,  temperature = 500 },
         { type = "item",  name = "stone-brick",  amount = 10,   independent_probability = 0.5 },
         { type = "item",  name = "calcite",      amount = 5,    independent_probability = 0.1 },
         { type = "item",  name = "iron-plate",   amount = 20,   independent_probability = 0.2 },

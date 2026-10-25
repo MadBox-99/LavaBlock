@@ -3,6 +3,10 @@
 -- in the menu for most of red and green science with nothing to feed them.
 -- Liquefaction moved to Sulfur processing; neutralisation is Vulcanus-only
 -- (pressure 4000) and vanilla Calcite processing unlocks it there.
+--
+-- Nor the chemical plant: it is built of steel, and this trigger comes
+-- before Steel processing. It unlocks there instead (technologies.lua); the
+-- player starts with one.
 local calcite_processing_on_lava_block = {
     type = "technology",
     name = "calcite-processing-on-lava-block",
@@ -10,7 +14,6 @@ local calcite_processing_on_lava_block = {
     icon_size = 256,
     effects = {
         { type = "unlock-recipe", recipe = "steam-condensation" },
-        { type = "unlock-recipe", recipe = "chemical-plant" }
     },
     research_trigger = {
         type = "craft-item",

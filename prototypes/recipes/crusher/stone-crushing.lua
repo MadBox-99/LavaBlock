@@ -80,8 +80,15 @@ return {
         -- would pick up the grinding step's productivity, and 4 stone -> 2
         -- brick -> 2 gravel -> 2.67 stone stops being a loss the moment
         -- that productivity passes fifty percent. As a one-step recipe with
-        -- productivity refused, the round trip is a loss at every level and
-        -- cannot be farmed.
+        -- productivity refused, nothing on this side multiplies.
+        --
+        -- That is not enough on its own: vanilla's stone brick takes
+        -- productivity, and the assembling machine 3 smelts with four module
+        -- slots. At three stone for two bricks, two stone made 1.4 bricks
+        -- with four productivity modules and came back as 2.1 stone, and half
+        -- again with legendary ones. At one stone a brick the legendary round
+        -- trip comes back even and anything less is a loss, so it cannot be
+        -- farmed.
         type = "recipe",
         name = "brick-crushing",
         categories = { "rock-crushing" },
@@ -91,7 +98,7 @@ return {
             { type = "item", name = "stone-brick", amount = 2 }
         },
         results = {
-            { type = "item", name = "stone", amount = 3 }
+            { type = "item", name = "stone", amount = 2 }
         },
         main_product = "stone",
         icon = "__base__/graphics/icons/stone.png",

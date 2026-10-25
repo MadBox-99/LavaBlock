@@ -8,6 +8,11 @@ industrialised_chemical_plant.minable.result = "industrialised-chemical-plant"
 -- was buildable but permanently empty.
 industrialised_chemical_plant.crafting_categories = { "chemistry" }
 industrialised_chemical_plant.crafting_speed = 2.0
+-- Twice the speed has to cost at least twice the chemical plant's 210 kW,
+-- or every craft is cheaper in power than in the plant it replaces; it
+-- inherited the 210 kW and did each one for half. 500 kW is a little over
+-- double: the upgrade is paid for in power as well as in parts.
+industrialised_chemical_plant.energy_usage = "500kW"
 
 -- Same icon as the item, so alt-mode and Factoriopedia match the model.
 industrialised_chemical_plant.icon =

@@ -3,6 +3,9 @@
 -- top of the smelting route's own doubling turned one ore into four plates.
 -- 50 is 2.5 plates an ore against water's 2: a little more, and far faster
 -- on one machine, which is what the liquid nitrogen is paid for.
+--
+-- Only on the lava island, as water cooling is. Anywhere else it took the
+-- foundry's molten metal at 2.5 plates for every one casting gets.
 local copper_smelting_cryo_cooling = {
     type = "recipe",
     name = "copper-smelting-cryo-cooling",
@@ -18,6 +21,7 @@ local copper_smelting_cryo_cooling = {
     },
     icon = "__base__/graphics/icons/copper-plate.png",
     icon_size = 64,
+    surface_conditions = { { property = "lava-block-lava-ocean", min = 1, max = 1 } },
     subgroup = "raw-material",
     order = "c[copper-plate]-c[cryo]"
 }

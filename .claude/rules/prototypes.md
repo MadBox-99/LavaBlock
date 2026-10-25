@@ -38,7 +38,7 @@ paths:
 - Prototype names are kebab-case and plain, with no mod prefix:
   `microchip`, `tin-plate`, `laser-source`, `magma-reactor`.
 - Use `lava-` only for a LavaBlock variant of a vanilla thing:
-  `lava-science-pack`, `lava-flying-robot-frame`, `lava-mech-armor`.
+  `lava-science-pack`, `lava-mech-armor`.
 - Use `lava-block-` for anything internal or global: settings
   (`lava-block-foundation-limit`), item subgroups (`lava-block-crystals`),
   surface properties (`lava-block-lava-ocean`).

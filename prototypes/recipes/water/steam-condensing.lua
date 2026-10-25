@@ -8,7 +8,7 @@
 -- A dedicated condenser gets 2 steam per water, so the same steam goes about
 -- five and a half times further. That does not open a new loop: the nitrogen
 -- cooling chain already paid for its own water out of the steam it produces
--- (1500 steam out against the 222 the old ratio needed), so this only widens a
+-- (750 steam out against the 222 the old ratio needed), so this only widens a
 -- margin that was already positive.
 return {
     type = "recipe",

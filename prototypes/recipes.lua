@@ -234,9 +234,6 @@ local fluoride_scrubbing = require("prototypes.recipes.uranium-hexafluoride.fluo
 local uranium_fluorination = require("prototypes.recipes.uranium-hexafluoride.uranium-fluorination")
 local uranium_hexafluoride_centrifuging = require("prototypes.recipes.uranium-hexafluoride.uranium-hexafluoride-centrifuging")
 
--- Robot recipes
-local lava_flying_robot_frame = require("prototypes.recipes.flying-robot-frame")
-
 -- Modified base recipes (Nauvis only)
 local sulfur_lava = require("prototypes.recipes.sulfur-lava")
 
@@ -271,8 +268,6 @@ data:extend({
     lava_cooling,
     lava_cooling_with_liquid_nitrogen,
     liquid_nitrogen_production,
-    -- Robot recipes
-    lava_flying_robot_frame,
     -- Other recipes
     calcite_synthesis,
     steam_generation,

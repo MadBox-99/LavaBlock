@@ -10,6 +10,10 @@
 -- research, which follows this one: until the tank is running there is no
 -- culture to press, and handing a player both buildings at once left them
 -- with no idea which to put down first.
+--
+-- After Bio-ethanol as well, for the fermentation tank: green algae can be
+-- fermented into wash from the moment they grow, and this hands over that
+-- recipe too.
 return {
     type = "technology",
     name = "algae-cultivation",
@@ -20,8 +24,9 @@ return {
         { type = "unlock-recipe", recipe = "algae-tank" },
         { type = "unlock-recipe", recipe = "algae-green" },
         { type = "unlock-recipe", recipe = "algae-red" },
+        { type = "unlock-recipe", recipe = "algae-fermentation" },
     },
-    prerequisites = { "arboretum", "chemical-science-pack" },
+    prerequisites = { "arboretum", "chemical-science-pack", "bio-ethanol" },
     unit = {
         count = 200,
         ingredients = {

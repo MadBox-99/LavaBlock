@@ -2,9 +2,10 @@
 --
 -- Behind the Arboretum and nothing else, because straw and wood both come
 -- from there and a fuel line with no feed would be research for nothing.
--- The algae recipe comes with it rather than behind the algae technology:
--- it is one more thing to pour into the same tank, and a player who has the
--- algae already should not have to research the tank twice.
+-- Not the algae feed: Algae cultivation is blue science and this is red and
+-- green, so it sat in the menu with nothing to pour in. Algae cultivation
+-- now comes after this and hands it over with the algae, so the tank is
+-- still researched only once.
 return {
     type = "technology",
     name = "bio-ethanol",
@@ -15,7 +16,6 @@ return {
         { type = "unlock-recipe", recipe = "distillation-column" },
         { type = "unlock-recipe", recipe = "straw-fermentation" },
         { type = "unlock-recipe", recipe = "wood-fermentation" },
-        { type = "unlock-recipe", recipe = "algae-fermentation" },
         { type = "unlock-recipe", recipe = "wash-distillation" },
     },
     prerequisites = { "arboretum" },

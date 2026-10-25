@@ -22,6 +22,8 @@ local utils = require("lib.utils")
 -- processing on lava block, and sulfur comes from lava here.
 data.raw.technology["oil-processing"].research_trigger = { type = "craft-fluid", fluid = "crude-oil", amount = 1 }
 utils.remove_recipe_unlock("oil-processing", "chemical-plant")
+-- The chemical plant is built of steel, so it unlocks with Steel processing.
+table.insert(data.raw.technology["steel-processing"].effects, { type = "unlock-recipe", recipe = "chemical-plant" })
 table.insert(data.raw.technology["oil-processing"].effects, { type = "unlock-recipe", recipe = "sulfur-lava" })
 data.raw.technology["uranium-processing"].research_trigger = { type = "craft-item", item = "uranium-ore" }
 -- Oil gathering: no oil patches on the island, so crude oil is extracted
@@ -85,9 +87,6 @@ local calcite_processing_on_lava_block = require("prototypes.technologies.calcit
 local advanced_lava_smelting = require("prototypes.technologies.advanced-lava-smelting")
 local air_cooler = require("prototypes.technologies.air-cooler")
 local lava_science_pack = require("prototypes.technologies.lava-science-pack")
-
--- Robot technologies
-local lava_flying_robot_frame = require("prototypes.technologies.lava-flying-robot-frame")
 
 -- Lava Centrifuge technologies
 local lava_centrifuge_techs = require("prototypes.technologies.lava-centrifuge")
@@ -188,7 +187,6 @@ data:extend({
     advanced_lava_smelting,
     air_cooler,
     lava_science_pack,
-    lava_flying_robot_frame,
     stone_crushing_techs[1],
     stone_crushing_techs[2],
     stone_crushing_techs[3],
