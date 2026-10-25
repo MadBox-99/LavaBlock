@@ -601,6 +601,14 @@ data:extend({
     require("prototypes.recipes.gleba.sphalerite-bioleaching"),
     require("prototypes.recipes.gleba.pyrite-biooxidizing"),
     require("prototypes.recipes.gleba.slag-bioleaching"),
+    -- Aquilo: the cell assembly line, the electrolyte, cathode and cells
+    -- it makes, and what is built on the cells
+    require("prototypes.recipes.cell-assembly-line"),
+    require("prototypes.recipes.aquilo.lithium-electrolyte"),
+    require("prototypes.recipes.aquilo.nmc-cathode"),
+    require("prototypes.recipes.aquilo.lithium-ion-cell"),
+    require("prototypes.recipes.aquilo.accumulator-from-lithium-ion-cells"),
+    require("prototypes.recipes.aquilo.flying-robot-frame-from-lithium-ion-cells"),
 })
 
 -- Modified base recipe: the solar panel needs the crystallizer line.
@@ -627,5 +635,7 @@ require("prototypes.recipes.power-armor-mk2")
 require("prototypes.recipes.thruster")
 -- Modified Space Age recipe: the big mining drill's bits are cemented carbide.
 require("prototypes.recipes.big-mining-drill")
+-- Modified Space Age recipe: the MK3 personal battery has lithium-ion cells.
+require("prototypes.recipes.battery-mk3-equipment")
 require("prototypes.recipes.rocket-fuel")
 require("prototypes.recipes.lubricant")

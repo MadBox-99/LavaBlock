@@ -283,5 +283,6 @@ if mods["space-age"] then
         require("prototypes.technologies.hot-isostatic-pressing"),
         require("prototypes.technologies.eddy-current-separation"),
         require("prototypes.technologies.bioleaching"),
+        require("prototypes.technologies.lithium-ion-cells"),
     })
 end

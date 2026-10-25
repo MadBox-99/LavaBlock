@@ -34,4 +34,5 @@ data:extend({
     require("prototypes.entity.isostatic-press"),
     require("prototypes.entity.eddy-current-separator"),
     require("prototypes.entity.bioleaching-reactor"),
+    require("prototypes.entity.cell-assembly-line"),
 })

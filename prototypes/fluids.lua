@@ -83,6 +83,8 @@ data:extend({
     require("prototypes.fluids.gases.propane"),
     require("prototypes.fluids.gases.ethane"),
     require("prototypes.fluids.gases.acetylene"),
+    -- Aquilo: the cell line's electrolyte
+    require("prototypes.fluids.lithium-electrolyte"),
 })
 
 -- Space Age only fluids

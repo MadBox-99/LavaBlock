@@ -1341,6 +1341,56 @@ def e_waste(m):
     return out
 
 
+def nmc_cathode(m):
+    """Cathode sheets: aluminium foil coated black with the NMC oxide on
+    both faces, a bare tab of foil left at one corner of each, three of them
+    fanned on a pile.
+
+    Black and silver, because that is what a cathode looks like - the
+    oxide is a dark powder - and because the bare tab is the one thing that
+    says "electrode" rather than "plate".
+    """
+    out = []
+    for k, (dx, dy, a) in enumerate(((0.0, 0.0, 0.12), (0.06, -0.05, -0.10),
+                                     (-0.05, 0.04, 0.30))):
+        z = 0.02 + 0.045 * k
+        out.append(box(0.70, 0.48, 0.03, (dx, dy, z), rot=(0, 0, a),
+                       m=m['cathode']))
+        # The tab: bare foil out of one short edge.
+        tx = dx + 0.40 * math.cos(a) - 0.14 * math.sin(a)
+        ty = dy + 0.40 * math.sin(a) + 0.14 * math.cos(a)
+        out.append(box(0.12, 0.12, 0.008, (tx, ty, z), rot=(0, 0, a),
+                       m=m['foil']))
+    return out
+
+
+def lithium_ion_cell(m):
+    """Two cylindrical cells, one standing and one lying in front of it: a
+    blue sleeve, the steel can showing at the base, and the raised
+    positive cap.
+
+    Cylindrical, like the 18650 and 21700 cells packs are built of, so it
+    cannot be mistaken for vanilla's battery, which is a boxy lead-acid
+    cell.
+    """
+    out = []
+    R, H = 0.17, 0.62
+    out.append(cyl_at(-0.16, 0.12, H / 2, R, H - 0.04, m['sleeve'], verts=32))
+    out.append(cyl_at(-0.16, 0.12, H - 0.01, R * 0.97, 0.02, m['can'],
+                      verts=32))
+    out.append(cyl_at(-0.16, 0.12, H + 0.02, R * 0.45, 0.05, m['can'],
+                      verts=24))
+    out.append(cyl_at(-0.16, 0.12, 0.015, R * 0.97, 0.03, m['can'],
+                      verts=32))
+    lie = (0, math.pi / 2, 0.35)
+    out.append(cyl_at(0.20, -0.18, R, R, H - 0.04, m['sleeve'], verts=32,
+                      rot=lie))
+    ex, ey = 0.20 + (H / 2) * math.cos(0.35), -0.18 + (H / 2) * math.sin(0.35)
+    out.append(cyl_at(ex, ey, R, R * 0.45, 0.06, m['can'], verts=24,
+                      rot=lie))
+    return out
+
+
 def rare_earth_processing(m):
     """The technology: monazite with the three oxides it is cracked into."""
     out = monazite(m)
@@ -1442,6 +1492,8 @@ PARTS = {
     'calcium-carbide': calcium_carbide,
     'cemented-carbide': cemented_carbide,
     'e-waste': e_waste,
+    'nmc-cathode': nmc_cathode,
+    'lithium-ion-cell': lithium_ion_cell,
     'rare-earth-processing': rare_earth_processing,
     'precious-metals': precious_metals,
     'fertilizer-tech': fertilizer_tech,
@@ -1681,6 +1733,14 @@ def build():
     m['tin_coat'] = mat("tin_coat", (0.520, 0.360, 0.090), 0.28, 1.0)
     # Circuit board green, kept dark for the icon sun.
     m['pcb_board'] = mat("pcb_board", (0.006, 0.060, 0.018), 0.60, 0.0)
+    # The cathode coating is a near-black powder bound on the foil; the
+    # foil itself is aluminium, bright.
+    m['cathode'] = mat("cathode", (0.010, 0.010, 0.012), 0.85, 0.0)
+    m['cathode'].node_tree.nodes['Principled BSDF'].inputs[
+        'Specular IOR Level'].default_value = 0.10
+    m['foil'] = mat("foil", (0.330, 0.335, 0.345), 0.25, 1.0)
+    m['sleeve'] = mat("sleeve", (0.020, 0.070, 0.230), 0.30, 0.0)
+    m['can'] = mat("can", (0.380, 0.380, 0.390), 0.25, 1.0)
     m['pcb_board'].node_tree.nodes['Principled BSDF'].inputs[
         'Specular IOR Level'].default_value = 0.15
     objs = PARTS[PART](m)

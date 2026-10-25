@@ -139,6 +139,10 @@ data:extend({
     -- Gleba: the bioleaching reactor and the bacteria it runs on
     require("prototypes.items.bioleaching-reactor"),
     require("prototypes.items.gleba.leaching-bacteria"),
+    -- Aquilo: the cell assembly line, its cathode and its cells
+    require("prototypes.items.cell-assembly-line"),
+    require("prototypes.items.aquilo.nmc-cathode"),
+    require("prototypes.items.aquilo.lithium-ion-cell"),
 })
 
 -- Items that modify data.raw directly

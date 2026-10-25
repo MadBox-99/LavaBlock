@@ -159,5 +159,12 @@ data:extend({
         -- and a mod with a heap leach pad would take the plain word.
         type = "recipe-category",
         name = "ore-bioleaching"
+    },
+    {
+        -- The cell assembly line's. Not "cell-assembly", which names the
+        -- building, and not a bare "assembling" in any form: a battery mod
+        -- would take "battery-assembling", and both of these make cells.
+        type = "recipe-category",
+        name = "cell-assembling"
     }
 })
