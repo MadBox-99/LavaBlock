@@ -1,7 +1,9 @@
 local utils = require("lib.utils")
 require("__core__.lualib.util")
 require("__base__.prototypes.entity.pipecovers")
-require("__base__.prototypes.entity.assemblerpipes")
+-- Factorio 2.1 moved the assembler pipe sprites from the global
+-- `assembler2pipepictures()` into this module, as a plain table.
+local assembler_pictures = require("__base__.prototypes.entity.assembler-pictures")
 
 -- Base on centrifuge
 local lava_centrifuge = table.deepcopy(data.raw["assembling-machine"]["centrifuge"])
@@ -112,7 +114,7 @@ lava_centrifuge.fluid_boxes = {
         pipe_connections = {
             { flow_direction = "input", direction = defines.direction.north, position = { 0, -1 } }
         },
-        pipe_picture = assembler2pipepictures(),
+        pipe_picture = assembler_pictures.assembler2pipepictures,
         pipe_covers = pipecoverspictures(),
         secondary_draw_orders = PIPE_BEHIND_AT_NORTH,
         volume = 2000,
@@ -122,7 +124,7 @@ lava_centrifuge.fluid_boxes = {
         pipe_connections = {
             { flow_direction = "input", direction = defines.direction.east, position = { 1, 0 } }
         },
-        pipe_picture = assembler2pipepictures(),
+        pipe_picture = assembler_pictures.assembler2pipepictures,
         pipe_covers = pipecoverspictures(),
         secondary_draw_orders = PIPE_BEHIND_AT_NORTH,
         volume = 1000,
@@ -132,7 +134,7 @@ lava_centrifuge.fluid_boxes = {
         pipe_connections = {
             { flow_direction = "output", direction = defines.direction.south, position = { 0, 1 } }
         },
-        pipe_picture = assembler2pipepictures(),
+        pipe_picture = assembler_pictures.assembler2pipepictures,
         pipe_covers = pipecoverspictures(),
         secondary_draw_orders = PIPE_BEHIND_AT_NORTH,
         volume = 2000,

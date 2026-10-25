@@ -1,5 +1,7 @@
 local lava_science_pack = {
-    type = "tool",
+    -- A plain item, not a tool: Factorio 2.1 made vanilla's science packs
+    -- items and lets labs take any item.
+    type = "item",
     name = "lava-science-pack",
     color_hint = {
         text = "A"
@@ -12,10 +14,6 @@ local lava_science_pack = {
         filename = "__base__/sound/item/science-inventory-move.ogg",
         volume = 0.6
     },
-    durability = 1,
-    durability_description_key = "description.science-pack-remaining-amount-key",
-    durability_description_value = "description.science-pack-remaining-amount-value",
-    factoriopedia_durability_description_key = "description.factoriopedia-science-pack-remaining-amount-key",
     -- Recoloured from the vanilla utility pack by tools/icons/make_science_pack.py,
     -- which keeps the steel collar and only warms the glass. A prototype
     -- `tint` cannot do that - it multiplies the whole layer, which is why

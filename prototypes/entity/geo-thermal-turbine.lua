@@ -1,6 +1,5 @@
 require("__core__.lualib.util")
 require("__base__.prototypes.entity.pipecovers")
-require("__base__.prototypes.entity.assemblerpipes")
 local geo_thermal_turbine = table.deepcopy(data.raw["generator"]["steam-turbine"])
 geo_thermal_turbine.name = "geo-thermal-turbine"
 geo_thermal_turbine.flags = { "placeable-neutral", "player-creation" }
@@ -16,7 +15,11 @@ geo_thermal_turbine.fluid_usage_per_tick = 4
 geo_thermal_turbine.maximum_temperature = 2500
 geo_thermal_turbine.burns_fluid = true
 geo_thermal_turbine.fluid_box.filter = "lava"
-geo_thermal_turbine.fluid_box.minimum_temperature = 1000
+-- No minimum temperature. Lava is never below its default 1500 degrees, so
+-- the 1000 the fluid box used to ask for turned nothing away, and Factorio
+-- 2.1.22 moved the field to the generator and refuses one under the fluid's
+-- default. The steam turbine's 100 has to go with it.
+geo_thermal_turbine.minimum_input_temperature = nil
 geo_thermal_turbine.fast_replaceable_group = "geo-thermal-turbine"
 
 -- Same icon as the item, so alt-mode and Factoriopedia match the model. It

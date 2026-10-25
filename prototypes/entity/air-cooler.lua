@@ -1,5 +1,4 @@
 require("__base__.prototypes.entity.pipecovers")
-require("__base__.prototypes.entity.assemblerpipes")
 -- Start with chemical plant
 local air_cooler = table.deepcopy(data.raw["assembling-machine"]["chemical-plant"])
 air_cooler.name = "air-cooler"

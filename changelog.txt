@@ -1,6 +1,15 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.0
 Date: ????
+  Changes:
+    - Updated to Factorio 2.1. This version needs Factorio 2.1; the 0.2 versions stay the ones for Factorio 2.0
+    - The crystal circuit board, the wafer solar panel, the sapphire processing unit and uranium bacteria used recipe categories Space Age 2.1 removed, and now take the ones that replaced them. They are made in the same machines as before, except that uranium bacteria, like Space Age's own bacteria, can now be made in assembling machine 1 too
+    - Space Age 2.1 renamed Wood processing to Tree seed. The Arboretum technology unlocks it under its new name, and the arboretum still makes it
+    - The lava, XP, circuit and military 2 science packs are plain items now, as Factorio 2.1 made vanilla's science packs
+    - Needs LavaBlock-graphics 0.3.0, the same pictures for Factorio 2.1
+---------------------------------------------------------------------------------------------------
+Version: 0.2.6
+Date: 2026-10-17
   Features:
     - Added the Lithography Machine, an EUV chip printer two tiles by eight with its own model: the light source at one end - a vacuum vessel with a tin droplet generator on top and the laser source glowing red beside it - the clean-room scanner in the middle, and an open wafer stage at the other end, scanning a wafer under the exposure line. It draws 5 MW and is built from processing units, crystal circuit boards, quartz lenses, magnetite, sapphire substrate and steel
     - It runs on laser sources, which wear out: each one goes into the microchip recipe and comes back 49 times in 50, so a source lasts about fifty crafts. A laser source is a ruby, two quartz lenses, a crystal circuit board, four tin, steel and 20 xenon for the flash tube that pumps the ruby, so it is built in an assembling machine with a fluid input
@@ -52,9 +61,6 @@ Date: ????
     - Propane and ethane: the oil refinery distils 100 petroleum gas into 50 of each. A chemical plant cracks 40 ethane with 20 steam into 30 ethylene and 30 hydrogen, which comes with Bio-plastics. All of it is the Gas Fractionation technology, on chemical science, after Advanced oil processing
     - Calcium carbide: the arc furnace fuses 2 quicklime and 3 coal into 2 carbide and 20 carbon monoxide. A chemical plant drops a carbide into 20 water for 30 acetylene and a slaked lime, and makes 30 acetylene and 30 hydrochloric acid into 3 plastic bars. All of it is the Calcium Carbide technology, on chemical science, after Electric arc smelting, Limestone processing and the Chlor-alkali process
   Changes:
-    - Updated to Factorio 2.1. This version needs Factorio 2.1; the 0.2 versions stay the ones for Factorio 2.0
-    - The crystal circuit board, the wafer solar panel, the sapphire processing unit and uranium bacteria used recipe categories Space Age 2.1 removed, and now take the ones that replaced them. They are made in the same machines as before, except that uranium bacteria, like Space Age's own bacteria, can now be made in assembling machine 1 too
-    - Space Age 2.1 renamed Wood processing to Tree seed. The Arboretum technology unlocks it under its new name, and the arboretum still makes it
     - Locomotives, cargo wagons, fluid wagons and artillery wagons are built only in the Train Factory. Their ingredients are unchanged; an assembling machine no longer takes them
     - Electric engine units are built from a ferrite magnet, two magnetic coils, a steel plate and two electronic circuits, in place of an engine unit and lubricant, and no longer need a fluid input. Electric engine comes after Ferromagnetism
     - The substation takes a transformer in place of its six copper cables. Electric energy distribution 2 comes after Ferromagnetism
@@ -78,7 +84,7 @@ Date: ????
     - The processing unit is washed in 5 ozone in place of its 5 sulfuric acid; the two alternative recipes keep their acid. Processing unit comes after Ozone generation
     - Lubricant is refined with propane: 2 propane in every 10 heavy oil. Lubricant comes after Gas fractionation, and Bio-plastics after it too
     - A save that has already researched any of these needs the new technology before it can build them again
-    - Needs LavaBlock-graphics 0.3.0, which carries the lithography machine, the train factory, the coil winder, the arc furnace, the new item icons and the new fluid icons
+    - Needs LavaBlock-graphics 0.2.6, which carries the lithography machine, the train factory, the coil winder, the arc furnace, the new item icons and the new fluid icons
   Bugfixes:
     - Recycling a speed or efficiency module of any tier gave back no advanced circuits: the lava module recipes had replaced the vanilla ones as the source of the recycling recipe. They now recycle the way vanilla modules do
 ---------------------------------------------------------------------------------------------------
