@@ -580,8 +580,6 @@ data:extend({
     require("prototypes.recipes.aquilo.lithium-electrolyte"),
     require("prototypes.recipes.aquilo.nmc-cathode"),
     require("prototypes.recipes.aquilo.lithium-ion-cell"),
-    require("prototypes.recipes.aquilo.accumulator-from-lithium-ion-cells"),
-    require("prototypes.recipes.aquilo.flying-robot-frame-from-lithium-ion-cells"),
 })
 
 -- Modified base recipe: the solar panel needs the crystallizer line.
@@ -613,5 +611,19 @@ require("prototypes.recipes.thruster")
 require("prototypes.recipes.big-mining-drill")
 -- Modified Space Age recipe: the MK3 personal battery has lithium-ion cells.
 require("prototypes.recipes.battery-mk3-equipment")
+-- Modified base and Space Age recipes built of the island's parts.
+require("prototypes.recipes.accumulator")
+require("prototypes.recipes.flying-robot-frame")
+require("prototypes.recipes.roboport")
+require("prototypes.recipes.laser-turret")
+require("prototypes.recipes.rocket-part")
+require("prototypes.recipes.asteroid-crusher")
+require("prototypes.recipes.centrifuge")
+require("prototypes.recipes.beacon")
+require("prototypes.recipes.power-armor")
+require("prototypes.recipes.night-vision-equipment")
+require("prototypes.recipes.space-platform-foundation")
+require("prototypes.recipes.casting-low-density-structure")
+require("prototypes.recipes.fusion-reactor-equipment")
 require("prototypes.recipes.rocket-fuel")
 require("prototypes.recipes.lubricant")

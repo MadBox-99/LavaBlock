@@ -4,8 +4,8 @@
 -- over a frame.
 --
 -- Ten duralumin plates in place of the twenty copper plates: eight
--- aluminium, one copper and one magnesium. Space Age's foundry recipe,
--- which casts it from molten iron and copper, is left alone.
+-- aluminium, one copper and one magnesium. Space Age's foundry recipe gets
+-- duralumin too (casting-low-density-structure.lua).
 local utils = require("lib.utils")
 
 local recipe = data.raw.recipe["low-density-structure"]

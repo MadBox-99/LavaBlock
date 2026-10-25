@@ -16,11 +16,24 @@ Date: ????
     - Added the Cell Assembly Line, Aquilo's machine, three tiles by six with its own model: copper and aluminium foil reels at one end, a winding head turning in the middle, a conveyor of finished cells, and a formation rack whose charge lights glow while the line runs. It draws 2 MW, takes electrolyte through a port on its side, and is built on Aquilo from 20 lithium plates, 20 stainless steel plates, 10 electric engine units and 20 processing units
     - Lithium electrolyte: a lithium, a phosphorus and 30 fluorine make 50 in the cryogenic plant
     - NMC cathode: a lithium plate and one each of nickel, manganese, cobalt and aluminium plate make 4 on the cell line. Lithium-ion cells: 2 cathodes, a carbon, a copper plate, a plastic bar and 10 electrolyte make 2
-    - Two lithium-ion cells and 2 iron plates make an accumulator in place of 5 batteries, and one cell takes the place of the 2 batteries in a flying robot frame
     - All of it is the Lithium-ion Cells technology, on cryogenic science, after Superalloys, Alloy steels and Rare earth processing
   Balancing:
     - The big mining drill takes 20 cemented carbide in place of 20 tungsten carbide, because a drill bit is carbide bound in cobalt. The big drill, and tungsten steel and metallurgic science behind it, now come after Hot Isostatic Pressing
     - The personal battery MK3 takes 10 lithium-ion cells as well as its MK2 batteries and supercapacitors, and now comes after Lithium-ion Cells
+    - The portable fusion reactor takes 20 lithium-ion cells, and comes after Lithium-ion Cells
+    - The accumulator takes 4 batteries, a transformer and 2 nickel plates instead of 5 batteries - nickel-iron cells beside the lead-acid ones, and an inverter to put the power back on the line - and comes after Ferromagnetism and Rare earth processing. Fulgora's electromagnetic science, which takes an accumulator a pack, needs the nickel and the transformer shipped in, or the accumulators themselves
+    - The flying robot frame takes a neodymium magnet for its rotor motors, and Robotics comes after Rare earth processing
+    - The roboport takes 4 transformers, one for each charging pad
+    - The laser turret takes a ruby and a quartz lens, the laser's crystal and its optics, and comes after Laser cutting
+    - Every rocket part takes a superalloy plate for the engine, and the rocket silo comes after Superalloys
+    - The steam turbine takes 5 superalloy plates for its blades, and Nuclear power comes after Superalloys
+    - Space Age's asteroid crusher takes 10 manganese steel plates instead of 10 steel plates for its jaws, and space platforms come after Alloy steels
+    - The centrifuge takes 50 stainless steel plates instead of 50 steel plates, and Uranium processing comes after Alloy steels
+    - The beacon takes 5 microchips, and Effect transmission comes after EUV lithography
+    - Power armor takes 20 titanium alloy plates instead of 40 steel plates, as the exoskeleton and power armor MK2 already did, and comes after Titanium processing
+    - Night vision takes 2 quartz lenses, and comes after Laser cutting
+    - A space platform foundation takes 10 steel plates and 5 aluminium plates instead of 20 steel plates, and the rocket silo comes after Titanium processing
+    - Space Age's foundry recipe for low density structure takes 5 duralumin plates and 125 molten copper instead of 250. Cast without duralumin it cost an eighth of the island's recipe, and duralumin was never needed again after Vulcanus. It is still about half the price
     - Every speed, efficiency, productivity and quality module takes a part from the island's chip lines on top of its vanilla ingredients: tier 1 two silica crystals, tier 2 a crystal circuit board, tier 3 two microchips. A speed module 3 costs 16 silica crystals, 4 crystal circuit boards and 2 microchips more than before, because modules were the one late-game part still at its vanilla cost
     - The tier 1 module technologies now come after Lava crystallization, tier 2 after Crystal circuit board and tier 3 after EUV lithography, so tier 3 modules need production science
     - Lava cooling with liquid nitrogen gives 750 steam instead of 1500. At 1500 one air cooler fed eight steam turbines - 48 MW for 210 kW, more than a nuclear reactor - out of twice the heat that went in. Now it gives back the heat that goes in, 24 MW a cooler, as much from a unit of lava as the geo-thermal turbine gets. Its plates, bricks and calcite are unchanged

@@ -1,6 +1,8 @@
 -- The cell assembly line, the electrolyte and cathode it fills and coats,
--- the cells it makes, and the accumulator and robot frame built on them.
--- Aquilo's machine.
+-- and the cells it makes. Aquilo's machine. The cells go into the MK3
+-- personal battery and the portable fusion reactor; not into accumulators
+-- or robot frames, which Fulgora's science and every robot need long
+-- before Aquilo (see recipes/accumulator.lua).
 --
 -- Cryogenic science, because the line is built on Aquilo of its lithium,
 -- and the electrolyte is made in the cryogenic plant. Superalloys for the
@@ -16,8 +18,6 @@ return {
         { type = "unlock-recipe", recipe = "lithium-electrolyte" },
         { type = "unlock-recipe", recipe = "nmc-cathode" },
         { type = "unlock-recipe", recipe = "lithium-ion-cell" },
-        { type = "unlock-recipe", recipe = "accumulator-from-lithium-ion-cells" },
-        { type = "unlock-recipe", recipe = "flying-robot-frame-from-lithium-ion-cells" },
     },
     prerequisites = {
         "cryogenic-science-pack", "superalloys", "alloy-steels",
