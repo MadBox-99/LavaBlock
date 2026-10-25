@@ -332,6 +332,7 @@ data:extend({
     stone_crushing[2],
     stone_crushing[3],
     stone_crushing[4],
+    stone_crushing[5],
     crusher_roll,
     culture_column,
     -- Crystallizer recipes
@@ -580,6 +581,14 @@ if mods["space-age"] then
     })
 end
 
+-- The planet machines: one for each Space Age planet, built there out of
+-- what that planet has.
+data:extend({
+    -- Vulcanus: the isostatic press and the cemented carbide it sinters
+    require("prototypes.recipes.isostatic-press"),
+    require("prototypes.recipes.vulcanus.cemented-carbide"),
+})
+
 -- Modified base recipe: the solar panel needs the crystallizer line.
 require("prototypes.recipes.solar-panel")
 
@@ -602,5 +611,7 @@ require("prototypes.recipes.low-density-structure")
 require("prototypes.recipes.exoskeleton-equipment")
 require("prototypes.recipes.power-armor-mk2")
 require("prototypes.recipes.thruster")
+-- Modified Space Age recipe: the big mining drill's bits are cemented carbide.
+require("prototypes.recipes.big-mining-drill")
 require("prototypes.recipes.rocket-fuel")
 require("prototypes.recipes.lubricant")

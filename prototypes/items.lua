@@ -128,6 +128,13 @@ if mods["space-age"] then
     })
 end
 
+-- The planet machines: one for each Space Age planet, built there.
+data:extend({
+    -- Vulcanus: the isostatic press and the cemented carbide it sinters
+    require("prototypes.items.isostatic-press"),
+    require("prototypes.items.vulcanus.cemented-carbide"),
+})
+
 -- Items that modify data.raw directly
 require("prototypes.items.trains.fluid-wagon")
 require("prototypes.items.trains.cargo-wagon")

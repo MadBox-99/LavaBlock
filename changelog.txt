@@ -1,7 +1,15 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.1
 Date: ????
+  Features:
+    - Added the Isostatic Press, Vulcanus's machine, four tiles square with its own model: a pressure vessel standing in a wire-wound frame with a round-backed yoke over the top, three argon bottles behind it, an argon compressor whose crossheads slide in open guides, and a chiller with its fan turning on top. It draws 3 MW, takes argon through a port at the back, and is built on Vulcanus from 20 tungsten carbide, 10 superalloy plates, 5 electric engine units and 10 processing units
+    - Cemented carbide, tungsten carbide bound in cobalt: 4 tungsten carbide, a cobalt plate and 20 argon make 4 in the isostatic press in 10 seconds
+    - Studded gravel grinding: with cemented carbide studs in its rolls the industrial roll crusher grinds 8 stone out of 3 basalt gravel and 10 lubricant, where the oiled grind gets 6. The carbide comes back 99 times in 100, so a crusher wears one out about every two minutes
+    - All of it is the Hot Isostatic Pressing technology, researched by making 50 tungsten carbide, after Tungsten carbide, Superalloys, Shielded crystallization and Lubricated rock crushing
+  Balancing:
+    - The big mining drill takes 20 cemented carbide in place of 20 tungsten carbide, because a drill bit is carbide bound in cobalt. The big drill, and tungsten steel and metallurgic science behind it, now come after Hot Isostatic Pressing
   Changes:
+    - Needs LavaBlock-graphics 0.3.1, which carries the isostatic press and the cemented carbide and Hot Isostatic Pressing icons
     - The island's fluid recipes moved out of the single fluid row of the intermediate products tab into the Chemistry tab, one row per production line: lava extraction, lava smelting and cooling, air and its gases, volcanic gas, acids and solutions, ethanol and hydrocarbons, noble and laser gases, glass and other melts, metal melts and alloy melts
   Bugfixes:
     - Fourteen casting recipes - lead, zinc, nickel, manganese, stainless steel, manganese steel, brass, bronze, aluminium, magnesium, duralumin, vanadium, titanium alloy and superalloy plate - and Uranium Bacteria Cultivation showed a missing-key placeholder for a name in Factorio 2.1, as did the Tungsten from Lava technology. They are named again

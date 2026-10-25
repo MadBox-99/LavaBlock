@@ -6,7 +6,7 @@
     "factorio_version": "2.1",
     "dependencies": [
         "base >= 2.1",
-        "LavaBlock-graphics >= 0.3.0",
+        "LavaBlock-graphics >= 0.3.1",
         "space-age",
         "! any-planet-start",
         "? Pyroclast"

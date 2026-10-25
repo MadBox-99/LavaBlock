@@ -1261,6 +1261,47 @@ def calcium_carbide(m):
     return objs
 
 
+def carbide_insert(x, y, z, rz, material, half_long=0.34, half_short=0.22,
+                   t=0.075, hole=0.07):
+    """One indexable insert: a rhombic plate of carbide with a screw hole
+    through the middle, the shape a lathe tool's tip is clamped as.
+
+    A 66 degree diamond, sharper than the common 80 degree insert: at the
+    real angle and under this camera's perspective the plates came out
+    nearly square.
+    """
+    pts = []
+    for dz in (-t / 2, t / 2):
+        pts += [(half_long, 0, dz), (0, half_short, dz),
+                (-half_long, 0, dz), (0, -half_short, dz)]
+    plate = hull(pts, material, loc=(x, y, z), rot=(0, 0, rz))
+    bpy.context.view_layer.update()
+    cutter = cyl_at(x, y, z, hole, t + 0.04, material, verts=24)
+    mod = plate.modifiers.new("hole", 'BOOLEAN')
+    mod.operation = 'DIFFERENCE'
+    mod.object = cutter
+    bpy.context.view_layer.objects.active = plate
+    bpy.ops.object.modifier_apply(modifier=mod.name)
+    mesh = cutter.data
+    bpy.data.objects.remove(cutter, do_unlink=True)
+    bpy.data.meshes.remove(mesh)
+    return plate
+
+
+def cemented_carbide(m):
+    """Cemented carbide as the inserts it is pressed into: three rhombic
+    tool tips with their screw holes, two in the plain dark grey of
+    sintered hardmetal and one in the gold of a titanium nitride coat.
+
+    Inserts and not a bar or a powder, because the tool tip is the shape
+    every machinist knows carbide by, and because a dark grey ingot would
+    sit beside vanilla's tungsten carbide as the same icon twice.
+    """
+    return [carbide_insert(-0.20, 0.10, 0.04, 0.35, m['hardmetal']),
+            carbide_insert(-0.12, 0.14, 0.12, -0.20, m['hardmetal']),
+            carbide_insert(0.30, -0.18, 0.04, 0.90, m['tin_coat'])]
+
+
 def rare_earth_processing(m):
     """The technology: monazite with the three oxides it is cracked into."""
     out = monazite(m)
@@ -1360,6 +1401,7 @@ PARTS = {
     'potash': potash,
     'fertilizer': fertilizer,
     'calcium-carbide': calcium_carbide,
+    'cemented-carbide': cemented_carbide,
     'rare-earth-processing': rare_earth_processing,
     'precious-metals': precious_metals,
     'fertilizer-tech': fertilizer_tech,
@@ -1593,6 +1635,10 @@ def build():
     m['potash'] = mat("potash", (0.300, 0.150, 0.130), 0.45, 0.0)
     m['npk'] = mat("npk", (0.120, 0.150, 0.190), 0.55, 0.0)
     m['carbide'] = mat("carbide", (0.060, 0.064, 0.072), 0.55, 0.40)
+    # Sintered hardmetal: a dark, slightly warm grey with a dull metal
+    # shine, and a titanium nitride coat the gold of a drill bit.
+    m['hardmetal'] = mat("hardmetal", (0.070, 0.069, 0.072), 0.40, 0.70)
+    m['tin_coat'] = mat("tin_coat", (0.520, 0.360, 0.090), 0.28, 1.0)
     objs = PARTS[PART](m)
     sit_on_ground(objs)
     return objs, []

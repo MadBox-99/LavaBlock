@@ -279,5 +279,7 @@ if mods["space-age"] then
         asteroid_productivity_simple,
         asteroid_productivity_advanced,
         industrialised_chemical_plant_tech,
+        -- The planet machines: one for each Space Age planet, built there.
+        require("prototypes.technologies.hot-isostatic-pressing"),
     })
 end

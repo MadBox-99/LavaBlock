@@ -70,6 +70,41 @@ return {
         order = "a[basalt]-d[grinding-oiled]",
     },
     {
+        -- The oiled grind with studded rolls: cemented carbide studs set in
+        -- the drums, as on a real high-pressure grinding roll, so the rock
+        -- breaks on the studs and the bed of rock caught between them
+        -- instead of wearing the drum. Two more stone than the oiled grind
+        -- out of the same gravel.
+        --
+        -- The studs wear out: a carbide comes back 99 times in 100, so an
+        -- industrial crusher grinding non-stop eats one about every two
+        -- minutes.
+        -- That is the price, and it is paid in Vulcanus's tungsten. The
+        -- returned carbide is left out of productivity, so productivity
+        -- only multiplies the stone.
+        type = "recipe",
+        name = "gravel-grinding-studded",
+        categories = { "rock-crushing-oiled" },
+        enabled = false,
+        energy_required = 2,
+        ingredients = {
+            { type = "item",  name = "basalt-gravel",    amount = 3 },
+            { type = "item",  name = "cemented-carbide", amount = 1 },
+            { type = "fluid", name = "lubricant",        amount = 10 },
+        },
+        results = {
+            { type = "item", name = "stone",            amount = 8 },
+            { type = "item", name = "cemented-carbide", amount = 1, independent_probability = 0.99, ignored_by_productivity = 1 },
+        },
+        main_product = "stone",
+        allow_productivity = true,
+        auto_recycle = false,
+        icon = "__base__/graphics/icons/stone.png",
+        icon_size = 64,
+        subgroup = "raw-resource",
+        order = "a[basalt]-d[grinding-studded]",
+    },
+    {
         -- Cryogenic lava cooling hands back ten stone brick half the time,
         -- and a base running that recipe at any scale drowns in brick it
         -- has nothing to do with. This turns the surplus back into the

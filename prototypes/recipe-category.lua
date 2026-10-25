@@ -136,5 +136,12 @@ data:extend({
         -- calls smelters.
         type = "recipe-category",
         name = "arc-smelting"
+    },
+    {
+        -- The isostatic press's. Not a bare "pressing", which every mod with
+        -- a plate press or an oil press takes first, and which Space Age
+        -- 2.0 used for one of its own combined categories.
+        type = "recipe-category",
+        name = "isostatic-pressing"
     }
 })

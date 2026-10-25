@@ -30,4 +30,6 @@ data:extend({
     require("prototypes.entity.island-link-pole"),
     require("prototypes.entity.xp-lab"),
     require("prototypes.entity.arc-furnace"),
+    -- The planet machines: one for each Space Age planet, built there.
+    require("prototypes.entity.isostatic-press"),
 })
