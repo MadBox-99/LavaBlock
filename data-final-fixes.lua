@@ -88,7 +88,9 @@ if mods["space-age"] then
     end
 end
 
--- Demolisher noise expressions for Nauvis
+-- Demolisher territories on Nauvis, from 200 tiles out. Intended, like the
+-- biters on the outer islands. No-enemies mode removes them through the -99
+-- in the variation expression.
 if mods["space-age"] then
     data:extend({
         {

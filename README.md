@@ -20,6 +20,8 @@ Electric mining drills are removed from the tech tree — they serve no purpose 
 
 Land is the other scarce resource. The only way to expand is by researching island expansion technologies, which grant landfill. Every tile matters.
 
+The islands out in the lava are not empty. Biters and worms hold them, at the largest enemy settings the map generator has, and Nauvis has demolisher territories like Vulcanus's from about 200 tiles out. Ticking **No enemies** in the map generator removes both.
+
 ---
 
 ## Science packs
@@ -55,7 +57,7 @@ The connection to Pyroclast runs from Vulcanus.
 - 10 solar panels and 5 accumulators, enough to run both chemical plants and a pump through the night
 - 4 small electric poles
 - 2 iron gear wheels and 3 pipes: exactly one offshore pump, so the first move is to craft it and place it on the lava
-- Lava Mech Armor, unless turned off in the mod settings
+- Lava Mech Armor, unless turned off in the mod settings. It flies over lava, but slows you to a fifth of walking speed while you wear it
 
 Steam power research is unlocked at the start so you can get power running without needing coal first.
 

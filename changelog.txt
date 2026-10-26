@@ -2,6 +2,11 @@
 Version: 0.3.2
 Date: ????
   Changes:
+    - The starting island is the 25x25 landfill pad again, as in the first releases, with lava all round it and no other island within 52 tiles of spawn. Since 0.1.4 every map also came with a grass island 28 to 52 tiles out round the pad, several times the pad's 625 tiles of land for free. The map beyond 52 tiles is unchanged, and a map already started keeps the island it generated
+  Bugfixes:
+    - The Lava Mech Armor slows you by 80%, as 0.2.1 said it did. That change never took effect and it stayed at 90%, a tenth of walking speed at about 0.9 tiles a second; it is now a fifth, about 1.8. A save loaded with the armor on gets the new speed straight away
+  Info:
+    - The biters and worms on the islands out in the lava, at the largest enemy settings, and the demolisher territories on Nauvis from 200 tiles out are intended, and the readme and mod description now say so. 0.1.4 said demolishers were gone from Nauvis, but only the Lava Block Island preset lost them. No enemies in the map generator removes both
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.1
 Date: 2026-10-25

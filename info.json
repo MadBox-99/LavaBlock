@@ -42,5 +42,5 @@
         ]
     },
     "space_travel_required": true,
-    "description": "You start on a small island surrounded by lava with no ore patches and no traditional mining. Everything is extracted from lava using chemical plants. Land can only be expanded through research. Requires Space Age."
+    "description": "You start on a small island surrounded by lava with no ore patches and no traditional mining. Everything is extracted from lava using chemical plants. Land can only be expanded through research, and the islands further out are held by biters, with demolishers beyond. Requires Space Age."
 }

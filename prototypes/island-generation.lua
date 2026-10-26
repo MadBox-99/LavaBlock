@@ -41,8 +41,9 @@ nauvis_copy.map_gen_settings.autoplace_controls["deepwater"] = nil
 nauvis_copy.map_gen_settings.default_enable_all_autoplace_controls = false
 nauvis_copy.map_gen_settings.autoplace_controls = {
     -- size is a MapGenSize (valid range 0 / 1/6..6); 6 = max. 200 was invalid.
-    -- Enemies can only spawn on land (positive elevation), i.e. the starting
-    -- patch and the scattered grass spots — the lava ocean stays clear.
+    -- Enemies can only spawn on land (positive elevation), i.e. the scattered
+    -- islands - the starting area keeps them off the pad and the lava ocean
+    -- stays clear. Intended: every island you reach is held.
     ["enemy-base"] = {
         size = 6,
         frequency = 6,

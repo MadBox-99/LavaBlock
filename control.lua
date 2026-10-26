@@ -88,8 +88,9 @@ local function update_player_speed(player)
     if not player or not player.character then return end
 
     if is_wearing_lava_mech_armor(player) then
-        -- Extremely slow - 90% speed reduction
-        player.character_running_speed_modifier = -0.9
+        -- 80% slower, a fifth of walking speed. 0.2.1 announced 80% but this
+        -- line stayed at 90% until 0.3.2.
+        player.character_running_speed_modifier = -0.8
     else
         player.character_running_speed_modifier = 0
     end
@@ -198,6 +199,15 @@ script.on_configuration_changed(function(data)
     storage.force_xp = storage.force_xp or {}
     disable_freeplay()
     island_link_pole.rescan()
+
+    -- The armor's slowdown is set on the player when the armor goes on, so a
+    -- save made while wearing it would keep an old figure until it came off.
+    -- Only wearers: everyone else's modifier may belong to another mod.
+    for _, player in pairs(game.players) do
+        if is_wearing_lava_mech_armor(player) then
+            update_player_speed(player)
+        end
+    end
 
     -- A technology that gained an unlock in an update (Railway now unlocks
     -- the condenser coil, Electric energy distribution 1 the island link
