@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.2
-Date: ????
+Date: 2026-10-26
   Changes:
     - The starting island is the 25x25 landfill pad again, as in the first releases, with lava all round it and no other island within 52 tiles of spawn. Since 0.1.4 every map also came with a grass island 28 to 52 tiles out round the pad, several times the pad's 625 tiles of land for free. The map beyond 52 tiles is unchanged, and a map already started keeps the island it generated
   Bugfixes:
